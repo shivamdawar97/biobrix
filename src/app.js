@@ -4,7 +4,7 @@ const app = express()
 require('../db/mongoose')
 const productRouter = require('../routers/product_router')
 
-const angularPath = path.join(__dirname,'../fontend/bioc/src')
+const angularPath = path.join(__dirname,'../build')
 
 app.use(express.static(angularPath))
 app.use(express.json())
