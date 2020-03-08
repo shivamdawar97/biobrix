@@ -19,10 +19,13 @@
                     Products
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="category">
+                        <a class="category-item" 
+                            [routerLink]="['/products', category.id]"
+                            *ngFor="let category of categoryList">
+                            <span>{{ category.name }}</span>
+                        </a>
+                    </div>
                 </div>
             </li>
             <li class="nav-item">

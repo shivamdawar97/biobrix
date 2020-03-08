@@ -1,24 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SecondaryHeaderComponent } from './components/secondary-header/secondary-header.component';
-import { PrimaryHeaderComponent } from './components/primary-header/primary-header.component';
-import { CartModule } from './modules/cart/cart.module';
+import { HomeModule } from './modules/home/home.module';
 
 
 @NgModule({
-  declarations: [
-    SecondaryHeaderComponent,
-    PrimaryHeaderComponent,
-  ],
+  declarations: [],
   imports: [
     CommonModule,
-    CartModule
+    HomeModule
   ],
   exports: [
-    SecondaryHeaderComponent,
-    PrimaryHeaderComponent,
-    CartModule
+    HomeModule
   ]
 })
 export class AppConfigModule { }

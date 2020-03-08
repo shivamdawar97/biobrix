@@ -1,3 +1,5 @@
+@import "src/styles/imports";
+
 .primary-header {
   font-size: 1.6rem;
   .navbar-brand {
@@ -6,5 +8,26 @@
 
   .nav-item {
     padding: 0 1.5rem;
+  }
+
+  .category {
+    display: flex;
+    list-style: none;
+
+    &-item {
+      padding: 1rem;
+      min-width: 130px;
+      max-width: 150px;
+      text-align: center;
+      @include truncate;
+    }
+
+    span {
+      font-size: 16px;
+    }
+
+    :not(:last-child) {
+      border-right: 0.1rem solid $secondary-border;
+    }
   }
 }
