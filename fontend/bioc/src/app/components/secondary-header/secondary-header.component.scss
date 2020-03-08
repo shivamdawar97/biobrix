@@ -1,0 +1,30 @@
+@import "src/styles/imports";
+.secondary-nav {
+  padding: 0.1rem 1rem;
+  border-bottom: 0.1rem solid $secondary-border;
+  background-color: $secondary-bg;
+  font-size: 1.6rem;
+
+  .nav-item {
+    padding: 0 2rem;
+  }
+
+  .cart {
+    position: relative;
+    span {
+      background: $color-notify;
+      height: 1.6rem;
+      width: 1.6rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: $color-white;
+      position: absolute;
+      left: 1.4rem;
+      top: 0.4rem;
+    }
+  }
+}
