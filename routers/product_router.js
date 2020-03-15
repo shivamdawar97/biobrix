@@ -45,9 +45,9 @@ router.post('/product/add_product',async (req,res)=>{
 router.get('/product/product_list',async (req,res)=>{
 
     try{
-        const category = req.query.category
+        const id = req.query.categoryId
         
-        const categoryWiseProdcts = await Category.find(category==undefined?{}:{category_name:category})
+        const categoryWiseProdcts = id==undefined? await Category.find({}) : await Category.findById(id)
         
         if(!categoryWiseProdcts || categoryWiseProdcts.length==0)
             throw Error('No product found')
