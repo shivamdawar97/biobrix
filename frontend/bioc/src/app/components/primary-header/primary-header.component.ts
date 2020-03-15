@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
+/** Models */
 import { Category } from 'src/app/core/models/category.model';
-import { CategoryList } from 'src/app/testing/product.data';
+
+/** Services */
+import { ProductApiService } from 'src/app/core/http/product-api.service';
+import { DefaultCategory } from 'src/app/constants/products.const';
 
 @Component({
   selector: 'app-primary-header',
@@ -12,11 +16,19 @@ export class PrimaryHeaderComponent implements OnInit {
 
   categoryList: Array<Category>;
 
-  constructor() { }
+  constructor(
+    private productService: ProductApiService
+  ) { }
 
 
   getCategoryList() {
-    this.categoryList = CategoryList;
+    this.productService.getCategoryList()
+      .subscribe({
+        next: (data: Array<Category>) => {
+          this.categoryList = data;
+          this.categoryList.push(DefaultCategory);
+        }
+      });
   }
 
 

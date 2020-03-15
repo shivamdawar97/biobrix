@@ -1,18 +1,8 @@
 
-export const CategoryList = [
-    {
-        name: 'Category 1',
-        id: 1,
-    },
-    {
-        name: 'Category 2',
-        id: 2,
-    },
-    {
-        name: 'Category 3',
-        id: 3,
-    }
-];
+export const DefaultCategory = {
+    name: 'All',
+    id: null,
+};
 
 export const ProductList = [
     {
