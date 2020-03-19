@@ -39,9 +39,13 @@ export class ProductApiService {
   }
 
 
-  getProductList(paramsData: Array<any>): Observable<Array<Product>> {
+  getProductList(paramsData?: Array<any>): Observable<Array<Product>> {
+    let params = '';
 
-    const params = this.utilityService.setQueryParams(paramsData);
+    if (paramsData) {
+      params = this.utilityService.setQueryParams(paramsData);
+    }
+
     const url = `${this.BASE_URL}${PRODUCT_API}${params}`;
 
     return this.http.get<Array<Product>>(url).pipe(
