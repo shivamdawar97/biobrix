@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Category } from 'src/app/core/models/category.model';
+import { Product } from 'src/app/core/models/product.model';
 
 import { ProductApiService } from 'src/app/core/http/product-api.service';
 import { DataService } from 'src/app/core/services/data.service';
@@ -17,6 +18,7 @@ import { DefaultCategory } from 'src/app/constants/products.const';
 export class ProductsComponent implements OnInit {
 
   categoryList: Array<Category>;
+  productList: Array<Product>;
   selectedCategoryIndex: number;
   categoryId: string;
 
@@ -29,13 +31,6 @@ export class ProductsComponent implements OnInit {
 
 
   getCategoryList() {
-
-    if (this.dataService.categoryList) {
-      this.categoryList = this.dataService.categoryList;
-      this.categoryList.unshift(DefaultCategory);
-      return;
-    }
-
     this.productService.getCategoryList()
       .subscribe({
         next: (data: Array<Category>) => {
@@ -58,7 +53,8 @@ export class ProductsComponent implements OnInit {
 
     this.productService.getProductList(params).subscribe({
       next: (data) => {
-        console.log(data)
+        this.productList = Array.isArray(data) ? data : [data];
+        console.log(this.productList)
       }
     });
   }

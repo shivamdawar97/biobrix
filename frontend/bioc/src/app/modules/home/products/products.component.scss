@@ -33,3 +33,68 @@
     text-transform: capitalize;
   }
 }
+
+.product-list {
+  width: calc(100% - 250px);
+  margin-left: 250px;
+  padding: 2rem;
+
+  .card {
+    width: 30rem;
+  }
+
+  .image {
+    position: relative;
+
+    .overlay {
+      position: absolute;
+      display: none;
+      height: 100%;
+      width: 100%;
+      background-color: black;
+      opacity: 0.4;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+    }
+
+    .add-to-cart {
+      display: none;
+      position: absolute;
+      left: 22%;
+      top: 70%;
+      color: white;
+      background: #ff9800;
+      font-size: 1.4rem;
+      padding: 0.4rem 4rem;
+    }
+
+    &:hover {
+      .overlay {
+        display: block;
+      }
+      .add-to-cart {
+        display: block;
+      }
+    }
+  }
+
+  .category {
+    margin-bottom: 2rem;
+
+    .name {
+      text-transform: capitalize;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-weight: bold;
+    }
+  }
+
+  .card-footer {
+    text-align: center;
+    text-transform: capitalize;
+  }
+}
