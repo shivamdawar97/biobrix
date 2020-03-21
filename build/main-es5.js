@@ -1980,7 +1980,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var environment = {
       production: false,
-      BASE_URL: 'http://biobrix-healthcare.herokuapp.com/'
+      BASE_URL: 'https://biobrix-healthcare.herokuapp.com/'
     };
     /***/
   },

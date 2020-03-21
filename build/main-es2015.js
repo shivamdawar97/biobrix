@@ -997,7 +997,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
 const environment = {
     production: false,
-    BASE_URL: 'http://biobrix-healthcare.herokuapp.com/'
+    BASE_URL: 'https://biobrix-healthcare.herokuapp.com/'
 };
 
 
