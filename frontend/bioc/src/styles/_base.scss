@@ -1,0 +1,18 @@
+@import "./imports";
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-size: 14px;
+  background-color: $color-white;
+  -webkit-font-smoothing: antialiased;
+  color: $primary-text;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}

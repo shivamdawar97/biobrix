@@ -1,0 +1,39 @@
+@import "src/styles/imports";
+
+.primary-header {
+  font-size: 1.6rem;
+  background-color: $color-info;
+  .navbar-brand {
+    font-size: 3rem;
+    color: $color-white;
+  }
+
+  .nav-item {
+    padding: 0 1.5rem;
+    .nav-link {
+      color: $color-white;
+    }
+  }
+
+  .category {
+    display: flex;
+    list-style: none;
+
+    &-item {
+      padding: 1rem;
+      min-width: 130px;
+      max-width: 150px;
+      text-align: center;
+      text-transform: capitalize;
+      @include truncate;
+    }
+
+    span {
+      font-size: 16px;
+    }
+
+    :not(:last-child) {
+      border-right: 0.1rem solid $secondary-border;
+    }
+  }
+}
