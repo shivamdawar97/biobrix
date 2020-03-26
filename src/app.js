@@ -10,6 +10,13 @@ const uploadRouter = require('../routers/file_upload')
 
 const angularPath = path.join(__dirname,'../build')
 
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "*");
+    next();
+  });
+  
 app.use(express.static(angularPath))
 app.use(express.json())
 app.use(productRouter)
