@@ -6,24 +6,45 @@
   height: 100vh;
   width: 250px;
   overflow: auto;
+  padding: 2rem;
 
   .heading {
-    padding: 1rem 3rem;
-    background: $color-info;
-    border-top: 0.2rem solid $secondary-bg;
-    color: $color-white;
+    padding: 1.8rem 3rem;
+    background-color: #075ac9;
+    color: white;
+    border-radius: 6rem;
   }
 
   ul {
+    padding: 0 1.2rem;
+    margin-top: 2rem;
     .active {
-      font-weight: bold;
+      color: $color-info;
     }
 
     li {
-      background: linear-gradient(to top, $grey-shade-1 0%, $grey-shade-2 30%, $grey-shade-3 100%);
       padding: 1rem 3rem;
+      border-bottom: 1px dashed $grey-shade-2;
       list-style: none;
       cursor: pointer;
+      position: relative;
+
+      ::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 100%;
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 20px;
+        background-color: $color-info;
+      }
+    }
+
+    :last-child {
+      border: 0;
     }
   }
 
@@ -40,7 +61,10 @@
   padding: 2rem;
 
   .card {
-    width: 30rem;
+    width: 25rem;
+    margin-bottom: 2rem;
+    position: relative;
+    border: 0;
   }
 
   .image {
@@ -96,5 +120,33 @@
   .card-footer {
     text-align: center;
     text-transform: capitalize;
+  }
+
+  .price-tag {
+    position: absolute;
+    width: 10rem;
+    height: 2.5rem;
+    background-color: #ff9800;
+    top: 1rem;
+    left: -0.8rem;
+    z-index: 2;
+    border-radius: 0 0.4rem 0.4rem 0;
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    font-weight: bold;
+    color: $color-white;
+    font-size: 1.6rem;
+
+    &-shadow {
+      position: absolute;
+      height: 1rem;
+      width: 1rem;
+      background: #e65100;
+      transform: rotate(45deg);
+      left: -0.6rem;
+      top: 3rem;
+      z-index: -1;
+    }
   }
 }

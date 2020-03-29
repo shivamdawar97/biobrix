@@ -53,6 +53,7 @@ export class ProductsComponent implements OnInit {
 
     this.productService.getProductList(params).subscribe({
       next: (data) => {
+        // this.productList = data;
         this.productList = Array.isArray(data) ? data : [data];
         console.log(this.productList)
       }

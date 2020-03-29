@@ -1,12 +1,14 @@
 @import "src/styles/imports";
 .secondary-nav {
   padding: 0.1rem 1rem;
-  border-bottom: 0.1rem solid $secondary-border;
-  background-color: $secondary-bg;
+  background-color: $primary-website-color;
   font-size: 1.6rem;
 
   .nav-item {
     padding: 0 2rem;
+    .nav-link {
+      color: $color-white;
+    }
   }
 
   .cart {

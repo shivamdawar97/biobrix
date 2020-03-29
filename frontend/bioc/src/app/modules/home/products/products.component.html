@@ -1,33 +1,43 @@
-<div class="product-filter">
-    <div class="heading">
-        <h3>Categories</h3>
+<div class="main-container">
+
+    <div class="primary-heading">
+        <h1 class="primary-heading-text">PRODUCTS</h1>
     </div>
-    <div>
-        <ul>
-            <li role="button" *ngFor="let category of categoryList; index as i"
-                (click)="onCategoryButtonClick(category.id, i)">
-                <button class="btn btn-link" type="button" [ngClass]="{'active': i===selectedCategoryIndex}">
-                    {{category.categoryName}}
-                </button>
-            </li>
-        </ul>
-    </div>
-</div>
-<div class="product-list">
-    <div class="row category" *ngFor="let category of productList">
-        <div class="col-md-12 name">
-            <h2>{{ category.category_name }}</h2>
+
+    <div class="product-filter">
+        <div class="heading">
+            <h3>Categories</h3>
         </div>
-        <div class="col-md-4" *ngFor="let product of category.product_list">
-            <div class="card shadow-sm">
-                <div class="image">
-                    <img src="{{ product.image}}" class="card-img-top" alt="...">
-                    <div class="overlay"></div>
-                    <button type="button" class="btn add-to-cart">Add To Cart</button>
-                </div>
-                <div class="card-footer">
-                    <h3>{{product.product_name}}</h3>
-                    <p class="m-0">Rs. {{ product.price }}</p>
+        <div>
+            <ul>
+                <li role="button" *ngFor="let category of categoryList; index as i"
+                    (click)="onCategoryButtonClick(category.id, i)">
+                    <button class="btn btn-link" type="button" [ngClass]="{'active': i===selectedCategoryIndex}">
+                        {{category.categoryName}}
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="product-list">
+        <div class="row category" *ngFor="let category of productList">
+            <div class="col-md-12 name">
+                <h2>{{ category.category_name }}</h2>
+            </div>
+            <div class="col-md-3" *ngFor="let product of category.product_list">
+                <div class="card shadow-sm">
+                    <div class="image">
+                        <img src="{{ product.image}}" class="card-img-top" alt="...">
+                        <div class="overlay"></div>
+                        <button type="button" class="btn add-to-cart">Add To Cart</button>
+                    </div>
+                    <div class="card-footer">
+                        <h3>{{product.product_name}}</h3>
+                    </div>
+                    <div class="price-tag">
+                        <p class="m-0"><i class="fa fa-inr"></i> {{ product.price }}</p>
+                    </div>
+                    <div class="price-tag-shadow"></div>
                 </div>
             </div>
         </div>
