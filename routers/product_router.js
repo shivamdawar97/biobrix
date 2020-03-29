@@ -51,6 +51,7 @@ router.get('/product/product_list',async (req,res)=>{
         
         if(!categoryWiseProdcts || categoryWiseProdcts.length==0)
             throw Error('No product found')
+            
         res.send(categoryWiseProdcts)    
 
     }catch(error){
