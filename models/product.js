@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+const review = require('./review')
 const productSchema = new mongoose.Schema({
     product_name:{
         type: String,
@@ -19,10 +19,15 @@ const productSchema = new mongoose.Schema({
         type:Number,
         required:true
     },
+    ingredients:[{
+        type:String,
+        required: true
+    }],
     discount_percentage:{
         type:Number,
         required:true
     },
+    reviews:[review],
     category:{
         type:String,
         required:true
