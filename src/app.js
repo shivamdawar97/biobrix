@@ -7,6 +7,9 @@ const categoryRouter = require('../routers/category_router')
 const orderRouter = require('../routers/order_router')
 const authRouter = require('../routers/auth_router')
 const uploadRouter = require('../routers/file_upload')
+const testimonyRouter = require('../routers/tetimony_router')
+const reviewRouter = require('../routers/review_router')
+
 
 const angularPath = path.join(__dirname,'../build')
 
@@ -24,5 +27,7 @@ app.use(orderRouter)
 app.use(authRouter)
 app.use(categoryRouter)
 app.use(uploadRouter)
+app.use(testimonyRouter)
+app.use(reviewRouter)
 
 module.exports = app
