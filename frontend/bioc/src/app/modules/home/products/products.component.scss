@@ -1,5 +1,6 @@
 @import "src/styles/imports";
 
+/**  Product Sidebar Filter */
 .product-filter {
   position: fixed;
   background: $secondary-bg;
@@ -15,6 +16,7 @@
     border-radius: 6rem;
   }
 
+  /** Category Heading */
   ul {
     padding: 0 1.2rem;
     margin-top: 2rem;
@@ -70,6 +72,7 @@
     position: relative;
   }
 
+  /** Category Details */
   .category {
     margin-bottom: 2rem;
 
@@ -83,6 +86,7 @@
     }
   }
 
+  /** Product Details */
   .card-footer {
     text-align: center;
     text-transform: capitalize;
