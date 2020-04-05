@@ -1,12 +1,13 @@
 export class Product {
     constructor(
-        public name: string,
+        public product_name: string,
+        public product_id: string,
         public price: number,
         public description: string,
-        public images: Array<string>,
+        public image: string,
         public discount: number,
-        public category: string,
-        public inStock: boolean
+        public inStock: boolean,
+        public addedToCart?: boolean
     ) { }
 }
 

@@ -8,6 +8,7 @@ import { ProductApiService } from 'src/app/core/http/product-api.service';
 import { DataService } from 'src/app/core/services/data.service';
 
 import { DefaultCategory } from 'src/app/constants/products.const';
+import { CartService } from 'src/app/core/services/cart.service';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class ProductsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private dataService: DataService,
+    private cartService: CartService,
     private productService: ProductApiService
   ) { }
 
@@ -55,9 +57,37 @@ export class ProductsComponent implements OnInit {
       next: (data) => {
         // this.productList = data;
         this.productList = Array.isArray(data) ? data : [data];
-        console.log(this.productList)
+        this.productList = this.syncProductsWithCart(this.productList);
       }
     });
+  }
+
+
+  /**
+   * If Product are added to cart then mark "addedToCart" as true
+   */
+  syncProductsWithCart(categoryWiseProducts: any) {
+    console.log(categoryWiseProducts)
+    const cartHashMap = this.cartService.getCartHashMap();
+    console.log(cartHashMap)
+    categoryWiseProducts.forEach(category => {
+
+      category.product_list.forEach((product: Product) => {
+        if (cartHashMap[product.product_id]) {
+          product.addedToCart = true;
+        }
+      });
+
+    });
+
+    return this.productList;
+  }
+
+  addToCart(product: Product) {
+    const addedItem = this.cartService.addToCart(product);
+    if (addedItem) {
+      addedItem.addedToCart = true;
+    }
   }
 
 
