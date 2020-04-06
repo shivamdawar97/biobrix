@@ -83,7 +83,17 @@ export class ProductsComponent implements OnInit {
     return this.productList;
   }
 
+
   addToCart(product: Product) {
+
+    if (product.quantity) {
+      product.quantity = product.quantity + 1;
+      product.total = product.total + product.price;
+    } else {
+      product.quantity = 1;
+      product.total = product.price;
+    }
+
     const addedItem = this.cartService.addToCart(product);
     if (addedItem) {
       addedItem.addedToCart = true;

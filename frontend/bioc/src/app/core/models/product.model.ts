@@ -7,7 +7,9 @@ export class Product {
         public image: string,
         public discount: number,
         public inStock: boolean,
-        public addedToCart?: boolean
+        public addedToCart?: boolean,
+        public quantity?: number,
+        public total?: number
     ) { }
 }
 

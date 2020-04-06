@@ -1,0 +1,58 @@
+.cart-container {
+    margin-top: 5rem;
+    padding: 8rem;
+
+    .table {
+        border-color: #075ac9;
+
+        thead {
+            tr {
+                background-color: #075ac9;
+            }
+
+            th {
+                padding: 1.5rem;
+                color: white;
+                font-weight: bold;
+                border-color: #075ac9;
+                max-width: 13rem;
+            }
+        }
+
+        td {
+            vertical-align: middle;
+            padding: 1.5rem;
+            max-width: 13rem;
+        }
+    }
+
+    .product {
+        font-size: 1.8rem;
+        &-img {
+            width: 10rem;
+        }
+
+        &-name {
+            color: #075ac9;
+            font-weight: bold;
+        }
+
+        &-quantity {
+            button {
+                background: #dae0e5;
+                height: 2.5rem;
+                width: 2.5rem;
+                font-size: 1.6rem;
+                line-height: 1;
+            }
+
+            span {
+                padding: 0 1rem;
+            }
+        }
+
+        .fa-times {
+            font-size: 2rem;
+        }
+    }
+}

@@ -9,17 +9,43 @@ export class CartService {
 
   constructor() { }
 
-  CartCountSubject: Subject<number> = new Subject<number>()
+  CartUpdateSubject: Subject<any> = new Subject<any>();
+
 
   addToCart(product: Product) {
-    console.log('adding to cart', product);
     const saved = this.saveCart(product);
 
     if (saved) {
+      this.updateCartSubscriptions();
       return product;
     }
 
     return false;
+  }
+
+
+  removeFromCart(product: Product) {
+    const cartItems: Array<Product> = this.getCartItems();
+
+    const itemIndex = cartItems.findIndex(item => {
+      return item.product_id === product.product_id;
+    });
+
+    if (itemIndex !== -1) {
+      cartItems.splice(itemIndex, 1);
+      this.updateSavedCart(cartItems);
+      this.updateCartSubscriptions();
+    }
+  }
+
+
+  updateCartSubscriptions() {
+    const cartItems = this.getCartItems();
+    if (cartItems) {
+      this.CartUpdateSubject.next({ count: cartItems.length, items: cartItems });
+    } else {
+      this.CartUpdateSubject.next({ count: 0, items: null });
+    }
   }
 
 
@@ -40,12 +66,15 @@ export class CartService {
     }
   }
 
+
   /**
    * Returns hashmap of cart items
    */
   getCartHashMap() {
     const cartHashMap = {};
     const cartItems = this.getCartItems();
+
+    if (!cartItems) { return {}; }
 
     cartItems.forEach(item => {
       cartHashMap[item.product_id] = item;
@@ -61,11 +90,11 @@ export class CartService {
   getCartItemsCount() {
     console.log('getting cart count');
     const cartItems = this.getCartItems();
-    console.log(cartItems)
     if (cartItems) {
       return cartItems.length;
     }
   }
+
 
   /**
    * Save cart to storage
@@ -75,21 +104,36 @@ export class CartService {
     const cartItems: Array<Product> = this.getCartItems() || [];
 
     if (cartItems.length) {
+
+      /** Find Product Index */
       const itemIndex = cartItems.findIndex(item => {
         return item.product_id === product.product_id;
       });
 
+      /** Check if product quantity has been updated  */
       if (itemIndex === -1) {
         cartItems.push(product);
+      } else if (product.quantity !== cartItems[itemIndex].quantity) {
+        cartItems[itemIndex] = product;
       }
+
     } else {
       cartItems.push(product);
     }
 
+    return this.updateSavedCart(cartItems);
+  }
+
+
+  /** Update Cart in local storage */
+  updateSavedCart(cartItems) {
     try {
-      localStorage.removeItem('cart');
-      localStorage.setItem('cart', JSON.stringify(cartItems));
-      this.CartCountSubject.next(cartItems.length);
+      if (cartItems.length) {
+        localStorage.removeItem('cart');
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+      } else {
+        localStorage.removeItem('cart');
+      }
       return true;
     } catch (err) {
       localStorage.removeItem('cart');

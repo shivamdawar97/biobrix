@@ -25,8 +25,8 @@ export class SecondaryHeaderComponent implements OnInit {
   setCartItems() {
     this.cartItemCount = this.cartService.getCartItemsCount();
 
-    this.cartService.CartCountSubject.subscribe(cartCount => {
-      this.cartItemCount = cartCount;
+    this.cartService.CartUpdateSubject.subscribe(cart => {
+      this.cartItemCount = cart.count;
     });
   }
 

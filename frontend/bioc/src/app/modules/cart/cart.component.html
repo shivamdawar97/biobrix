@@ -1,1 +1,45 @@
-<p>cart works!</p>
+<div class="main-container">
+
+    <div class="primary-heading">
+        <h1 class="primary-heading-text">CART</h1>
+    </div>
+
+    <div class="cart-container">
+        <table class="table" *ngIf="cartItems else emptyCart">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of cartItems" class="product">
+                    <td><img class="product-img" src="{{product.image}}" alt="{{ product.product_name }} image"></td>
+                    <td class="product-name">{{ product.product_name }}</td>
+                    <td><i class="fa fa-inr"></i> {{ product.price }}</td>
+                    <td class="product-quantity">
+                        <button class="btn" type="button" (click)="decrementQuantity(product)">-</button>
+                        <span>{{product.quantity}}</span>
+                        <button class="btn" type="button" (click)="incrementQuantity(product)">+</button>
+                    </td>
+                    <td><i class="fa fa-inr"></i> {{ product.total }}</td>
+                    <td>
+                        <button class="btn" type="button" (click)="removeFromCart(product)">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<ng-template #emptyCart>
+    <div class="text-center cart-empty">
+        <h2 class="text-muted">Your Cart is empty</h2>
+    </div>
+</ng-template>
