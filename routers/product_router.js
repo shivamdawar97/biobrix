@@ -100,11 +100,11 @@ router.delete('/product/delete_product',async (req,res)=>{
             category_name: product.category
         })
         if(!category) throw new Error('No product found to delete')
-      
-        category.product_list.pop({
-            product_id:product._id
+
+        category.product_list = category.product_list.filter( shortProduct=>{
+            return shortProduct.product_id!=product._id
         })
-        if(category.product_list.length == 0)
+        if(category.product_list.length === 0)
         await category.delete()
         else await category.save()
         await product.delete()

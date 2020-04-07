@@ -41,7 +41,7 @@ router.post('/order/create_order',async (req,res)=>{
         })
 
         if(order.products.length==0)
-        throw new Error('Product id array cannot be empty')
+        throw new Error('Product array cannot be empty')
 
         var total = 0
         for(const element of order.products){
