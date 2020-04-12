@@ -1,11 +1,14 @@
+@import "src/styles/imports";
+
 .cart-container {
     margin-top: 5rem;
-    padding: 8rem;
+    padding: 0 8rem 4rem;
 
     .table {
         border-color: #075ac9;
 
         thead {
+            border: 0.1rem solid #075ac9;
             tr {
                 background-color: #075ac9;
             }
@@ -19,6 +22,10 @@
             }
         }
 
+        tbody {
+            border: 0.1rem solid $grey-shade-2;
+        }
+
         td {
             vertical-align: middle;
             padding: 1.5rem;
@@ -29,12 +36,11 @@
     .product {
         font-size: 1.8rem;
         &-img {
-            width: 10rem;
+            width: 12rem;
         }
 
         &-name {
             color: #075ac9;
-            font-weight: bold;
         }
 
         &-quantity {
@@ -54,5 +60,14 @@
         .fa-times {
             font-size: 2rem;
         }
+    }
+}
+
+.cart-buttons {
+    text-align: right;
+    margin-top: 1.5rem;
+
+    .checkout {
+        margin-left: 1rem;
     }
 }
