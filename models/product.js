@@ -33,7 +33,14 @@ const productSchema = new mongoose.Schema({
         required:true
     },
     in_stock:{
-        type:Boolean
+        type:Boolean,
+        required:true,
+        default:true
+    },
+    is_recent:{
+        type:Boolean,
+        required:true,
+        default:false
     }
 })
 

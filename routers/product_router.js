@@ -73,6 +73,25 @@ router.get('/product/product_detail',async (req,res)=>{
 
 })
 
+router.patch('/product/update/:id', async (req,res)=>{
+    const updates = Object.keys(req.body)
+    const allowedUpdates = []
+    const isValidOperation =updates.every(update=> allowedUpdates.includes(update)) 
+    if(!isValidOperation){
+        return res.status(400).send({error:'Invalid updates!'})
+    }
+    try{
+        const product = await Product.findById(req.params.id)
+        if(!product)
+        throw Error('No product found')
+        res.send(product)
+        
+    }catch(error){
+            res.status(400).send({error:error.message})
+    }
+})
+
+
 router.delete('/product/delete_product',async (req,res)=>{
     try{
         const product = await Product.findById(req.query.id)
@@ -81,11 +100,11 @@ router.delete('/product/delete_product',async (req,res)=>{
             category_name: product.category
         })
         if(!category) throw new Error('No product found to delete')
-      
-        category.product_list.pop({
-            product_id:product._id
+
+        category.product_list = category.product_list.filter( shortProduct=>{
+            return shortProduct.product_id!=product._id
         })
-        if(category.product_list.length == 0)
+        if(category.product_list.length === 0)
         await category.delete()
         else await category.save()
         await product.delete()
@@ -98,18 +117,5 @@ router.delete('/product/delete_product',async (req,res)=>{
     }
 })
 
-router.get('/product/home_products',async (req,res)=>{
-        try{
-            const homeProducts = []
-            const categoryWiseProdcts = await Category.find({})
-            categoryWiseProdcts.forEach(category=>{
-                    homeProducts.push(category.product_list[0])
-                   // if(category.product_list[1]!=null) homeProducts.push(category.product_list[1])
-            })
-            res.send(homeProducts)
-        }catch(error){
-            res.status(400).send(error.message)
-        }
-})
 
 module.exports = router
