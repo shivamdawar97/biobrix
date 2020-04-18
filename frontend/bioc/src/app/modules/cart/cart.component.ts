@@ -58,6 +58,11 @@ export class CartComponent implements OnInit {
   }
 
 
+  checkout() {
+
+  }
+
+
   ngOnInit(): void {
 
     this.getCartItems();

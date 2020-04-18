@@ -9,7 +9,7 @@ body {
   background-color: $color-white;
   -webkit-font-smoothing: antialiased;
   color: $primary-text;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 
 ul {
@@ -25,4 +25,5 @@ h4,
 h5,
 h6 {
   margin-bottom: 0;
+  font-weight: normal;
 }
