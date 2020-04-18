@@ -2,4 +2,9 @@
     <app-secondary-header></app-secondary-header>
     <app-primary-header></app-primary-header>
 </div>
-<router-outlet></router-outlet>
+<div>
+    <div [ngClass]="{'loader': isLoading}" *ngIf="isLoading">
+        <img src="assets/images/loader.gif" alt="">
+    </div>
+    <router-outlet></router-outlet>
+</div>
