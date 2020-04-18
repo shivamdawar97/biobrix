@@ -3,12 +3,12 @@ const router = new express.Router()
 const Order = require('../models/order')
 const Product = require('../models/product')
 
-
-router.post('/order/verify_cart',async (req,res)=>{
+router.post('/order/verify_cart',async (req,res)=> {
     try{
         const cartProducts =  req.body.products
+        if(cartProducts == undefined || cartProducts.length==0) throw Error('No products provided')
         var total = 0
-
+        const orderProducts = []
           for (const cartProduct of cartProducts)  {
 
             const product = await Product.findById(cartProduct.product_id)
@@ -20,40 +20,52 @@ router.post('/order/verify_cart',async (req,res)=>{
             cartProduct.price === product.price 
 
             if(!allOk)
-            throw new Error('something went wrong')
-            
+            throw new Error('cart verification failed')
+
+            orderProducts.push({
+                id:cartProduct.product_id,
+                quantity: cartProduct.quantity
+            })
             total+= (product.price * cartProduct.quantity)
         }
-        res.send({products:cartProducts,total})
+
+        const order = new Order({
+            products: orderProducts
+        })
+        
+        await order.save()
+        res.send({products:cartProducts,total,order_id:order._id})
 
     }catch(error){
-        res.status(400).send({error:error.message})
+        res.status(200).send({status:false,
+            message:error.message,
+            errorCode:'cart_verification_failed'})
     }
 })
 
-
-router.post('/order/create_order',async (req,res)=>{
+router.get('/order/get_details/:id',async (req,res)=>{
+    const id = req.params.id
     try{
-        const order = new Order({
-            ...req.body,
-            payment_status:false,
-            order_status:'Created'
-        })
+        const order = await Order.findById(id)
 
-        if(order.products.length==0)
-        throw new Error('Product array cannot be empty')
+        if(!order)
+        res.status(404).send()
 
         var total = 0
+
         for(const element of order.products){
+
             const product = await Product.findOne({_id:element.id})
-            if(!product)
-            throw new Error('Invalid product id')
+            if(!product) throw new Error('Invalid product id')
             total+=(product.price * element.quantity)
+
         }
-        await order.save()
+        const user_info_completed = order.user_name !== 'null'
+
         res.status(201).send({
             ...order.toObject(),
-            total
+            total,
+            user_info_completed
         })
 
     }catch(error){
@@ -61,16 +73,43 @@ router.post('/order/create_order',async (req,res)=>{
     }
 })
 
-router.patch('/order/remove_item',async (req,res)=>{
+router.patch('/order/update_details/:id', async (req,res)=>{
+    const updates= Object.keys(req.body)
+    const allowedUpdates=['user_name','address','zip_code','city','state','phone_number','email']
+    const isValidOperation = updates.every(update => allowedUpdates.includes(update)) 
+
+    if(!isValidOperation){
+        return res.status(400).send({error:'Invalid updates!'})
+    }
+
+    try{
+        const order = await Order.findById(req.params.id)
+        if(!order)
+        return res.status(404).send()
+        
+        updates.forEach(update=> order[update]=req.body[update]) //update is the key not value
+        await order.save()
+        res.send(order)
+    }catch(err){
+        res.status(500).send(err.message)
+    }
+})
+
+router.patch('/order/remove_item/:id',async (req,res)=>{
     try{
         const productId = req.body.product_id
-        const orderId = req.body.order_id
+        const orderId = req.params.id
         if(!orderId)
         throw new Error('Please provide order id')
         const order = await Order.findById(orderId)
         if(!order)
         throw new Error('Invalid order id')
-        order.products.pop(productId)
+
+        order.products = order.products.filter( product => {
+            return product.id != productId
+        })
+
+        await order.save()
         res.send(order)
 
     }catch(error){
@@ -78,21 +117,40 @@ router.patch('/order/remove_item',async (req,res)=>{
     }
 })
 
-router.patch('/order/place_order',async (req,res)=>{
+router.patch('/order/place_order/:id',async (req,res)=>{
     try{
-        const orderId = req.body.order_id
-        if(!orderId)
-        throw new Error('Please provide order id')
+        const orderId = req.params.id
+        const transactionId = req.body.transaction_id
+
+        if(!orderId) throw new Error('Please provide order id')
+        if(!transactionId) throw new Error('Please provide transaction id')
+
         const order = await Order.findById(orderId)
         if(!order)
         throw new Error('Invalid order id')
+
         order.payment_status = true
-        order.order_status = 'Placed'
+        order.order_status = 'placed'
+        order.transaction_id = transactionId
+
+        await order.save()
 
         res.send(order)
 
     }catch(error){
         res.status(400).send({error:error.message})
+    }
+})
+
+router.delete('/order/:id',async (req,res)=>{
+    try{
+        
+        const order = await Order.findOneAndDelete({_id:req.params.id})
+        if(!order) res.status(404).send()
+        res.send(order)
+
+    }catch(e){
+            res.status(500).send()
     }
 })
 
