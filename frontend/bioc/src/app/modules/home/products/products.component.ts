@@ -9,6 +9,7 @@ import { DataService } from 'src/app/core/services/data.service';
 
 import { DefaultCategory } from 'src/app/constants/products.const';
 import { CartService } from 'src/app/core/services/cart.service';
+import { UtilityService } from 'src/app/core/services/utility.service';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class ProductsComponent implements OnInit {
     private router: Router,
     private dataService: DataService,
     private cartService: CartService,
-    private productService: ProductApiService
+    private productService: ProductApiService,
+    private utilityService: UtilityService
   ) { }
 
 
@@ -53,11 +55,13 @@ export class ProductsComponent implements OnInit {
       params = [{ name: 'categoryId', value: categoryId }];
     }
 
+    this.utilityService.showLoader.next(true);
+
     this.productService.getProductList(params).subscribe({
       next: (data) => {
-        // this.productList = data;
         this.productList = Array.isArray(data) ? data : [data];
         this.productList = this.syncProductsWithCart(this.productList);
+        this.utilityService.showLoader.next(false);
       }
     });
   }
