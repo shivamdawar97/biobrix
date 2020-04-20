@@ -46,11 +46,30 @@
       <div class="section-header__heading">RECENT PRODUCTS</div>
       <div class="section-header__underline"></div>
     </div>
-    <div id="recentProducts" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner" *ngIf="homepage?.pagerProducts">
-        <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let page of homepage.pagerProducts; let i = index">
-          <div class="recent-products__item">
-            <img class="d-block w-100" src="{{page.image_url}}" alt="First slide">
+    <div id="recentProducts" class="carousel slide" data-ride="carousel" data-interval="0">
+      <div class="carousel-inner" *ngIf="recentProducts.length > 0">
+        <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let recentProduct of recentProducts; let i = index">
+          <div class="recent-products__item w-100">
+              <div class="col-md-3" *ngFor="let product of recentProduct">
+                <div class="card shadow-0">
+                  <div class="image">
+                    <img src="{{ product.image}}" class="card-img-top" alt="...">
+                  </div>
+                  <div class="card-footer">
+                    <h3 class="product-name">{{product.product_name}}</h3>
+                    <h4 class="product-price"><i class="fa fa-inr"></i> {{product.price}}</h4>
+                    <button *ngIf="!product.addedToCart" type="button" class="btn add-to-cart"
+                            (click)="addToCart(product)">
+                      <i class="fa fa-shopping-cart"></i>
+                      Add To Cart
+                    </button>
+                    <a *ngIf="product.addedToCart" [routerLink]="['/view-cart']" class="btn add-to-cart">
+                      <i class="fa fa-shopping-cart"></i>
+                      Go To Cart
+                    </a>
+                  </div>
+                </div>
+              </div>
           </div>
         </div>
       </div>
@@ -69,7 +88,7 @@
       <div class="section-header__heading">Testimonials</div>
       <div class="section-header__underline"></div>
     </div>
-    <div id="testimonies" class="carousel slide" data-ride="carousel">
+    <div id="testimonies" class="carousel slide" data-ride="carousel" data-interval="0">
       <div class="carousel-inner" *ngIf="homepage?.testimonies">
         <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let testimony of homepage.testimonies; let i = index">
           <div class="testimonies__item">

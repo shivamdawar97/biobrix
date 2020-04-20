@@ -67,9 +67,9 @@ export class ProductsComponent implements OnInit {
    * If Product are added to cart then mark "addedToCart" as true
    */
   syncProductsWithCart(categoryWiseProducts: any) {
-    console.log(categoryWiseProducts)
+    console.log(categoryWiseProducts);
     const cartHashMap = this.cartService.getCartHashMap();
-    console.log(cartHashMap)
+    console.log(cartHashMap);
     categoryWiseProducts.forEach(category => {
 
       category.product_list.forEach((product: Product) => {
