@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HomepageApiService} from '../../../core/http/homepage-api.service';
-import {Homepage} from '../../../core/models/homepage';
+import {Homepage} from '../../../core/models/homepage.model';
 
 @Component({
   selector: 'app-homepage',

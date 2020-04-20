@@ -1,0 +1,108 @@
+@import "../../../../styles/mixins";
+
+.section-header {
+  padding-top: 30px;
+  @include flex(column);
+  @include flex-alignment(center, center);
+  font-size: 35px;
+
+  &__heading {
+    line-height: 36px;
+  }
+
+  &__underline {
+    height: 3px;
+    background-color: black;
+    width: 10%;
+    padding: 0;
+    margin: 0 0 35px 0;
+  }
+}
+
+.product-type {
+  height: 300px;
+  width: 100%;
+  @include flex(row);
+  @include flex-alignment(space-around, center);
+
+  &__item {
+    width: 300px;
+    height: 200px;
+    background: black center;
+    background-size: cover;
+
+    &:hover {
+      .product-type__item--item-hover {
+        visibility: visible;
+      }
+    }
+
+    &--item-hover {
+      @include flex(row);
+      @include flex-alignment(center, center);
+      height: 100%;
+      visibility: hidden;
+      cursor: pointer;
+      background-color: rgba(0, 0, 0, 0.4);
+      color: #ffffff;
+    }
+  }
+}
+
+.recent-products {
+  background-color: #f1f1f1;
+  padding-bottom: 20px;
+
+  &__item {
+    padding: 0 50px;
+    @include flex(row);
+    @include flex-alignment(space-around, center);
+  }
+
+}
+
+.testimonies {
+  background-color: #ffb6c1;
+
+  &__item {
+    padding: 50px 100px;
+    @include flex(column);
+    @include flex-alignment(center, center);
+
+    .testimony {
+      @include flex(row);
+      @include flex-alignment(center, center);
+      min-height: 150px;
+      border: 1px solid white;
+      margin-bottom: 20px;
+      padding: 25px;
+    }
+
+    .customer {
+      @include flex(row);
+      @include flex-alignment(center, center);
+      border: 1px solid white;
+
+      &__name {
+        padding: 0 20px;
+      }
+    }
+  }
+}
+
+
+.dry-skin {
+  background-image: url("https://biobrix-files.s3.ap-south-1.amazonaws.com/images/dry-skin-tips.png");
+}
+
+.oily-skin {
+  background-image: url("https://biobrix-files.s3.ap-south-1.amazonaws.com/images/oily_face.webp");
+}
+
+.hair-care {
+  background-image: url("https://biobrix-files.s3.ap-south-1.amazonaws.com/images/hair_care.jpg");
+}
+
+.sun-protection {
+  background-image: url("https://biobrix-files.s3.ap-south-1.amazonaws.com/images/sun-protection.jpg");
+}

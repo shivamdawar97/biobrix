@@ -4,7 +4,7 @@ import { Observable, } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 /** Models */
-import {Homepage} from '../models/homepage';
+import {Homepage} from '../models/homepage.model';
 
 /** Services */
 import { HttpErrorHandlerService } from './http-error-handler.service';
