@@ -34,9 +34,15 @@ async function getRecentProducts(){
     const recentProducts = await Product.find({
         is_recent:true
     })
+    
     if(!recentProducts)
     throw Error('recent products not found')
-    return recentProducts
+
+    const recentShortProducts = []
+
+    recentProducts.forEach(product => recentShortProducts.push(product.getShortProduct()))
+
+    return recentShortProducts
 }
 
 router.post('/homepage/add_testimony',async (req,res)=>{

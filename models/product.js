@@ -44,5 +44,21 @@ const productSchema = new mongoose.Schema({
     }
 })
 
+
+productSchema.methods.getShortProduct = function(){
+
+    const product = this
+    const shortProduct = {
+        product_id : product._id,
+        product_name: product.product_name,
+        price: product.price,
+        image: product.images[0]
+    }
+    return shortProduct
+}
+
+
+
+
 const Product = mongoose.model('Product',productSchema)
 module.exports = Product
