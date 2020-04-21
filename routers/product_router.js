@@ -3,14 +3,13 @@ const router=new express.Router()
 const Product = require('../models/product')
 const Category = require('../models/category')
 
-
 router.post('/product/add_product',async (req,res)=>{
     try{
         const product = new Product(req.body)
 
         if(product.images.length==0)
         throw new Error('Images array cannot be empty')
-
+        product.category = product.category.toLowerCase()
         await product.save()
 
         const shortProduct = {

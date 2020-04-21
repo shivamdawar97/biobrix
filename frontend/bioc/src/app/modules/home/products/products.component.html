@@ -32,12 +32,12 @@
                     <div class="card-footer">
                         <h3 class="product-name">{{product.product_name}}</h3>
                         <h4 class="product-price"><i class="fa fa-inr"></i> {{product.price}}</h4>
-                        <button *ngIf="!product.addedToCart" type="button" class="btn add-to-cart"
+                        <button *ngIf="!product.addedToCart" type="button" class="btn primary-button"
                             (click)="addToCart(product)">
                             <i class="fa fa-shopping-cart"></i>
                             Add To Cart
                         </button>
-                        <a *ngIf="product.addedToCart" [routerLink]="['/view-cart']" class="btn add-to-cart">
+                        <a *ngIf="product.addedToCart" [routerLink]="['/view-cart']" class="btn primary-button">
                             <i class="fa fa-shopping-cart"></i>
                             Go To Cart
                         </a>
