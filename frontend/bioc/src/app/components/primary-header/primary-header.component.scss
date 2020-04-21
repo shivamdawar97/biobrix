@@ -2,7 +2,7 @@
 
 .primary-header {
   font-size: 1.6rem;
-  color: $color-white;
+  //color: $color-white;
   background-color: white;
   .navbar-brand {
     font-size: 3rem;
@@ -19,6 +19,7 @@
   .category {
     display: flex;
     list-style: none;
+    flex-direction: column;
 
     &-item {
       padding: 1rem;

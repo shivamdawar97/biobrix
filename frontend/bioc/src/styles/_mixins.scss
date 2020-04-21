@@ -3,3 +3,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+@mixin flex($direction) {
+  display: flex;
+  flex-direction: $direction;
+}
+
+@mixin flex-alignment($main-axis, $cross-axis) {
+  justify-content: $main-axis;
+  align-items: $cross-axis;
+}
