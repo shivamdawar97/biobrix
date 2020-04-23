@@ -1,7 +1,12 @@
 <div class="main-container">
-  <div id="pagerProducts" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner" *ngIf="homepage?.pagerProducts">
-      <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let page of homepage.pagerProducts; let i = index">
+  <div id="pagerProducts fadeIn animated" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="loading-container carousel-item active" *ngIf="dataloading">
+        <div class="spinner-grow text-primary" style="width: 6rem; height: 6rem;" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let page of homepage?.pagerProducts; let i = index">
         <img class="d-block w-100" src="{{page.image_url}}" alt="First slide">
       </div>
     </div>
@@ -14,7 +19,7 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-  <section>
+  <section class="product-type-section animated fadeIn">
     <div class="section-header">
       ALL TYPE OF BODY CARE PRODUCTS
     </div>
@@ -41,13 +46,18 @@
       </div>
     </div>
   </section>
-  <section class="recent-products">
+  <section class="recent-products fadeIn animated">
     <div class="section-header">
       <div class="section-header__heading">RECENT PRODUCTS</div>
       <div class="section-header__underline"></div>
     </div>
     <div id="recentProducts" class="carousel slide" data-ride="carousel" data-interval="0">
-      <div class="carousel-inner" *ngIf="recentProducts.length > 0">
+      <div class="carousel-inner">
+        <div class="loading-container carousel-item active" *ngIf="dataloading">
+          <div class="spinner-grow text-primary" style="width: 6rem; height: 6rem;" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
         <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let recentProduct of recentProducts; let i = index">
           <div class="recent-products__item w-100">
               <div class="col-md-3" *ngFor="let product of recentProduct">
@@ -83,14 +93,19 @@
       </a>
     </div>
   </section>
-  <section class="testimonies">
+  <section class="testimonies fadeIn animated">
     <div class="section-header">
       <div class="section-header__heading">Testimonials</div>
       <div class="section-header__underline"></div>
     </div>
     <div id="testimonies" class="carousel slide" data-ride="carousel" data-interval="0">
-      <div class="carousel-inner" *ngIf="homepage?.testimonies">
-        <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let testimony of homepage.testimonies; let i = index">
+      <div class="carousel-inner">
+        <div class="loading-container carousel-item active" *ngIf="dataloading">
+          <div class="spinner-grow text-primary" style="width: 6rem; height: 6rem;" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+        <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let testimony of homepage?.testimonies; let i = index">
           <div class="testimonies__item">
             <div class="testimony">
               {{testimony.testimony}}

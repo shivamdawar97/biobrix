@@ -158,3 +158,16 @@
     }
   }
 }
+
+.product-type-section {
+  background: url("../../../../assets/category_background.jpg") center;
+  background-size: cover;
+}
+
+
+.loading-container {
+  width: 100vw;
+  height: 38vw;
+  @include flex(row);
+  @include flex-alignment(center, center);
+}
