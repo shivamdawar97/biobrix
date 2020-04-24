@@ -13,6 +13,7 @@ export class HomepageComponent implements OnInit {
 
   homepage: Homepage;
   recentProducts = [];
+  dataloading = true;
 
   constructor(private homepageApiService: HomepageApiService, private cartService: CartService) {
   }
@@ -55,20 +56,17 @@ export class HomepageComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    this.dataloading = true;
     this.homepageApiService.getHomePage().subscribe(res => {
-      console.log('data is', res);
       this.homepage = res;
 
       if (res) {
+        this.dataloading = false;
         const recents = this.syncProductsWithCart(res.recentProducts);
         for (let i = 0; i < recents.length; i = i + 4) {
           this.recentProducts.push(res.recentProducts.slice(i, i + 4));
         }
-
-        console.log('recent products are ', this.recentProducts);
       }
     });
   }
-
 }
