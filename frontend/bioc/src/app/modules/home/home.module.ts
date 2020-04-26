@@ -7,6 +7,7 @@ import { SecondaryHeaderComponent } from 'src/app/components/secondary-header/se
 import { PrimaryHeaderComponent } from 'src/app/components/primary-header/primary-header.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ProductsComponent } from './products/products.component';
+import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
     children: [
       { path: '', component: HomepageComponent },
       { path: 'view-cart', loadChildren: () => import('src/app/modules/cart/cart.module').then(m => m.CartModule) },
-      { path: 'products/:categoryId', component: ProductsComponent }
+      { path: 'products/:categoryId', component: ProductsComponent },
+      { path: 'product/:productId', component: ProductDetailComponent }
     ]
   }
 ];
@@ -27,7 +29,8 @@ const routes: Routes = [
     SecondaryHeaderComponent,
     PrimaryHeaderComponent,
     HomepageComponent,
-    ProductsComponent
+    ProductsComponent,
+    ProductDetailComponent
   ],
   imports: [
     CommonModule,

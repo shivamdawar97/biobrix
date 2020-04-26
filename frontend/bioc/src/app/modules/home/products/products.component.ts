@@ -139,4 +139,8 @@ export class ProductsComponent implements OnInit {
     });
   }
 
+  onProductSelected(id:string){
+    this.router.navigate(['/product', id]);
+  }
+
 }
