@@ -15,7 +15,7 @@
 }
 
 .main-container {
-  padding-top: 9.7rem;
+  padding-top: 13.1rem;
 }
 
 .primary-heading {
@@ -42,4 +42,59 @@
   .fa {
     font-size: 1.6rem;
   }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translate3d(0, -300%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slideInDown {
+  animation-name: slideInDown;
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.alert-msg {
+  position: fixed;
+  right: calc(50% - 150px);
+  top: 13rem;
+  z-index: 100;
+  padding: 2rem;
 }
