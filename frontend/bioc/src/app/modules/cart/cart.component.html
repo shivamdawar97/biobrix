@@ -5,7 +5,7 @@
     </div>
 
     <div class="cart-container">
-        <table class="table" *ngIf="cartItems else emptyCart">
+        <table class="table" *ngIf="cartItems.length > 0 else emptyCart">
             <thead>
                 <tr>
                     <th scope="col"></th>
@@ -40,7 +40,7 @@
             <a routerLink="/products/all" class="btn primary-button">
                 Continue Shopping
             </a>
-            <button type="button" class="btn primary-button checkout" (click)="checkout()">
+            <button *ngIf="cartItems.length > 0" type="button" class="btn primary-button checkout" (click)="checkout()">
                 Check out
             </button>
         </div>
