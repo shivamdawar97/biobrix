@@ -199,6 +199,66 @@ $header-background : rgb(162, 192, 247);
     }
 
   }
+
+  &__rating {
+
+    display: flex;
+    position: relative;
+    transform: rotateY(180deg) translateY(-50%);
+
+    &-label {
+      display: block;
+      cursor: pointer;
+      width: 30px;
+      padding-left: 10px;
+      color: pink;
+
+      &:hover {
+        color: palevioletred;
+      }
+
+      &:before{
+        content: '\f005';
+        font-family: 'FontAwesome';
+        font-weight: 300;
+        position: absolute;
+        top: 0;
+        display: block;
+        font-size: 30px;
+        color: pink;
+
+      }
+
+      &:after {
+        content: '\f005';
+        font-family: 'FontAwesome';
+        font-weight: 300;
+        font-size: 50px;
+        position: absolute;
+        font-size: 30px;
+        top: 0;
+        color: palevioletred;
+        opacity: 0;
+        transition: .5s;
+        text-shadow: 0 2px 5px rgba(0,0,0,.5);
+      }
+
+    }
+
+    &-input {
+      display: none;
+    }
+
+    &-label:hover:after,
+    &-label:hover ~ label:after,
+    &-input:checked ~ label:after
+    {
+      transform: skewY(12deg);
+      opacity: 1;
+    }
+
+  }
+
 }
 
 

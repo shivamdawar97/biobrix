@@ -8,6 +8,8 @@ import { PrimaryHeaderComponent } from 'src/app/components/primary-header/primar
 import { HomepageComponent } from './homepage/homepage.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
+import { RiviewComponent } from './products/product-detail/riview/riview.component';
+
 
 
 const routes: Routes = [
@@ -30,7 +32,8 @@ const routes: Routes = [
     PrimaryHeaderComponent,
     HomepageComponent,
     ProductsComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    RiviewComponent
   ],
   imports: [
     CommonModule,

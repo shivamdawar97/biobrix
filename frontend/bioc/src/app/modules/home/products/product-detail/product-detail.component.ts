@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/core/models/product.model';
+import { Review } from 'src/app/core/models/review.model';
 
 @Component({
   selector: 'app-product-detail',
@@ -12,6 +13,7 @@ export class ProductDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
   productId: string
   product: Product
+  rate = 0
 
   ngOnInit(): void {
     this.productId = this.route.snapshot.params['productId']
@@ -25,7 +27,8 @@ export class ProductDetailComponent implements OnInit {
        category: 'Skin Lightening',
        inStock: true,
        addedToCart: false,
-       ingredients: ["Mulethi","Chunna","Kathha"]
+       ingredients: ["Mulethi","Chunna","Kathha"],
+       reviews: [new Review(5,'deepak','ewefefw','good good','11/12/21')]
     }
     console.log('product id: '+this.productId)
   }

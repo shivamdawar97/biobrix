@@ -1,3 +1,5 @@
+import { Review } from './review.model';
+
 export class Product {
     constructor(
         public product_name: string,
@@ -11,7 +13,8 @@ export class Product {
         public addedToCart?: boolean,
         public quantity?: number,
         public total?: number,
-        public ingredients?: Array<string>
+        public ingredients?: Array<string>,
+        public reviews?: Array<Review>
     ) { }
 }
 
