@@ -1,0 +1,33 @@
+@import "src/styles/imports";
+
+.track-order-container {
+  margin-top: 5rem;
+  padding: 0 8rem;
+  @include flex(column);
+  @include flex-alignment(center, center);
+
+  .phone-input {
+    @include flex(column);
+    margin-top: 3rem;
+    width: 40%;
+
+    .form-group {
+      input {
+        width: 100%;
+      }
+      width: 100%;
+    }
+
+    label {
+      display: block;
+    }
+  }
+}
+
+
+.alert-dark {
+  font-size: 16px;
+  @include flex(row);
+  @include flex-alignment(center, center);
+  width: 80%;
+}

@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {HttpErrorHandlerService} from './http-error-handler.service';
 import {Product} from '../models/product.model';
 import {environment} from '../../../environments/environment';
-import {CREATE_ORDER_API, GET_OTP, ORDER_DEATILS_API, UPDATE_ORDER_API, VERIFY_OTP} from '../../constants/api.const';
+import {CREATE_ORDER_API, GET_ORDERS_API, GET_OTP, ORDER_DETAILS_API, UPDATE_ORDER_API, VERIFY_OTP} from '../../constants/api.const';
 import {catchError} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 
@@ -59,9 +59,9 @@ export class CartApiService {
     return this.http.get<OTP>(url).pipe(catchError(this.httpErrorHandlerService.handleErr));
   }
 
-  updateOrder(orderId: string, data: UserInfo) {
+  updateOrder(orderId: string, data: UserInfo): Observable<OrderDetail> {
     const url = `${this.BASE_URL}${UPDATE_ORDER_API}${orderId}`;
-    return this.http.patch(url, data, {
+    return this.http.patch<OrderDetail>(url, data, {
       headers: {
         'Access-Control-Allow-Methods': '*'
       }
@@ -69,7 +69,12 @@ export class CartApiService {
   }
 
   orderDetails(id: string): Observable<OrderDetail> {
-    const url = `${this.BASE_URL}${ORDER_DEATILS_API}${id}`;
+    const url = `${this.BASE_URL}${ORDER_DETAILS_API}${id}`;
+    return this.http.get<OrderDetail>(url).pipe(catchError(this.httpErrorHandlerService.handleErr));
+  }
+
+  getOrderByPhoneNumber(phone: string): Observable<OrderDetail> {
+    const url = `${this.BASE_URL}${GET_ORDERS_API}?phone_number=${phone}`;
     return this.http.get<OrderDetail>(url).pipe(catchError(this.httpErrorHandlerService.handleErr));
   }
 }

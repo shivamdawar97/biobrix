@@ -9,6 +9,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { ProductsComponent } from './products/products.component';
 import { TradeEnquiryComponent } from './trade-enquiry/trade-enquiry.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { TrackOrderComponent } from './track-order/track-order.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
       { path: '', component: HomepageComponent },
       { path: 'view-cart', loadChildren: () => import('src/app/modules/cart/cart.module').then(m => m.CartModule) },
       { path: 'products/:categoryId', component: ProductsComponent },
-      { path: 'trade-enquiry', component: TradeEnquiryComponent }
+      { path: 'trade-enquiry', component: TradeEnquiryComponent },
+      { path: 'track-order', component: TrackOrderComponent}
     ]
   }
 ];
@@ -31,7 +33,8 @@ const routes: Routes = [
     PrimaryHeaderComponent,
     HomepageComponent,
     ProductsComponent,
-    TradeEnquiryComponent
+    TradeEnquiryComponent,
+    TrackOrderComponent
   ],
   imports: [
     CommonModule,

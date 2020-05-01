@@ -87,8 +87,8 @@ export class CheckoutComponent implements OnInit {
 
   updateOrder() {
     // update user information at backend
-    this.cartApiService.updateOrder(this.orderId, this.form.value).subscribe(res => {
-      console.log('order updated ', res);
+    this.cartApiService.updateOrder(this.orderId, this.form.getRawValue()).subscribe(res => {
+      this.router.navigate(['view-cart/order', res._id], { queryParams: { new_order: true}});
     });
   }
 }

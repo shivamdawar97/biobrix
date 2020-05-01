@@ -1,0 +1,27 @@
+<div class="main-container">
+
+  <div class="primary-heading">
+    <h1 class="primary-heading-text">TRACK</h1>
+  </div>
+  <div class="track-order-container">
+    <div class="alert alert-dark" *ngIf="!orders">
+      You can track your orders with your &nbsp; <b>mobile number</b>. Please &nbsp; <b>verify</b> &nbsp; your mobile number to check your orders.
+    </div>
+    <div class="phone-input" *ngIf="!orders">
+      <div class="form-group">
+        <label for="phone">Phone number</label>
+        <input type="text" id="phone" class="form-control-lg" [formControl]="phone" placeholder="Enter phone number">
+      </div>
+      <div *ngIf="isOtpSent && !isPhoneVerified" class="alert alert-success mt-3">OTP has been sent to this mobile number, please verify!</div>
+      <div *ngIf="isOtpSent && !isPhoneVerified" class="form-group">
+        <label for="otp">OTP</label>
+        <input type="text" id="otp" class="form-control-lg" [formControl]="otp" placeholder="Enter OTP">
+      </div>
+    </div>
+    <button *ngIf="!isOtpSent" class="btn primary-button" (click)="getOtp()">Get OTP</button>
+    <button *ngIf="!isPhoneVerified && isOtpSent" class="btn primary-button" (click)="verifyOtp()">Verify</button>
+    <div class="alert alert-dark" *ngIf="orders">
+      Your orders are logged into console.
+    </div>
+  </div>
+</div>
