@@ -47,6 +47,7 @@ router.get('/order/get_details/:id',async (req,res)=>{
     const id = req.params.id
     try{
         const order = await Order.findById(id)
+        const shortProducts = []
 
         if(!order)
         res.status(404).send()
@@ -57,15 +58,22 @@ router.get('/order/get_details/:id',async (req,res)=>{
 
             const product = await Product.findOne({_id:element.id})
             if(!product) throw new Error('Invalid product id')
-            total+=(product.price * element.quantity)
-
+            pTotal = product.price * element.quantity 
+            total+=pTotal
+            shortProducts.push({ ...product.getShortProduct(),
+                quantity:element.quantity,
+                total: pTotal
+                })       
         }
         const user_info_completed = order.user_name !== 'null'
-
+        const delOrder = order.toObject()
+        delete delOrder.products
         res.status(201).send({
-            ...order.toObject(),
+            ...delOrder,
+            products: shortProducts,
             total,
-            user_info_completed
+            user_info_completed,
+            
         })
 
     }catch(error){
@@ -150,8 +158,25 @@ router.delete('/order/:id',async (req,res)=>{
         res.send(order)
 
     }catch(e){
-            res.status(500).send()
+        res.status(500).send()
     }
+})
+
+router.get('/order/get_orders',async (req,res)=> {
+
+    try {
+        const phone_number = req.query.phone_number
+        const orders = await Order.find({
+            phone_number
+        })
+        if(!orders) res.status(404).send()
+        res.send(orders)
+    }catch(e){
+        console.log(e)
+        res.status(500).send(e)
+    }
+    
+
 })
 
 module.exports = router

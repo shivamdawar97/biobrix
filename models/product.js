@@ -41,6 +41,10 @@ const productSchema = new mongoose.Schema({
         type:Boolean,
         required:true,
         default:false
+    },
+    tags: {
+        type:[String],
+        required:true
     }
 })
 
@@ -57,8 +61,10 @@ productSchema.methods.getShortProduct = function(){
     return shortProduct
 }
 
-
-
+productSchema.index({
+    product_name:'text',
+    tags:'text'
+})
 
 const Product = mongoose.model('Product',productSchema)
 module.exports = Product

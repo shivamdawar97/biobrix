@@ -1,0 +1,137 @@
+<div class="product_detail main-container">
+
+  <section class="product_detail__header">
+    <!-- <p class="product_detail__back">&#8592;</p> -->
+    <h1 class="product_detail__heading">{{ product.product_name | uppercase}}</h1>
+
+  </section>
+
+  <section class="product_detail__main">
+
+    <div class="product_detail__main-container">
+      <div class="container">
+        <div class="row">
+          <div class="col-5">
+
+            <img class="product_detail__main-image" [src]="product.image">
+
+          </div>
+          <div class="col-1"></div>
+
+          <div class="col-6">
+
+            <div class="product_detail__main-section">
+
+              <h1 class="product_detail__main-name">{{ product.product_name | uppercase}}</h1>
+
+              <div class="row product_detail__main-price">
+                <i class="fa fa-inr"></i>
+                <p class="">{{ product.price+ '.00' }}</p>
+
+                </div>
+
+
+            <div class="product_detail__main-product_meta">
+              <hr>Category : <a href="#" rel="tag"> {{ product.category }}</a> <hr>
+              Tags : <a href="#" rel="tag"> {{ product.category }}</a>,
+              <a href="#" rel="tag"> Skin Care </a>,
+              <a href="#" rel="tag"> Skin brightness </a>,
+
+            </div>
+
+
+            <div *ngIf="product.inStock">
+
+              <input type="number"
+              class="product_detail__main-quantity"
+              >
+
+              <button *ngIf="!product.addedToCart" class="btn primary-button "> Add to cart</button>
+
+              <button *ngIf="product.addedToCart" class="btn primary-button"> Go to cart</button>
+
+            </div>
+            <p *ngIf="!product.inStock" class="product_detail__main-out">Out of stock</p>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+</div>
+
+<div class="product_detail__main-tabs">
+
+    <input  type="radio" id="tab1" class="product_detail__main-tabs-tab1" name="pct" checked="checked">
+    <input  type="radio" id="tab2" class="product_detail__main-tabs-tab2" name="pct" >
+    <input  type="radio" id="tab3" class="product_detail__main-tabs-tab3" name="pct" >
+
+    <nav class="product_detail__main-tabs-nav">
+      <ul class="product_detail__main-tabs-list">
+        <li class="tab1">
+          <label class="product_detail__main-tabs-label" for="tab1">Description</label>
+        </li>
+        <li class="tab2">
+          <label class="product_detail__main-tabs-label" for="tab2">Reviews</label>
+        </li>
+        <li class="tab3">
+          <label class="product_detail__main-tabs-label" for="tab3">Ingredients</label>
+        </li>
+      </ul>
+    </nav
+    >
+    <section class="product_detail__main-tabs-section">
+
+      <div class="description">
+        <h3> {{ product.description }}</h3>
+      </div>
+
+      <div class="reviews">
+        <h2>Reviews</h2>
+
+        <div *ngIf="product.reviews.length!=0; else NoReview">
+          <div *ngFor="let review of product.reviews">
+            <app-riview [review]="review" ></app-riview>
+          </div>
+        </div>
+
+        <ng-template #NoReview>
+          <div>
+            <h3 class="mr-5">No Rieviews available</h3>
+            <p>Be the first to review this product</p>
+          </div>
+        </ng-template>
+
+        <div class="product_detail__rating">
+
+          <input class="product_detail__rating-input" type="radio" id="star1" name="rating">
+          <label class="product_detail__rating-label" for="star1"></label>
+
+          <input class="product_detail__rating-input" type="radio" id="star2" name="rating">
+          <label class="product_detail__rating-label" for="star2"></label>
+
+          <input class="product_detail__rating-input" type="radio" id="star3" name="rating">
+          <label class="product_detail__rating-label" for="star3"></label>
+
+          <input class="product_detail__rating-input" type="radio" id="star4" name="rating">
+          <label class="product_detail__rating-label" for="star4"></label>
+
+          <input class="product_detail__rating-input" type="radio" id="star5" name="rating">
+          <label class="product_detail__rating-label" for="star5"></label>
+
+
+        </div>
+
+      </div>
+
+      <div class="ingredients">
+        <h3 *ngFor="let ingredient of product.ingredients;"> {{ ingredient }}</h3>
+      </div>
+
+    </section>
+
+</div>
+
+
+</section>

@@ -3,6 +3,7 @@ const router=new express.Router()
 const Product = require('../models/product')
 const Category = require('../models/category')
 
+
 router.post('/product/add_product',async (req,res)=>{
     try{
         const product = new Product(req.body)
@@ -87,6 +88,31 @@ router.patch('/product/update/:id', async (req,res)=>{
         
     }catch(error){
             res.status(400).send({error:error.message})
+    }
+})
+
+
+
+router.get('/product/search',async (req,res)=> {
+    try{
+        const searchedProducts = []
+        const searchText = req.query.search
+        if(!searchText)
+        throw Error('No search query provided')
+        const products = await Product.find({
+           // $or : {tags: { $regex: searchText }},
+           //product_name: { $regex: searchText }
+            //$or: {product_name: { $regex: searchText }}
+            $text: { $search: searchText }
+        })
+        if(products.length == 0)
+        throw Error('No products found')
+        products.forEach(product => searchedProducts.push(product.getShortProduct()))
+        res.send(searchedProducts)
+
+    }catch(error){
+        console.log(error)
+        res.status(400).send({error:error.message})
     }
 })
 
