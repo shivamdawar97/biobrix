@@ -3,14 +3,6 @@ const router=new express.Router()
 const Product = require('../models/product')
 const Category = require('../models/category')
 
-Product.on('index', function(err) {
-    if (err) {
-        console.error('User index error: %s', err);
-    } else {
-        console.info('User indexing complete');
-    }
-});
-
 
 router.post('/product/add_product',async (req,res)=>{
     try{
@@ -103,6 +95,7 @@ router.patch('/product/update/:id', async (req,res)=>{
 
 router.get('/product/search',async (req,res)=> {
     try{
+        const searchedProducts = []
         const searchText = req.query.search
         if(!searchText)
         throw Error('No search query provided')
@@ -114,7 +107,8 @@ router.get('/product/search',async (req,res)=> {
         })
         if(products.length == 0)
         throw Error('No products found')
-        res.send(products)
+        products.forEach(product => searchedProducts.push(product.getShortProduct()))
+        res.send(searchedProducts)
 
     }catch(error){
         console.log(error)
