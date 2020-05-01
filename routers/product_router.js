@@ -34,7 +34,7 @@ router.post('/product/add_product',async (req,res)=>{
             category.product_list.push(shortProduct)
             await category.save()
         }
-
+        await Product.createIndexes()
         res.status(201).send(product)
 
     }catch(error){
