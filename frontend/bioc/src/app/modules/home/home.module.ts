@@ -7,6 +7,10 @@ import { SecondaryHeaderComponent } from 'src/app/components/secondary-header/se
 import { PrimaryHeaderComponent } from 'src/app/components/primary-header/primary-header.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ProductsComponent } from './products/products.component';
+import { TradeEnquiryComponent } from './trade-enquiry/trade-enquiry.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import { TrackOrderComponent } from './track-order/track-order.component';
+import { ContactComponent } from './contact/contact.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { RiviewComponent } from './products/product-detail/riview/riview.component';
 
@@ -19,6 +23,9 @@ const routes: Routes = [
       { path: '', component: HomepageComponent },
       { path: 'view-cart', loadChildren: () => import('src/app/modules/cart/cart.module').then(m => m.CartModule) },
       { path: 'products/:categoryId', component: ProductsComponent },
+      { path: 'trade-enquiry', component: TradeEnquiryComponent },
+      { path: 'track-order', component: TrackOrderComponent},
+      { path: 'contact-us', component: ContactComponent},
       { path: 'product/:productId', component: ProductDetailComponent }
     ]
   }
@@ -32,11 +39,15 @@ const routes: Routes = [
     PrimaryHeaderComponent,
     HomepageComponent,
     ProductsComponent,
+    TradeEnquiryComponent,
+    TrackOrderComponent,
+    ContactComponent,
     ProductDetailComponent,
     RiviewComponent
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
   exports: [

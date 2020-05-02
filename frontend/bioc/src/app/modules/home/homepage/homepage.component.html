@@ -1,11 +1,6 @@
 <div class="main-container">
   <div id="pagerProducts fadeIn animated" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
-      <div class="loading-container carousel-item active" *ngIf="dataloading">
-        <div class="spinner-grow text-primary" style="width: 6rem; height: 6rem;" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-      </div>
       <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let page of homepage?.pagerProducts; let i = index">
         <img class="d-block w-100" src="{{page.image_url}}" alt="First slide">
       </div>
@@ -53,11 +48,6 @@
     </div>
     <div id="recentProducts" class="carousel slide" data-ride="carousel" data-interval="0">
       <div class="carousel-inner">
-        <div class="loading-container carousel-item active" *ngIf="dataloading">
-          <div class="spinner-grow text-primary" style="width: 6rem; height: 6rem;" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
-        </div>
         <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let recentProduct of recentProducts; let i = index">
           <div class="recent-products__item w-100">
               <div class="col-md-3" *ngFor="let product of recentProduct">
@@ -100,11 +90,6 @@
     </div>
     <div id="testimonies" class="carousel slide" data-ride="carousel" data-interval="0">
       <div class="carousel-inner">
-        <div class="loading-container carousel-item active" *ngIf="dataloading">
-          <div class="spinner-grow text-primary" style="width: 6rem; height: 6rem;" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
-        </div>
         <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let testimony of homepage?.testimonies; let i = index">
           <div class="testimonies__item">
             <div class="testimony">

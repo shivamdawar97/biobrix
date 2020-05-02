@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/core/models/product.model';
 
 import { CartService } from 'src/app/core/services/cart.service';
+import {CartApiService} from '../../core/http/cart-api.service';
+import {Router} from '@angular/router';
+import {UtilityService} from '../../core/services/utility.service';
 
 
 @Component({
@@ -12,13 +15,15 @@ import { CartService } from 'src/app/core/services/cart.service';
 })
 export class CartComponent implements OnInit {
 
-  constructor(
-    private cartService: CartService
-  ) { }
-
   cartItems = [];
   maxQuantiy = 10;
 
+  constructor(
+    private cartService: CartService,
+    private cartApiService: CartApiService,
+    private router: Router,
+    private utilityService: UtilityService
+  ) { }
 
   getCartItems() {
     this.cartItems = this.cartService.getCartItems();
@@ -59,7 +64,15 @@ export class CartComponent implements OnInit {
 
 
   checkout() {
-
+    this.utilityService.showLoader.next(true);
+    this.cartApiService.createOrder(this.cartItems).subscribe(res => {
+      this.utilityService.showLoader.next(false);
+      if (!res) {
+        return;
+      }
+      const orderId = res._id;
+      this.router.navigate(['view-cart/checkout'], {queryParams: {order_id: orderId}});
+    }, err => this.utilityService.showLoader.next(false));
   }
 
 

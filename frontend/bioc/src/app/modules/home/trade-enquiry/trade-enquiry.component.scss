@@ -1,0 +1,22 @@
+@import "src/styles/imports";
+
+.trade-enquiry-container {
+  margin-top: 5rem;
+  padding: 0 8rem 4rem;
+  @include flex(row);
+  @include flex-alignment(space-between, flex-start);
+
+  section {
+    width: calc(50% - 6rem);
+  }
+}
+
+.form-group {
+  margin-bottom: 3rem;
+}
+
+.submit-btn {
+  @include flex(row);
+  @include flex-alignment(center, center);
+  margin-bottom: 2rem;
+}
