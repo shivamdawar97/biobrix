@@ -9,7 +9,7 @@ import {Observable} from 'rxjs';
 
 interface CreateOrder {
   products: Product[];
-  order_id: string;
+  _id: string;
   total: number;
 }
 
@@ -34,6 +34,8 @@ export interface OrderDetail extends UserInfo{
   _id: string;
   total: number;
   user_info_completed: boolean;
+  createdAt: string;
+  updatedAt: string;
   products: Product[];
 }
 

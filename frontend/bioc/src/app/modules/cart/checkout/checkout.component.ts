@@ -31,7 +31,7 @@ export class CheckoutComponent implements OnInit {
 
     if (!this.orderId) {
       console.log('No order id present');
-      this.router.navigate(['/view_cart']);
+      this.router.navigate(['/view-cart']);
     }
 
     this.products = this.cart.getCartItems();

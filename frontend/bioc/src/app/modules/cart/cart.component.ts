@@ -70,9 +70,9 @@ export class CartComponent implements OnInit {
       if (!res) {
         return;
       }
-      const orderId = res.order_id;
+      const orderId = res._id;
       this.router.navigate(['view-cart/checkout'], {queryParams: {order_id: orderId}});
-    });
+    }, err => this.utilityService.showLoader.next(false));
   }
 
 
