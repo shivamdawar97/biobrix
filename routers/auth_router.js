@@ -49,7 +49,7 @@ router.get('/phone/verify', async (req,res)=>{
             code
         })
         if(verification.status=='approved')
-        res.send({status:'verified'})
+        res.status(201).send({status:'verified'})
         else throw new Error('Invaid otp')
     }catch(error){
         res.status(400).send({error:error.message})

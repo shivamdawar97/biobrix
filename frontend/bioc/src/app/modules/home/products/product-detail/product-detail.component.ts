@@ -16,12 +16,16 @@ export class ProductDetailComponent implements OnInit {
   rate = 0
 
   ngOnInit(): void {
+   let desc = 'For hydrating feel. High concentration of occlusive agents locks in moisture for longer – longer time.'+
+    'Coal Tar – Helps slow down the rapid growth of skin cells and restore the skin’s appearance and also reduces the'+
+    ' inflammation, itching and scaling of psoriasis. Salicylic Acid – Acts as a scale lifter, helping to soften and remove psoriasis scales. Specially prepared base considering Psoriasis, Eczema & Ichthyosis.'
+
     this.productId = this.route.snapshot.params['productId']
     this.product = {
        product_name: 'Ageless -Total resurfacing masque',
        product_id: this.productId,
        price: 250,
-       description: 'I dont know what is this Aadads jkv ds skd cdaka sxasxnasxjk axksj',
+       description: desc,
        image: 'https://storage.needpix.com/rsynced_images/atopiclair-884211_1280.jpg',
        discount: 0,
        category: 'Skin Lightening',

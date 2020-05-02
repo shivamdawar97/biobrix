@@ -21,23 +21,27 @@ router.post('/order/verify_cart',async (req,res)=> {
 
             if(!allOk)
             throw new Error('cart verification failed')
-
+            
+            const pTotal = product.price * cartProduct.quantity
+            total+= pTotal
             orderProducts.push({
-                id:cartProduct.product_id,
-                quantity: cartProduct.quantity
+                ...product.getShortProduct(),
+                quantity: cartProduct.quantity,
+                total:pTotal
             })
-            total+= (product.price * cartProduct.quantity)
+            
         }
 
         const order = new Order({
-            products: orderProducts
+            products: orderProducts,
+            total
         })
         
         await order.save()
-        res.send({products:cartProducts,total,order_id:order._id})
+        res.status(201).send(order)
 
     }catch(error){
-        res.status(200).send({status:false,
+        res.status(400).send({status:false,
             message:error.message,
             errorCode:'cart_verification_failed'})
     }
@@ -47,34 +51,35 @@ router.get('/order/get_details/:id',async (req,res)=>{
     const id = req.params.id
     try{
         const order = await Order.findById(id)
-        const shortProducts = []
-
+        
         if(!order)
-        res.status(404).send()
+        throw Error('No order found')
+
+        if(order.order_status==='placed')
+        {
+            res.send(order)
+            return
+        }
 
         var total = 0
-
+        const shortProducts = []
         for(const element of order.products){
 
-            const product = await Product.findOne({_id:element.id})
+            const product = await Product.findById(element.product_id)
             if(!product) throw new Error('Invalid product id')
             pTotal = product.price * element.quantity 
             total+=pTotal
-            shortProducts.push({ ...product.getShortProduct(),
+            shortProducts.push({ 
+                ...product.getShortProduct(),
                 quantity:element.quantity,
                 total: pTotal
                 })       
         }
-        const user_info_completed = order.user_name !== 'null'
-        const delOrder = order.toObject()
-        delete delOrder.products
-        res.status(201).send({
-            ...delOrder,
-            products: shortProducts,
-            total,
-            user_info_completed,
-            
-        })
+        //const user_info_completed = order.user_name !== 'null'
+        order.products = shortProducts
+        order.total = total
+        await order.save()
+        res.send(order)
 
     }catch(error){
         res.status(400).send({error:error.message})

@@ -63,7 +63,7 @@ router.post('/homepage/add_pager_product',async (req,res)=>{
         const product = await Product.findById(pagerProduct.product_id)
         if(!product) throw Error('Invalid product Id')
         await pagerProduct.save() 
-        res.send(pagerProduct)
+        res.status(201).send(pagerProduct)
     }catch(error){
         res.status(400).send({error:error.message})
     }

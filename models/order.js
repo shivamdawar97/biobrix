@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const shortProduct = require('./product_short')
 
 const orderSchema = new mongoose.Schema({
     user_name:{
@@ -7,14 +8,12 @@ const orderSchema = new mongoose.Schema({
         default: 'null'
     },
     products:[{
-        _id:false,
-        id:{
-            type:String,
-            required:true
-        },
+        ...shortProduct,
         quantity:{
-            type:Number,
-            required:true
+            type:Number
+        },
+        total:{
+            type:Number
         }
     }],
     address:{
@@ -62,6 +61,10 @@ const orderSchema = new mongoose.Schema({
         type:String,
         required:true,
         default: 'null'
+    },
+    total: {
+        type: Number,
+        required:true
     }
 }, {
     timestamps: true
