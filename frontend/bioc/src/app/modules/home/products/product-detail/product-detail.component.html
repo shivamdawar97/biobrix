@@ -35,17 +35,16 @@
 
                 </div>
 
-
             <div class="product_detail__main-product_meta">
               <hr>Category : <a href="#" rel="tag"> {{ product.category }}</a> <hr>
               Tags : <a href="#" rel="tag"> {{ product.category }}</a>,
-              <a href="#" rel="tag"> Skin Care </a>,
-              <a href="#" rel="tag"> Skin brightness </a>,
+
+              <a *ngFor="let tag of product.tags" href="#" rel="tag"> {{ tag }} </a>,
 
             </div>
 
 
-            <div *ngIf="product.inStock">
+            <div *ngIf="product.in_stock">
 
               <input type="number"
               class="product_detail__main-quantity"
@@ -56,7 +55,7 @@
               <button *ngIf="product.addedToCart" class="btn primary-button"> Go to cart</button>
 
             </div>
-            <p *ngIf="!product.inStock" class="product_detail__main-out">Out of stock</p>
+            <p *ngIf="!product.in_stock" class="product_detail__main-out">Out of stock</p>
 
           </div>
         </div>
@@ -112,39 +111,84 @@
 
         <div class="product_detail__rating">
 
-          <h4 class="product_detail__rating-your">Your Rating: </h4>
+          <form (ngSubmit)="onSubmit()" #reviewForm="ngForm">
 
-          <div class="product_detail__rating-stars">
+            <div class="form-group">
 
-          <input class="product_detail__rating-input" type="radio" id="star1" name="rating">
-          <label class="product_detail__rating-label" for="star1"></label>
+              <h4 class="product_detail__rating-your">Your Rating:</h4>
 
-          <input class="product_detail__rating-input" type="radio" id="star2" name="rating">
-          <label class="product_detail__rating-label" for="star2"></label>
+              <div class="product_detail__rating-stars">
 
-          <input class="product_detail__rating-input" type="radio" id="star3" name="rating">
-          <label class="product_detail__rating-label" for="star3"></label>
+              <input class="product_detail__rating-input" type="radio" id="star1" name="rating" value="1" ngModel required>
+              <label class="product_detail__rating-label" for="star1"></label>
 
-          <input class="product_detail__rating-input" type="radio" id="star4" name="rating">
-          <label class="product_detail__rating-label" for="star4"></label>
+              <input class="product_detail__rating-input" type="radio" id="star2" name="rating" value="2" ngModel required>
+              <label class="product_detail__rating-label" for="star2"></label>
 
-          <input class="product_detail__rating-input" type="radio" id="star5" name="rating">
-          <label class="product_detail__rating-label" for="star5"></label>
+              <input class="product_detail__rating-input" type="radio" id="star3" name="rating" value="3" ngModel required>
+              <label class="product_detail__rating-label" for="star3"></label>
 
-          </div>
+              <input class="product_detail__rating-input" type="radio" id="star4" name="rating" value="4" ngModel required>
+              <label class="product_detail__rating-label" for="star4"></label>
 
-          <h4 class="product_detail__rating-your">Name* </h4>
+              <input class="product_detail__rating-input" type="radio" id="star5" name="rating" value="5" ngModel required>
+              <label class="product_detail__rating-label" for="star5"></label>
 
-          <h4 class="product_detail__rating-your">Email* </h4>
-
-
-          <h4 class="product_detail__rating-your">Your Review* </h4>
+              </div>
 
 
+            </div>
+
+            <div class="form-group">
+              <label for="username">Your Name: </label>
+              <input
+               type="text"
+               id="username"
+               class="form-control"
+               name="username"
+               required
+               ngModel
+               #name="ngModel"
+               >
+              <samp *ngIf="name.invalid && name.touched" class="help-block">Please enter your name!</samp>
+            </div>
+
+            <div class="form-group">
+              <h3 for="email">Email: </h3>
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                ngModel
+                name="email"
+                required
+                email
+                #email="ngModel"
+                >
+              <samp *ngIf="email.invalid && email.touched" class="help-block">Please enter a valid email!</samp>
+            </div>
+
+            <div class="form-group">
+              <h3 for="review">Your Review: </h3>
+              <textarea
+               type="text"
+               id="review"
+               class="form-control"
+               name="review"
+               required
+               ngModel
+               #review="ngModel"
+               ></textarea>
+               <samp *ngIf="review.invalid && review.touched" class="help-block">Please give your reivew!</samp>
+            </div>
+
+            <button class="btn btn-primary" type="submit" [disabled]="reviewForm.invalid">
+              Submit Review
+            </button>
+
+          </form>
 
         </div>
-
-
 
       </div>
 
@@ -158,4 +202,3 @@
 </div>
 
 
-</section>

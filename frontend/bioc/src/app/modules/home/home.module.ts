@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-
 import { HomeComponent } from './home.component';
 import { SecondaryHeaderComponent } from 'src/app/components/secondary-header/secondary-header.component';
 import { PrimaryHeaderComponent } from 'src/app/components/primary-header/primary-header.component';
@@ -10,6 +9,7 @@ import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { RiviewComponent } from './products/product-detail/riview/riview.component';
 
+import { FormsModule } from '@angular/forms';
 
 
 const routes: Routes = [
@@ -37,7 +37,8 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    FormsModule
   ],
   exports: [
     RouterModule

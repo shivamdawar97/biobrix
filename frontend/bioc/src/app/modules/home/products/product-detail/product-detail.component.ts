@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/core/models/product.model';
 import { Review } from 'src/app/core/models/review.model';
+import { NgForm } from '@angular/forms';
+import { ProductApiService } from 'src/app/core/http/product-api.service';
+import { UtilityService } from 'src/app/core/services/utility.service';
+import { ProductDetail } from 'src/app/core/models/product-detail.model';
 
 @Component({
   selector: 'app-product-detail',
@@ -10,31 +14,49 @@ import { Review } from 'src/app/core/models/review.model';
 })
 export class ProductDetailComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  @ViewChild('reviewForm',{static:true}) reviewForm: NgForm
+
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductApiService,
+    private utilityService: UtilityService) { }
+
   productId: string
-  product: Product
+  product: ProductDetail
   rate = 0
+  review: Review
 
   ngOnInit(): void {
-   let desc = 'For hydrating feel. High concentration of occlusive agents locks in moisture for longer – longer time.'+
-    'Coal Tar – Helps slow down the rapid growth of skin cells and restore the skin’s appearance and also reduces the'+
-    ' inflammation, itching and scaling of psoriasis. Salicylic Acid – Acts as a scale lifter, helping to soften and remove psoriasis scales. Specially prepared base considering Psoriasis, Eczema & Ichthyosis.'
 
     this.productId = this.route.snapshot.params['productId']
-    this.product = {
-       product_name: 'Ageless -Total resurfacing masque',
-       product_id: this.productId,
-       price: 250,
-       description: desc,
-       image: 'https://storage.needpix.com/rsynced_images/atopiclair-884211_1280.jpg',
-       discount: 0,
-       category: 'Skin Lightening',
-       inStock: true,
-       addedToCart: false,
-       ingredients: ["Mulethi","Chunna","Kathha"],
-       reviews: [new Review(5,'deepak','ewefefw','good good','11/12/21')]
-    }
-    console.log('product id: '+this.productId)
+    this.utilityService.showLoader.next(true);
+    this.productService.getPorductDetail(this.productId).subscribe(product=>{
+      this.product=product
+      this.utilityService.showLoader.next(false);
+    })
+
   }
+
+  onSubmit(){
+    //console.log(form)
+    //this.submitted = true
+
+    console.log(this.reviewForm.value)
+    this.review =  {
+      reviwer_name : this.reviewForm.value.username,
+      email : this.reviewForm.value.username,
+      review : this.reviewForm.value.username,
+      raing : this.reviewForm.value.username,
+      date: 'asdsdas'
+    }
+
+    // this.review.reviwer_name = this.reviewForm.value.username
+    // this.review.email = this.reviewForm.value.email
+    // this.review.review = this.reviewForm.value.review
+    // this.review.raing = this.reviewForm.value.rating
+    console.log(this.review)
+    this.reviewForm.reset()
+  }
+
 
 }
