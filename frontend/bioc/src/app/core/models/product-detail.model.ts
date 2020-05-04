@@ -6,7 +6,7 @@ export class ProductDetail {
       public _id: string,
       public price: number,
       public description: string,
-      public image: string[],
+      public images: string[],
       public ingredients: string[],
       public tags: string[],
       public discount: number,

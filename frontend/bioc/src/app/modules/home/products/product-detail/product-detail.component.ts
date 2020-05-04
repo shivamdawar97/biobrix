@@ -29,10 +29,11 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
 
     this.productId = this.route.snapshot.params['productId']
-    this.utilityService.showLoader.next(true);
+    //this.utilityService.showLoader.next(true);
     this.productService.getPorductDetail(this.productId).subscribe(product=>{
+      console.log(product)
       this.product=product
-      this.utilityService.showLoader.next(false);
+      //this.utilityService.showLoader.next(false);
     })
 
   }
@@ -44,9 +45,9 @@ export class ProductDetailComponent implements OnInit {
     console.log(this.reviewForm.value)
     this.review =  {
       reviwer_name : this.reviewForm.value.username,
-      email : this.reviewForm.value.username,
-      review : this.reviewForm.value.username,
-      raing : this.reviewForm.value.username,
+      email : this.reviewForm.value.email,
+      review : this.reviewForm.value.review,
+      raing : this.reviewForm.value.rating,
       date: 'asdsdas'
     }
 

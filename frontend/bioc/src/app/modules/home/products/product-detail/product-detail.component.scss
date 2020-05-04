@@ -281,6 +281,6 @@ $header-background : rgba(41, 105, 223, 0.151);
 
 }
 
-input.ng-invalid.ng-touched {
+input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched  {
   border: 1px solid red;
 }

@@ -18,7 +18,7 @@
         <div class="row">
           <div class="col-5">
 
-            <img class="product_detail__main-image" [src]="product.image">
+            <img class="product_detail__main-image" [src]="product.images[0]">
 
           </div>
           <div class="col-1"></div>
@@ -108,30 +108,27 @@
           </div>
         </ng-template>
 
-
-        <div class="product_detail__rating">
-
           <form (ngSubmit)="onSubmit()" #reviewForm="ngForm">
 
-            <div class="form-group">
+            <div class="form-group product_detail__rating">
 
               <h4 class="product_detail__rating-your">Your Rating:</h4>
 
               <div class="product_detail__rating-stars">
 
-              <input class="product_detail__rating-input" type="radio" id="star1" name="rating" value="1" ngModel required>
+              <input class="product_detail__rating-input" type="radio" id="star1" name="rating" value="5" ngModel required>
               <label class="product_detail__rating-label" for="star1"></label>
 
-              <input class="product_detail__rating-input" type="radio" id="star2" name="rating" value="2" ngModel required>
+              <input class="product_detail__rating-input" type="radio" id="star2" name="rating" value="4" ngModel required>
               <label class="product_detail__rating-label" for="star2"></label>
 
               <input class="product_detail__rating-input" type="radio" id="star3" name="rating" value="3" ngModel required>
               <label class="product_detail__rating-label" for="star3"></label>
 
-              <input class="product_detail__rating-input" type="radio" id="star4" name="rating" value="4" ngModel required>
+              <input class="product_detail__rating-input" type="radio" id="star4" name="rating" value="2" ngModel required>
               <label class="product_detail__rating-label" for="star4"></label>
 
-              <input class="product_detail__rating-input" type="radio" id="star5" name="rating" value="5" ngModel required>
+              <input class="product_detail__rating-input" type="radio" id="star5" name="rating" value="1" ngModel required>
               <label class="product_detail__rating-label" for="star5"></label>
 
               </div>
@@ -189,8 +186,6 @@
           </form>
 
         </div>
-
-      </div>
 
       <div class="ingredients">
         <h1 class="product_detail__main-tabs-section-heading">INGREDIENTS</h1>

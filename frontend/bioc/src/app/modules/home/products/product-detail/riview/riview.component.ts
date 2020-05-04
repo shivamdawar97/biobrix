@@ -13,6 +13,7 @@ export class RiviewComponent implements OnInit {
   @Input() review : Review
 
   ngOnInit(): void {
+    this.review.raing = 3
     console.log(this.review)
   }
 
