@@ -7,9 +7,9 @@ import { PrimaryHeaderComponent } from 'src/app/components/primary-header/primar
 import { HomepageComponent } from './homepage/homepage.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
-import { RiviewComponent } from './products/product-detail/riview/riview.component';
+import { ReviewComponent } from './products/product-detail/review/review.component';
 
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule} from '@angular/forms';
 
 
 const routes: Routes = [
@@ -33,12 +33,12 @@ const routes: Routes = [
     HomepageComponent,
     ProductsComponent,
     ProductDetailComponent,
-    RiviewComponent
+    ReviewComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    FormsModule
+    ReactiveFormsModule
   ],
   exports: [
     RouterModule

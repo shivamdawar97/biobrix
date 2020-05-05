@@ -1,4 +1,4 @@
-<div class="product_detail main-container">
+<div class="product_detail main-container" *ngIf="product">
 
   <section class="product_detail__header">
     <!-- <p class="product_detail__back">&#8592;</p> -->
@@ -31,45 +31,48 @@
 
               <div class="row product_detail__main-price">
                 <i class="fa fa-inr"></i>
-                <p class="">{{ product.price+ '.00' }}</p>
+                &nbsp;
+                <p class="">{{ product.price + '.00' }}</p>
 
-                </div>
+              </div>
 
-            <div class="product_detail__main-product_meta">
-              <hr>Category : <a href="#" rel="tag"> {{ product.category }}</a> <hr>
-              Tags : <a href="#" rel="tag"> {{ product.category }}</a>,
+              <div class="product_detail__main-product_meta">
+                <hr>
+                Category : <a href="#" rel="tag"> {{ product.category }}</a>
+                <hr>
+                Tags : <a href="#" rel="tag"> {{ product.category }}</a>,
 
-              <a *ngFor="let tag of product.tags" href="#" rel="tag"> {{ tag }} </a>,
+                <a *ngFor="let tag of product.tags" href="#" rel="tag"> {{ tag }} </a>,
+
+              </div>
+
+
+              <div *ngIf="product.in_stock " class="product_detail__main-quantity">
+
+                <input type="number" class=" form-control form-control-lg count-input" placeholder="Quantity">
+
+                <button *ngIf="!product.addedToCart" class="btn primary-button"> Add to cart</button>
+
+                <button *ngIf="product.addedToCart" class="btn primary-button"> Go to cart</button>
+
+              </div>
+              <p *ngIf="!product.in_stock" class="product_detail__main-out">Out of stock</p>
 
             </div>
-
-
-            <div *ngIf="product.in_stock">
-
-              <input type="number"
-              class="product_detail__main-quantity"
-              >
-
-              <button *ngIf="!product.addedToCart" class="btn primary-button "> Add to cart</button>
-
-              <button *ngIf="product.addedToCart" class="btn primary-button"> Go to cart</button>
-
-            </div>
-            <p *ngIf="!product.in_stock" class="product_detail__main-out">Out of stock</p>
-
           </div>
         </div>
+
       </div>
 
     </div>
 
-</div>
+  </section>
 
-<div class="product_detail__main-tabs">
+  <div class="product_detail__main-tabs">
 
-    <input  type="radio" id="tab1" class="product_detail__main-tabs-tab1" name="pct" checked="checked">
-    <input  type="radio" id="tab2" class="product_detail__main-tabs-tab2" name="pct" >
-    <input  type="radio" id="tab3" class="product_detail__main-tabs-tab3" name="pct" >
+    <input type="radio" id="tab1" class="product_detail__main-tabs-tab1" name="pct" checked="checked">
+    <input type="radio" id="tab2" class="product_detail__main-tabs-tab2" name="pct">
+    <input type="radio" id="tab3" class="product_detail__main-tabs-tab3" name="pct">
 
     <nav class="product_detail__main-tabs-nav">
       <ul class="product_detail__main-tabs-list">
@@ -83,8 +86,7 @@
           <label class="product_detail__main-tabs-label" for="tab3">Ingredients</label>
         </li>
       </ul>
-    </nav
-    >
+    </nav>
     <section class="product_detail__main-tabs-section">
 
       <div class="description">
@@ -95,9 +97,74 @@
       <div class="reviews">
         <h1 class="product_detail__main-tabs-section-heading">REVIEWS</h1>
 
+        <form (ngSubmit)="onSubmit()" [formGroup]="form" class="card">
+
+          <div class="card-header">Rate and write a review</div>
+
+          <div class="card-body">
+            <div class="form-group">
+
+              <h4 class="product_detail__rating-your">Your Rating:</h4>
+
+              <div class="product_detail__rating-stars">
+
+                <input class="product_detail__rating-input" type="radio" id="star1" formControlName="rating"
+                       name="rating" value="5">
+                <label class="product_detail__rating-label" for="star1"></label>
+
+                <input class="product_detail__rating-input" type="radio" id="star2" formControlName="rating"
+                       name="rating" value="4">
+                <label class="product_detail__rating-label" for="star2"></label>
+
+                <input class="product_detail__rating-input" type="radio" id="star3" formControlName="rating"
+                       name="rating" value="3">
+                <label class="product_detail__rating-label" for="star3"></label>
+
+                <input class="product_detail__rating-input" type="radio" id="star4" formControlName="rating"
+                       name="rating" value="2">
+                <label class="product_detail__rating-label" for="star4"></label>
+
+                <input class="product_detail__rating-input" type="radio" id="star5" formControlName="rating"
+                       name="rating" value="1">
+                <label class="product_detail__rating-label" for="star5"></label>
+
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="username">Your Name: </label>
+              <input formControlName="reviewer_name" type="text" id="username" class="form-control form-control-lg"
+                     name="username">
+              <samp *ngIf="!form.get('reviewer_name').valid && form.get('reviewer_name').touched" class="help-block">Please
+                enter your name!</samp>
+            </div>
+
+            <div class="form-group">
+              <h3 for="email">Email: </h3>
+              <input formControlName="email" type="email" id="email" class="form-control form-control-lg" name="email">
+              <samp *ngIf="!form.get('email').valid && form.get('email').touched" class="help-block">Please enter a
+                valid email!</samp>
+            </div>
+
+            <div class="form-group">
+              <h3 for="review">Your Review: </h3>
+              <textarea formControlName="review" type="text" id="review" class="form-control form-control-lg"
+                        name="review" rows="4"></textarea>
+              <samp *ngIf="!form.get('review').valid && form.get('review').touched" class="help-block">Please give your
+                review!</samp>
+            </div>
+            <div class="flex-row">
+              <div class="flex-fill"></div>
+              <button class="btn primary-button" type="submit" [disabled]="!form.valid">
+                Submit Review
+              </button>
+            </div>
+          </div>
+        </form>
+
         <div *ngIf="product.reviews.length!=0; else NoReview">
           <div *ngFor="let review of product.reviews">
-            <app-riview [review]="review" ></app-riview>
+            <app-review [review]="review"></app-review>
           </div>
         </div>
 
@@ -108,92 +175,16 @@
           </div>
         </ng-template>
 
-          <form (ngSubmit)="onSubmit()" #reviewForm="ngForm">
-
-            <div class="form-group product_detail__rating">
-
-              <h4 class="product_detail__rating-your">Your Rating:</h4>
-
-              <div class="product_detail__rating-stars">
-
-              <input class="product_detail__rating-input" type="radio" id="star1" name="rating" value="5" ngModel required>
-              <label class="product_detail__rating-label" for="star1"></label>
-
-              <input class="product_detail__rating-input" type="radio" id="star2" name="rating" value="4" ngModel required>
-              <label class="product_detail__rating-label" for="star2"></label>
-
-              <input class="product_detail__rating-input" type="radio" id="star3" name="rating" value="3" ngModel required>
-              <label class="product_detail__rating-label" for="star3"></label>
-
-              <input class="product_detail__rating-input" type="radio" id="star4" name="rating" value="2" ngModel required>
-              <label class="product_detail__rating-label" for="star4"></label>
-
-              <input class="product_detail__rating-input" type="radio" id="star5" name="rating" value="1" ngModel required>
-              <label class="product_detail__rating-label" for="star5"></label>
-
-              </div>
-
-
-            </div>
-
-            <div class="form-group">
-              <label for="username">Your Name: </label>
-              <input
-               type="text"
-               id="username"
-               class="form-control"
-               name="username"
-               required
-               ngModel
-               #name="ngModel"
-               >
-              <samp *ngIf="name.invalid && name.touched" class="help-block">Please enter your name!</samp>
-            </div>
-
-            <div class="form-group">
-              <h3 for="email">Email: </h3>
-              <input
-                type="email"
-                id="email"
-                class="form-control"
-                ngModel
-                name="email"
-                required
-                email
-                #email="ngModel"
-                >
-              <samp *ngIf="email.invalid && email.touched" class="help-block">Please enter a valid email!</samp>
-            </div>
-
-            <div class="form-group">
-              <h3 for="review">Your Review: </h3>
-              <textarea
-               type="text"
-               id="review"
-               class="form-control"
-               name="review"
-               required
-               ngModel
-               #review="ngModel"
-               ></textarea>
-               <samp *ngIf="review.invalid && review.touched" class="help-block">Please give your reivew!</samp>
-            </div>
-
-            <button class="btn btn-primary" type="submit" [disabled]="reviewForm.invalid">
-              Submit Review
-            </button>
-
-          </form>
-
-        </div>
+      </div>
 
       <div class="ingredients">
         <h1 class="product_detail__main-tabs-section-heading">INGREDIENTS</h1>
-        <h3 *ngFor="let ingredient of product.ingredients;"> {{ ingredient }}</h3>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let ingredient of product.ingredients;"> {{ ingredient }}</li>
+        </ul>
       </div>
 
     </section>
 
+  </div>
 </div>
-
-

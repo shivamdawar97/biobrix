@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Product } from 'src/app/core/models/product.model';
 import { Review } from 'src/app/core/models/review.model';
-import { NgForm } from '@angular/forms';
+import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import { ProductApiService } from 'src/app/core/http/product-api.service';
 import { UtilityService } from 'src/app/core/services/utility.service';
 import { ProductDetail } from 'src/app/core/models/product-detail.model';
@@ -14,49 +13,44 @@ import { ProductDetail } from 'src/app/core/models/product-detail.model';
 })
 export class ProductDetailComponent implements OnInit {
 
-  @ViewChild('reviewForm',{static:true}) reviewForm: NgForm
+  form: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductApiService,
-    private utilityService: UtilityService) { }
+    private utilityService: UtilityService) {
+    this.form = new FormGroup({
+      reviewer_name: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required),
+      review: new FormControl('', Validators.required),
+      rating: new FormControl('', Validators.required),
+      date: new FormControl(new Date())
+    });
+  }
 
-  productId: string
-  product: ProductDetail
-  rate = 0
-  review: Review
+  productId: string;
+  product: ProductDetail;
+  rate = 0;
+  review: Review;
 
   ngOnInit(): void {
 
-    this.productId = this.route.snapshot.params['productId']
-    //this.utilityService.showLoader.next(true);
-    this.productService.getPorductDetail(this.productId).subscribe(product=>{
-      console.log(product)
-      this.product=product
-      //this.utilityService.showLoader.next(false);
-    })
+    this.productId = this.route.snapshot.paramMap.get('productId');
+    this.utilityService.showLoader.next(true);
+    this.productService.getPorductDetail(this.productId).subscribe(product => {
+      console.log(product);
+      this.product = product;
+      this.utilityService.showLoader.next(false);
+    });
 
   }
 
-  onSubmit(){
-    //console.log(form)
-    //this.submitted = true
-
-    console.log(this.reviewForm.value)
-    this.review =  {
-      reviwer_name : this.reviewForm.value.username,
-      email : this.reviewForm.value.email,
-      review : this.reviewForm.value.review,
-      raing : this.reviewForm.value.rating,
-      date: 'asdsdas'
-    }
-
-    // this.review.reviwer_name = this.reviewForm.value.username
-    // this.review.email = this.reviewForm.value.email
-    // this.review.review = this.reviewForm.value.review
-    // this.review.raing = this.reviewForm.value.rating
-    console.log(this.review)
-    this.reviewForm.reset()
+  onSubmit() {
+    this.utilityService.showLoader.next(true);
+    this.productService.addReview({...this.form.value, product_id: this.product._id}).subscribe(res => {
+      this.utilityService.showLoader.next(false);
+    }, err => this.utilityService.showLoader.next(false));
+    this.form.reset();
   }
 
 

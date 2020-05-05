@@ -12,7 +12,7 @@ import { HttpErrorHandlerService } from './http-error-handler.service';
 import { UtilityService } from '../services/utility.service';
 
 /** Constants */
-import { CATEGORY_API, PRODUCT_API, PRODUCT_DETAIL_API } from 'src/app/constants/api.const';
+import {ADD_PRODUCT_REVIEW_API, CATEGORY_API, PRODUCT_API, PRODUCT_DETAIL_API} from 'src/app/constants/api.const';
 import { environment } from 'src/environments/environment';
 import { ProductDetail } from '../models/product-detail.model';
 
@@ -54,13 +54,19 @@ export class ProductApiService {
     );
   }
 
-  getPorductDetail(id:string){
+  getPorductDetail(id: string){
     const url = `${this.BASE_URL}${PRODUCT_DETAIL_API}`
-    return this.http.get<ProductDetail>(url,{
-      params: new HttpParams().set('product_id',id)
+    return this.http.get<ProductDetail>(url, {
+      params: new HttpParams().set('product_id', id)
     }).pipe(
       catchError(this.httpErrorHandlerService.handleErr)
-    )
+    );
+  }
+
+
+  addReview(data: any) {
+    const url = `${this.BASE_URL}${ADD_PRODUCT_REVIEW_API}`;
+    return this.http.post(url, data).pipe(catchError(this.httpErrorHandlerService.handleErr));
   }
 
 }

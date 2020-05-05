@@ -87,6 +87,8 @@ $header-background : rgba(41, 105, 223, 0.151);
     }
 
     &-price {
+      @include flex(row);
+      @include flex-alignment(flex-start, center);
       font-size: 2em;
       color:$secondary-website-color;
       text-align: center;
@@ -108,11 +110,22 @@ $header-background : rgba(41, 105, 223, 0.151);
     }
 
     &-quantity {
-      height: 5rem;
-      width: 20%;
-      text-align: center;
-      font-size:2rem;
+      @include flex(row);
+      @include flex-alignment(flex-start, center);
       margin-top: 5rem;
+
+      .count-input {
+        @include flex(row);
+        @include flex-alignment(flex-start, center);
+        width: 30%;
+        text-align: center;
+        font-size:2rem;
+        margin-right: 2rem;
+      }
+
+      .primary-button {
+        margin: 0;
+      }
 
     }
 
@@ -192,7 +205,7 @@ $header-background : rgba(41, 105, 223, 0.151);
       &-section {
         clear: both;
         padding: 0;
-        & div {
+        & > div {
           padding: 2rem;
           width: 100%;
           //border-top: 1px solid #ddd;
@@ -211,10 +224,7 @@ $header-background : rgba(41, 105, 223, 0.151);
   }
 
   &__rating {
-
-
     &-stars {
-
     display: flex;
     position: relative;
     transform: rotateY(180deg) translateY(-50%) translateX(40%);
@@ -222,9 +232,8 @@ $header-background : rgba(41, 105, 223, 0.151);
     }
 
     &-your {
-      font-size: 2rem;
+      //font-size: ;
     }
-
 
     &-label {
       display: block;
@@ -253,7 +262,6 @@ $header-background : rgba(41, 105, 223, 0.151);
         content: '\f005';
         font-family: 'FontAwesome';
         font-weight: 300;
-        font-size: 50px;
         position: absolute;
         font-size: 30px;
         top: 0;
@@ -283,4 +291,8 @@ $header-background : rgba(41, 105, 223, 0.151);
 
 input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched  {
   border: 1px solid red;
+}
+
+.card-header {
+  background-color: rgba(0, 0, 0, 0.03) !important;
 }
