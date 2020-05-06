@@ -58,11 +58,11 @@ export class CartService {
       if (savedItems) {
         return JSON.parse(savedItems);
       } else {
-        return null;
+        return [];
       }
     } catch (err) {
       localStorage.removeItem('cart');
-      return null;
+      return [];
     }
   }
 

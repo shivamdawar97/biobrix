@@ -1,0 +1,84 @@
+<div class="main-container">
+
+  <div class="primary-heading">
+    <h1 class="primary-heading-text">CHECKOUT</h1>
+  </div>
+
+  <div class="checkout-container">
+      <div class="billing-information">
+        <div class="billing-information__header">Billing information</div>
+        <form [formGroup]="form" class="billing-information__container" (ngSubmit)="form.valid && makePayment()">
+          <div class="verify-phone">
+            <div *ngIf="!isPhoneVerified" class="alert alert-primary">Please verify your mobile number</div>
+            <div class="form-group">
+              <label for="phone_number">Mobile number</label>
+              <input type="text" formControlName="phone_number" id="phone_number" class="form-control form-control-lg" aria-describedby="phoneHelp" placeholder="Enter mobile number">
+            </div>
+            <div *ngIf="isOtpSent && !isPhoneVerified" class="alert alert-success mt-3">OTP has been sent to this mobile number, please verify!</div>
+            <div *ngIf="isPhoneVerified" class="alert alert-success mt-3">Mobile number verified!</div>
+            <div class="form-group" *ngIf="isOtpSent && !isPhoneVerified">
+              <label for="optField">Enter OTP</label>
+              <input type="text" [formControl]="otpField" id="optField" class="form-control form-control-lg" aria-describedby="phoneHelp" placeholder="Enter OTP code">
+            </div>
+            <button *ngIf="!isOtpSent && !isPhoneVerified" type="button" class="btn primary-button d-block" [disabled]="!form.get('phone_number').valid" (click)="getOtp()">Get OTP</button>
+            <button *ngIf="isOtpSent && !isPhoneVerified" type="button" class="btn primary-button d-block" [disabled]="!otpField.value" (click)="verifyOtp()">Verify</button>
+          </div>
+          <div class="details-form" *ngIf="isPhoneVerified">
+            <div class="form-group input">
+              <label for="email">Enter email</label>
+              <input type="email" formControlName="email" id="email" class="form-control form-control-lg" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+            <div class="form-group input">
+              <label for="user_name">Enter name</label>
+              <input type="text" formControlName="user_name" id="user_name" class="form-control form-control-lg" aria-describedby="nameHelp" placeholder="Enter name">
+            </div>
+            <div class="form-group textarea">
+              <label for="address">Enter address</label>
+              <textarea type="text" formControlName="address" id="address" class="form-control form-control-lg w-100" aria-describedby="addressHelp" placeholder="Enter address"></textarea>
+            </div>
+            <div class="form-group input">
+              <label for="zip_code">Enter zip code</label>
+              <input type="number" formControlName="zip_code" id="zip_code" class="form-control form-control-lg" aria-describedby="zipcodeHelp" placeholder="Enter zip code">
+            </div>
+            <div class="form-group input">
+              <label for="city">Enter city</label>
+              <input type="text" formControlName="city" id="city" class="form-control form-control-lg" aria-describedby="cityHelp" placeholder="Enter city">
+            </div>
+            <div class="form-group input">
+              <label for="state">Enter state</label>
+              <input type="text" formControlName="state" id="state" class="form-control form-control-lg" aria-describedby="stateHelp" placeholder="Enter state">
+            </div>
+            <div class="make-payment-btn">
+              <button type="submit" class="btn primary-button">Make Payment</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="order-information">
+        <div class="order-information__header">Your Order</div>
+        <div class="order-information__content">
+          <div class="order-item" *ngFor="let product of products">
+            <img src="{{product.image}}" style="object-fit: contain" height="80" width="80">
+            <div class="name-and-price">
+              <span class="name">{{product.product_name}}</span>
+              <span class="price">{{product.price}}</span>
+            </div>
+            <div class="flex-fill"></div>
+            <span class="quantity">{{product.quantity}}</span>
+            <span class="total">{{product.total}}</span>
+          </div>
+          <div class="sub-total-item">
+            <div class="flex-fill"></div>
+            <span class="total-heading">Sub total</span>
+            <span class="total-count">{{subtotal}}</span>
+          </div>
+
+          <div class="total-item">
+            <div class="flex-fill"></div>
+            <span class="total-heading">Total</span>
+            <span class="total-count">{{total}}</span>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

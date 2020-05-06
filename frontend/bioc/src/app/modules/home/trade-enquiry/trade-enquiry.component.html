@@ -1,0 +1,86 @@
+<div class="main-container">
+  <form [formGroup]="form" class="trade-enquiry-container">
+    <section>
+      <div class="form-group">
+        <label for="name">Full name*</label>
+        <input type="text" class="form-control form-control-lg" formControlName="name" id="name" aria-describedby="nameHelp"
+               placeholder="Enter full name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email*</label>
+        <input type="email" class="form-control form-control-lg" id="email" formControlName="email" aria-describedby="emailHelp"
+               placeholder="Enter email">
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="text" class="form-control form-control-lg" id="phone" formControlName="phone" aria-describedby="phoneHelp"
+               placeholder="Enter phone">
+      </div>
+      <div class="form-group">
+        <label for="mobile">Mobile*</label>
+        <input type="text" class="form-control form-control-lg" id="mobile" formControlName="mobile" aria-describedby="mobileHelp"
+               placeholder="Enter mobile">
+      </div>
+      <div class="form-group">
+        <label for="city">City*</label>
+        <input type="text" class="form-control form-control-lg" id="city" formControlName="city" aria-describedby="cityHelp"
+               placeholder="Enter city">
+      </div>
+      <div class="form-group">
+        <label for="state">State*</label>
+        <input type="text" class="form-control form-control-lg" id="state" formControlName="state" aria-describedby="emailHelp"
+               placeholder="Enter state">
+      </div>
+      <div class="form-group">
+        <label for="country">Country*</label>
+        <input type="text" class="form-control form-control-lg" id="country" formControlName="country" aria-describedby="countryHelp"
+               placeholder="Enter country">
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="text" class="form-control form-control-lg" id="age" formControlName="age" aria-describedby="ageHelp"
+               placeholder="Enter age">
+      </div>
+      <div class="form-group">
+        <label for="companyName">Company name*</label>
+        <input type="text" class="form-control form-control-lg" id="companyName" formControlName="company" aria-describedby="companyNameHelp"
+               placeholder="Enter company name">
+      </div>
+    </section>
+    <section>
+      <div class="form-group">
+        <label for="reference">Our reference you got from*</label>
+        <input type="text" class="form-control form-control-lg" id="reference" formControlName="reference" aria-describedby="companyNameHelp"
+               placeholder="Enter company name">
+      </div>
+      <div class="form-group">
+        <label for="associated">Since How Long associated With Pharma Field*</label>
+        <input type="text" class="form-control form-control-lg" id="associated" formControlName="associated" aria-describedby="companyNameHelp"
+               placeholder="Enter company name">
+      </div>
+      <div class="form-group">
+        <label for="exposure">Any exposure in derma products ?*</label>
+        <input type="text" class="form-control form-control-lg" id="exposure" formControlName="exposure" aria-describedby="companyNameHelp"
+               placeholder="Enter company name">
+      </div>
+      <div class="form-group">
+        <label for="address">Address*</label>
+        <textarea type="text" class="form-control form-control-lg" id="address" formControlName="address" aria-describedby="companyNameHelp"
+                  placeholder="Enter company name" rows="5"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="profile">Current profile*</label>
+        <input type="text" class="form-control form-control-lg" id="profile" formControlName="profile" aria-describedby="companyNameHelp"
+               placeholder="Enter company name">
+      </div>
+      <div class="form-group">
+        <label for="comments">Enquiry/Comments*</label>
+        <textarea type="text" class="form-control form-control-lg" id="comments" formControlName="comments" aria-describedby="companyNameHelp"
+                  placeholder="Enter company name" rows="5"></textarea>
+      </div>
+    </section>
+  </form>
+  <div class="submit-btn">
+    <button type="button" class="btn primary-button" (click)="submit()">Submit</button>
+  </div>
+</div>
