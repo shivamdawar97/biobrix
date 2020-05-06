@@ -1,0 +1,38 @@
+<div class="review">
+
+
+    <div class="card">
+
+    <div class="card-body">
+
+      <div class="card-title">
+
+        <i class="fa fa-star review-filled"></i>
+
+        <i class="fa fa-star review-filled" *ngIf="review.raing>1 else un2"></i>
+        <ng-template #un2> <i class="fa fa-star review-unfilled"></i> </ng-template>
+
+        <i class="fa fa-star review-filled" *ngIf="review.raing>2 else un3"></i>
+        <ng-template #un3> <i class="fa fa-star review-unfilled"></i> </ng-template>
+
+        <i class="fa fa-star review-filled" *ngIf="review.raing>3 else un4"></i>
+        <ng-template #un4> <i class="fa fa-star review-unfilled"></i> </ng-template>
+
+        <i class="fa fa-star review-filled" *ngIf="review.raing>4 else un5"></i>
+        <ng-template #un5> <i class="fa fa-star review-unfilled"></i> </ng-template>
+
+      </div>
+
+      <div class="card-subtitle">
+        <h4 class="uk-margin-top mb-2 text-muted">{{ review.reviwer_name }}</h4>
+      </div>
+
+      <h2 class="card-text mr-5"> {{ review.review }} </h2>
+
+      <p>{{ review.date }}</p>
+
+    </div>
+
+    </div>
+
+</div>

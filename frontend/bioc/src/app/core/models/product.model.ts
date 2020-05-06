@@ -12,9 +12,7 @@ export class Product {
         public category?: string,
         public addedToCart?: boolean,
         public quantity?: number,
-        public total?: number,
-        public ingredients?: Array<string>,
-        public reviews?: Array<Review>
+        public total?: number
     ) { }
 }
 

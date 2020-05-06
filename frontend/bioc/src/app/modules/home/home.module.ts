@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-
 import { HomeComponent } from './home.component';
 import { SecondaryHeaderComponent } from 'src/app/components/secondary-header/secondary-header.component';
 import { PrimaryHeaderComponent } from 'src/app/components/primary-header/primary-header.component';
@@ -12,8 +11,9 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { TrackOrderComponent } from './track-order/track-order.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
-import { RiviewComponent } from './products/product-detail/riview/riview.component';
+import { ReviewComponent } from './products/product-detail/review/review.component';
 
+import { ReactiveFormsModule} from '@angular/forms';
 
 
 const routes: Routes = [
@@ -43,12 +43,12 @@ const routes: Routes = [
     TrackOrderComponent,
     ContactComponent,
     ProductDetailComponent,
-    RiviewComponent
+    ReviewComponent
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ReactiveFormsModule
   ],
   exports: [
     RouterModule
