@@ -13,8 +13,6 @@ import { ContactComponent } from './contact/contact.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { ReviewComponent } from './products/product-detail/review/review.component';
 
-import { ReactiveFormsModule} from '@angular/forms';
-
 
 const routes: Routes = [
   {
