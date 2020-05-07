@@ -9,11 +9,9 @@ const authRouter = require('../routers/auth_router')
 const uploadRouter = require('../routers/file_upload')
 const reviewRouter = require('../routers/review_router')
 const homepageRouter = require('../routers/homepage_router')
-const paytmRouter = require('../paytm/controller/paytm.router')
-
+const paytmRoutes = require('../paytm/controller')
 
 const angularPath = path.join(__dirname,'../build')
-
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -31,6 +29,7 @@ app.use(categoryRouter)
 app.use(uploadRouter)
 app.use(reviewRouter)
 app.use(homepageRouter)
-app.use(paytmRouter)
+app.use('/paytm',paytmRoutes)
+app.use('*',express.static(angularPath))
 
 module.exports = app

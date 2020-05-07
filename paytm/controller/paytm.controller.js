@@ -9,19 +9,21 @@ const healthcheck = (req, res) => {
 
 const initiatePayment = (req, res) => {
   try {
-    var body = req.body;
-    console.log('Initialize Payment',body)
+    var queryParams = req.query;
+    console.log('Initialize Payment',queryParams)
     var params = {};
     params['MID'] = PaytmConfig.mid;
     params['WEBSITE'] = PaytmConfig.website;
     params['CHANNEL_ID'] = 'WAP';
     params['INDUSTRY_TYPE_ID'] = 'Retail';
-    params['ORDER_ID'] = body.order_id;
-    //params['CUST_ID'] = queryParams.customer_id;
-    params['TXN_AMOUNT'] = body.amount;
+    params['ORDER_ID'] = queryParams.order_id;
+    params['CUST_ID'] = queryParams.phone;
+    params['TXN_AMOUNT'] = queryParams.amount;
     // params['CALLBACK_URL'] = `${appConfig.hostUrl}:${appConfig.port}/paytm/api/paytm/callback`;
-    params['CALLBACK_URL'] = `https://biobrix-healthcare.herokuapp.com/paytm/api/paytm/callback`;
-    params['EMAIL'] = body.email;
+    // params['CALLBACK_URL'] = `http://localhost:3000/paytm/callback`;
+    params['CALLBACK_URL'] = `https://biobrix-healthcare.herokuapp.com/paytm/callback`;
+    params['EMAIL'] = queryParams.email;
+    params['MOBILE_NO'] = queryParams.phone; // customer 10 digit mobile no.
     
     checksum_lib.genchecksum(params, PaytmConfig.key, function (err, checksum) {
       console.log('generated checksum: ', checksum);
