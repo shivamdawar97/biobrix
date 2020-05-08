@@ -20,11 +20,13 @@ const initiatePayment = (req, res) => {
     params['CUST_ID'] = queryParams.phone;
     params['TXN_AMOUNT'] = queryParams.amount;
     // params['CALLBACK_URL'] = `${appConfig.hostUrl}:${appConfig.port}/paytm/api/paytm/callback`;
-    // params['CALLBACK_URL'] = `http://localhost:3000/paytm/callback`;
-    params['CALLBACK_URL'] = `https://biobrix-healthcare.herokuapp.com/paytm/callback`;
+    // params['CALLBACK_URL'] = 'http://localhost:3000/paytm/callback';
+    params['CALLBACK_URL'] = 'https://biobrix-healthcare.herokuapp.com/paytm/callback';
     params['EMAIL'] = queryParams.email;
     params['MOBILE_NO'] = queryParams.phone; // customer 10 digit mobile no.
     
+    //http://localhost:3000/paytm/initiatePayment?order_id=sadsa898ds&email=dsawe@dsv.cs&amount=300&phone=9871280363
+
     checksum_lib.genchecksum(params, PaytmConfig.key, function (err, checksum) {
       console.log('generated checksum: ', checksum);
       var txn_url = PaytmConfig.transactionUrl;
