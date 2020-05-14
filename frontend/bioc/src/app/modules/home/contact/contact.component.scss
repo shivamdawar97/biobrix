@@ -1,0 +1,72 @@
+@import "src/styles/imports";
+
+.contact-us-container {
+  margin-top: 5rem;
+  padding: 0 8rem;
+  @include flex(column);
+  @include flex-alignment(center, center);
+
+
+  .content {
+    @include flex(row);
+    width: 100%;
+    margin-top: 6rem;
+
+    &__item {
+      flex: 1;
+      @include flex(column);
+      @include flex-alignment(flex-start, center);
+
+      .icon {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 3rem;
+        @include flex(row);
+        @include flex-alignment(center, center);
+        border-radius: 70px;
+        background-color: white;
+        border: 0.4rem solid #075ac9;
+        i {
+          font-size: 40px;
+          color: #075ac9;
+        }
+      }
+
+      .title {
+        font-size: 20px;
+        margin-bottom: 3rem;
+        color: #387ad3;
+      }
+
+      .data {
+        @include flex(column);
+        @include flex-alignment(center, center);
+        width: 100%;
+
+        &__heading {
+          font-weight: 500;
+        }
+
+        &__body {
+          width: 50%;
+          text-align: center;
+        }
+      }
+
+      &:hover {
+        .icon {
+          background-color: #075ac9;
+          i {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+
+  .contact-message {
+    @include flex(column);
+    margin: 3rem 0;
+    width: 65%;
+  }
+}

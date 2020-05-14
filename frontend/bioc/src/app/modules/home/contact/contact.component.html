@@ -1,0 +1,78 @@
+<div class="main-container">
+
+  <div class="primary-heading">
+    <h1 class="primary-heading-text">CONTACT US</h1>
+  </div>
+
+  <div class="contact-us-container">
+    <h1 style="color: #075ac9;">WE ARE HERE TO HELP YOU</h1>
+    <div class="content">
+      <div class="content__item">
+        <span class="icon">
+          <i class="fa fa-map-marker"></i>
+        </span>
+        <span class="title">
+          Address
+        </span>
+        <span class="data">
+          <span class="data__heading">
+            Bioc
+          </span>
+          <span class="data__body">
+            733, Gaur global village, Crossing republik, Ghaziabad, UP, 201016
+          </span>
+        </span>
+      </div>
+      <div class="content__item">
+        <span class="icon">
+          <i class="fa fa-phone"></i>
+        </span>
+        <span class="title">
+          Call
+        </span>
+        <span class="data">
+          <span class="data__heading">
+            Telephone
+          </span>
+          <span class="data__body">
+            9536016862
+          </span>
+        </span>
+      </div>
+      <div class="content__item">
+        <span class="icon">
+          <i class="fa fa-envelope"></i>
+        </span>
+        <span class="title">
+          Support
+        </span>
+        <span class="data">
+          <span class="data__heading">
+            E-mail
+          </span>
+          <span class="data__body">
+            info@bioc.com
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <h1 style="margin-top: 15vh; color: #075ac9;">LEAVE A MESSAGE</h1>
+    <div class="contact-message">
+      <div class="form-group">
+        <label for="name">Full name</label>
+        <input type="text" id="name" [formControl]="name" class="form-control form-control-lg" placeholder="Enter full name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" id="email" [formControl]="email" class="form-control form-control-lg" placeholder="Enter email">
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea type="text" id="message" [formControl]="message" rows="3" class="form-control form-control-lg" placeholder="Enter message"></textarea>
+      </div>
+      <button type="button" class="btn primary-button" style="align-self: center" (click)="submitForm()">Submit message</button>
+    </div>
+  </div>
+
+</div>

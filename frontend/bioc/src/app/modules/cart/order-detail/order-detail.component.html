@@ -1,0 +1,49 @@
+<div class="main-container">
+
+  <div class="primary-heading">
+    <h1 class="primary-heading-text">ORDER</h1>
+  </div>
+  <div class="order-detail-container">
+    <div *ngIf="newOrder" class="alert alert-success">
+      Your order has been successfully placed!
+    </div>
+    <div *ngIf="orderDetail" class="alert alert-info">
+      Your order id is - &nbsp;<span class="alert-info__id">{{orderDetail._id}}</span>
+    </div>
+  </div>
+
+  <div class="order-detail-secondary-container">
+    <div class="address-information">
+      <div class="address-information__header">Delivery Address</div>
+      <div class="address-information__container">
+        {{orderDetail?.address}}
+      </div>
+    </div>
+    <div class="order-information">
+      <div class="order-information__header">Your Order</div>
+      <div class="order-information__content">
+        <div class="order-item" *ngFor="let product of orderDetail?.products">
+          <img src="{{product.image}}" style="object-fit: contain" height="80" width="80">
+          <div class="name-and-price">
+            <span class="name">{{product.product_name}}</span>
+            <span class="price">{{product.price}}</span>
+          </div>
+          <div class="flex-fill"></div>
+          <span class="quantity">{{product.quantity}}</span>
+          <span class="total">{{product.total}}</span>
+        </div>
+        <div class="sub-total-item">
+          <div class="flex-fill"></div>
+          <span class="total-heading">Sub total</span>
+          <span class="total-count">{{subtotal}}</span>
+        </div>
+
+        <div class="total-item">
+          <div class="flex-fill"></div>
+          <span class="total-heading">Total</span>
+          <span class="total-count">{{total}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

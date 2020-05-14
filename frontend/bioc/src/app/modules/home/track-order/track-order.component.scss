@@ -1,0 +1,108 @@
+@import "src/styles/imports";
+
+.track-order-container {
+  margin-top: 5rem;
+  padding: 0 8rem;
+  @include flex(column);
+  @include flex-alignment(center, center);
+
+  .phone-input {
+    @include flex(column);
+    margin-top: 3rem;
+    width: 40%;
+
+    .form-group {
+      input {
+        width: 100%;
+      }
+      width: 100%;
+    }
+
+    label {
+      display: block;
+    }
+  }
+
+  .card {
+    width: 80%;
+    margin: 2rem 0;
+
+    .card-header {
+      @include flex(row);
+      @include flex-alignment(flex-start, center);
+
+      .date-heading {
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      .detail-button {
+        outline: none;
+
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .card-body {
+      @include flex(row);
+
+      .product-list {
+        flex: 2;
+        padding: 3rem;
+        @include flex(column);
+
+        .order-items {
+          @include flex(row);
+          width: 100%;
+
+          .item {
+            @include flex(column);
+            @include flex-alignment(flex-start, center);
+            margin: 0 2rem 2rem 2rem;
+            .item-image {
+              width: 8rem;
+              margin-bottom: 1rem;
+            }
+          }
+        }
+
+        .card-divider {
+          width: 80%;
+          border-top: 1px solid #f1f1f1;
+        }
+
+        .order-total {
+          @include flex(row);
+          @include flex-alignment(space-between, center);
+          margin: 1rem 0;
+          width: 100%;
+
+          .count {
+            font-weight: 500;
+          }
+        }
+      }
+
+      .delivery-address {
+        border-left: 1px solid #f1f1f1;
+        padding: 3rem;
+        flex: 1;
+      }
+    }
+
+    &:hover {
+      box-shadow: 2px 2px 5px 2px #f1f1f1;
+    }
+  }
+}
+
+
+.alert-dark {
+  font-size: 16px;
+  @include flex(row);
+  @include flex-alignment(center, center);
+  width: 80%;
+}

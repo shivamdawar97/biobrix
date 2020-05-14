@@ -1,0 +1,54 @@
+<div class="main-container">
+
+  <div class="primary-heading">
+    <h1 class="primary-heading-text">TRACK</h1>
+  </div>
+  <div class="track-order-container">
+    <div class="alert alert-dark" *ngIf="!orders">
+      You can track your orders with your &nbsp; <b>mobile number</b>. Please &nbsp; <b>verify</b> &nbsp; your mobile
+      number to check your orders.
+    </div>
+    <div class="phone-input" *ngIf="!orders">
+      <div class="form-group">
+        <label for="phone">Phone number</label>
+        <input type="text" id="phone" class="form-control form-control-lg" [formControl]="phone"
+               placeholder="Enter phone number">
+      </div>
+      <div *ngIf="isOtpSent && !isPhoneVerified" class="alert alert-success mt-3">OTP has been sent to this mobile
+        number, please verify!
+      </div>
+      <div *ngIf="isOtpSent && !isPhoneVerified" class="form-group">
+        <label for="otp">OTP</label>
+        <input type="text" id="otp" class="form-control form-control-lg" [formControl]="otp" placeholder="Enter OTP">
+      </div>
+    </div>
+    <button *ngIf="!isOtpSent" class="btn primary-button" (click)="getOtp()">Get OTP</button>
+    <button *ngIf="!isPhoneVerified && isOtpSent" class="btn primary-button" (click)="verifyOtp()">Verify</button>
+    <h1 style="align-self: flex-start; padding-left: 10%" *ngIf="orders">Your orders</h1>
+    <div class="card" *ngFor="let order of orders">
+      <div class="card-header">
+        <span class="date-heading">{{order.createdAt | date:'fullDate'}} &nbsp; | Cost : &#8377; {{order.total}}</span>
+        <span class="flex-fill"></span>
+        <span class="detail-button" [routerLink]="['/', 'view-cart', 'order', order._id]">View detail</span>
+      </div>
+      <div class="card-body">
+        <div class="product-list">
+          <h3>Items</h3>
+          <div class="order-items">
+            <div class="item" *ngFor="let product of order.products">
+              <img class="item-image" src="{{product.image}}" alt="{{order.product_name}}"/>
+              <span>{{product.product_name}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="delivery-address">
+          <h3>Delivery address</h3>
+          <div>{{order.address}}</div>
+          <div>{{order.city}}</div>
+          <div>{{order.state}}</div>
+          <div>{{order.zip_code}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

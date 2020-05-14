@@ -65,6 +65,21 @@
   }
 }
 
+@keyframes slideInDown {
+  from {
+    transform: translate3d(0, -300%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slideInDown {
+  animation-name: slideInDown;
+}
+
 .fadeIn {
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
@@ -75,4 +90,12 @@
   animation-duration: 1s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
+}
+
+.alert-msg {
+  position: fixed;
+  right: calc(50% - 150px);
+  top: 13rem;
+  z-index: 100;
+  padding: 2rem;
 }
