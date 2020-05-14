@@ -9,9 +9,7 @@ const authRouter = require('../routers/auth_router')
 const uploadRouter = require('../routers/file_upload')
 const reviewRouter = require('../routers/review_router')
 const homepageRouter = require('../routers/homepage_router')
-
 const angularPath = path.join(__dirname,'../build')
-
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
