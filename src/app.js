@@ -13,7 +13,6 @@ const uploadRouter = require('../routers/file_upload')
 const reviewRouter = require('../routers/review_router')
 const homepageRouter = require('../routers/homepage_router')
 const paytmRoutes = require('../paytm/controller')
-
 const angularPath = path.join(__dirname,'../build')
 
 app.use(function(req, res, next) {

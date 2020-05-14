@@ -1,0 +1,24 @@
+<div class="main-container admin-body">
+
+  <div class="sidebar">
+    <h1 class="bar-heading">Biobrix Admin</h1>
+
+    <a class="sidebar__a" routerLinkActive="active" routerLink="administration">Administration</a>
+    <a *ngIf="isAuthenticated" class="sidebar__a" routerLinkActive="active" routerLink="products">Products</a>
+    <a *ngIf="isAuthenticated" class="sidebar__a" routerLinkActive="active" routerLink="orders">Orders</a>
+    <a *ngIf="isAuthenticated" class="sidebar__a" routerLinkActive="active" routerLink="slideshow">Slideshow</a>
+    <a *ngIf="isAuthenticated" class="sidebar__a" routerLinkActive="active" routerLink="reviews">Testimonies</a>
+    <a *ngIf="isAuthenticated" class="sidebar__a" routerLinkActive="active" routerLink="testimonies">Pending Reviews</a>
+
+  </div>
+
+
+  <div class="content">
+
+  <router-outlet></router-outlet>
+
+  </div>
+
+
+</div>
+
