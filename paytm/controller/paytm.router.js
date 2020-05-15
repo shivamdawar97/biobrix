@@ -5,4 +5,6 @@ router.get('/healthcheck', controller.healthcheck);
 router.get('/initiatePayment', controller.initiatePayment);
 router.post('/callback', controller.callback);
 
-module.exports = router;
+const verifyTransactionId = controller.verifyTransactionId
+
+module.exports = { router, verifyTransactionId };

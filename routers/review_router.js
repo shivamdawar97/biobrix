@@ -3,6 +3,7 @@ const router = new express.Router()
 
 const Product = require('../models/product')
 const PendingReview = require('../models/pending_review')
+const auth = require('../middleware/auth')
 
 
 router.post('/review/submit_review',async (req,res)=>{
@@ -21,7 +22,7 @@ router.post('/review/submit_review',async (req,res)=>{
     }
 })
 
-router.post('/review/acknowledge_review',async (req,res)=>{
+router.post('/review/acknowledge_review',auth,async (req,res)=>{
     try{
 
         const id = req.body.reviewId
@@ -54,7 +55,7 @@ router.post('/review/acknowledge_review',async (req,res)=>{
     }
 })
 
-router.delete('/review/delete',async (req,res)=>{
+router.delete('/review/delete',auth,async (req,res)=>{
     try{
         const review_id = req.query.review_id;
         const product_id = req.query.product_id;

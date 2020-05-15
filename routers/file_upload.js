@@ -1,8 +1,9 @@
 const upload =require('../config/multer_config')
 const express= require('express')
 const router = new express.Router()
+const auth = require('../middleware/auth')
 
-router.post('/upload/upload_image',upload.single('image'),async(req,res)=>{
+router.post('/upload/upload_image',auth,upload.single('image'),async(req,res)=>{
 
     try {
             res.send({

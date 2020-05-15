@@ -73,7 +73,7 @@ router.get('/product/product_detail',async (req,res)=>{
 
 })
 
-router.patch('/product/update/:id', async (req,res)=>{
+router.patch('/product/update/:id',auth, async (req,res)=>{
     const updates = Object.keys(req.body)
     const allowedUpdates = []
     const isValidOperation =updates.every(update=> allowedUpdates.includes(update)) 
@@ -90,8 +90,6 @@ router.patch('/product/update/:id', async (req,res)=>{
             res.status(400).send({error:error.message})
     }
 })
-
-
 
 router.get('/product/search',async (req,res)=> {
     try{
@@ -117,7 +115,7 @@ router.get('/product/search',async (req,res)=> {
 })
 
 
-router.delete('/product/delete_product',async (req,res)=>{
+router.delete('/product/delete_product',auth,async (req,res)=>{
     try{
         const product = await Product.findById(req.query.id)
         if(!product) throw new Error('No product found to delete')

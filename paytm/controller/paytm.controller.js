@@ -19,14 +19,11 @@ const initiatePayment = (req, res) => {
     params['ORDER_ID'] = queryParams.order_id;
     params['CUST_ID'] = queryParams.phone;
     params['TXN_AMOUNT'] = queryParams.amount;
-    // params['CALLBACK_URL'] = `${appConfig.hostUrl}:${appConfig.port}/paytm/api/paytm/callback`;
     // params['CALLBACK_URL'] = 'http://localhost:3000/paytm/callback';
     params['CALLBACK_URL'] = 'https://biobrix-healthcare.herokuapp.com/paytm/callback';
     params['EMAIL'] = queryParams.email;
     params['MOBILE_NO'] = queryParams.phone; // customer 10 digit mobile no.
     
-    //http://localhost:3000/paytm/initiatePayment?order_id=sadsa898ds&email=dsawe@dsv.cs&amount=300&phone=9871280363
-
     checksum_lib.genchecksum(params, PaytmConfig.key, function (err, checksum) {
       console.log('generated checksum: ', checksum);
       var txn_url = PaytmConfig.transactionUrl;
@@ -58,10 +55,8 @@ const initiatePayment = (req, res) => {
 
 const callback = (req, res) => {
   try {
-    console.log('confirming order');
-    console.log('req body', req.body);
+    
     let body = req.body;
-    console.log('received complete callback request');
     var post_data = body;
   
     // received params in callback
@@ -128,8 +123,56 @@ const callback = (req, res) => {
   }
 };
 
+const verifyTransactionId = (orderId,transactionId) => new Promise( (resolve,reject) => {
+
+  var params = { "MID": PaytmConfig.mid, "ORDERID": orderId };
+
+  checksum_lib.genchecksum(params, PaytmConfig.key, function (err, checksum) {
+
+    if(err) return reject(new Error('Verification failed'))
+
+    params.CHECKSUMHASH = checksum;
+    post_data = 'JsonData=' + JSON.stringify(params);
+
+    var options = {
+      hostname: PaytmConfig.hostName,
+      port: 443,
+      path: '/merchant-status/getTxnStatus',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Length': post_data.length
+      }
+    };
+
+    // Set up the request
+    var response = "";
+    
+    var post_req = https.request(options, (post_res) => {
+      
+     post_res.on('data', (chunk) => response += chunk);
+
+     post_res.on('end', _=> { 
+      const parsedJson = JSON.parse(response);
+      resolve(parsedJson.STATUS === 'TXN_SUCCESS' && parsedJson.TXNID === transactionId)});
+        
+    });
+
+     // post the data
+     post_req.write(post_data);
+     post_req.on('error', (err) => {
+       console.log('Error occurred while checking transation status', err);
+     });
+     post_req.end();
+  }); 
+
+
+})
+
+
 module.exports = {
   healthcheck,
   initiatePayment,
+  verifyTransactionId,
   callback
 }
