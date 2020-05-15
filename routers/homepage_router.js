@@ -3,6 +3,7 @@ const router=new express.Router()
 const Product = require('../models/product')
 const PagerProduct = require('../models/pager_products')
 const Testimony = require('../models/testimonoal')
+const auth = require('../middleware/auth')
 
 router.get('/homepage/get_homepage',async (req,res)=>{
     try{
@@ -45,7 +46,7 @@ async function getRecentProducts(){
     return recentShortProducts
 }
 
-router.post('/homepage/add_testimony',async (req,res)=>{
+router.post('/homepage/add_testimony',auth,async (req,res)=>{
 
     try{
         const testimony = new Testimony(req.body)
@@ -57,13 +58,29 @@ router.post('/homepage/add_testimony',async (req,res)=>{
 
 })
 
-router.post('/homepage/add_pager_product',async (req,res)=>{
+router.post('/homepage/pager_product',auth,async (req,res)=>{
     try{
         const pagerProduct = new PagerProduct(req.body)
         const product = await Product.findById(pagerProduct.product_id)
         if(!product) throw Error('Invalid product Id')
         await pagerProduct.save() 
         res.status(201).send(pagerProduct)
+    }catch(error){
+        res.status(400).send({error:error.message})
+    }
+})
+
+router.delete('/homepage/pager_product/:id',auth,async (req,res)=> {
+    try{
+        const pagerProduct = await PagerProduct.findById(req.params.id)
+        if(!pagerProduct) throw Error('Invalid product Id')
+
+        await pagerProduct.delete()
+
+        res.send({
+            message: `Slideshow product with id ${req.params.id} deleted`
+        })
+
     }catch(error){
         res.status(400).send({error:error.message})
     }

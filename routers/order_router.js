@@ -2,6 +2,9 @@ const express = require('express')
 const router = new express.Router()
 const Order = require('../models/order')
 const Product = require('../models/product')
+const auth = require('../middleware/auth')
+const transactionVerification = require('../paytm/controller').verification
+
 
 router.post('/order/verify_cart',async (req,res)=> {
     try{
@@ -142,6 +145,10 @@ router.patch('/order/place_order/:id',async (req,res)=>{
         if(!order)
         throw new Error('Invalid order id')
 
+        const isIdValid = await transactionVerification(orderId,transactionId)
+        
+        if(!isIdValid) throw new Error('Invalid Transaction Id')
+
         order.payment_status = true
         order.order_status = 'placed'
         order.transaction_id = transactionId
@@ -155,7 +162,7 @@ router.patch('/order/place_order/:id',async (req,res)=>{
     }
 })
 
-router.delete('/order/:id',async (req,res)=>{
+router.delete('/order/:id',auth,async (req,res)=>{
     try{
         
         const order = await Order.findOneAndDelete({_id:req.params.id})
