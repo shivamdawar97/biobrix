@@ -12,10 +12,9 @@ import { TrackOrderComponent } from './track-order/track-order.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 
-import { RiviewComponent } from './products/product-detail/riview/riview.component';
+import { ReviewComponent } from './products/product-detail/review/review.component';
+import {AuthGaurd} from "../admin/auth.gaurd";
 
-import { FormsModule } from '@angular/forms';
-import { AuthGaurd } from '../admin/auth.gaurd';
 
 const routes: Routes = [
   {
@@ -23,7 +22,7 @@ const routes: Routes = [
     children: [
       { path: '', component: HomepageComponent },
       { path: 'view-cart', loadChildren: () => import('src/app/modules/cart/cart.module').then(m => m.CartModule) },
-      { path: 'private-path/admin', loadChildren: () => import('src/app/modules/admin/admin.module').then(m => m.AdminModule), canActivate: [AuthGaurd] },
+      { path: 'private-path/admin', loadChildren: () => import('src/app/modules/admin/admin.module').then(m => m.AdminModule) },
       { path: 'products/:categoryId', component: ProductsComponent },
       { path: 'trade-enquiry', component: TradeEnquiryComponent },
       { path: 'track-order', component: TrackOrderComponent},

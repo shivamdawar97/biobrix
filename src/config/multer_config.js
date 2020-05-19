@@ -32,5 +32,13 @@ const upload=multer({
     }
 })
 
+const upload2 = multer({
+    fileFilter: function (req, file, cb) {
+        if(!file.originalname.match(/\.(jpg|jpeg|png)$/)){ // file.originalname.endsWith('.doc')
+            return cb(new Error('Please upload an Image '))
+        }
+        cb(undefined,true) //if everything goes well (pass 'flase' if u want to reject the upload)
+    }
+})
 
-module.exports = upload
+module.exports = { upload,upload2 }

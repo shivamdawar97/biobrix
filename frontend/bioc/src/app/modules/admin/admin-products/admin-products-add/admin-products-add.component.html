@@ -1,0 +1,46 @@
+<div class="mr-3">
+
+  <h1 class="heading">Add New Product</h1>
+  <hr>
+  <form class="form-product">
+
+    <div class="form-group form-product__group">
+      <label class="control-label" for="product_name">Product Name</label>
+      <input id="product_name" name="product_name" class="form-control input-md" required type="text">
+    </div>
+
+    <div class="form-group form-product__group">
+      <label class="control-label" for="filebutton">Product Image</label>
+       <br>
+      <input id="filebutton" name="filebutton" class="input-file" type="file">
+       <p *ngIf="isUploading">Uploading file...</p>
+       <p *ngIf="isFileUploaded" style="color: green">Image uploaded successfully </p>
+       <p *ngIf="!isFileUploaded"  style="color: red">No image uploaded {{ isUploading}}</p>
+    </div>
+
+    <div class="form-group form-product__group">
+      <label class="control-label" for="product_categorie">Product Category</label>
+      <select id="product_categorie" name="product_categorie" class="form-control"></select>
+    </div>
+
+    <div class="form-group form-product__group">
+      <label class="col-md-4 control-label" for="product_description">Product Description</label>
+      <textarea class="form-control" id="product_description" name="product_description"></textarea>
+    </div>
+
+    <div class="form-group form-product__group">
+      <label class="col-md-4 control-label" for="percentage_discount">Discount Percentage</label>
+      <input id="percentage_discount" name="percentage_discount" class="form-control input-md" required="" type="number">
+    </div>
+
+    <div class="form-group form-product__group">
+
+      <div class="col-md-4">
+        <button id="singlebutton" name="singlebutton" class="btn btn-primary">Add Product</button>
+      </div>
+      </div>
+
+    </form>
+
+
+</div>

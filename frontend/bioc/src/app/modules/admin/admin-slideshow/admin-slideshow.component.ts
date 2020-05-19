@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-admin-slideshow',
+  selector: 'admin-slideshow',
   templateUrl: './admin-slideshow.component.html',
   styleUrls: ['./admin-slideshow.component.scss']
 })

@@ -4,15 +4,15 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 
 const app = express()
-require('../db/mongoose')
-const productRouter = require('../routers/product_router')
-const categoryRouter = require('../routers/category_router')
-const orderRouter = require('../routers/order_router')
-const authRouter = require('../routers/auth_router')
-const uploadRouter = require('../routers/file_upload')
-const reviewRouter = require('../routers/review_router')
-const homepageRouter = require('../routers/homepage_router')
-const paytmRoutes = require('../paytm/controller').router
+require('./db/mongoose')
+const productRouter = require('./routers/product_router')
+const categoryRouter = require('./routers/category_router')
+const orderRouter = require('./routers/order_router')
+const authRouter = require('./routers/auth_router')
+const uploadRouter = require('./routers/file_upload')
+const reviewRouter = require('./routers/review_router')
+const homepageRouter = require('./routers/homepage_router')
+const paytmRoutes = require('./paytm/controller').router
 const angularPath = path.join(__dirname,'../build')
 
 

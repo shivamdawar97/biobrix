@@ -59,6 +59,17 @@ router.get('/product/product_list',async (req,res)=>{
     }
 })
 
+
+router.get('/get_all_products',auth,async (req,res)=>{
+    try{
+        const products = await Product.find()
+        res.send(products)
+    }catch(error){
+        res.status(400).send(error)
+    }
+})  
+
+
 router.get('/product/product_detail',async (req,res)=>{
     try{
         const productId = req.query.product_id

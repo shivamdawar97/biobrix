@@ -1,13 +1,28 @@
-<form *ngIf="!isAuthenticated; else userLoggedIn" #authForm="ngForm" >
+
+<div *ngIf="isLoading" style="text-align: center;">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+
+<form *ngIf="!isAuthenticated; else userLoggedIn" #authForm="ngForm"  (ngSubmit)="onSubmit(authForm)">
 
   <div class="container">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <div class="form-group">
 
-    <button type="submit">Login</button>
+      <label for="uname"><b>Email</b></label>
+      <input type="text" id="email" ngModel placeholder="Email Address" name="email" required>
+
+    </div>
+
+    <div class="form-group">
+
+      <label for="password"><b>Password</b></label>
+      <input type="password" id="password" name="password" ngModel placeholder="Enter Password" minlength="6" required >
+
+    </div>
+
+    <button class="login_button" type="submit">Login</button>
 
   </div>
 
@@ -16,10 +31,10 @@
 <ng-template #userLoggedIn>
 
   <div class="alert alert-success" role="alert">
-    <p>Admin User</p>
-    <h4 class="alert-heading"> {{ user.email }} </h4>
+    <h2>Admin User</h2>
+    <h1 class="alert-heading"> {{ user.email }} </h1>
     <hr>
-    <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+    <button class="btn btn-danger pb-2" (click)="logout()" > <h3>Logout</h3>  </button>
   </div>
 
 </ng-template>

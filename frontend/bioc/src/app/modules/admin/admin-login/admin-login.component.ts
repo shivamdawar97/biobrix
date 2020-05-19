@@ -5,7 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 import { User } from '../user.model';
 
 @Component({
-  selector: 'app-admin-login',
+  selector: 'admin-login',
   templateUrl: './admin-login.component.html',
   styleUrls: ['./admin-login.component.scss']
 })
@@ -44,7 +44,6 @@ export class AdminLoginComponent implements OnInit,OnDestroy {
 
 
   private onSuccess(response: AuthResponseData){
-    console.log(response)
     this.isLoading = false
     this.isAuthenticated = true
   }
@@ -57,13 +56,18 @@ export class AdminLoginComponent implements OnInit,OnDestroy {
   private changeAuthStatus(user: User){
     if(user) {
       this.user = user
-      this.isAuthenticated
+      this.isAuthenticated = true
     }
     else {
       this.user = null
       this.isAuthenticated = false
     }
   }
+
+  logout(){
+    this.authService.logout()
+  }
+
 
   ngOnDestroy(): void {
     this.userSubs.unsubscribe()

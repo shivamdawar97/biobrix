@@ -1,3 +1,4 @@
 node_modules
-config/dev.env
-config/firebase-key2.json
+src/config/dev.env
+src/config/firebase-key2.json
+src/config/run-test-monodb

@@ -10,20 +10,27 @@ import { AdminReviewsComponent } from './admin-reviews/admin-reviews.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { FormsModule } from '@angular/forms';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { AuthService } from './auth.service';
+import { AdminProductsDetailComponent } from './admin-products/admin-products-detail/admin-products-detail.component';
+import { AdminProductsAddComponent } from "./admin-products/admin-products-add/AdminProductsAddComponent";
+import { AdminServices } from './admin.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService } from './auth-interceptor.service';
+import { FilterPipe } from './admin-products/filter.pipe';
 
 const routes: Routes = [
   { path: '', component: AdminComponent,
     children: [
-      { path:'administration', component: AdminLoginComponent },
-      { path:'products', component: AdminProductsComponent },
-      { path:'orders', component: AdminOrdersComponent },
-      { path:'slideshow', component: AdminSlideshowComponent },
-      { path:'reviews', component: AdminReviewsComponent },
-      { path:'testimonies', component: AdminTestimoniesComponent },
+      { path:'administration', component: AdminLoginComponent  },
+      { path:'products', component: AdminProductsComponent},
+      { path:'products/edit/:id', component: AdminProductsDetailComponent },
+      { path:'products/add', component: AdminProductsAddComponent },
+      { path:'orders', component: AdminOrdersComponent  },
+      { path:'slideshow', component: AdminSlideshowComponent  },
+      { path:'testimonies', component: AdminTestimoniesComponent  },
+      { path:'pending_reviews', component: AdminReviewsComponent  }
     ]
-},
-
-
+  }
 ];
 
 @NgModule({
@@ -35,13 +42,22 @@ const routes: Routes = [
     AdminTestimoniesComponent,
     AdminReviewsComponent,
     AdminLoginComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    AdminProductsAddComponent,
+    AdminProductsDetailComponent,
+    FilterPipe
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     FormsModule
   ],
+  providers:[AuthService,AdminServices,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true
+  }],
   exports: [
     RouterModule
   ]

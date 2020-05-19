@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-admin-reviews',
+  selector: 'admin-reviews',
   templateUrl: './admin-reviews.component.html',
   styleUrls: ['./admin-reviews.component.scss']
 })

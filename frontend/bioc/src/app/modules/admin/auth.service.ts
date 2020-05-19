@@ -14,7 +14,7 @@ export interface AuthResponseData {
   registered?: boolean //optional
 }
 
-@Injectable({providedIn:'root'})
+@Injectable()
 export class AuthService {
 
   apiKey = 'AIzaSyC7x33v8Ych6pDFX_M4mCza3pabcmu1Gn0'
