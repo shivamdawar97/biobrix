@@ -51,24 +51,7 @@
         <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let recentProduct of recentProducts; let i = index">
           <div class="recent-products__item w-100">
               <div class="col-md-3" *ngFor="let product of recentProduct">
-                <div class="card shadow-0">
-                  <div class="image">
-                    <img src="{{ product.image}}" class="card-img-top" alt="...">
-                  </div>
-                  <div class="card-footer">
-                    <h3 class="product-name">{{product.product_name}}</h3>
-                    <h4 class="product-price"><i class="fa fa-inr"></i> {{product.price}}</h4>
-                    <button *ngIf="!product.addedToCart" type="button" class="btn add-to-cart"
-                            (click)="addToCart(product)">
-                      <i class="fa fa-shopping-cart"></i>
-                      Add To Cart
-                    </button>
-                    <a *ngIf="product.addedToCart" [routerLink]="['/view-cart']" class="btn add-to-cart">
-                      <i class="fa fa-shopping-cart"></i>
-                      Go To Cart
-                    </a>
-                  </div>
-                </div>
+                <app-product-card [product]="product"></app-product-card>
               </div>
           </div>
         </div>
@@ -99,7 +82,6 @@
               <img src="{{testimony.image}}" alt="First slide" width="50" height="50">
               <span class="customer__name">{{testimony.customer_name}}</span>
             </div>
-
           </div>
         </div>
       </div>

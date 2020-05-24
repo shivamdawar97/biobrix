@@ -12,6 +12,7 @@ import { TrackOrderComponent } from './track-order/track-order.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { ReviewComponent } from './products/product-detail/review/review.component';
+import {SharedModule} from '../../shared/shared.module';
 
 
 const routes: Routes = [
@@ -45,6 +46,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule
   ],

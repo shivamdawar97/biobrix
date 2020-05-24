@@ -1,10 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Review } from 'src/app/core/models/review.model';
-import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { ProductApiService } from 'src/app/core/http/product-api.service';
 import { UtilityService } from 'src/app/core/services/utility.service';
 import { ProductDetail } from 'src/app/core/models/product-detail.model';
+import {Product} from '../../../../core/models/product.model';
+import {CartService} from '../../../../core/services/cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -14,10 +16,17 @@ import { ProductDetail } from 'src/app/core/models/product-detail.model';
 export class ProductDetailComponent implements OnInit {
 
   form: FormGroup;
+  similarProductTag = '';
+  productId: string;
+  product: ProductDetail;
+  review: Review;
+  similarProducts = [];
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductApiService,
+    private cartService: CartService,
+    private router: Router,
     private utilityService: UtilityService) {
     this.form = new FormGroup({
       reviewer_name: new FormControl('', Validators.required),
@@ -28,11 +37,6 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  productId: string;
-  product: ProductDetail;
-  rate = 0;
-  review: Review;
-
   ngOnInit(): void {
 
     this.productId = this.route.snapshot.paramMap.get('productId');
@@ -40,9 +44,12 @@ export class ProductDetailComponent implements OnInit {
     this.productService.getPorductDetail(this.productId).subscribe(product => {
       console.log(product);
       this.product = product;
+      if (this.product.tags.length) {
+        this.similarProductTag = this.product.tags[0];
+        this.getSimilarProducts();
+      }
       this.utilityService.showLoader.next(false);
     });
-
   }
 
   onSubmit() {
@@ -53,5 +60,20 @@ export class ProductDetailComponent implements OnInit {
     this.form.reset();
   }
 
+  getSimilarProducts() {
+    if (this.similarProductTag) {
+      this.productService.getSimilarProducts(this.similarProductTag).subscribe(res => {
+        if (res) {
+          const recents = res;
+          for (let i = 0; i < recents.length; i = i + 4) {
+            this.similarProducts.push(res.slice(i, i + 4));
+          }
+        }
+      });
+    }
+  }
 
+  showProductList(tag: string) {
+    this.router.navigate(['/', 'products', 'all'], {queryParams: { tag }});
+  }
 }

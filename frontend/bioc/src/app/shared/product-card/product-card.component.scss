@@ -1,0 +1,33 @@
+@import "src/styles/imports";
+
+.card {
+  width: 25rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.image {
+  position: relative;
+  img {
+    padding: 2rem;
+  }
+}
+
+.card-footer {
+  text-align: center;
+  text-transform: capitalize;
+  background-color: $color-white;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  .product-name {
+    color: #00c5e6;
+    margin-top: 1rem;
+    font-size: 1.6rem;
+  }
+
+  .product-price {
+    margin-top: 1rem;
+    font-size: 2rem;
+  }
+}
