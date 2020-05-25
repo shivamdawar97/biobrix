@@ -8,12 +8,11 @@ import { AdminSlideshowComponent } from './admin-slideshow/admin-slideshow.compo
 import { AdminTestimoniesComponent } from './admin-testimonies/admin-testimonies.component';
 import { AdminReviewsComponent } from './admin-reviews/admin-reviews.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { AuthService } from './auth.service';
-import { AdminProductsDetailComponent } from './admin-products/admin-products-detail/admin-products-detail.component';
 import { AdminProductsAddComponent } from "./admin-products/admin-products-add/AdminProductsAddComponent";
-import { AdminServices } from './admin.service';
+import { AdminProductService } from './admin-products/admin-product.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './auth-interceptor.service';
 import { FilterPipe } from './admin-products/filter.pipe';
@@ -23,8 +22,8 @@ const routes: Routes = [
     children: [
       { path:'administration', component: AdminLoginComponent  },
       { path:'products', component: AdminProductsComponent},
-      { path:'products/edit/:id', component: AdminProductsDetailComponent },
       { path:'products/add', component: AdminProductsAddComponent },
+      { path:'products/:id', component: AdminProductsAddComponent },
       { path:'orders', component: AdminOrdersComponent  },
       { path:'slideshow', component: AdminSlideshowComponent  },
       { path:'testimonies', component: AdminTestimoniesComponent  },
@@ -44,15 +43,15 @@ const routes: Routes = [
     AdminLoginComponent,
     LoadingSpinnerComponent,
     AdminProductsAddComponent,
-    AdminProductsDetailComponent,
     FilterPipe
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers:[AuthService,AdminServices,
+  providers:[AuthService,AdminProductService,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,

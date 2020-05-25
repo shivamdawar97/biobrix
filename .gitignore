@@ -2,3 +2,4 @@ node_modules
 src/config/dev.env
 src/config/firebase-key2.json
 src/config/run-test-monodb
+images

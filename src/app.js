@@ -2,7 +2,6 @@ const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-
 const app = express()
 require('./db/mongoose')
 const productRouter = require('./routers/product_router')
@@ -27,7 +26,10 @@ app.use(function(req, res, next) {
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))  
+
 // app.use(express.json())
+
+app.use('/images/product-images',express.static('images/product-images'))
 app.use(express.static(angularPath))
 app.use(productRouter)
 app.use(orderRouter)

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/core/models/product.model';
-import { ProductApiService } from 'src/app/core/http/product-api.service';
-import { AdminServices } from '../admin.service';
+import { AdminProductService } from './admin-product.service';
 import { ProductDetail } from 'src/app/core/models/product-detail.model';
 
 @Component({
@@ -11,14 +9,19 @@ import { ProductDetail } from 'src/app/core/models/product-detail.model';
 })
 export class AdminProductsComponent implements OnInit {
 
-  constructor(private adminService: AdminServices) { }
+  constructor(private adminService: AdminProductService) { }
 
   products: ProductDetail[]
   filterText: string = ''
   ngOnInit(): void { this.getProducts() }
 
   getProducts(){
-      this.adminService.getProductList().subscribe(data=> this.products = data)
+      this.adminService.getProductList().subscribe(data=> {
+        this.products = data
+        this.adminService.products = data
+      })
+
   }
+
 
 }

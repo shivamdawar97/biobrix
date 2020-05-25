@@ -1,46 +1,146 @@
 <div class="mr-3">
 
-  <h1 class="heading">Add New Product</h1>
+  <h1 class="heading">{{ editMode?'Add New Product':'Update Product' }}</h1>
   <hr>
-  <form class="form-product">
+  <form class="form-product" [formGroup]="productForm" (ngSubmit)="onSubmit()" >
 
     <div class="form-group form-product__group">
       <label class="control-label" for="product_name">Product Name</label>
-      <input id="product_name" name="product_name" class="form-control input-md" required type="text">
+      <input id="product_name"
+      formControlName="product_name"
+      class="form-control input-md"
+      type="text">
     </div>
 
     <div class="form-group form-product__group">
       <label class="control-label" for="filebutton">Product Image</label>
        <br>
-      <input id="filebutton" name="filebutton" class="input-file" type="file">
-       <p *ngIf="isUploading">Uploading file...</p>
-       <p *ngIf="isFileUploaded" style="color: green">Image uploaded successfully </p>
-       <p *ngIf="!isFileUploaded"  style="color: red">No image uploaded {{ isUploading}}</p>
+       <button type="button" class="btn btn-outline-dark p-3" (click)="filPicker.click()"><h4>Pick Image</h4></button>
+      <input class="input-file" type="file" #filPicker (change)="onImagePicked($event); $event.stopPropagation()">
+
+      <div *ngIf="imagePreview!='' && imagePreview && productForm.get('image').value                                                                                                                                                                                                                                                                                                ; else errorpreview" class="image-preview">
+        <img [src]="imagePreview" [alt]="productForm.value.image">
+      </div>
+      <ng-template #errorpreview>
+        <p *ngIf="!isFileSelected"  style="color: red">No image is selected</p>
+      </ng-template>
+
     </div>
 
     <div class="form-group form-product__group">
       <label class="control-label" for="product_categorie">Product Category</label>
-      <select id="product_categorie" name="product_categorie" class="form-control"></select>
+      <input id="category"
+      formControlName="category"
+      list="categories"
+      class="form-control">
+        <datalist id="categories">
+          <option *ngFor="let cat of categories" value="{{ cat.categoryName }}"></option>
+        </datalist>
+    </div>
+
+    <div class="form-group form-product__group">
+      <label class="col-md-4 control-label" for="percentage_discount">Product Price</label>
+      <input id="price"
+      formControlName="price"
+      class="form-control input-md"
+      type="number">
     </div>
 
     <div class="form-group form-product__group">
       <label class="col-md-4 control-label" for="product_description">Product Description</label>
-      <textarea class="form-control" id="product_description" name="product_description"></textarea>
+      <textarea id="description"
+      formControlName="description"
+      class="form-control"
+      ></textarea>
     </div>
 
     <div class="form-group form-product__group">
       <label class="col-md-4 control-label" for="percentage_discount">Discount Percentage</label>
-      <input id="percentage_discount" name="percentage_discount" class="form-control input-md" required="" type="number">
+      <input id="discount"
+      formControlName="discount_percentage"
+      class="form-control input-md"
+      type="number">
     </div>
 
     <div class="form-group form-product__group">
+      <label class="col-md-4 control-label" for="percentage_discount">In stock</label>
+      <label class="switch">
+        <input id="stock"
+        class="form-control switch__input"
+        type="checkbox"
+        formControlName="in_stock"
+        checked
+        >
+      <span class="switch__slider switch__round"></span>
+      </label>
+    </div>
 
+    <div class="form-group form-product__group">
+      <label class="col-md-4 control-label" for="percentage_discount">Add to recent product</label>
+      <label class="switch">
+        <input id="recent"
+        class="form-control switch__input"
+        type="checkbox"
+        formControlName="is_recent"
+        checked
+        >
+      <span class="switch__slider switch__round"></span>
+      </label>
+    </div>
+
+    <div class="form-group form-product__group" formArrayName = "ingredients">
+
+      <label class="col-md-4 control-label" for="percentage_discount">Ingredients</label>
+
+      <div *ngFor="let control of ingredientControls; let i = index"
+      class="row"
+      style="margin-top:10px;">
+
+      <input type="text"
+      class="form-control arrays"
+      [formControl]="control">
+
+
+      <!-- <div *ngFor="let ingredientCtrl of ingredientControls; let i = index"
+      class="row"
+      [formGroupName]="i"
+      style="margin-top:10px;">
+
+      <input type="text"
+      class="form-control arrays"
+      formControlName="name"> -->
+
+      <button class="btn btn-danger" (click)="onDeleteIngredient(i)"> X </button>
+
+      </div>
+      <br>
+      <button type="button" class="btn btn-success mr-5" (click)="onAddIngredient()"><h4>Add Ingredient</h4></button>
+   </div>
+
+    <div class="form-group form-product__group" formArrayName = "tags">
+
+      <label class="col-md-4 control-label" for="percentage_discount">Tags</label>
+
+      <div
+      *ngFor="let control of tagsControls; let i = index"
+      class="row"
+      style="margin-top:10px;">
+
+      <input type="text"
+      class="form-control arrays"
+      [formControl]="control">
+
+      <button class="btn btn-danger" (click)="onDeleteTag(i)"> X </button>
+
+    </div>
+      <br>
+      <button type="button" class="btn btn-success mr-5" (click)="onAddTag()"><h4>Add Tag</h4></button>
+   </div>
+
+    <div class="form-group form-product__group">
       <div class="col-md-4">
-        <button id="singlebutton" name="singlebutton" class="btn btn-primary">Add Product</button>
+        <button [disabled]="productForm.invalid" id="singlebutton" name="singlebutton" class="btn btn-primary p-4"><h3>Add Product</h3></button>
       </div>
       </div>
-
     </form>
-
-
 </div>

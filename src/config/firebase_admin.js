@@ -1,8 +1,8 @@
 const admin = require('firebase-admin')
 const path = require('path')
 
-const firebaseKey = require('./config').firebaseKeys
-const data = JSON.stringify(firebaseKey)
+const adminConfig = require('./config').firebaseAdminConfig
+const data = JSON.stringify(adminConfig)
 const fs = require('fs')
 
 //path to json file
@@ -12,11 +12,11 @@ try {
     //write to json file
     fs.writeFileSync(serviceAccount,data)
     //Initialize firebase app with the written file
-    admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount),
-        databaseURL: "https://ng-complete1.firebaseio.com",
-        storageBucket: "ng-complete-1.appspot.com"
-    });
+    const credential = admin.credential.cert(serviceAccount)
+    const storageBucket = 'ng-complete1.appspot.com'
+    admin.initializeApp({credential,storageBucket});
+    // databaseURL: "https://ng-complete1.firebaseio.com",
+    
     //Make the file empty after use
     fs.writeFileSync(serviceAccount,'')
     console.log('Initialized firebase app')

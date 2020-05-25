@@ -1,41 +1,44 @@
+<div *ngIf="!isLoading; else loading_circular">
+  <form *ngIf="!isAuthenticated; else userLoggedIn" #authForm="ngForm"  (ngSubmit)="onSubmit(authForm)">
 
-<div *ngIf="isLoading" style="text-align: center;">
-  <app-loading-spinner></app-loading-spinner>
+    <div class="container">
+
+      <div class="form-group">
+
+        <label for="uname"><b>Email</b></label>
+        <input type="text" id="email" ngModel placeholder="Email Address" name="email" required>
+
+      </div>
+
+      <div class="form-group">
+
+        <label for="password"><b>Password</b></label>
+        <input type="password" id="password" name="password" ngModel placeholder="Enter Password" minlength="6" required >
+
+      </div>
+
+      <button class="login_button" type="submit">Login</button>
+
+    </div>
+
+  </form>
+
+  <ng-template #userLoggedIn>
+
+    <div class="alert alert-success" role="alert">
+      <h2>Admin User</h2>
+      <h1 class="alert-heading"> {{ user.email }} </h1>
+      <hr>
+      <button class="btn btn-danger pb-2" (click)="logout()" > <h3>Logout</h3>  </button>
+    </div>
+
+  </ng-template>
+
+
 </div>
 
-
-<form *ngIf="!isAuthenticated; else userLoggedIn" #authForm="ngForm"  (ngSubmit)="onSubmit(authForm)">
-
-  <div class="container">
-
-    <div class="form-group">
-
-      <label for="uname"><b>Email</b></label>
-      <input type="text" id="email" ngModel placeholder="Email Address" name="email" required>
-
-    </div>
-
-    <div class="form-group">
-
-      <label for="password"><b>Password</b></label>
-      <input type="password" id="password" name="password" ngModel placeholder="Enter Password" minlength="6" required >
-
-    </div>
-
-    <button class="login_button" type="submit">Login</button>
-
+<ng-template #loading_circular>
+  <div style="text-align: center;">
+  <app-loading-spinner></app-loading-spinner>
   </div>
-
-</form>
-
-<ng-template #userLoggedIn>
-
-  <div class="alert alert-success" role="alert">
-    <h2>Admin User</h2>
-    <h1 class="alert-heading"> {{ user.email }} </h1>
-    <hr>
-    <button class="btn btn-danger pb-2" (click)="logout()" > <h3>Logout</h3>  </button>
-  </div>
-
 </ng-template>
-

@@ -3,11 +3,21 @@ const router=new express.Router()
 const Product = require('../models/product')
 const Category = require('../models/category')
 const auth = require('../middleware/auth')
+const upload = require('../config/multer_config').upload3
 
-router.post('/product/add_product',auth,async (req,res)=>{
+router.post('/product/add_product',auth,upload.single('image'),async (req,res)=>{
+     
     try{
-        const product = new Product(req.body)
-
+        
+        const data = JSON.parse(req.body.data)
+        const filepath = req.file.path
+        if(!filepath) throw Error('File path is undefined')
+        const url =  `${req.protocol}://${req.get('host')}/${filepath}` 
+        const product = new Product({
+            ...data,
+            images: [url]
+        })
+        console.log(product)
         if(product.images.length==0)
         throw new Error('Images array cannot be empty')
         product.category = product.category.toLowerCase()
@@ -84,21 +94,25 @@ router.get('/product/product_detail',async (req,res)=>{
 
 })
 
-router.patch('/product/update/:id',auth, async (req,res)=>{
-    const updates = Object.keys(req.body)
-    const allowedUpdates = []
-    const isValidOperation =updates.every(update=> allowedUpdates.includes(update)) 
-    if(!isValidOperation){
-        return res.status(400).send({error:'Invalid updates!'})
-    }
+router.patch('/product/update/:id',auth,upload.single('image'), async (req,res)=>{
+    const data = JSON.parse(req.body.data)
+    const updates = Object.keys(data)
+    const allowedUpdates = ['product_name','description','price','ingredients','discount_percentage','category','in_stock','is_recent','tags']
+    const isValidOperation = updates.every(update=> allowedUpdates.includes(update)) 
+    if(!isValidOperation)  return res.status(400).send({error:'Invalid updates!'})
     try{
         const product = await Product.findById(req.params.id)
-        if(!product)
-        throw Error('No product found')
+        if(!product)  throw Error('No product found')
+
+        if(req.file !== undefined && req.file.path !== undefined){
+            const url =  `${req.protocol}://${req.get('host')}/${filepath}` 
+            product['images'][0] = url
+        }
+        updates.forEach(update=> product[update] = data[update]) //update is the key not value
+        await product.save()
         res.send(product)
-        
     }catch(error){
-            res.status(400).send({error:error.message})
+        res.status(400).send({error:error.message})
     }
 })
 

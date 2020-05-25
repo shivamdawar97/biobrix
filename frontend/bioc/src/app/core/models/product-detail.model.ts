@@ -10,6 +10,7 @@ export class ProductDetail {
       public ingredients: string[],
       public tags: string[],
       public discount: number,
+      public is_recent: boolean,
       public in_stock: boolean,
       public category: string,
       public discount_percentage: number,
