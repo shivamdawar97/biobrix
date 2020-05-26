@@ -63,7 +63,8 @@ productSchema.methods.getShortProduct = function(){
 
 productSchema.index({
     product_name:'text',
-    tags:'text'
+    tags:'text',
+    category:'text'
 })
 
 const Product = mongoose.model('Product',productSchema)

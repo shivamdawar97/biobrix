@@ -123,13 +123,8 @@ router.get('/product/search',async (req,res)=> {
         if(!searchText)
         throw Error('No search query provided')
         const products = await Product.find({
-           // $or : {tags: { $regex: searchText }},
-           //product_name: { $regex: searchText }
-            //$or: {product_name: { $regex: searchText }}
             $text: { $search: searchText }
         })
-        if(products.length == 0)
-        throw Error('No products found')
         products.forEach(product => searchedProducts.push(product.getShortProduct()))
         res.send(searchedProducts)
 
