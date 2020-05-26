@@ -11,7 +11,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { AuthService } from './auth.service';
-import { AdminProductsAddComponent } from "./admin-products/admin-products-add/AdminProductsAddComponent";
+import { AdminProductsAddComponent } from "./admin-products/admin-products-add/admin-products-add.Component";
 import { AdminProductService } from './admin-products/admin-product.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './auth-interceptor.service';
