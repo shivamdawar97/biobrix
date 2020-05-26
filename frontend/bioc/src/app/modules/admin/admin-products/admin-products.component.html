@@ -1,1 +1,60 @@
-<p>admin-products works!</p>
+<div class="mr-3">
+
+  <div class="row">
+    <div class="col-1">
+      <h1 class="heading">Products</h1>
+    </div>
+    <div class="col-1"></div>
+    <div class="col-9">
+      <button (click)="getProducts()" class="button button__refresh"><i class="fa fa-refresh"></i></button>
+    </div>
+  </div>
+  <hr>
+  <div class="row mr-2">
+
+    <div class="col-4">
+      <input class="search-input mr-2" type="text" placeholder="Search..." [(ngModel)] = "filterText">
+    </div>
+
+    <div class="col-5"></div>
+
+    <div class="col-3">
+      <button routerLink="add" class="button button__search"><i class="fa fa-plus"></i> Add New Product</button>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="table row">
+    <p class="table__heading col-3">ID</p>
+    <p class="table__heading col-3">Name</p>
+    <p class="table__heading col-3">Price</p>
+    <p class="table__heading col-2">In Stock</p>
+    <div class="col-1"></div>
+  </div>
+
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let product of products | filter:filterText">
+      <div class="row">
+
+        <p class="col-3">{{ product._id }}</p>
+        <p class="col-3">{{ product.product_name }}</p>
+        <p class="col-3">{{ product.price }}</p>
+
+        <div class="col-2">
+          <i *ngIf="product.in_stock" class="fa fa-check" style="color: green;"></i>
+          <i *ngIf="!product.in_stock" class="fa fa-times" style="color: red;"></i>
+        </div>
+
+        <div class="col-1">
+
+          <button [routerLink]="product._id"><i class="fa fa-edit"></i></button>
+
+        </div>
+
+      </div>
+
+    </li>
+  </ul>
+
+</div>

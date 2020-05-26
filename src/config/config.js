@@ -5,7 +5,7 @@ const paytmConfig = {
     transactionUrl: 'https://securegw-stage.paytm.in/theia/processTransaction',
     hostName: 'securegw-stage.paytm.in'
 }
-const firebaseKeys = {
+const firebaseAdminConfig = {
     type: 'service_accoun',
     project_id: 'ng-complete1',
     private_key_id: process.env.GOOGLE_PRIVATE_KEY_ID,
@@ -24,5 +24,5 @@ module.exports = {
     authToken:process.env.AUTH_TOKEN,
     twilioPhoneNumber:process.env.TWILLIO_NUMBER,
     paytmConfig,
-    firebaseKeys
+    firebaseAdminConfig
 }

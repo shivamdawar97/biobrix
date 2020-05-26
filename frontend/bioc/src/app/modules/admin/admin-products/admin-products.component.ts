@@ -1,15 +1,27 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminProductService } from './admin-product.service';
+import { ProductDetail } from 'src/app/core/models/product-detail.model';
 
 @Component({
-  selector: 'app-admin-products',
+  selector: 'admin-products',
   templateUrl: './admin-products.component.html',
   styleUrls: ['./admin-products.component.scss']
 })
 export class AdminProductsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private adminService: AdminProductService) { }
 
-  ngOnInit(): void {
+  products: ProductDetail[]
+  filterText: string = ''
+  ngOnInit(): void { this.getProducts() }
+
+  getProducts(){
+      this.adminService.getProductList().subscribe(data=> {
+        this.products = data
+        this.adminService.products = data
+      })
+
   }
+
 
 }

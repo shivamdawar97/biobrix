@@ -3,19 +3,19 @@
   <div class="sidebar">
     <h1 class="bar-heading">Biobrix Admin</h1>
 
-    <a class="sidebar__a" routerLinkActive="active" routerLink="administration">Administration</a>
-    <a *ngIf="isAuthenticated" class="sidebar__a" routerLinkActive="active" routerLink="products">Products</a>
-    <a *ngIf="isAuthenticated" class="sidebar__a" routerLinkActive="active" routerLink="orders">Orders</a>
-    <a *ngIf="isAuthenticated" class="sidebar__a" routerLinkActive="active" routerLink="slideshow">Slideshow</a>
-    <a *ngIf="isAuthenticated" class="sidebar__a" routerLinkActive="active" routerLink="reviews">Testimonies</a>
-    <a *ngIf="isAuthenticated" class="sidebar__a" routerLinkActive="active" routerLink="testimonies">Pending Reviews</a>
+    <a class="sidebar__a" routerLink="administration"  routerLinkActive="active"  >Administration</a>
+    <a class="sidebar__a" *ngIf="isAuthenticated" routerLink="products"  routerLinkActive="active">Products</a>
+    <a class="sidebar__a" *ngIf="isAuthenticated" routerLink="orders"  routerLinkActive="active">Orders</a>
+    <a class="sidebar__a" *ngIf="isAuthenticated" routerLink="slideshow"  routerLinkActive="active">Slideshow</a>
+    <a class="sidebar__a" *ngIf="isAuthenticated" routerLink="testimonies"  routerLinkActive="active">Testimonies</a>
+    <a class="sidebar__a" *ngIf="isAuthenticated" routerLink="pending_reviews"  routerLinkActive="active">Pending Reviews</a>
 
   </div>
 
 
   <div class="content">
 
-  <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
 
   </div>
 
