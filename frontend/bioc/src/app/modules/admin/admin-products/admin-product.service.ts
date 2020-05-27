@@ -61,12 +61,13 @@ export class AdminProductService {
 
   updateProduct(id: string, value: any) {
     const imageType = typeof value.image;
-    const data = JSON.stringify(value);
+
     const url = `${this.BASE_URL}${this.PRODUCT_UPDATE_API}/${id}`;
 
     if(imageType !== "undefined" && imageType === "object"){
         const image = value.image;
         delete value.image;
+        const data = JSON.stringify(value);
         const form = new FormData();
         form.append('data',data);
         form.append('image',image,'image');

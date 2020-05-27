@@ -26,8 +26,8 @@ const updateCategory = async (product,isUpdate) => {
     }
     else {
         if(isUpdate) {
-            const index = category.product_list.findIndex( (p,i)=> p.product_id===product._id )
-            category.product_list[index] = shortProduct
+            const index = category.product_list.findIndex( p => p.product_id === product._id.toString())
+            if(index!== -1) category.product_list[index] = shortProduct
         }
         else category.product_list.push(shortProduct)
 
@@ -39,15 +39,13 @@ const updateCategory = async (product,isUpdate) => {
 router.post('/product/add_product',auth,upload.single('image'),async (req,res)=>{
      
     try{
-        let product
+
         const isFormData = req.file !== undefined && req.file.path !== undefined
         const body = isFormData? JSON.parse(req.body.data) : req.body
-        if(isFormData) {
-            const filepath = req.file.path
-            const url =  `${req.protocol}://${req.get('host')}/${filepath}`
-            product = new Product({ ...body,images: [url]})
-        }
-        else product = new Product(body)
+
+        const product = new Product( isFormData
+            ? { ...body,images: [`${req.protocol}://${req.get('host')}/${req.file.path}`]}
+            : body )
 
         if(product.images.length===0)
         throw new Error('Images array cannot be empty')
@@ -70,7 +68,7 @@ router.patch('/product/update/:id',auth,upload.single('image'), async (req,res)=
         const isFormData = req.file !== undefined && req.file.path !== undefined
         const body = isFormData? JSON.parse(req.body.data) : req.body
         const updates = Object.keys(body)
-        const allowedUpdates = ['product_name','image','description','price','ingredients','discount_percentage','in_stock','is_recent','tags']
+        const allowedUpdates = ['product_name','description','price','ingredients','discount_percentage','in_stock','is_recent','tags']
         const isValidOperation = updates.every(update=> allowedUpdates.includes(update)) 
         if(!isValidOperation)  return res.status(400).send({error:'Invalid updates!'})
 
@@ -79,12 +77,12 @@ router.patch('/product/update/:id',auth,upload.single('image'), async (req,res)=
 
         if(isFormData){
             const filepath = req.file.path
-            product['images'][0] = `${req.protocol}://${req.get('host')}/${filepath}`
+            const img_url = `${req.protocol}://${req.get('host')}/${filepath}`
+            product.images = [img_url]
         }
         updates.forEach(update=> product[update] = body[update]) //update is the key not value
         await product.save()
-        const needChangeUpdates = ['product_name','image','price']
-        const isChangeNeeded = updates.find(update => needChangeUpdates.includes(update))
+        const isChangeNeeded = !!updates.find(update => update === 'product_name'|| update === 'price' ) || isFormData
         if(isChangeNeeded) await updateCategory(product,true)
 
         res.send(product)
@@ -99,7 +97,7 @@ router.get('/product/product_list',async (req,res)=>{
     try{
         const id = req.query.categoryId
         
-        const categoryWiseProdcts = id==undefined? await Category.find({}) : await Category.findById(id)
+        const categoryWiseProdcts = id===undefined? await Category.find({}) : await Category.findById(id)
         
         if(!categoryWiseProdcts || categoryWiseProdcts.length==0)
             throw Error('No product found')

@@ -15,7 +15,10 @@
     <div class="form-group form-product__group">
       <label class="control-label" >Product Image</label>
        <br>
-       <button type="button" class="btn btn-outline-dark p-3" (click)="filPicker.click()"><h4>Pick Image</h4></button>
+        <h4>
+          <button type="button" class="btn btn-outline-dark p-3 h-100" (click)="filPicker.click()">Pick Image</button>
+        </h4>
+
       <input class="input-file" type="file" #filPicker (change)="onImagePicked($event); $event.stopPropagation()">
 
       <div *ngIf="imagePreview!='' && imagePreview && productForm.get('image').value                                                                                                                                                                                                                                                                                                ; else errorpreview" class="image-preview">
@@ -31,7 +34,6 @@
       <label class="control-label" >Product Category</label>
       <input id="category"
       formControlName="category"
-      [disabled]="editMode"
       list="categories"
       class="form-control">
         <datalist id="categories">
@@ -136,13 +138,22 @@
     </div>
       <br>
       <button type="button" class="btn btn-success mr-5" (click)="onAddTag()"><h4>Add Tag</h4></button>
+
    </div>
 
-    <div class="form-group form-product__group">
+
+    <div *ngIf="!isLoading; else loading_circular" class="form-group form-product__group">
       <div class="col-md-4">
         <button [disabled]="productForm.invalid" id="singlebutton" name="singlebutton" class="btn btn-primary p-4">
           <h3>{{ editMode?'Update Product':'Add New Product' }}</h3></button>
       </div>
       </div>
+
+    <ng-template #loading_circular>
+      <div style="text-align: center;">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
+    </ng-template>
+
     </form>
 </div>

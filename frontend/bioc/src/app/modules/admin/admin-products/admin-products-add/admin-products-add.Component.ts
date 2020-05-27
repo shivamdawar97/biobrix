@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { AdminProductService } from '../admin-product.service';
 import { Category } from 'src/app/core/models/category.model';
 import { ProductDetail } from 'src/app/core/models/product-detail.model';
-import {  ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { mimeType } from './mime-type.validator';
 
 @Component({
@@ -14,7 +14,7 @@ import { mimeType } from './mime-type.validator';
 })
 export class AdminProductsAddComponent implements OnInit,OnDestroy {
 
-  constructor(private productService: AdminProductService, private route: ActivatedRoute) { }
+  constructor(private productService: AdminProductService, private route: ActivatedRoute, private router: Router) { }
 
   isLoading = false;
   isFileSelected = false;
@@ -26,6 +26,7 @@ export class AdminProductsAddComponent implements OnInit,OnDestroy {
   id: string;
   product: ProductDetail;
   errorMessage = ''
+
 
   ngOnInit(): void {
 
@@ -76,23 +77,29 @@ export class AdminProductsAddComponent implements OnInit,OnDestroy {
       ingredients: ingredients,
       tags: tags
     });
-
+    if(this.editMode) this.productForm.get('category').disable();
   }
 
   onSubmit(){
 
     if(this.productForm.valid && this.productForm.dirty) {
-      console.log(this.productForm)
+      this.isLoading = true;
       if(!this.editMode) {
         const value = this.productForm.value;
-        this.productService.addProduct(value).subscribe( product => console.log(product));
+        this.productService.addProduct(value).subscribe( product => this.onCancel(product));
       }else {
         const value = this.getDirtyValues()
-        this.productService.updateProduct(this.id,value).subscribe(product => console.log(product));
+        this.productService.updateProduct(this.id,value).subscribe(product => this.onCancel(product));
       }
     } else this.errorMessage = 'The form is might not be valid or no changes made'
 
   }
+
+  private onCancel(product: ProductDetail){
+    this.isLoading = false;
+    this.router.navigate(['../'],{relativeTo:this.route});
+  }
+
 
   getDirtyValues(){
     let dirtyValues= {};

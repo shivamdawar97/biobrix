@@ -191,4 +191,13 @@ router.get('/order/get_orders',async (req,res)=> {
 
 })
 
+router.get('/order/get_all_orders',auth,async(req,res) => {
+    try {
+        const orders = Order.find()
+        res.send(!!orders?orders:[])
+    }catch (e) {
+        res.status(400).send({error:e.message})
+    }
+})
+
 module.exports = router

@@ -1,1 +1,24 @@
-<p>admin-orders works!</p>
+<div class="mr-3">
+  <h1 class="heading">Orders</h1>
+  <hr>
+
+  <div class="table row">
+    <p class="table__heading col-3">Order ID</p>
+    <p class="table__heading col-3">User</p>
+    <p class="table__heading col-3">status</p>
+    <p class="table__heading col-3">total</p>
+  </div>
+
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let order of orders">
+      <div class="row">
+
+        <p class="col-3">{{ order._id }}</p>
+        <p class="col-3">{{ order.user_name }}</p>
+        <p class="col-3">{{ order.order_status }}</p>
+        <p class="col-3">{{ order.total }}</p>
+
+      </div>
+    </li>
+  </ul>
+</div>
