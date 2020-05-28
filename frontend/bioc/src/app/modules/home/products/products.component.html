@@ -1,49 +1,37 @@
-<div class="main-container">
-
-    <div class="primary-heading">
-        <h1 class="primary-heading-text">PRODUCTS</h1>
+<app-main-container title="PRODUCTS">
+  <div class="product-filter">
+    <div class="heading">
+      <h3>Categories</h3>
     </div>
-
-    <div class="product-filter">
-        <div class="heading">
-            <h3>Categories</h3>
-        </div>
-        <div>
-            <ul>
-                <li role="button" *ngFor="let category of categoryList; index as i"
-                    (click)="onCategoryButtonClick(category.id, i)">
-                    <button class="btn btn-link" type="button" [ngClass]="{'active': i===selectedCategoryIndex}">
-                        {{category.categoryName}}
-                    </button>
-                </li>
-            </ul>
-        </div>
+    <div>
+      <ul>
+        <li role="button" *ngFor="let category of categoryList; index as i"
+            (click)="onCategoryButtonClick(category.id, i)">
+          <button class="btn btn-link" type="button" [ngClass]="{'active': i===selectedCategoryIndex}">
+            {{category.categoryName}}
+          </button>
+        </li>
+      </ul>
     </div>
-    <div class="product-list">
-        <div class="row category" *ngFor="let category of productList">
-            <div class="col-md-12 name">
-                <h2>{{ category.category_name }}</h2>
-            </div>
-            <div class="col-md-3" *ngFor="let product of category.product_list">
-                <div class="card shadow-0">
-                    <div class="image">
-                        <img src="{{ product.image}}" class="card-img-top" alt="..." (click)="onProductSelected(product.product_id)">
-                    </div>
-                    <div class="card-footer">
-                        <h3 class="product-name">{{product.product_name}}</h3>
-                        <h4 class="product-price"><i class="fa fa-inr"></i> {{product.price}}</h4>
-                        <button *ngIf="!product.addedToCart" type="button" class="btn primary-button"
-                            (click)="addToCart(product)">
-                            <i class="fa fa-shopping-cart"></i>
-                            Add To Cart
-                        </button>
-                        <a *ngIf="product.addedToCart" [routerLink]="['/view-cart']" class="btn primary-button">
-                            <i class="fa fa-shopping-cart"></i>
-                            Go To Cart
-                        </a>
-                    </div>
-                </div>
-            </div>
+  </div>
+  <div class="search">
+    <app-search-input paramKeyword="search" placeholder="Search products" (searchChanged)="searchChanged($event)"></app-search-input>
+  </div>
+  <div class="product-list">
+    <ng-container *ngIf="!tag">
+      <div class="row category" *ngFor="let category of productList">
+        <div class="col-md-12 name">
+          <h2>{{ category.category_name }}</h2>
         </div>
+        <div class="col-md-3" *ngFor="let product of category.product_list">
+          <app-product-card [product]="product"></app-product-card>
+        </div>
+      </div>
+    </ng-container>
+    <div class="row" *ngIf="tag">
+      <div class="col-md-3" *ngFor="let product of productList">
+        <app-product-card [product]="product"></app-product-card>
+      </div>
     </div>
-</div>
+  </div>
+</app-main-container>

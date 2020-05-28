@@ -296,3 +296,70 @@ input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched  {
 .card-header {
   background-color: rgba(0, 0, 0, 0.03) !important;
 }
+
+
+/** Product Details */
+.card-footer {
+  text-align: center;
+  text-transform: capitalize;
+  background-color: $color-white;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  .product-name {
+    color: #00889f;
+    margin-top: 1rem;
+    font-size: 1.4rem;
+  }
+
+  .product-price {
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  .add-to-cart {
+    background-image: linear-gradient(-45deg, #075ac9, #35c7df);
+    box-shadow: 0 0.4rem 1rem -1rem rgba(0, 0, 0, 0.2), 0 0.4rem 0.6rem 0.1rem rgba(0, 0, 0, 0.05),
+    0 0.1rem 0.2rem 0.1rem transparent inset, 0 1.8rem 3.2rem -0.2rem rgba(255, 255, 255, 0.1) inset;
+    padding: 1.2rem 2.5rem;
+    border-radius: 5rem;
+    color: $color-white;
+    margin-top: 1rem;
+    border: 0;
+    font-size: 1.4rem;
+
+    .fa {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+.similar-products-heading {
+  background-color: #f1f1f1;
+  padding-left: 80px;
+}
+
+.similar-products {
+  background-color: #f1f1f1;
+  padding: 50px;
+
+  &__item {
+    padding: 0 50px;
+    @include flex(row);
+    @include flex-alignment(space-around, center);
+  }
+
+  .carousel-control-prev, .carousel-control-next {
+    filter: brightness(0);
+  }
+}
+
+.tag-list {
+  color: #007bff;
+
+  &:hover {
+    text-decoration: underline;
+    color: #0056b3;
+  }
+}

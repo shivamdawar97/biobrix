@@ -57,23 +57,16 @@
   }
 }
 
+.search {
+  width: calc(100% - 25rem);
+  margin-left: 25rem;
+  padding: 2rem;
+}
+
 .product-list {
   width: calc(100% - 25rem);
   margin-left: 25rem;
   padding: 2rem;
-
-  .card {
-    width: 25rem;
-    margin-bottom: 2rem;
-    position: relative;
-  }
-
-  .image {
-    position: relative;
-    img {
-      padding: 2rem;
-    }
-  }
 
   /** Category Details */
   .category {
@@ -86,26 +79,6 @@
 
     h2 {
       font-weight: bold;
-    }
-  }
-
-  /** Product Details */
-  .card-footer {
-    text-align: center;
-    text-transform: capitalize;
-    background-color: $color-white;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-
-    .product-name {
-      color: #00c5e6;
-      margin-top: 1rem;
-      font-size: 1.6rem;
-    }
-
-    .product-price {
-      margin-top: 1rem;
-      font-size: 2rem;
     }
   }
 }

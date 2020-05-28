@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
-import { Category } from 'src/app/core/models/category.model';
-import { Product } from 'src/app/core/models/product.model';
+import {Category} from 'src/app/core/models/category.model';
+import {Product} from 'src/app/core/models/product.model';
 
-import { ProductApiService } from 'src/app/core/http/product-api.service';
-import { DataService } from 'src/app/core/services/data.service';
+import {ProductApiService} from 'src/app/core/http/product-api.service';
+import {DataService} from 'src/app/core/services/data.service';
 
-import { DefaultCategory } from 'src/app/constants/products.const';
-import { CartService } from 'src/app/core/services/cart.service';
-import { UtilityService } from 'src/app/core/services/utility.service';
+import {DefaultCategory} from 'src/app/constants/products.const';
+import {CartService} from 'src/app/core/services/cart.service';
+import {UtilityService} from 'src/app/core/services/utility.service';
 
 
 @Component({
@@ -23,6 +23,7 @@ export class ProductsComponent implements OnInit {
   productList: Array<Product>;
   selectedCategoryIndex: number;
   categoryId: string;
+  tag: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,7 +32,8 @@ export class ProductsComponent implements OnInit {
     private cartService: CartService,
     private productService: ProductApiService,
     private utilityService: UtilityService
-  ) { }
+  ) {
+  }
 
 
   getCategoryList() {
@@ -52,7 +54,7 @@ export class ProductsComponent implements OnInit {
     let params: Array<any>;
 
     if (categoryId && categoryId !== DefaultCategory.id) {
-      params = [{ name: 'categoryId', value: categoryId }];
+      params = [{name: 'categoryId', value: categoryId}];
     }
 
     this.utilityService.showLoader.next(true);
@@ -60,54 +62,16 @@ export class ProductsComponent implements OnInit {
     this.productService.getProductList(params).subscribe({
       next: (data) => {
         this.productList = Array.isArray(data) ? data : [data];
-        this.productList = this.syncProductsWithCart(this.productList);
         this.utilityService.showLoader.next(false);
       }
     });
   }
 
-
-  /**
-   * If Product are added to cart then mark "addedToCart" as true
-   */
-  syncProductsWithCart(categoryWiseProducts: any) {
-    console.log(categoryWiseProducts);
-    const cartHashMap = this.cartService.getCartHashMap();
-    console.log(cartHashMap);
-    categoryWiseProducts.forEach(category => {
-
-      category.product_list.forEach((product: Product) => {
-        if (cartHashMap[product.product_id]) {
-          product.addedToCart = true;
-        }
-      });
-
-    });
-
-    return this.productList;
-  }
-
-
-  addToCart(product: Product) {
-
-    if (product.quantity) {
-      product.quantity = product.quantity + 1;
-      product.total = product.total + product.price;
-    } else {
-      product.quantity = 1;
-      product.total = product.price;
-    }
-
-    const addedItem = this.cartService.addToCart(product);
-    if (addedItem) {
-      addedItem.addedToCart = true;
-    }
-  }
-
-
   /** Set Active category by finding its index in category list */
   setActiveCategory() {
-    if (!this.categoryList || !this.categoryList.length) { return; }
+    if (!this.categoryList || !this.categoryList.length) {
+      return;
+    }
     this.selectedCategoryIndex = this.categoryList.findIndex((category: any) => category.id === this.categoryId);
   }
 
@@ -117,15 +81,22 @@ export class ProductsComponent implements OnInit {
    * On Category click just change the route and everything will be handled itself on activated route subscription
    */
   onCategoryButtonClick(categoryId: string, selectedCategoryIndex: number) {
+    this.tag = '';
     this.selectedCategoryIndex = selectedCategoryIndex;
     this.router.navigate(['/products', categoryId]);
   }
 
 
   handleParamsChange(params: any) {
-    if (!params.categoryId) { return; }
+    if (!params.categoryId) {
+      return;
+    }
     this.categoryId = params.categoryId;
-    this.getProductList(params.categoryId);
+    if (!!this.tag) {
+      this.getTagsProducts();
+    } else {
+      this.getProductList(params.categoryId);
+    }
     this.setActiveCategory();
   }
 
@@ -134,13 +105,31 @@ export class ProductsComponent implements OnInit {
 
     this.getCategoryList();
 
+    this.tag = this.route.snapshot.queryParamMap.get('tag');
+
     this.route.params.subscribe(params => {
       this.handleParamsChange(params);
     });
   }
 
-  onProductSelected(id:string){
-    this.router.navigate(['/product', id]);
+  getTagsProducts() {
+    this.utilityService.showLoader.next(true);
+    this.productService.getSimilarProducts(this.tag).subscribe(res => {
+      if (res) {
+        this.productList = Array.isArray(res) ? res : [res];
+        this.utilityService.showLoader.next(false);
+      }
+    }, err => this.utilityService.showLoader.next(false));
+  }
+
+  searchChanged(search) {
+
+    if (!search) {
+      return;
+    }
+
+    this.tag = search;
+    this.getTagsProducts();
   }
 
 }
