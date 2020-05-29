@@ -11,7 +11,6 @@ export class CartService {
 
   CartUpdateSubject: Subject<any> = new Subject<any>();
 
-
   addToCart(product: Product) {
     const saved = this.saveCart(product);
 
@@ -88,7 +87,6 @@ export class CartService {
    * Return total cart items
    */
   getCartItemsCount() {
-    console.log('getting cart count');
     const cartItems = this.getCartItems();
     if (cartItems) {
       return cartItems.length;
@@ -139,5 +137,13 @@ export class CartService {
       localStorage.removeItem('cart');
       return false;
     }
+  }
+
+  itemInCart(id: string): boolean {
+    if (!id) {
+      return false;
+    }
+    const itemIds = this.getCartItems().map(item => item.product_id);
+    return itemIds.includes(id);
   }
 }

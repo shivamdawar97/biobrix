@@ -7,6 +7,7 @@ import {CheckoutComponent} from './checkout/checkout.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { OrderListComponent } from './order-list/order-list.component';
+import {SharedModule} from '../../shared/shared.module';
 
 const routes: Routes = [
   { path: '', component: CartComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ],
   exports: [

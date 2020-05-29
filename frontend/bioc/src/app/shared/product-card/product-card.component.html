@@ -1,0 +1,18 @@
+<div *ngIf="product?.product_id" class="card shadow-0">
+  <div class="image">
+    <img src="{{ product.image}}" class="card-img-top" alt="..." (click)="productDetail(product.product_id)">
+  </div>
+  <div class="card-footer">
+    <h3 class="product-name">{{product.product_name}}</h3>
+    <h4 class="product-price"><i class="fa fa-inr"></i> {{product.price}}</h4>
+    <button *ngIf="!inCart" type="button" class="btn primary-button"
+            (click)="addToCart(product)">
+      <i class="fa fa-shopping-cart"></i>
+      Add To Cart
+    </button>
+    <a *ngIf="inCart" [routerLink]="['/view-cart']" class="btn primary-button">
+      <i class="fa fa-shopping-cart"></i>
+      Go To Cart
+    </a>
+  </div>
+</div>

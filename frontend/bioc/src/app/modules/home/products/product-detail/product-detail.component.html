@@ -1,16 +1,7 @@
 <div class="product_detail main-container" *ngIf="product">
-
-  <section class="product_detail__header">
-    <!-- <p class="product_detail__back">&#8592;</p> -->
-    <div class="product_detail__header-back">
-      <i class="fa fa-arrow-left product_detail__header-back-icon"></i>
-      <div class="product_detail__header-back-cover"></div>
-    </div>
-
-    <h1 class="product_detail__header-heading">{{ product.product_name | uppercase}}</h1>
-
-  </section>
-
+  <div class="primary-heading">
+    <h1 class="primary-heading-text">{{ product.product_name | uppercase}}</h1>
+  </div>
   <section class="product_detail__main">
 
     <div class="product_detail__main-container">
@@ -42,7 +33,7 @@
                 <hr>
                 Tags : <a href="#" rel="tag"> {{ product.category }}</a>,
 
-                <a *ngFor="let tag of product.tags" href="#" rel="tag"> {{ tag }} </a>,
+                <a class="tag-list" (click)="showProductList(tag)" *ngFor="let tag of product.tags"> {{ tag }}, </a>
 
               </div>
 
@@ -186,5 +177,28 @@
 
     </section>
 
+  </div>
+
+  <h1 class="similar-products-heading">Similar Products</h1>
+
+  <div id="recentProducts" class="carousel slide similar-products" data-ride="carousel" data-interval="0">
+    <div class="carousel-inner">
+      <div class="carousel-item" [ngClass]="{'active': i === 0}"
+           *ngFor="let recentProduct of similarProducts; let i = index">
+        <div class="similar-products__item w-100">
+          <div class="col-md-3" *ngFor="let product of recentProduct">
+            <app-product-card [product]="product"></app-product-card>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#recentProducts" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#recentProducts" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
   </div>
 </div>

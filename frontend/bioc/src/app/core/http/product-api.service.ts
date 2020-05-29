@@ -1,21 +1,20 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {catchError} from 'rxjs/operators';
 
 /** Models */
-import { Category } from '../models/category.model';
-import { Product } from '../models/product.model';
+import {Category} from '../models/category.model';
+import {Product} from '../models/product.model';
 
 /** Services */
-import { HttpErrorHandlerService } from './http-error-handler.service';
-import { UtilityService } from '../services/utility.service';
+import {HttpErrorHandlerService} from './http-error-handler.service';
+import {UtilityService} from '../services/utility.service';
 
 /** Constants */
-import {ADD_PRODUCT_REVIEW_API, CATEGORY_API, PRODUCT_API, PRODUCT_DETAIL_API} from 'src/app/constants/api.const';
-import { environment } from 'src/environments/environment';
-import { ProductDetail } from '../models/product-detail.model';
-
+import {ADD_PRODUCT_REVIEW_API, CATEGORY_API, PRODUCT_API, PRODUCT_DETAIL_API, PRODUCT_SEARCH_API} from 'src/app/constants/api.const';
+import {environment} from 'src/environments/environment';
+import {ProductDetail} from '../models/product-detail.model';
 
 
 @Injectable({
@@ -29,8 +28,8 @@ export class ProductApiService {
     private http: HttpClient,
     private httpErrorHandlerService: HttpErrorHandlerService,
     private utilityService: UtilityService
-  ) { }
-
+  ) {
+  }
 
   getCategoryList(): Observable<Array<Category>> {
     const url = `${this.BASE_URL}${CATEGORY_API}`;
@@ -38,7 +37,6 @@ export class ProductApiService {
       catchError(this.httpErrorHandlerService.handleErr)
     );
   }
-
 
   getProductList(paramsData?: Array<any>): Observable<Array<Product>> {
     let params = '';
@@ -54,8 +52,8 @@ export class ProductApiService {
     );
   }
 
-  getPorductDetail(id: string){
-    const url = `${this.BASE_URL}${PRODUCT_DETAIL_API}`
+  getPorductDetail(id: string) {
+    const url = `${this.BASE_URL}${PRODUCT_DETAIL_API}`;
     return this.http.get<ProductDetail>(url, {
       params: new HttpParams().set('product_id', id)
     }).pipe(
@@ -63,10 +61,14 @@ export class ProductApiService {
     );
   }
 
-
   addReview(data: any) {
     const url = `${this.BASE_URL}${ADD_PRODUCT_REVIEW_API}`;
     return this.http.post(url, data).pipe(catchError(this.httpErrorHandlerService.handleErr));
+  }
+
+  getSimilarProducts(searchText: string): Observable<Product[]> {
+    const url = `${this.BASE_URL}${PRODUCT_SEARCH_API}?search=${searchText}`;
+    return this.http.get<Product[]>(url).pipe(catchError(this.httpErrorHandlerService.handleErr));
   }
 
 }
