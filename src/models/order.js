@@ -5,7 +5,7 @@ const orderSchema = new mongoose.Schema({
     user_name:{
         type:String,
         required:true,
-        default: 'null'
+        default: 'NA'
     },
     products:[{
         ...shortProduct,
@@ -19,32 +19,32 @@ const orderSchema = new mongoose.Schema({
     address:{
         type:String,
         required:true,
-        default: 'null'
+        default: 'NA'
     },
     zip_code:{
         type:String,
         required:true,
-        default: 'null'
+        default: 'NA'
     },
     city:{
         type:String,
         required:true,
-        default: 'null'
+        default: 'NA'
     },
     state:{
         type:String,
         required:true,
-        default: 'null'
+        default: 'NA'
     },
     phone_number:{
         type:String,
         required:true,
-        default: 'null'
+        default: 'NA'
     },
     email:{
         type:String,
         required:true,
-        default: 'null'
+        default: 'NA'
     },
     payment_status:{
         type:Boolean,
@@ -54,13 +54,13 @@ const orderSchema = new mongoose.Schema({
     order_status:{
         type:String,
         required:true,
-        enum:['created','placed','dispatched','delivered'],
+        enum:['created','placed','dispatched','delivered','cancel'],
         default:'created'
     },
     transaction_id:{
         type:String,
         required:true,
-        default: 'null'
+        default: 'NA'
     },
     total: {
         type: Number,
