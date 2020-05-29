@@ -1,6 +1,6 @@
 <div class="mr-3">
 
-  <h1 class="heading">{{ editMode?'Add New Product':'Update Product' }}</h1>
+  <h1 class="heading">{{ editMode?'Update Product':'Add New Product' }}</h1>
   <hr>
   <form class="form-product" [formGroup]="productForm" (ngSubmit)="onSubmit()" >
 
@@ -13,9 +13,12 @@
     </div>
 
     <div class="form-group form-product__group">
-      <label class="control-label" for="filebutton">Product Image</label>
+      <label class="control-label" >Product Image</label>
        <br>
-       <button type="button" class="btn btn-outline-dark p-3" (click)="filPicker.click()"><h4>Pick Image</h4></button>
+        <h4>
+          <button type="button" class="btn btn-outline-dark p-3 h-100" (click)="filPicker.click()">Pick Image</button>
+        </h4>
+
       <input class="input-file" type="file" #filPicker (change)="onImagePicked($event); $event.stopPropagation()">
 
       <div *ngIf="imagePreview!='' && imagePreview && productForm.get('image').value                                                                                                                                                                                                                                                                                                ; else errorpreview" class="image-preview">
@@ -28,7 +31,7 @@
     </div>
 
     <div class="form-group form-product__group">
-      <label class="control-label" for="product_categorie">Product Category</label>
+      <label class="control-label" >Product Category</label>
       <input id="category"
       formControlName="category"
       list="categories"
@@ -39,7 +42,7 @@
     </div>
 
     <div class="form-group form-product__group">
-      <label class="col-md-4 control-label" for="percentage_discount">Product Price</label>
+      <label class="col-md-4 control-label">Product Price</label>
       <input id="price"
       formControlName="price"
       class="form-control input-md"
@@ -47,7 +50,7 @@
     </div>
 
     <div class="form-group form-product__group">
-      <label class="col-md-4 control-label" for="product_description">Product Description</label>
+      <label class="col-md-4 control-label">Product Description</label>
       <textarea id="description"
       formControlName="description"
       class="form-control"
@@ -55,7 +58,7 @@
     </div>
 
     <div class="form-group form-product__group">
-      <label class="col-md-4 control-label" for="percentage_discount">Discount Percentage</label>
+      <label class="col-md-4 control-label">Discount Percentage</label>
       <input id="discount"
       formControlName="discount_percentage"
       class="form-control input-md"
@@ -63,7 +66,7 @@
     </div>
 
     <div class="form-group form-product__group">
-      <label class="col-md-4 control-label" for="percentage_discount">In stock</label>
+      <label class="col-md-4 control-label" >In stock</label>
       <label class="switch">
         <input id="stock"
         class="form-control switch__input"
@@ -76,7 +79,7 @@
     </div>
 
     <div class="form-group form-product__group">
-      <label class="col-md-4 control-label" for="percentage_discount">Add to recent product</label>
+      <label class="col-md-4 control-label" >Add to recent product</label>
       <label class="switch">
         <input id="recent"
         class="form-control switch__input"
@@ -90,7 +93,7 @@
 
     <div class="form-group form-product__group" formArrayName = "ingredients">
 
-      <label class="col-md-4 control-label" for="percentage_discount">Ingredients</label>
+      <label class="col-md-4 control-label" >Ingredients</label>
 
       <div *ngFor="let control of ingredientControls; let i = index"
       class="row"
@@ -119,7 +122,7 @@
 
     <div class="form-group form-product__group" formArrayName = "tags">
 
-      <label class="col-md-4 control-label" for="percentage_discount">Tags</label>
+      <label class="col-md-4 control-label" >Tags</label>
 
       <div
       *ngFor="let control of tagsControls; let i = index"
@@ -135,12 +138,22 @@
     </div>
       <br>
       <button type="button" class="btn btn-success mr-5" (click)="onAddTag()"><h4>Add Tag</h4></button>
+
    </div>
 
-    <div class="form-group form-product__group">
+
+    <div *ngIf="!isLoading; else loading_circular" class="form-group form-product__group">
       <div class="col-md-4">
-        <button [disabled]="productForm.invalid" id="singlebutton" name="singlebutton" class="btn btn-primary p-4"><h3>Add Product</h3></button>
+        <button [disabled]="productForm.invalid" id="singlebutton" name="singlebutton" class="btn btn-primary p-4">
+          <h3>{{ editMode?'Update Product':'Add New Product' }}</h3></button>
       </div>
       </div>
+
+    <ng-template #loading_circular>
+      <div style="text-align: center;">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
+    </ng-template>
+
     </form>
 </div>

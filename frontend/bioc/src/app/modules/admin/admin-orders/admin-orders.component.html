@@ -1,1 +1,28 @@
-<p>admin-orders works!</p>
+<div class="mr-3">
+  <h1 class="heading">Orders</h1>
+  <hr>
+
+  <div class="table row">
+    <p class="table__heading col-2">Order ID</p>
+    <p class="table__heading col-2">Customer Name</p>
+    <p class="table__heading col-2">Location</p>
+    <p class="table__heading col-2">Updated On</p>
+    <p class="table__heading col-2">Status</p>
+    <p class="table__heading col-2">Amount</p>
+  </div>
+
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let order of orders">
+      <div [routerLink]="order._id" class="row">
+
+        <p class="col-2">{{ order._id }}</p>
+        <p class="col-2">{{ order.user_name }}</p>
+        <p class="col-2">{{ order.state }}</p>
+        <p class="col-2">{{ order.updatedAt }}</p>
+        <p class="col-2">{{ order.order_status.toUpperCase() }}</p>
+        <p class="col-2">{{ order.total }}</p>
+
+      </div>
+    </li>
+  </ul>
+</div>

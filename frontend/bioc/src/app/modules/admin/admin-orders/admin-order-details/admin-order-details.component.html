@@ -1,0 +1,99 @@
+<div class="mr-3">
+
+  <h1 class="heading">Order Details</h1>
+
+  <div class="modal-content">
+
+    <div class="modal-body">
+      <div class="container">
+
+        <h6>Items Details</h6>
+
+        <div *ngFor="let item of order.products" class="row">
+          <div class="col"> <img class="img-fluid" [src]="item.image" style="height: 20rem;width: 10rem"> </div>
+          <div class="col-xs-6" style="padding-top: 2vh;">
+            <ul type="none">
+              <li>PID &nbsp; &nbsp; : &nbsp; &nbsp; {{ item.product_id }}</li>
+              <li>Name  &nbsp; &nbsp; : &nbsp; &nbsp;  {{ item.product_name }}</li>
+              <li>Quantity  &nbsp; &nbsp; : &nbsp; &nbsp;  {{ item.quantity }}</li>
+              <li>Price  &nbsp; &nbsp; : &nbsp; &nbsp;  {{ item.price }}</li>
+              <li>Total  &nbsp; &nbsp; : &nbsp; &nbsp;  {{ item.total }}</li>
+
+            </ul>
+          </div>
+        </div>
+
+        <h6>Order Details</h6>
+        <div class="row">
+          <div class="col-xs-6">
+            <ul type="none">
+              <li class="left">Order ID:</li>
+              <li class="left">Transaction ID:</li>
+              <li class="left">Date:</li>
+              <li class="left">Total Amount:</li>
+              <li class="left">Order Status:</li>
+              <li class="left">Payment Status:</li>
+
+            </ul>
+          </div>
+
+          <div class="col-xs-6">
+            <ul class="right" type="none">
+              <li class="right">{{ order._id}}</li>
+              <li class="right">{{ order.transaction_id}}</li>
+              <li class="right">{{ order.updatedAt}}</li>
+              <li class="right">{{ order.total }}</li>
+              <li class="right">{{ order.order_status.toUpperCase() }}</li>
+              <li class="right">{{ order.payment_status }}</li>
+
+            </ul>
+          </div>
+
+      </div>
+
+        <h6>Customer Details</h6>
+        <div class="row">
+          <div class="col-xs-6">
+            <ul type="none">
+              <li class="left">Customer Name:</li>
+              <li class="left">Phone Number:</li>
+              <li class="left">Email:</li>
+              <li class="left">Address:</li>
+              <li class="left">City :</li>
+              <li class="left">State:</li>
+              <li class="left">Zip code:</li>
+
+            </ul>
+          </div>
+
+          <div class="col-xs-6">
+            <ul class="right" type="none">
+              <li class="right">{{ order.user_name}}</li>
+              <li class="right">{{ order.phone_number}}</li>
+              <li class="right">{{ order.email }}</li>
+              <li class="right">{{ order.address }}</li>
+              <li class="right">{{ order.city }}</li>
+              <li class="right">{{ order.state }}</li>
+              <li class="right">{{ order.zip_code }}</li>
+            </ul>
+          </div>
+        </div>
+
+        <button *ngIf="order.order_status === 'placed'" class="btn btn-primary"
+        (click)="updateStatus('dispatched')"
+        > Order dispatched </button>
+
+        <button *ngIf="order.order_status === 'dispatched'" class="btn btn-primary"
+        (click)="updateStatus('delivered')"
+        > Order delivered </button>
+
+        <button *ngIf="order.order_status !== 'cancel'" class="btn btn-danger"
+        (click)="updateStatus('cancel')"
+        > Cancel this order </button>
+
+        <button class="btn btn-danger" (click)="deleteOrder()"> Delete this order </button>
+
+    </div>
+  </div>
+ </div>
+</div>

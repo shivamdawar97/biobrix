@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {HttpErrorHandlerService} from './http-error-handler.service';
 import {Product} from '../models/product.model';
 import {environment} from '../../../environments/environment';
 import {CREATE_ORDER_API, GET_ORDERS_API, GET_OTP, ORDER_DETAILS_API, UPDATE_ORDER_API, VERIFY_OTP} from '../../constants/api.const';
 import {catchError} from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import {ProductDetail} from "../models/product-detail.model";
 
 interface CreateOrder {
   products: Product[];
@@ -79,4 +80,6 @@ export class CartApiService {
     const url = `${this.BASE_URL}${GET_ORDERS_API}?phone_number=${phone}`;
     return this.http.get<OrderDetail>(url).pipe(catchError(this.httpErrorHandlerService.handleErr));
   }
+
+
 }

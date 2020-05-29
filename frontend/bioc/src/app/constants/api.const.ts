@@ -19,3 +19,8 @@ export const VERIFY_OTP = 'phone/verify';
 export const UPDATE_ORDER_API = 'order/update_details/';
 export const ORDER_DETAILS_API = 'order/get_details/';
 export const GET_ORDERS_API = 'order/get_orders/';
+
+//order admin api
+export const GET_ALL_ORDERS_API = 'order/get_all_orders';
+export const UPDATE_STATUS_API = 'order/update_status/';
+export const DELETE_ORDER_API = 'order/';

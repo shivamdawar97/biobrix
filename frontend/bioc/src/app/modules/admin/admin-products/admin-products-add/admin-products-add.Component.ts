@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { AdminProductService } from '../admin-product.service';
 import { Category } from 'src/app/core/models/category.model';
 import { ProductDetail } from 'src/app/core/models/product-detail.model';
-import {  ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { mimeType } from './mime-type.validator';
 
 @Component({
@@ -14,7 +14,7 @@ import { mimeType } from './mime-type.validator';
 })
 export class AdminProductsAddComponent implements OnInit,OnDestroy {
 
-  constructor(private productService: AdminProductService, private route: ActivatedRoute) { }
+  constructor(private productService: AdminProductService, private route: ActivatedRoute, private router: Router) { }
 
   isLoading = false;
   isFileSelected = false;
@@ -23,14 +23,15 @@ export class AdminProductsAddComponent implements OnInit,OnDestroy {
   categories: Category[];
   imagePreview:string;
   editMode = false;
-  id: string
-  product: ProductDetail
+  id: string;
+  product: ProductDetail;
+  errorMessage = ''
+
 
   ngOnInit(): void {
 
     this.id = this.route.snapshot.paramMap.get('id');
     if(!!this.id) this.editMode = true;
-
 
     this.categorySubs = this.productService.getCategoryList().subscribe(categories => this.categories=categories);
     let productName = '';
@@ -44,8 +45,9 @@ export class AdminProductsAddComponent implements OnInit,OnDestroy {
     let tags = new FormArray([]);
 
     if(this.editMode) {
+
       this.product = this.productService.getProduct(this.id);
-      console.log(this.product)
+
       productName = this.product.product_name;
       category = this.product.category;
       description = this.product.description;
@@ -56,10 +58,11 @@ export class AdminProductsAddComponent implements OnInit,OnDestroy {
       isRecent = this.product.is_recent;
       this.product.ingredients.forEach( ingredient =>
         ingredients.push(new FormControl(ingredient,Validators.required))
-      )
+      );
       this.product.tags.forEach( tag =>
         tags.push(new FormControl(tag,Validators.required))
-      )
+      );
+
     }
 
     this.productForm = new FormGroup({
@@ -74,31 +77,45 @@ export class AdminProductsAddComponent implements OnInit,OnDestroy {
       ingredients: ingredients,
       tags: tags
     });
-
-    console.log('form value is ', this.productForm);
-
+    if(this.editMode) this.productForm.get('category').disable();
   }
+
   onSubmit(){
-    if(this.productForm.valid) {
-      const value = this.productForm.value
-      this.productService.addProduct(value).subscribe( product => console.log(product))
 
-    }
+    if(this.productForm.valid && this.productForm.dirty) {
+      this.isLoading = true;
+      if(!this.editMode) {
+        const value = this.productForm.value;
+        this.productService.addProduct(value).subscribe( product => this.onCancel(product));
+      }else {
+        const value = this.getDirtyValues()
+        this.productService.updateProduct(this.id,value).subscribe(product => this.onCancel(product));
+      }
+    } else this.errorMessage = 'The form is might not be valid or no changes made'
+
   }
 
-  initializeForm(product: ProductDetail){
-    this.productForm.setValue({
-      'product_name': product.product_name,
-      'category': product.category,
-      'description': product.category,
-      'discount': product.discount
-    })
+  private onCancel(product: ProductDetail){
+    this.isLoading = false;
+    this.router.navigate(['../'],{relativeTo:this.route});
+  }
+
+
+  getDirtyValues(){
+    let dirtyValues= {};
+    for (let controlsKey in this.productForm.controls) {
+        let control = this.productForm.controls[controlsKey];
+        if(control.dirty) dirtyValues[controlsKey] = control.value;
+    }
+    return dirtyValues;
   }
 
   onImagePicked(event: Event){
+
     const file = (event.target as HTMLInputElement).files[0];
     this.productForm.patchValue({ image:file });
     this.productForm.get('image').updateValueAndValidity();
+    this.productForm.get('image').markAsDirty();
     const reader = new FileReader();
     reader.onload = _ => this.imagePreview = reader.result as string
     reader.readAsDataURL(file)

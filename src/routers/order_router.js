@@ -191,4 +191,34 @@ router.get('/order/get_orders',async (req,res)=> {
 
 })
 
+router.get('/order/get_all_orders',auth,async(req,res) => {
+    try {
+        const orders = await Order.find({})
+        console.log(orders)
+        res.send(!!orders?orders:[])
+    }catch (e) {
+             res.status(400).send({error:e.message})
+    }
+})
+
+router.patch('/order/update_status/:id',auth,async (req,res)=> {
+    try {
+        const orderId = req.params.id
+        const status = req.body.status
+        if(!orderId  ||  !status) throw new Error('Id or status is not provided')
+
+        const order = await Order.findById(orderId)
+        if(!order) throw new Error('Order not found')
+
+        order.order_status = status
+        await order.save()
+
+        res.send(order)
+
+    }catch (error) {
+        res.status(400).send({error})
+    }
+})
+
+
 module.exports = router

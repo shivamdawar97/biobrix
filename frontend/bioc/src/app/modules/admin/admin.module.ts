@@ -11,11 +11,13 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { AuthService } from './auth.service';
-import { AdminProductsAddComponent } from "./admin-products/admin-products-add/AdminProductsAddComponent";
+import { AdminProductsAddComponent } from "./admin-products/admin-products-add/admin-products-add.Component";
 import { AdminProductService } from './admin-products/admin-product.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './auth-interceptor.service';
 import { FilterPipe } from './admin-products/filter.pipe';
+import { AdminOrderDetailsComponent } from './admin-orders/admin-order-details/admin-order-details.component';
+import {AdminOrderService} from "./admin-orders/admin-order.service";
 
 const routes: Routes = [
   { path: '', component: AdminComponent,
@@ -25,6 +27,7 @@ const routes: Routes = [
       { path:'products/add', component: AdminProductsAddComponent },
       { path:'products/:id', component: AdminProductsAddComponent },
       { path:'orders', component: AdminOrdersComponent  },
+      { path:'orders/:id', component: AdminOrderDetailsComponent  },
       { path:'slideshow', component: AdminSlideshowComponent  },
       { path:'testimonies', component: AdminTestimoniesComponent  },
       { path:'pending_reviews', component: AdminReviewsComponent  }
@@ -43,7 +46,8 @@ const routes: Routes = [
     AdminLoginComponent,
     LoadingSpinnerComponent,
     AdminProductsAddComponent,
-    FilterPipe
+    FilterPipe,
+    AdminOrderDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -51,7 +55,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule
   ],
-  providers:[AuthService,AdminProductService,
+  providers:[AuthService,AdminProductService,AdminOrderService,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,

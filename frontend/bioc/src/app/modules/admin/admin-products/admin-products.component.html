@@ -27,8 +27,9 @@
 
   <div class="table row">
     <p class="table__heading col-3">ID</p>
-    <p class="table__heading col-3">Name</p>
-    <p class="table__heading col-3">Price</p>
+    <p class="table__heading col-2">Name</p>
+    <p class="table__heading col-2">Category</p>
+    <p class="table__heading col-2">Price</p>
     <p class="table__heading col-2">In Stock</p>
     <div class="col-1"></div>
   </div>
@@ -38,8 +39,9 @@
       <div class="row">
 
         <p class="col-3">{{ product._id }}</p>
-        <p class="col-3">{{ product.product_name }}</p>
-        <p class="col-3">{{ product.price }}</p>
+        <p class="col-2">{{ product.product_name }}</p>
+        <p class="col-2">{{ product.category }}</p>
+        <p class="col-2">{{ product.price }}</p>
 
         <div class="col-2">
           <i *ngIf="product.in_stock" class="fa fa-check" style="color: green;"></i>

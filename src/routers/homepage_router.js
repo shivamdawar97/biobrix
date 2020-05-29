@@ -4,6 +4,9 @@ const Product = require('../models/product')
 const PagerProduct = require('../models/pager_products')
 const Testimony = require('../models/testimonoal')
 const auth = require('../middleware/auth')
+const upload = require('../config/multer_config').upload3
+
+
 
 router.get('/homepage/get_homepage',async (req,res)=>{
     try{
@@ -58,9 +61,17 @@ router.post('/homepage/add_testimony',auth,async (req,res)=>{
 
 })
 
-router.post('/homepage/pager_product',auth,async (req,res)=>{
+router.post('/homepage/pager_product',auth,upload.single('image'),async (req,res)=>{
     try{
-        const pagerProduct = new PagerProduct(req.body)
+
+        const isFormData = req.file !== undefined && req.file.path !== undefined
+        const body = isFormData
+            ? { product_id: req.body.product_id ,
+                image_url: `${req.protocol}://${req.get('host')}/${req.file.path}` }
+            : req.body
+
+        const pagerProduct = new PagerProduct(body)
+
         const product = await Product.findById(pagerProduct.product_id)
         if(!product) throw Error('Invalid product Id')
         await pagerProduct.save() 

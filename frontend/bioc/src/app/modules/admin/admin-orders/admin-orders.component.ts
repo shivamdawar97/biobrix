@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderDetail} from "../../../core/http/cart-api.service";
+import {AuthService} from "../auth.service";
+import {AdminOrderService} from "./admin-order.service";
 
 @Component({
   selector: 'admin-orders',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminOrdersComponent implements OnInit {
 
-  constructor() { }
+  constructor(private apiService: AdminOrderService,private authService: AuthService) { }
+
+  orders : OrderDetail[]
 
   ngOnInit(): void {
-  }
 
+     this.apiService.getAllOrders().subscribe( data => {
+       this.orders = data
+       this.apiService.orders = data
+     });
+
+  }
 }
