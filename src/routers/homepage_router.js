@@ -49,10 +49,18 @@ async function getRecentProducts(){
     return recentShortProducts
 }
 
-router.post('/homepage/add_testimony',auth,async (req,res)=>{
+router.post('/homepage/add_testimony',auth,upload.single('image'),async (req,res)=>{
 
     try{
-        const testimony = new Testimony(req.body)
+
+        const isFormData = req.file !== undefined && req.file.path !== undefined
+        const body = isFormData
+            ? { customer_name: req.body.customer_name ,
+                testimony: req.body.testimony ,
+                image: `${req.protocol}://${req.get('host')}/${req.file.path}` }
+            : req.body
+
+        const testimony = new Testimony(body)
         await testimony.save()
         res.status(201).send(testimony)
     }catch(error){
@@ -60,6 +68,48 @@ router.post('/homepage/add_testimony',auth,async (req,res)=>{
     }
 
 })
+
+
+router.get('/homepage/get_all_testimonies',auth,async (req,res)=> {
+    try {
+
+        const testimonies = await Testimony.find()
+        res.send(testimonies?testimonies:[])
+
+    }
+    catch (error) {
+        res.status(400).send({error})
+    }
+})
+router.delete('/homepage/delete_testimony/:id',auth,async (req,res)=> {
+    try {
+
+        const testimony = await Testimony.findById(req.params.id)
+        if(!testimony) throw Error('Invalid testimony Id')
+        await testimony.delete()
+
+        res.send({
+            message: `Testimony with id ${req.params.id} deleted`
+        })
+    }
+    catch (error) {
+        res.status(400).send({error})
+    }
+})
+
+router.get('/homepage/get_pager_products',auth,async (req,res) => {
+
+    try{
+        const pagerProducts = await PagerProduct.find()
+        res.send(pagerProducts?pagerProducts:[])
+
+    }catch (error) {
+        res.status(400).send({error})
+    }
+
+
+})
+
 
 router.post('/homepage/pager_product',auth,upload.single('image'),async (req,res)=>{
     try{

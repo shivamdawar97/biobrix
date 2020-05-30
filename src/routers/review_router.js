@@ -22,6 +22,19 @@ router.post('/review/submit_review',async (req,res)=>{
     }
 })
 
+router.get('/review/get_all_reviews',auth,async (req,res)=> {
+    try {
+
+        const reviews = await PendingReview.find()
+        res.send(reviews? reviews: [])
+
+    }
+    catch (error) {
+        res.status(400).send({error})
+    }
+})
+
+
 router.post('/review/acknowledge_review',auth,async (req,res)=>{
     try{
 
@@ -55,9 +68,9 @@ router.post('/review/acknowledge_review',auth,async (req,res)=>{
     }
 })
 
-router.delete('/review/delete',auth,async (req,res)=>{
+router.delete('/review/delete/:id',auth,async (req,res)=>{
     try{
-        const review_id = req.query.review_id;
+        const review_id = req.params.id;
         const product_id = req.query.product_id;
         const product = await Product.findById(product_id)
 
