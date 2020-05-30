@@ -17,6 +17,7 @@ export class AdminComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log('admin component loaded');
     this.authService.autoLogin()
     this.userSubs= this.authService.userSubject.subscribe( user => this.changeAuthStatus(user) )
 

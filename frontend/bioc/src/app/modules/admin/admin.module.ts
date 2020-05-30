@@ -22,6 +22,7 @@ import {AdminOrderService} from "./admin-orders/admin-order.service";
 const routes: Routes = [
   { path: '', component: AdminComponent,
     children: [
+      { path: '', redirectTo: 'administration'},
       { path:'administration', component: AdminLoginComponent  },
       { path:'products', component: AdminProductsComponent},
       { path:'products/add', component: AdminProductsAddComponent },

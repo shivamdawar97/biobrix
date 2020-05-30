@@ -20,6 +20,7 @@ export class AdminLoginComponent implements OnInit,OnDestroy {
  constructor(private authService: AuthService){}
 
   ngOnInit(): void {
+    console.log('login page loaded');
     this.userSubs= this.authService.userSubject.subscribe( user => this.changeAuthStatus(user) )
   }
 
