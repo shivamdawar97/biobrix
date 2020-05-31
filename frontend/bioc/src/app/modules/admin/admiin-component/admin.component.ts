@@ -1,8 +1,8 @@
-import { OnInit, Component } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
-import { User } from '../user.model';
-import { Subscription } from 'rxjs';
+import {OnInit, Component} from '@angular/core';
+import {AuthService} from '../auth.service';
+import {Router} from '@angular/router';
+import {User} from '../user.model';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'admin-component',
@@ -10,20 +10,22 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-  isAuthenticated = false
+  isAuthenticated = false;
 
-  constructor(private authService: AuthService,private router: Router){}
-  private userSubs: Subscription
+  constructor(private authService: AuthService, private router: Router) {
+  }
+
+  private userSubs: Subscription;
 
 
   ngOnInit(): void {
-    this.authService.autoLogin()
-    this.userSubs= this.authService.userSubject.subscribe( user => this.changeAuthStatus(user) )
+    this.authService.autoLogin();
+    this.userSubs = this.authService.userSubject.subscribe(user => this.changeAuthStatus(user));
 
   }
 
-  private changeAuthStatus(user: User){
-    this.isAuthenticated = !!user
+  private changeAuthStatus(user: User) {
+    this.isAuthenticated = !!user;
   }
 
 }

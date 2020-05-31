@@ -1,1 +1,81 @@
-<p>admin-reviews works!</p>
+<table class="table" *ngIf="list.length > 0 else noReview">
+  <thead>
+  <tr>
+    <th scope="col">User</th>
+    <th scope="col">Rating</th>
+    <th scope="col">Review</th>
+    <th scope="col">Accept</th>
+    <th scope="col">Reject</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let review of list" class="product">
+    <td>
+      <div style="display: flex; flex-direction: column;">
+        <span style="font-size: 18px; font-weight: bold">{{review.reviewer_name}}</span>
+        <span>{{review.email}}</span>
+      </div>
+    </td>
+    <td>{{review.rating}}</td>
+    <td>{{review.review}}</td>
+    <td>
+      <button class="btn" style="outline: none; box-shadow: none" type="button" data-toggle="modal" data-target="#confirmationAcceptModal" (click)="selectId(review._id)">
+        <i data-toggle="tooltip" data-title="Add" class="fa fa-check" style="font-size: 25px; width: 25px; height: 25px; color: green;" aria-hidden="true"></i>
+      </button>
+    </td>
+    <td>
+      <button class="btn" style="outline: none; box-shadow: none" type="button" data-toggle="modal" data-target="#confirmationDeleteModal" (click)="selectId(review._id)">
+        <i class="fa fa-times" style="font-size: 25px; width: 25px; height: 25px; color: red;" aria-hidden="true"></i>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<ng-template #noReview>
+  <div class="text-center cart-empty">
+    <h2 class="text-muted">No pending review!</h2>
+  </div>
+</ng-template>
+
+
+<!-- Modal -->
+<div class="modal fade" id="confirmationDeleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm deletion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do you want to reject this review ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="onDelete()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="confirmationAcceptModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm deletion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do you want to accept this review ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="onAccept()">Accept</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -19,3 +19,13 @@ export const VERIFY_OTP = 'phone/verify';
 export const UPDATE_ORDER_API = 'order/update_details/';
 export const ORDER_DETAILS_API = 'order/get_details/';
 export const GET_ORDERS_API = 'order/get_orders/';
+
+// Admin API
+export const GET_PAGER_API = 'homepage/get_pager_products';
+export const PAGER_PRODUCT_API = 'homepage/pager_product';
+export const GET_TESTIMONIES_API = 'homepage/get_all_testimonies';
+export const ADD_TESTIMONY_API = 'homepage/add_testimony';
+export const DELETE_TESTIMONIES_API = 'homepage/delete_testimony/';
+export const GET_REVIEWS_API = 'review/get_all_reviews';
+export const ACKNOWLEDGE_REVIEW_API = 'review/acknowledge_review';
+export const DELETE_REVIEW = 'review/delete/';

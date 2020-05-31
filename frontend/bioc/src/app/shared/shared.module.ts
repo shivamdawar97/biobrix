@@ -5,6 +5,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import { MainContainerComponent } from './main-container/main-container.component';
+import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 
 const declarationsAndExports = [
   SearchInputComponent,
@@ -13,7 +14,7 @@ const declarationsAndExports = [
 ];
 
 @NgModule({
-  declarations: [...declarationsAndExports],
+  declarations: [...declarationsAndExports, ConfirmationModalComponent],
   imports: [ReactiveFormsModule, CommonModule, RouterModule],
   exports: [...declarationsAndExports]
 })

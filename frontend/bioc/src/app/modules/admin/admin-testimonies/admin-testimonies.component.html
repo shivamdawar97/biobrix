@@ -1,1 +1,55 @@
-<p>admin-testimonies works!</p>
+<table class="table" *ngIf="list.length > 0 else noTestimony">
+  <thead>
+  <tr>
+    <th scope="col">User</th>
+    <th scope="col">Testimony</th>
+    <th scope="col">Delete</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let testimony of list" class="product">
+    <td>
+      <img width="60" height="60" style="object-fit: contain" src="{{testimony.image}}" alt="image">
+      {{testimony.customer_name}}
+    </td>
+    <td>{{testimony.testimony}}</td>
+    <td>
+      <button class="btn" style="outline: none; box-shadow: none" type="button" data-toggle="modal" data-target="#confirmationModal" (click)="deleteItem(testimony._id)">
+        <i class="fa fa-trash" style="font-size: 25px; width: 25px; height: 25px; color: red;" aria-hidden="true"></i>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<ng-template #noTestimony>
+  <div class="text-center cart-empty">
+    <h2 class="text-muted">No testimonies yet!</h2>
+  </div>
+</ng-template>
+
+
+<!-- Modal -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirm deletion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do you want to delete ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onDelete()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="add-button">
+  <button class="btn primary-button" routerLink="add">Add testimony</button>
+</div>
