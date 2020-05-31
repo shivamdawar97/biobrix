@@ -101,7 +101,19 @@ router.get('/homepage/get_pager_products',auth,async (req,res) => {
 
     try{
         const pagerProducts = await PagerProduct.find()
-        res.send(pagerProducts?pagerProducts:[])
+        const responseArray = []
+
+        for await (let p of pagerProducts) {
+            const shortProduct = (await Product.findById(p.product_id)).getShortProduct()
+            delete p.product_id
+            const responseProduct = {
+                product: shortProduct,
+                image: p.image_url
+            }
+            responseArray.push(responseProduct)
+        }
+
+        res.send(responseArray)
 
     }catch (error) {
         res.status(400).send({error})

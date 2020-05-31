@@ -3,11 +3,11 @@ const review = {
         type:String,
         required:true
     },
-   raing:{
+   rating:{
        type: Number,
        required:true
    },
-   reviwer_name:{
+    reviewer_name:{
     type:String,
     required:true
    },
