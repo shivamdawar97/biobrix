@@ -6,8 +6,6 @@ const Testimony = require('../models/testimonoal')
 const auth = require('../middleware/auth')
 const upload = require('../config/multer_config').upload3
 
-
-
 router.get('/homepage/get_homepage',async (req,res)=>{
     try{
         const pagerProducts = await getPagerProducts()
@@ -69,7 +67,6 @@ router.post('/homepage/add_testimony',auth,upload.single('image'),async (req,res
 
 })
 
-
 router.get('/homepage/get_all_testimonies',auth,async (req,res)=> {
     try {
 
@@ -107,6 +104,7 @@ router.get('/homepage/get_pager_products',auth,async (req,res) => {
             const shortProduct = (await Product.findById(p.product_id)).getShortProduct()
             delete p.product_id
             const responseProduct = {
+                id: p._id,
                 product: shortProduct,
                 image: p.image_url
             }
@@ -121,7 +119,6 @@ router.get('/homepage/get_pager_products',auth,async (req,res) => {
 
 
 })
-
 
 router.post('/homepage/pager_product',auth,upload.single('image'),async (req,res)=>{
     try{
