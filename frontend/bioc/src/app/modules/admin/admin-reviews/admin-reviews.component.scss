@@ -1,0 +1,32 @@
+@import "~src/styles/imports";
+
+.table {
+  border-color: #075ac9;
+  margin: 3rem;
+  width: 95%;
+
+  thead {
+    border: 0.1rem solid #075ac9;
+    tr {
+      background-color: #075ac9;
+    }
+
+    th {
+      padding: 1.5rem;
+      color: white;
+      font-weight: bold;
+      border-color: #075ac9;
+      max-width: 13rem;
+    }
+  }
+
+  tbody {
+    border: 0.1rem solid $grey-shade-2;
+  }
+
+  td {
+    vertical-align: middle;
+    padding: 1.5rem;
+    max-width: 13rem;
+  }
+}

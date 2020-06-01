@@ -1,0 +1,33 @@
+@import "~src/styles/imports";
+
+.add-testimony {
+  padding: 3rem;
+
+  &__container {
+    @include flex(row);
+
+    .image-container {
+      width: 30%;
+      padding: 3rem;
+
+      .image-holder{
+        @include flex(row);
+        @include flex-alignment(center, center);
+        background-color: #f1f1f1;
+        height: 100%;
+        width: 100%;
+        border: 1px solid rgba(0,0,0, 0.3);
+        cursor: pointer;
+
+        &:hover {
+          box-shadow: 2px 2px 4px 5px #f1f1f1;
+        }
+      }
+    }
+
+    .field-container {
+      width: 70%;
+      padding: 3rem;
+    }
+  }
+}

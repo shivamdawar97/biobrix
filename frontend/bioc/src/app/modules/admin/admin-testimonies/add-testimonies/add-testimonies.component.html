@@ -1,0 +1,24 @@
+<form [formGroup]="form" class="add-testimony" (ngSubmit)="onSubmit()">
+  <div class="add-testimony__container">
+    <div class="image-container">
+      <div class="image-holder" *ngIf="!selectedImage" (click)="image.click()">
+        Select image
+      </div>
+      <input type="file" accept="image/*" #image hidden (change)="onChange($event)">
+      <img *ngIf="selectedImage" [src]="selectedImage" alt="selected image" style="object-fit: contain" width="300" height="200" (click)="image.click()">
+    </div>
+    <div class="field-container">
+      <div class="form-group">
+        <label for="customerName">Name</label>
+        <input id="customerName" class="form-control form-control-lg" formControlName="customer_name" placeholder="Customer name">
+      </div>
+      <div class="form-group">
+        <label for="testimony">Testimony</label>
+        <textarea rows="5" id="testimony" class="form-control form-control-lg" formControlName="testimony" placeholder="Testimony"></textarea>
+      </div>
+    </div>
+  </div>
+  <div style="display: flex; flex-direction: column;">
+    <button style="align-self: flex-end" class="btn primary-button">Add</button>
+  </div>
+</form>

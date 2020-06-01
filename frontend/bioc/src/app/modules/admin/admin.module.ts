@@ -18,6 +18,8 @@ import { AuthInterceptorService } from './auth-interceptor.service';
 import { FilterPipe } from './admin-products/filter.pipe';
 import { AdminOrderDetailsComponent } from './admin-orders/admin-order-details/admin-order-details.component';
 import {AdminOrderService} from "./admin-orders/admin-order.service";
+import { AdminSlideshowAddComponent } from './admin-slideshow/admin-slideshow-add/admin-slideshow-add.component';
+import { AddTestimoniesComponent } from './admin-testimonies/add-testimonies/add-testimonies.component';
 
 const routes: Routes = [
   { path: '', component: AdminComponent,
@@ -30,7 +32,9 @@ const routes: Routes = [
       { path:'orders', component: AdminOrdersComponent  },
       { path:'orders/:id', component: AdminOrderDetailsComponent  },
       { path:'slideshow', component: AdminSlideshowComponent  },
+      {path: 'slideshow/add', component: AdminSlideshowAddComponent},
       { path:'testimonies', component: AdminTestimoniesComponent  },
+      {path: 'testimonies/add', component: AddTestimoniesComponent},
       { path:'pending_reviews', component: AdminReviewsComponent  }
     ]
   }
@@ -48,7 +52,9 @@ const routes: Routes = [
     LoadingSpinnerComponent,
     AdminProductsAddComponent,
     FilterPipe,
-    AdminOrderDetailsComponent
+    AdminOrderDetailsComponent,
+    AdminSlideshowAddComponent,
+    AddTestimoniesComponent
   ],
   imports: [
     CommonModule,
@@ -66,4 +72,5 @@ const routes: Routes = [
     RouterModule
   ]
 })
-export class AdminModule { }
+export class AdminModule {
+}

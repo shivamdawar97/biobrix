@@ -1,0 +1,39 @@
+<div class="slideshow-add">
+  <input type="file" accept="image/*" hidden #imageInput [formControl]="image" (change)="onChange($event)">
+  <div class="image-holder" (click)="imageInput.click()" *ngIf="!file">
+    Select image
+  </div>
+
+  <div *ngIf="file">
+    <img src="{{this.file}}" height="300" alt="selected image" (click)="imageInput.click()">
+  </div>
+
+  <div class="product-selection">
+    <h2>Select product : </h2>
+    <div class="dropdown">
+      <button class="btn primary-button dropdown-toggle" id="selectProduct" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{ !!selectedItem ? 'Change' : 'Select' }}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="selectProduct">
+        <div class="dropdown-item" *ngFor="let item of list" (click)="itemSelected(item)">
+          <div>
+            <img src="{{item.image}}" width="40" height="40">
+            <span style="margin-left: 2rem;font-size: 18px">{{item.product_name}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="selected-item">
+    <div *ngIf="!selectedItem">
+      No product selected
+    </div>
+    <div *ngIf="selectedItem" class="selected-item__box">
+      <img src="{{selectedItem.image}}" width="300" height="300" alt="product image" style="object-fit: contain">
+      <span style="font-size: 20px; margin-right: 3rem">{{selectedItem.product_name}}</span>
+    </div>
+  </div>
+  <div>
+    <button class="btn primary-button" type="button" (click)="addSlide()">Add slide</button>
+  </div>
+</div>
