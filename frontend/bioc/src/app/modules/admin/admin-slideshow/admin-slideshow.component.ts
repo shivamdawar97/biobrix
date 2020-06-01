@@ -27,8 +27,8 @@ export class AdminSlideshowComponent implements OnInit {
     this.utilityService.showLoader.next(true);
     this.slidshowApiService.deleteSlide(this.currentId).subscribe(res => {
       console.log('product deleted');
-      this.fetchList();
       this.utilityService.showLoader.next(false);
+      this.fetchList();
     }, err => this.utilityService.showLoader.next(false));
   }
 

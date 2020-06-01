@@ -35,14 +35,12 @@ export class TestimonyApiService {
     }).pipe(catchError(this.httpErrorHandlerService.handleErr));
   }
 
-  addTestimony(data) {
+  addTestimony(data: {image: File, testimony: string, customer_name: string}) {
     const url = `${this.BASE_URL}${ADD_TESTIMONY_API}`;
-    const image = data.image;
-    delete data.image;
-    const updatedData = JSON.stringify(data);
     const form = new FormData();
-    form.append('data', updatedData);
-    form.append('image', image, 'image');
+    form.append('customer_name', data.customer_name);
+    form.append('testimony', data.testimony);
+    form.append('image', data.image, 'image');
     return this.http.post(url, form, {
       headers: new HttpHeaders().set('Authorization', `Bearer ${this.authService.userSubject.value.token}`)
     }).pipe(catchError(this.httpErrorHandlerService.handleErr));

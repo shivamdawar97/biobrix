@@ -1,8 +1,8 @@
 <div class="slideshow">
   <div *ngFor="let slideshow of list" class="item">
-    <img src="{{slideshow.image_url}}" height="250">
+    <img src="{{slideshow.image}}" height="250">
     <div class="overlay"></div>
-    <span class="icon" data-toggle="modal" data-target="#confirmationModal" (click)="onModalClick(slideshow._id)">
+    <span class="icon" data-toggle="modal" data-target="#confirmationModal" (click)="onModalClick(slideshow.id)">
           <i class="fa fa-trash"></i>
         </span>
   </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {TestimonyApiService} from '../../../../core/http/testimony-api.service';
 import {UtilityService} from '../../../../core/services/utility.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-testimonies',
@@ -15,7 +16,8 @@ export class AddTestimoniesComponent implements OnInit {
   selectedImage: string;
 
   constructor(private testimonyApiService: TestimonyApiService,
-              private utilityService: UtilityService) { }
+              private utilityService: UtilityService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -33,15 +35,15 @@ export class AddTestimoniesComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('data is ', this.form.value, this.file);
     const data = {
       ...this.form.value,
       image: this.file
-    };
+    } as { image: File, customer_name: string, testimony: string};
     this.utilityService.showLoader.next(true);
     this.testimonyApiService.addTestimony(data).subscribe(res => {
       console.log('added resutl is ' , res);
       this.utilityService.showLoader.next(false);
+      this.router.navigate(['/', 'private-path', 'admin', 'testimonies']);
     }, err => this.utilityService.showLoader.next(false));
   }
 

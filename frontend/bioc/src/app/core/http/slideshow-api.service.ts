@@ -12,9 +12,12 @@ import {ProductDetail} from '../models/product-detail.model';
 
 
 export interface Slideshow {
-  image_url: string;
-  product_id: string;
-  _id: string;
+  image: string;
+  id: string;
+  product: {
+    image: string;
+    product_id: string;
+  };
 }
 
 @Injectable({providedIn: 'root'})
@@ -41,13 +44,10 @@ export class SlideshowApiService {
   }
 
 
-  addSlide(value: any) {
-    const image = value.image;
-    delete value.image;
-    const data = JSON.stringify(value);
+  addSlide(value: {image: File, product_id: string}) {
     const form = new FormData();
-    form.append('data', data);
-    form.append('image', image, 'image');
+    form.append('product_id', value.product_id);
+    form.append('image', value.image, 'image');
     const url = `${this.BASE_URL}${PAGER_PRODUCT_API}`;
     return this.http.post<ProductDetail>(url, form,
       {
