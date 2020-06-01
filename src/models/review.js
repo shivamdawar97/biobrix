@@ -1,13 +1,13 @@
 const review = {
-    product_id : {
+   product_id : {
         type:String,
         required:true
-    },
+   },
    rating:{
        type: Number,
        required:true
    },
-    reviewer_name:{
+   reviewer_name:{
     type:String,
     required:true
    },

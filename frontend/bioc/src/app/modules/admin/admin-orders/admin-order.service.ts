@@ -40,13 +40,15 @@ export class AdminOrderService{
     return this.http.patch<OrderDetail[]>(url,
       { status },
       { headers: new HttpHeaders().set('Authorization',`Bearer ${this.token}`) },
-
     ).pipe(catchError(this.httpErrorHandlerService.handleErr));
 
   }
 
-  deleteOrder() {
-
+  deleteOrder(id:string) {
+    const url = `${this.BASE_URL}${DELETE_ORDER_API}${id}`;
+    return this.http.delete<OrderDetail[]>(url,
+      { headers: new HttpHeaders().set('Authorization',`Bearer ${this.token}`) },
+    ).pipe(catchError(this.httpErrorHandlerService.handleErr));
   }
 
 

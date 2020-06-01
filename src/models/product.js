@@ -52,13 +52,13 @@ const productSchema = new mongoose.Schema({
 productSchema.methods.getShortProduct = function(){
 
     const product = this
-    const shortProduct = {
+    return  {
         product_id : product._id,
         product_name: product.product_name,
         price: product.price,
         image: product.images[0]
     }
-    return shortProduct
+
 }
 
 productSchema.index({

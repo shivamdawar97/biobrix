@@ -9,15 +9,15 @@ const transactionVerification = require('../paytm/controller').verification
 router.post('/order/verify_cart',async (req,res)=> {
     try{
         const cartProducts =  req.body.products
-        if(cartProducts == undefined || cartProducts.length==0) throw Error('No products provided')
-        var total = 0
+        if(!cartProducts) throw Error('No products provided')
+        let total = 0
         const orderProducts = []
           for (const cartProduct of cartProducts)  {
 
             const product = await Product.findById(cartProduct.product_id)
             if(!product)
             throw new Error('Invalid product id')
-            const allOk = 
+            const allOk =
             cartProduct.product_name === product.product_name &&
             cartProduct.image === product.images[0] &&
             cartProduct.price === product.price 

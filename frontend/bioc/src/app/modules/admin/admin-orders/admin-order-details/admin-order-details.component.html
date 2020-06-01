@@ -79,19 +79,28 @@
           </div>
         </div>
 
-        <button *ngIf="order.order_status === 'placed'" class="btn btn-primary"
-        (click)="updateStatus('dispatched')"
-        > Order dispatched </button>
+        <div *ngIf="!isLoading ; else loading_circular">
+          <button *ngIf="order.order_status === 'placed'" class="btn btn-primary"
+                  (click)="updateStatus('dispatched')"
+          > Order dispatched </button>
 
-        <button *ngIf="order.order_status === 'dispatched'" class="btn btn-primary"
-        (click)="updateStatus('delivered')"
-        > Order delivered </button>
+          <button *ngIf="order.order_status === 'dispatched'" class="btn btn-primary"
+                  (click)="updateStatus('delivered')"
+          > Order delivered </button>
 
-        <button *ngIf="order.order_status !== 'placed'" class="btn btn-danger"
-        (click)="updateStatus('cancel')"
-        > Cancel this order </button>
+          <button *ngIf="order.order_status !== 'cancel'" class="btn btn-danger"
+                  (click)="updateStatus('cancel')"
+          > Cancel this order </button>
 
-        <button class="btn btn-danger" (click)="deleteOrder()"> Delete this order </button>
+          <button class="btn btn-danger" (click)="deleteOrder()"> Delete this order </button>
+
+        </div>
+
+        <ng-template #loading_circular>
+          <div style="text-align: center;">
+            <app-loading-spinner></app-loading-spinner>
+          </div>
+        </ng-template>
 
     </div>
   </div>
