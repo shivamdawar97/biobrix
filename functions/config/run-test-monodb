@@ -1,0 +1,6 @@
+cd ~ && /home/shivam97/mongodb/bin/mongod --dbpath=/home/shivam97/mongodb-data
+npm run dev
+cd frontend/bioc && ng serve
+kill -9 $(lsof -t -i:3000)
+
+
