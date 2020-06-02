@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ng-complete1": {
+      "hosting": {
+        "bioc": [
+          "ng-complete1"
+        ]
+      }
+    }
+  }
+}

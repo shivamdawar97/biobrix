@@ -116,8 +116,6 @@ router.get('/homepage/get_pager_products',auth,async (req,res) => {
     }catch (error) {
         res.status(400).send({error})
     }
-
-
 })
 
 router.post('/homepage/pager_product',auth,upload.single('image'),async (req,res)=>{
