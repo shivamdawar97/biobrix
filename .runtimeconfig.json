@@ -1,0 +1,10 @@
+{
+  "biobrix": {
+    "paytm_merchant_id": "GpfBCX42323873899427",
+    "twilio_service_id": "VA149f5b0c6ad2660ec1f44e255bbb1948",
+    "paytm_merchant_key": "HFfseLgiqJf7ZLvB",
+    "mongodb_url": "mongodb://127.0.0.1:27017/biobrix-test",
+    "twilio_account_sid": "AC484d9c6b26a7da5e3c255f8b2b841aaf",
+    "twilio_auth_token": "4946d866bf498c2f5e3fd6ae26ab27c8"
+  }
+}

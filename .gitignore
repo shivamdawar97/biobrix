@@ -1,6 +1,6 @@
 node_modules
-src/config/dev.env
-src/config/firebase-key2.json
-src/config/run-test-monodb
-src/middleware/storage.js
+functions/config/dev.env
+functions/config/firebase-key2.json
+functions/config/run-test-monodb
+functions/middleware/storage.js
 images

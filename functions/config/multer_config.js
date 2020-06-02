@@ -1,10 +1,12 @@
 const multer = require('multer')
 const S3_BUCKET = process.env.S3_BUCKET_NAME;
 const multerS3 = require('multer-s3')
-const aws = require('../db/aws')
-const s3 = new aws.S3()
 
-const upload=multer({
+//
+// const aws = require('../db/aws')
+// const s3 = new aws.S3()
+
+/*const upload=multer({
     storage: multerS3({
         s3,
         bucket: `${S3_BUCKET}/images`,
@@ -29,7 +31,7 @@ const upload=multer({
         }
         cb(undefined,true) //if everything goes well (pass 'flase' if u want to reject the upload)
     }
-})
+})*/
 
 const upload2 = multer({
     fileFilter: function (req, file, cb) {
@@ -63,4 +65,4 @@ const upload3 = multer({storage: storage})
 
 const upload4 = multer({dest:'images/product-images'})
 
-module.exports = { upload,upload2,upload3,upload4 }
+module.exports = { upload2,upload3,upload4 }
