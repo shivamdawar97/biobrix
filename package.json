@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run shell",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "functions/node_modules/.bin/env-cmd -f config/dev.env nodemon --ignore 'config/firebase-key.json' index.js",
+    "dev": "node_modules/.bin/env-cmd -f config/dev.env nodemon --ignore 'config/firebase-key.json' index.js",
     "lint": "../node_modules/.bin/eslint functions",
     "serve": "firebase emulators:start --only ",
     "shell": "firebase functions:shell",
@@ -16,7 +16,6 @@
   "engines": {
     "node": "10"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://gitlab.com/developer.shano/bioc.git"

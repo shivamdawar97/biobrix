@@ -1,6 +1,6 @@
 const multer = require('multer')
-const S3_BUCKET = process.env.S3_BUCKET_NAME;
-const multerS3 = require('multer-s3')
+// const S3_BUCKET = process.env.S3_BUCKET_NAME;
+// const multerS3 = require('multer-s3')
 
 //
 // const aws = require('../db/aws')
@@ -47,12 +47,22 @@ const MIME_TYPE_MAP = {
     'image/jpg': 'jpg'
 }
 
-const storage = multer.diskStorage({
-    destination: (req,file,cb) => {
-
-        const isValid = MIME_TYPE_MAP[file.mimetype];
-        cb(isValid?null:new Error('Invalid mime type'),'images/product-images')
-    },
+// const storage = multer.diskStorage({
+//     destination: (req,file,cb) => {
+//
+//         const isValid = MIME_TYPE_MAP[file.mimetype];
+//         cb(isValid?null:new Error('Invalid mime type'),'images/product-images')
+//     },
+//     filename: (req,file,cb) => {
+//
+//         const name = file.originalname.toLowerCase().split(' ').join('-'); //this will miss the file extenstion
+//         const ext = MIME_TYPE_MAP[file.mimetype];
+//         cb(null,  `${name}-${Date.now()}.${ext}`)
+//     }
+// })
+//
+// const upload3 = multer({storage: storage})
+const upload3 = multer({
     filename: (req,file,cb) => {
 
         const name = file.originalname.toLowerCase().split(' ').join('-'); //this will miss the file extenstion
@@ -61,8 +71,5 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload3 = multer({storage: storage})
 
-const upload4 = multer({dest:'images/product-images'})
-
-module.exports = { upload2,upload3,upload4 }
+module.exports = { upload2,upload3 }
