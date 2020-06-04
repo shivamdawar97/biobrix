@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:heroku" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:npm_and_yarn" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:npm_and_yarn" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:frontend" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:npm_and_yarn" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:frontend" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:bioc" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1e6315f4-e6f5-40da-bc4e-9b4ce48113e9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/config/config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/config/firebase-key.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/config/firebase_admin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/config/multer_config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/db/aws.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/db/mongoose.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/middleware/auth.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/models/category.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/models/order.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/models/pager_products.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/models/pending_review.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/models/product.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/models/product_short.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/models/review.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/models/testimonoal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/paytm/checksum/checksum.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/paytm/checksum/crypt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/paytm/checksum/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/paytm/controller/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/paytm/controller/paytm.controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/paytm/controller/paytm.router.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/routers/auth_router.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/routers/category_router.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/routers/file_upload.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/routers/homepage_router.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/routers/order_router.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/routers/product_router.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/routers/review_router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/bioc.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/3rdpartylicenses.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/5-es2015.30ce5ea86b973d362108.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/5-es5.30ce5ea86b973d362108.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/6-es2015.2ca70cb276dfe0e080e1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/6-es5.2ca70cb276dfe0e080e1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/assets/BIOBRIX_LOGO.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/assets/category_background.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/assets/images/loader.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/category_background.e57b33da6fa34a47171e.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/fa-brands-400.31015e861aeb30ff8355.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/fa-brands-400.3c45c98f6f6c1b009c08.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/fa-brands-400.5818bbd07dfd7095920a.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/fa-brands-400.607a77859353c0cc1882.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/fa-brands-400.ee26f57bc9e3619b022b.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/fa-regular-400.0747be4cba2f8600544f.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/fa-regular-400.8b892b7904a39e37c53d.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/fa-regular-400.ab47faeab8ddc5f809ec.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/fa-regular-400.c3146b3524e97475c094.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/fa-regular-400.c52405129ae48097815d.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/fa-solid-900.18df003f90a7f1313b98.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/fa-solid-900.32267f3b4db33a7c85ee.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/fa-solid-900.7eefe04dc985dd4ad38b.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/fa-solid-900.9451d5fee89b51a20f8a.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/fa-solid-900.a940d584750708f5435c.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/fontawesome-webfont.20fd1704ea223900efa9.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/fontawesome-webfont.8b43027f47b20503057d.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/fontawesome-webfont.f691f37e57f04c152e23.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/main-es2015.58a18372d9f3abaa913f.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/main-es5.58a18372d9f3abaa913f.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/polyfills-es2015.02429dd87abccfa4c81c.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/polyfills-es5.c34771dbb32b991ba176.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/runtime-es2015.e02d7d4cd870489bf32a.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/runtime-es5.e02d7d4cd870489bf32a.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/scripts.43a5b4a7839d2b11b722.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/styles.25584b2245823bbf314c.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bioc/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/bioc/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/config/dev.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/config/firebase-key2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/config/run-test-monodb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/firebase-key.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/firebase_admin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/multer_config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/aws.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/mongoose.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/middleware/auth.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/middleware/storage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/category.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/order.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/pager_products.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/pending_review.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/product.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/product_short.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/review.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/testimonoal.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/paytm/checksum/checksum.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/paytm/checksum/crypt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/paytm/checksum/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/paytm/controller/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/paytm/controller/paytm.controller.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/paytm/controller/paytm.router.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routers/auth_router.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routers/category_router.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routers/file_upload.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routers/homepage_router.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routers/order_router.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routers/product_router.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routers/review_router.js" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1c5u42tksfzPICchQk1NXGN5jsg" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="full.screen.before.presentation.mode" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../task-manager" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/frontend/bioc/node_modules/typescript/lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/bioc/src/app/modules/admin" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backend" />
+      <recent name="$PROJECT_DIR$/src/config" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/functions" />
+      <recent name="$PROJECT_DIR$/frontend" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1e6315f4-e6f5-40da-bc4e-9b4ce48113e9" name="Default Changelist" comment="" />
+      <created>1589830580681</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1589830580681</updated>
+      <workItem from="1589830581990" duration="5625000" />
+      <workItem from="1589878412244" duration="250000" />
+      <workItem from="1589878694101" duration="520000" />
+      <workItem from="1589879242459" duration="2315000" />
+      <workItem from="1589907870633" duration="6599000" />
+      <workItem from="1590229260220" duration="600000" />
+      <workItem from="1590482993684" duration="287000" />
+      <workItem from="1590483317990" duration="64000" />
+      <workItem from="1590493839086" duration="3388000" />
+      <workItem from="1590497864296" duration="20921000" />
+      <workItem from="1590568905906" duration="20064000" />
+      <workItem from="1590612650105" duration="2446000" />
+      <workItem from="1590653740376" duration="1287000" />
+      <workItem from="1590658996598" duration="16243000" />
+      <workItem from="1590730525940" duration="17731000" />
+      <workItem from="1590833039298" duration="7546000" />
+      <workItem from="1590861388890" duration="9941000" />
+      <workItem from="1590907447613" duration="17247000" />
+      <workItem from="1590991155486" duration="4065000" />
+      <workItem from="1591018185379" duration="13097000" />
+      <workItem from="1591038320310" duration="742000" />
+      <workItem from="1591083176457" duration="5659000" />
+      <workItem from="1591103775629" duration="5286000" />
+      <workItem from="1591112076726" duration="8396000" />
+      <workItem from="1591124933933" duration="2151000" />
+      <workItem from="1591152228048" duration="2584000" />
+      <workItem from="1591166858958" duration="7542000" />
+      <workItem from="1591197771326" duration="7482000" />
+      <workItem from="1591242475171" duration="592000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="330" y="133" width="695" height="471" key="#Log_Highlighting_(ideolog)" timestamp="1591116995871">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="330" y="133" width="695" height="471" key="#Log_Highlighting_(ideolog)/0.0.1366.768/1366.0.1360.768@0.0.1366.768" timestamp="1591116995871" />
+    <state x="141" y="23" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589833853903">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="141" y="23" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.768/1366.0.1360.768@0.0.1366.768" timestamp="1589833853903" />
+    <state x="366" y="103" width="624" height="531" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1590483259441">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="366" y="103" width="624" height="531" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.768@0.0.1366.768" timestamp="1590483259441" />
+    <state x="416" y="115" width="524" height="508" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1591122948915">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="416" y="115" width="524" height="508" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.768/1366.0.1360.768@0.0.1366.768" timestamp="1591122948915" />
+    <state x="315" y="145" width="726" height="448" key="EditFileWatcherDialog" timestamp="1589833378023">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="315" y="145" width="726" height="448" key="EditFileWatcherDialog/0.0.1366.768/1366.0.1360.768@0.0.1366.768" timestamp="1589833378023" />
+    <state x="1807" y="218" width="424" height="491" key="FileChooserDialogImpl" timestamp="1590610163119">
+      <screen x="1366" y="0" width="1360" height="768" />
+    </state>
+    <state x="1807" y="218" width="424" height="491" key="FileChooserDialogImpl/0.0.1366.768/1366.0.1360.768@0.0.1366.768" timestamp="1590610163119" />
+    <state width="1344" height="211" key="GridCell.Tab.0.bottom" timestamp="1591096712883">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1344" height="211" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1591096712883" />
+    <state width="1344" height="211" key="GridCell.Tab.0.center" timestamp="1591096712880">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1344" height="211" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1591096712880" />
+    <state width="1344" height="211" key="GridCell.Tab.0.left" timestamp="1591096712879">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1344" height="211" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1591096712879" />
+    <state width="1344" height="211" key="GridCell.Tab.0.right" timestamp="1591096712882">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1344" height="211" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1591096712882" />
+    <state x="179" y="0" width="1007" height="737" key="SettingsEditor" timestamp="1590674171341">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="179" y="0" width="1007" height="737" key="SettingsEditor/0.0.1366.768/1366.0.1360.768@0.0.1366.768" timestamp="1590674171341" />
+    <state x="179" y="0" width="1007" height="737" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1589879169327" />
+    <state x="370" y="0" width="625" height="768" key="find.popup" timestamp="1591173994171">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="370" y="0" width="625" height="768" key="find.popup/0.0.1366.768/1366.0.1360.768@0.0.1366.768" timestamp="1591112190645" />
+    <state x="370" y="0" width="625" height="768" key="find.popup/0.0.1366.768@0.0.1366.768" timestamp="1591173994171" />
+    <state x="346" y="155" width="664" height="427" key="git4idea.merge.GitPullDialog" timestamp="1590533354465">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="346" y="155" width="664" height="427" key="git4idea.merge.GitPullDialog/0.0.1366.768/1366.0.1360.768@0.0.1366.768" timestamp="1590533354465" />
+    <state x="554" y="261" width="350" height="298" key="org.angular.cli.generate" timestamp="1590676217094">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="554" y="261" width="350" height="298" key="org.angular.cli.generate/0.0.1366.768/1366.0.1360.768@0.0.1366.768" timestamp="1590676217094" />
+    <state x="418" y="245" width="794" height="491" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1590498313463">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="418" y="245" width="794" height="491" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1366.768/1366.0.1360.768@0.0.1366.768" timestamp="1590498313463" />
+    <state x="346" y="89" key="search.everywhere.popup" timestamp="1590497715203">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="346" y="89" key="search.everywhere.popup/0.0.1366.768/1366.0.1360.768@0.0.1366.768" timestamp="1590497715203" />
+  </component>
+</project>
