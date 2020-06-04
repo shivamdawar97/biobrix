@@ -1,4 +1,4 @@
-const admin = require('../config/firebase_admin')
+const admin = require('firebase_admin')
 const bucket =  admin.storage().bucket()
 
 

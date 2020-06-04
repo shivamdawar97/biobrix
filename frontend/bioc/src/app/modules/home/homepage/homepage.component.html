@@ -1,10 +1,17 @@
 <div class="main-container">
-  <div id="pagerProducts fadeIn animated" class="carousel slide" data-ride="carousel">
+
+  <div id="pagerProducts" class="carousel slide" data-ride="carousel">
+
+    <ol class="carousel-indicators">
+      <li *ngFor="let p of homepage?.pagerProducts; let i = index" data-target="#pagerProducts" data-slide-to="i" [ngClass]="{'active': i === 0}" ></li>
+    </ol>
+
     <div class="carousel-inner">
       <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let page of homepage?.pagerProducts; let i = index">
         <img class="d-block w-100" src="{{page.image_url}}" alt="First slide">
       </div>
     </div>
+
     <a class="carousel-control-prev" href="#pagerProducts" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
@@ -13,7 +20,9 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
+
   </div>
+
   <section class="product-type-section animated fadeIn">
     <div class="section-header">
       ALL TYPE OF BODY CARE PRODUCTS
@@ -41,6 +50,7 @@
       </div>
     </div>
   </section>
+
   <section class="recent-products fadeIn animated">
     <div class="section-header">
       <div class="section-header__heading">RECENT PRODUCTS</div>
@@ -66,6 +76,7 @@
       </a>
     </div>
   </section>
+
   <section class="testimonies fadeIn animated">
     <div class="section-header">
       <div class="section-header__heading">Testimonials</div>
