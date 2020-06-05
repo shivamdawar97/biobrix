@@ -119,7 +119,7 @@ export class AdminProductsAddComponent implements OnInit,OnDestroy {
     const reader = new FileReader();
     reader.onload = _ => this.imagePreview = reader.result as string
     reader.readAsDataURL(file)
-
+    this.productService.uploadFile(file)
   }
 
   ngOnDestroy(): void {

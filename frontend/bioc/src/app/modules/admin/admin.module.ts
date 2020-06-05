@@ -20,6 +20,17 @@ import {AdminOrderDetailsComponent} from './admin-orders/admin-order-details/adm
 import {AdminOrderService} from './admin-orders/admin-order.service';
 import {AdminSlideshowAddComponent} from './admin-slideshow/admin-slideshow-add/admin-slideshow-add.component';
 import {AddTestimoniesComponent} from './admin-testimonies/add-testimonies/add-testimonies.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage';
+
+const fireConfig = {
+  apiKey: 'AIzaSyBPzOGjeRRrGLc-VCNonR6jCf7C7QWmYHg',
+  authDomain: 'biobrix-0.firebaseapp.com',
+  projectId: 'biobrix-0',
+  appId: "1:191952306992:web:f9481d8075cb1bfaf13ef5",
+  measurementId: "G-YG5X7TP89G",
+  storageBucket: 'biobrix-0.appspot.com'
+}
 
 const routes: Routes = [
   {
@@ -61,9 +72,15 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(fireConfig),
+    AngularFireStorageModule
   ],
   providers: [AdminProductService, AdminOrderService,
+    {
+      provide: BUCKET,
+      useValue: 'biobrix-0'
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

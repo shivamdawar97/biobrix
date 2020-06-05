@@ -4,10 +4,12 @@ import { ProductDetail } from 'src/app/core/models/product-detail.model';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpErrorHandlerService } from 'src/app/core/http/http-error-handler.service';
-import { catchError } from 'rxjs/operators';
+import {catchError, finalize} from 'rxjs/operators';
 import { AuthService } from '../auth.service';
 import { Category } from 'src/app/core/models/category.model';
 import { error } from '@angular/compiler/src/util';
+import { AngularFireStorage } from '@angular/fire/storage';
+
 
 @Injectable()
 export class AdminProductService {
@@ -18,12 +20,15 @@ export class AdminProductService {
   PRODUCT_UPDATE_API = 'product/update';
 
   products : ProductDetail[];
+  private uploadPercent: Observable<number>;
+  private downloadURL : Observable<string>;
 
 
   constructor( private http: HttpClient,
-    private httpErrorHandlerService: HttpErrorHandlerService,private authservice: AuthService){
-
-    }
+    private httpErrorHandlerService: HttpErrorHandlerService,
+    private authservice: AuthService,
+    private storage: AngularFireStorage
+               ){}
 
   getProductList(): Observable<Array<ProductDetail>> {
 
@@ -85,5 +90,20 @@ export class AdminProductService {
       ).pipe(catchError(this.httpErrorHandlerService.handleErr));
 
 
+  }
+
+  uploadFile(file: File) {
+    const filePath = 'products/image';
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+
+    // observe percentage changes
+    this.uploadPercent = task.percentageChanges();
+    // get notified when the download URL is available
+    task.snapshotChanges().pipe(
+      finalize(() => this.downloadURL = fileRef.getDownloadURL() )
+    ).subscribe( ()=>
+        this.downloadURL.subscribe( url => console.log(url) )
+    )
   }
 }
