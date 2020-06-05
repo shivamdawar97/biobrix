@@ -55,121 +55,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e6315f4-e6f5-40da-bc4e-9b4ce48113e9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/config/config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/config/firebase-key.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/config/firebase_admin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/config/multer_config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/db/aws.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/db/mongoose.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/middleware/auth.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/models/category.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/models/order.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/models/pager_products.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/models/pending_review.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/models/product.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/models/product_short.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/models/review.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/models/testimonoal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/paytm/checksum/checksum.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/paytm/checksum/crypt.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/paytm/checksum/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/paytm/controller/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/paytm/controller/paytm.controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/paytm/controller/paytm.router.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/routers/auth_router.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/routers/category_router.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/routers/file_upload.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/routers/homepage_router.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/routers/order_router.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/routers/product_router.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/routers/review_router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/bioc.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/3rdpartylicenses.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/5-es2015.30ce5ea86b973d362108.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/5-es5.30ce5ea86b973d362108.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/6-es2015.2ca70cb276dfe0e080e1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/6-es5.2ca70cb276dfe0e080e1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/assets/BIOBRIX_LOGO.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/assets/category_background.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/assets/images/loader.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/category_background.e57b33da6fa34a47171e.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/fa-brands-400.31015e861aeb30ff8355.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/fa-brands-400.3c45c98f6f6c1b009c08.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/fa-brands-400.5818bbd07dfd7095920a.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/fa-brands-400.607a77859353c0cc1882.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/fa-brands-400.ee26f57bc9e3619b022b.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/fa-regular-400.0747be4cba2f8600544f.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/fa-regular-400.8b892b7904a39e37c53d.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/fa-regular-400.ab47faeab8ddc5f809ec.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/fa-regular-400.c3146b3524e97475c094.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/fa-regular-400.c52405129ae48097815d.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/fa-solid-900.18df003f90a7f1313b98.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/fa-solid-900.32267f3b4db33a7c85ee.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/fa-solid-900.7eefe04dc985dd4ad38b.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/fa-solid-900.9451d5fee89b51a20f8a.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/fa-solid-900.a940d584750708f5435c.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/fontawesome-webfont.20fd1704ea223900efa9.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/fontawesome-webfont.8b43027f47b20503057d.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/fontawesome-webfont.f691f37e57f04c152e23.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main-es2015.58a18372d9f3abaa913f.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/main-es5.58a18372d9f3abaa913f.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/polyfills-es2015.02429dd87abccfa4c81c.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/polyfills-es5.c34771dbb32b991ba176.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/runtime-es2015.e02d7d4cd870489bf32a.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/runtime-es5.e02d7d4cd870489bf32a.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/scripts.43a5b4a7839d2b11b722.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/styles.25584b2245823bbf314c.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/bioc/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/bioc/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/config/dev.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/config/firebase-key2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/config/run-test-monodb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/firebase-key.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/firebase_admin.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/multer_config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/aws.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/mongoose.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middleware/auth.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middleware/storage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/category.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/order.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/pager_products.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/pending_review.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/product.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/product_short.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/review.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/testimonoal.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/paytm/checksum/checksum.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/paytm/checksum/crypt.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/paytm/checksum/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/paytm/controller/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/paytm/controller/paytm.controller.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/paytm/controller/paytm.router.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routers/auth_router.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routers/category_router.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routers/file_upload.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routers/homepage_router.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routers/order_router.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routers/product_router.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routers/review_router.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bioc/src/app/modules/admin/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/bioc/src/app/modules/admin/auth.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,15 +101,15 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/frontend/bioc/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/frontend/bioc/src/app/modules/admin" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/backend" />
       <recent name="$PROJECT_DIR$/src/config" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/functions" />
       <recent name="$PROJECT_DIR$/frontend" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/bioc/src/app/modules/admin" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -264,6 +151,10 @@
       <workItem from="1591166858958" duration="7542000" />
       <workItem from="1591197771326" duration="7482000" />
       <workItem from="1591242475171" duration="592000" />
+      <workItem from="1591289644907" duration="2449000" />
+      <workItem from="1591332593816" duration="126000" />
+      <workItem from="1591332806731" duration="41000" />
+      <workItem from="1591332964111" duration="959000" />
     </task>
     <servers />
   </component>
@@ -291,10 +182,10 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="141" y="23" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.768/1366.0.1360.768@0.0.1366.768" timestamp="1589833853903" />
-    <state x="366" y="103" width="624" height="531" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1590483259441">
+    <state x="366" y="103" width="624" height="531" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1591332712375">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="366" y="103" width="624" height="531" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.768@0.0.1366.768" timestamp="1590483259441" />
+    <state x="366" y="103" width="624" height="531" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.768@0.0.1366.768" timestamp="1591332712375" />
     <state x="416" y="115" width="524" height="508" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1591122948915">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
