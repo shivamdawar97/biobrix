@@ -29,7 +29,7 @@ export class PrimaryHeaderComponent implements OnInit {
       .subscribe({
         next: (data: Array<Category>) => {
           this.categoryList = data;
-          this.dataService.categoryList = data.splice(0, 2);
+          // this.dataService.categoryList = data.splice(0, 2);
           this.categoryList.push(DefaultCategory);
         }
       });

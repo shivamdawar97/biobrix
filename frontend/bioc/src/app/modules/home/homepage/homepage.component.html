@@ -3,49 +3,49 @@
   <div id="pagerProducts" class="carousel slide" data-ride="carousel">
 
     <ol class="carousel-indicators">
-      <li *ngFor="let p of homepage?.pagerProducts; let i = index" data-target="#pagerProducts" data-slide-to="i" [ngClass]="{'active': i === 0}" ></li>
+      <li *ngFor="let p of homepage?.pagerProducts; let i = index" data-target="#pagerProducts" attr.data-slide-to="{{i}}" [ngClass]="{'active': i === 0}" ></li>
     </ol>
 
     <div class="carousel-inner">
       <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let page of homepage?.pagerProducts; let i = index">
-        <img class="d-block w-100" src="{{page.image_url}}" alt="First slide">
+        <img class="d-block w-100" src="{{page.image_url}}" alt="First slide" (click)="productDetail(page.product_id)" style="cursor: pointer" >
       </div>
     </div>
 
     <a class="carousel-control-prev" href="#pagerProducts" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <i class="fa-arrow-circle-left carousel-control-bg"></i>
       <span class="sr-only">Previous</span>
     </a>
     <a class="carousel-control-next" href="#pagerProducts" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <i class="fa-arrow-circle-right carousel-control-bg"></i>
       <span class="sr-only">Next</span>
     </a>
 
   </div>
 
   <section class="product-type-section animated fadeIn">
-    <div class="section-header">
-      ALL TYPE OF BODY CARE PRODUCTS
-    </div>
+    <h2 class="heading-secondary">
+      ALL TYPES OF BODY CARE PRODUCTS
+    </h2>
     <div class="product-type">
       <div class="product-type__item dry-skin">
         <div class="product-type__item--item-hover">
-          Dry skin
+          DRY SKIN
         </div>
       </div>
       <div class="product-type__item oily-skin">
         <div class="product-type__item--item-hover">
-          Oily skin
+          OILY SKIN
         </div>
       </div>
       <div class="product-type__item hair-care">
         <div class="product-type__item--item-hover">
-          Hair care
+          HAIR CARE
         </div>
       </div>
       <div class="product-type__item sun-protection">
         <div class="product-type__item--item-hover">
-          Sun protection
+          SUN PROTECTION
         </div>
       </div>
     </div>

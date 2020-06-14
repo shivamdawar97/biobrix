@@ -1,5 +1,6 @@
 @import "src/styles/imports";
-
+@import url('https://fonts.googleapis.com/css2?family=Lateef&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
 .section-header {
   padding-top: 30px;
   @include flex(column);
@@ -19,21 +20,59 @@
   }
 }
 
+.heading-secondary {
+
+  font-family: 'Yeseva One', sans-serif;
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  background-image: linear-gradient(to right, $primary-red-light,$primary-red);
+  letter-spacing: 2px;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: all .2s;
+  padding-top: 5rem;
+  @include flex(column);
+  @include flex-alignment(center, center);
+
+}
+
+
+
 .product-type {
+
   height: 300px;
   width: 100%;
   @include flex(row);
   @include flex-alignment(space-around, center);
+  padding-top: 5rem;
+
 
   &__item {
     width: 300px;
     height: 200px;
-    background: black center;
+    background: transparent;
     background-size: cover;
+    border-color: transparent;
+    z-index: 10;
+    transition: all .2s;
+    outline-offset: .2rem;
+    display: inline-block;
+    position: relative;
 
     &:hover {
+      outline: .7rem solid $primary-website-color-light;
+      transform: scale(1.05) translateY(-.5rem);
+      z-index: 20;
+
       .product-type__item--item-hover {
         visibility: visible;
+        text-align: end;
+        font-size: 2rem;
+        background: transparentize(black,.8);
+
       }
     }
 
@@ -43,10 +82,14 @@
       height: 100%;
       visibility: hidden;
       cursor: pointer;
-      background-color: rgba(0, 0, 0, 0.4);
       color: #ffffff;
     }
   }
+
+  &:hover &__item:not(:hover) {
+    transform: scale(.9);
+  }
+
 }
 
 .recent-products {
@@ -162,6 +205,7 @@
 .product-type-section {
   background: url("../../../../assets/category_background.jpg") center;
   background-size: cover;
+  padding-top: 3rem;
 }
 
 
@@ -170,4 +214,9 @@
   height: 38vw;
   @include flex(row);
   @include flex-alignment(center, center);
+}
+
+.carousel-control-bg {
+  font-size: 3rem;
+  transform: skewX(10deg);
 }

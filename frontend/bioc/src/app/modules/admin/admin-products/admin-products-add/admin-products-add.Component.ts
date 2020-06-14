@@ -80,15 +80,24 @@ export class AdminProductsAddComponent implements OnInit,OnDestroy {
     if(this.editMode) this.productForm.get('category').disable();
   }
 
-  onSubmit(){
+  async onSubmit(){
 
     if(this.productForm.valid && this.productForm.dirty) {
       this.isLoading = true;
       if(!this.editMode) {
         const value = this.productForm.value;
+        const imageURL = await this.productService.uploadFile(value.image);
+        delete value.image;
+        value.images = [imageURL];
         this.productService.addProduct(value).subscribe( product => this.onCancel(product));
       }else {
-        const value = this.getDirtyValues()
+        const value = this.getDirtyValues();
+        // @ts-ignore
+        const imageURL = await this.productService.uploadFile(value.image);
+        // @ts-ignore
+        delete value.image;
+        // @ts-ignore
+        value.images = [imageURL];
         this.productService.updateProduct(this.id,value).subscribe(product => this.onCancel(product));
       }
     } else this.errorMessage = 'The form is might not be valid or no changes made'
@@ -119,7 +128,7 @@ export class AdminProductsAddComponent implements OnInit,OnDestroy {
     const reader = new FileReader();
     reader.onload = _ => this.imagePreview = reader.result as string
     reader.readAsDataURL(file)
-    this.productService.uploadFile(file)
+
   }
 
   ngOnDestroy(): void {

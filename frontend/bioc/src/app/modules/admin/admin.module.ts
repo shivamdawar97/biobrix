@@ -21,7 +21,7 @@ import {AdminOrderService} from './admin-orders/admin-order.service';
 import {AdminSlideshowAddComponent} from './admin-slideshow/admin-slideshow-add/admin-slideshow-add.component';
 import {AddTestimoniesComponent} from './admin-testimonies/add-testimonies/add-testimonies.component';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 const fireConfig = {
   apiKey: 'AIzaSyBPzOGjeRRrGLc-VCNonR6jCf7C7QWmYHg',
@@ -77,10 +77,6 @@ const routes: Routes = [
     AngularFireStorageModule
   ],
   providers: [AdminProductService, AdminOrderService,
-    {
-      provide: BUCKET,
-      useValue: 'biobrix-0'
-    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

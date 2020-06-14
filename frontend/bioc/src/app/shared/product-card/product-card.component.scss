@@ -8,9 +8,15 @@
 
 .image {
   position: relative;
+  transition: all .4s;
+  &:hover{
+    transform: scale(1.07) translateY(-.5rem);
+  }
+  cursor: pointer;
   img {
     padding: 2rem;
   }
+
 }
 
 .card-footer {

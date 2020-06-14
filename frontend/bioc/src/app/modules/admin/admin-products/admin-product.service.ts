@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import { ProductDetail } from 'src/app/core/models/product-detail.model';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpErrorHandlerService } from 'src/app/core/http/http-error-handler.service';
-import {catchError, finalize} from 'rxjs/operators';
+import {catchError, finalize, tap} from 'rxjs/operators';
 import { AuthService } from '../auth.service';
 import { Category } from 'src/app/core/models/category.model';
 import { error } from '@angular/compiler/src/util';
-import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireStorage, AngularFireUploadTask, AngularFireStorageReference } from '@angular/fire/storage';
+import { async } from '@angular/core/testing';
 
 
 @Injectable()
@@ -49,7 +50,7 @@ export class AdminProductService {
     return product? product : error('No product found');
   }
 
-  addProduct(value: any){
+  /*addProduct(value: any){
     const image = value.image;
     delete value.image;
     const data = JSON.stringify(value);
@@ -62,11 +63,19 @@ export class AdminProductService {
         headers: new HttpHeaders().set('Authorization',`Bearer ${this.authservice.userSubject.value.token}`)
       }
       ).pipe(catchError(this.httpErrorHandlerService.handleErr));
+  }*/
+
+  addProduct(value: any){
+    const url = `${this.BASE_URL}${this.PRODUCT_ADD_API}`;
+    return this.http.post<ProductDetail>(url,value,
+      {
+        headers: new HttpHeaders().set('Authorization',`Bearer ${this.authservice.userSubject.value.token}`)
+      }
+      ).pipe(catchError(this.httpErrorHandlerService.handleErr));
   }
 
   updateProduct(id: string, value: any) {
     const imageType = typeof value.image;
-
     const url = `${this.BASE_URL}${this.PRODUCT_UPDATE_API}/${id}`;
 
     if(imageType !== "undefined" && imageType === "object"){
@@ -92,18 +101,26 @@ export class AdminProductService {
 
   }
 
-  uploadFile(file: File) {
-    const filePath = 'products/image';
-    const fileRef = this.storage.ref(filePath);
-    const task = this.storage.upload(filePath, file);
+   uploadFile(file: File)  {
+    return new Promise<string>( (resolve,reject) => {
+      const id = `${Math.random().toString(36).substring(2)}_${Date.now()}`;
+      const ref: AngularFireStorageReference = this.storage.ref('product_images').child(id);
+      const task: AngularFireUploadTask = ref.put(file)
 
-    // observe percentage changes
-    this.uploadPercent = task.percentageChanges();
-    // get notified when the download URL is available
-    task.snapshotChanges().pipe(
-      finalize(() => this.downloadURL = fileRef.getDownloadURL() )
-    ).subscribe( ()=>
-        this.downloadURL.subscribe( url => console.log(url) )
-    )
+      task.snapshotChanges().pipe(
+        finalize( async() => {
+          const downloadURL = await ref.getDownloadURL().toPromise();
+          console.log(downloadURL)
+          resolve(downloadURL)
+        }),
+        catchError(_ => reject)
+      ).subscribe();
+
+    } )
+
   }
+
+
+
+
 }
