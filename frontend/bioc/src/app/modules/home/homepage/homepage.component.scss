@@ -86,10 +86,6 @@
     }
   }
 
-  &:hover &__item:not(:hover) {
-    transform: scale(.9);
-  }
-
 }
 
 .recent-products {
