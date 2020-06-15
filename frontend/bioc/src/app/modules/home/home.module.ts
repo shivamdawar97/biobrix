@@ -14,6 +14,8 @@ import {ProductDetailComponent} from './products/product-detail/product-detail.c
 import {ReviewComponent} from './products/product-detail/review/review.component';
 import {AuthGaurd} from '../admin/auth.gaurd';
 import {SharedModule} from '../../shared/shared.module';
+import { PaymentComponent } from './payment/payment.component';
+import {SafePipe} from '../../core/pipes/safe.pipe';
 
 
 const routes: Routes = [
@@ -44,7 +46,9 @@ const routes: Routes = [
     TrackOrderComponent,
     ContactComponent,
     ProductDetailComponent,
-    ReviewComponent
+    ReviewComponent,
+    PaymentComponent,
+    SafePipe
   ],
   imports: [
     CommonModule,
@@ -53,7 +57,8 @@ const routes: Routes = [
     ReactiveFormsModule
   ],
   exports: [
-    RouterModule
+    RouterModule,
+    SafePipe
   ]
 })
 export class HomeModule {

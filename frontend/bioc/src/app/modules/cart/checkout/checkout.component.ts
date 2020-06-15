@@ -16,7 +16,7 @@ export class CheckoutComponent implements OnInit {
 
   form: FormGroup;
   isOtpSent = false;
-  isPhoneVerified = false;
+  isPhoneVerified = true;
   otpField = new FormControl();
   products: Product[] = [];
   total = 0;
@@ -82,7 +82,13 @@ export class CheckoutComponent implements OnInit {
     // use payment api for payment -> open order detail page
 
     console.log('from value is ', this.form.value);
-    this.updateOrder();
+    this.router.navigate(['/', 'payment'], { queryParams: {
+      order_id: this.orderId,
+        email: this.form.get('email').value,
+        phone: this.form.get('phone_number').value,
+        amount: this.total
+      }});
+    // this.updateOrder();
   }
 
   updateOrder() {

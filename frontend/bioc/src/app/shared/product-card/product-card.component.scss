@@ -9,7 +9,9 @@
 .image {
   position: relative;
   img {
-    padding: 2rem;
+    padding: 2rem 2rem 0;
+    min-height: 353px;
+    max-height: 353px;
   }
 }
 
@@ -17,7 +19,6 @@
   text-align: center;
   text-transform: capitalize;
   background-color: $color-white;
-  margin-top: 1rem;
   margin-bottom: 1rem;
 
   .product-name {
