@@ -82,20 +82,37 @@
       <div class="section-header__heading">Testimonials</div>
       <div class="section-header__underline"></div>
     </div>
+
     <div id="testimonies" class="carousel slide" data-ride="carousel" data-interval="0">
       <div class="carousel-inner">
+
         <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let testimony of homepage?.testimonies; let i = index">
+
           <div class="testimonies__item">
-            <div class="testimony">
-              {{testimony.testimony}}
+
+            <div class="row">
+              <div class="col-6">
+                <figure class="testimonies__item-shape">
+                  <img class="testimonies__item-image" src="{{testimony.image}}" alt="First slide" width="50" height="50">
+                </figure>
+
+              </div>
+              <div class="col-6">
+                <div class="testimonies__item-text">
+                  <h3 class="heading-tertiary u-margin-up-small">{{testimony.customer_name}}</h3>
+                  <p>
+                    {{testimony.testimony}}
+                  </p>
+                </div>
+              </div>
             </div>
-            <div class="customer">
-              <img src="{{testimony.image}}" alt="First slide" width="50" height="50">
-              <span class="customer__name">{{testimony.customer_name}}</span>
-            </div>
+
           </div>
+
         </div>
+
       </div>
+
       <a class="carousel-control-prev" href="#testimonies" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
@@ -105,5 +122,6 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
+
   </section>
 </div>

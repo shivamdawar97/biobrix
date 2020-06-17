@@ -11,17 +11,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active" routerLink="">Home</a>
+                <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                   routerLink="">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" routerLinkActive="active" routerLink="/about">About</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false" routerLinkActive="active">
+                <a class="nav-link dropdown-toggle products_btn" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"
+                   [ngClass]="{'active': isProductRoute()}">
                     Products
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu animated-menu" aria-labelledby="navbarDropdown">
                     <div class="category">
                         <a class="category-item"
                             [routerLink]="['/products', category.id]"

@@ -8,10 +8,9 @@ const auth= async (req,res,next)=>{
       next()
 
   }catch(e){
-      console.log(e)
       res.status(400).send({
-          message: e.message,
-          error:e
+          message: 'Authentication failed',
+          error:e.message
       })
   }   
    

@@ -106,34 +106,46 @@
 }
 
 .testimonies {
-  background-color: #ffb6c1;
-
+  background-color: #fdaab6;
+  padding-bottom: 3rem;
   &__item {
-    padding: 50px 100px;
-    @include flex(column);
-    @include flex-alignment(center, center);
-
-    .testimony {
-      @include flex(row);
-      @include flex-alignment(center, center);
-      min-height: 150px;
-      border: 1px solid white;
-      margin-bottom: 20px;
-      padding: 25px;
+    width: 70%;
+    margin: 0 auto;
+    box-shadow: 0 3rem 6rem rgba($color: black, $alpha: .1);
+    background-color: rgba($color:white, $alpha: .6);
+    border-radius: 3px;
+    padding: 6rem 6rem 6rem 9rem;
+    transform: skewX(-12deg);
+    &-shape {
+      width: 15rem;
+      height: 15rem;
+      float: left;
+      //Radius //align cener
+      shape-outside: circle(50% at 50% 50%);
+      clip-path: circle(50% at 50% 50%);
+      transform: translateX(-3rem) skewX(12deg);
+      position: relative;
     }
 
-    .customer {
-      @include flex(row);
-      @include flex-alignment(center, center);
-      border: 1px solid white;
-
-      &__name {
-        padding: 0 20px;
-      }
+    &-image{
+      height: 100%; width:  100%; // of parent
+      transform: scale(1.4);
+      transition: all .5s;
     }
+
+    &-text {
+      transform: skewX(12deg);
+    }
+
   }
 }
 
+.heading-tertiary {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
 
 .dry-skin {
   background-image: url("https://biobrix-files.s3.ap-south-1.amazonaws.com/images/dry-skin-tips.png");

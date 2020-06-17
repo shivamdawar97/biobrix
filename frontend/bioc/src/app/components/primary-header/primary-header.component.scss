@@ -61,7 +61,17 @@
   display: block;
 }
 
+.dropdown-menu:hover> .nav-link {
+  color: red;
+  transform: scale(1.1);
+}
+
 .brand-logo {
   position: relative;
   left: 15%;
+}
+
+.animated-menu {
+  animation: moveInTop .3s ease-out  0s;
+  animation-fill-mode: backwards;
 }

@@ -8,6 +8,7 @@ import { ProductApiService } from 'src/app/core/http/product-api.service';
 import { DataService } from 'src/app/core/services/data.service';
 
 import { DefaultCategory } from 'src/app/constants/products.const';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-primary-header',
@@ -20,7 +21,8 @@ export class PrimaryHeaderComponent implements OnInit {
 
   constructor(
     private productService: ProductApiService,
-    private dataService: DataService
+    private dataService: DataService,
+    private router: Router
   ) { }
 
 
@@ -35,9 +37,13 @@ export class PrimaryHeaderComponent implements OnInit {
       });
   }
 
-
   ngOnInit(): void {
     this.getCategoryList();
+  }
+
+  isProductRoute () {
+    const url =  this.router.url;
+    return url.indexOf('/products') > -1 || url.indexOf('/product') > -1;
   }
 
 }
