@@ -1,4 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light primary-header">
+
     <a class="brand-logo" href="/">
       <img src="../../../assets/BIOBRIX_LOGO.svg" height="80"/>
     </a>
@@ -10,17 +11,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                   routerLink="">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" routerLinkActive="active" routerLink="/about">About</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle products_btn" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"
+                   [ngClass]="{'active': isProductRoute()}">
                     Products
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu animated-menu" aria-labelledby="navbarDropdown">
                     <div class="category">
                         <a class="category-item"
                             [routerLink]="['/products', category.id]"
@@ -31,13 +34,13 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/trade-enquiry">Trade Enquiry</a>
+                <a class="nav-link" routerLink="/trade-enquiry" routerLinkActive="active">Trade Enquiry</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/track-order">Track Order</a>
+              <a class="nav-link" routerLink="/track-order" routerLinkActive="active">Track Order</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/contact-us">Contact</a>
+                <a class="nav-link" routerLink="/contact-us" routerLinkActive="active">Contact</a>
             </li>
         </ul>
     </div>

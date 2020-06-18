@@ -4,6 +4,7 @@ import {Homepage} from '../../../core/models/homepage.model';
 import {Product} from '../../../core/models/product.model';
 import {CartService} from '../../../core/services/cart.service';
 import {UtilityService} from '../../../core/services/utility.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-homepage',
@@ -18,7 +19,8 @@ export class HomepageComponent implements OnInit {
   constructor(
     private homepageApiService: HomepageApiService,
     private cartService: CartService,
-    private utilityService: UtilityService
+    private utilityService: UtilityService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -33,5 +35,9 @@ export class HomepageComponent implements OnInit {
         }
       }
     });
+  }
+
+  productDetail(product_id: string) {
+    this.router.navigate(['/product', product_id]);
   }
 }

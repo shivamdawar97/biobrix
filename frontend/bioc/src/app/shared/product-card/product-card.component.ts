@@ -20,9 +20,8 @@ export class ProductCardComponent implements OnInit{
     this.inCart = this.cartService.itemInCart(this.product.product_id);
   }
 
-  productDetail(id: string) {
-    this.router.navigate(['/product', id]);
-  }
+   productDetail = (id: string) => this.router.navigate(['/product', id]).then(r => console.log(r));
+
 
   addToCart(product: Product) {
 

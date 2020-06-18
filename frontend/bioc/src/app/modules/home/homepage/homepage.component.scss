@@ -1,5 +1,6 @@
 @import "src/styles/imports";
-
+@import url('https://fonts.googleapis.com/css2?family=Lateef&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
 .section-header {
   padding-top: 30px;
   @include flex(column);
@@ -19,21 +20,59 @@
   }
 }
 
+.heading-secondary {
+
+  font-family: 'Yeseva One', sans-serif;
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  background-image: linear-gradient(to right, $primary-red-light,$primary-red);
+  letter-spacing: 2px;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: all .2s;
+  padding-top: 5rem;
+  @include flex(column);
+  @include flex-alignment(center, center);
+
+}
+
+
+
 .product-type {
+
   height: 300px;
   width: 100%;
   @include flex(row);
   @include flex-alignment(space-around, center);
+  padding-top: 5rem;
+
 
   &__item {
     width: 300px;
     height: 200px;
-    background: black center;
+    background: transparent;
     background-size: cover;
+    border-color: transparent;
+    z-index: 10;
+    transition: all .2s;
+    outline-offset: .2rem;
+    display: inline-block;
+    position: relative;
 
     &:hover {
+      outline: .7rem solid $primary-website-color-light;
+      transform: scale(1.05) translateY(-.5rem);
+      z-index: 20;
+
       .product-type__item--item-hover {
         visibility: visible;
+        text-align: end;
+        font-size: 2rem;
+        background: transparentize(black,.8);
+
       }
     }
 
@@ -43,10 +82,10 @@
       height: 100%;
       visibility: hidden;
       cursor: pointer;
-      background-color: rgba(0, 0, 0, 0.4);
       color: #ffffff;
     }
   }
+
 }
 
 .recent-products {
@@ -67,34 +106,46 @@
 }
 
 .testimonies {
-  background-color: #ffb6c1;
-
+  background-color: #fdaab6;
+  padding-bottom: 3rem;
   &__item {
-    padding: 50px 100px;
-    @include flex(column);
-    @include flex-alignment(center, center);
-
-    .testimony {
-      @include flex(row);
-      @include flex-alignment(center, center);
-      min-height: 150px;
-      border: 1px solid white;
-      margin-bottom: 20px;
-      padding: 25px;
+    width: 70%;
+    margin: 0 auto;
+    box-shadow: 0 3rem 6rem rgba($color: black, $alpha: .1);
+    background-color: rgba($color:white, $alpha: .6);
+    border-radius: 3px;
+    padding: 6rem 6rem 6rem 9rem;
+    transform: skewX(-12deg);
+    &-shape {
+      width: 15rem;
+      height: 15rem;
+      float: left;
+      //Radius //align cener
+      shape-outside: circle(50% at 50% 50%);
+      clip-path: circle(50% at 50% 50%);
+      transform: translateX(-3rem) skewX(12deg);
+      position: relative;
     }
 
-    .customer {
-      @include flex(row);
-      @include flex-alignment(center, center);
-      border: 1px solid white;
-
-      &__name {
-        padding: 0 20px;
-      }
+    &-image{
+      height: 100%; width:  100%; // of parent
+      transform: scale(1.4);
+      transition: all .5s;
     }
+
+    &-text {
+      transform: skewX(12deg);
+    }
+
   }
 }
 
+.heading-tertiary {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
 
 .dry-skin {
   background-image: url("https://biobrix-files.s3.ap-south-1.amazonaws.com/images/dry-skin-tips.png");
@@ -162,6 +213,7 @@
 .product-type-section {
   background: url("../../../../assets/category_background.jpg") center;
   background-size: cover;
+  padding-top: 3rem;
 }
 
 
@@ -170,4 +222,9 @@
   height: 38vw;
   @include flex(row);
   @include flex-alignment(center, center);
+}
+
+.carousel-control-bg {
+  font-size: 3rem;
+  transform: skewX(10deg);
 }

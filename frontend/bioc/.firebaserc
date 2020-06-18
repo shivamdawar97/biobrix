@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "biobrix-0"
+  },
+  "targets": {
+    "biobrix-0": {
+      "hosting": {
+        "bioc": [
+          "biobrix-0"
+        ]
+      }
+    }
+  }
+}

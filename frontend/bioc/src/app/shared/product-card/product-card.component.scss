@@ -4,30 +4,45 @@
   width: 25rem;
   margin-bottom: 2rem;
   position: relative;
+
 }
 
 .image {
+  display: block;
+  width: 20rem;
+  height: 32rem;
   position: relative;
-  img {
-    padding: 2rem;
+  transition: all .4s;
+  margin-left: auto;
+  margin-right: auto;
+  &:hover{
+    transform: scale(1.04) ;
   }
+  cursor: pointer;
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1rem;
+  }
+
 }
 
 .card-footer {
   text-align: center;
   text-transform: capitalize;
   background-color: $color-white;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  border-top: none;
 
   .product-name {
-    color: #00c5e6;
+    color: #414344;
     margin-top: 1rem;
-    font-size: 1.6rem;
+    font-size: 2rem;
+    font-weight: 500;
   }
 
   .product-price {
-    margin-top: 1rem;
-    font-size: 2rem;
+    font-size: 1.6rem;
+    font-weight: 300;
   }
 }

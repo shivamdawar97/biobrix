@@ -5,7 +5,6 @@ const Product = require('../models/product')
 const auth = require('../middleware/auth')
 const transactionVerification = require('../paytm/controller').verification
 
-
 router.post('/order/verify_cart',async (req,res)=> {
     try{
         const cartProducts =  req.body.products
@@ -187,14 +186,11 @@ router.get('/order/get_orders',async (req,res)=> {
         console.log(e)
         res.status(500).send(e)
     }
-    
-
 })
 
 router.get('/order/get_all_orders',auth,async(req,res) => {
     try {
         const orders = await Order.find({})
-        console.log(orders)
         res.send(!!orders?orders:[])
     }catch (e) {
              res.status(400).send({error:e.message})
