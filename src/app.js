@@ -15,7 +15,6 @@ const paytmRoutes = require('./paytm/controller').router
 const angularPath = path.join(__dirname,'../frontend/bioc/build')
 
 
-
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "*");
@@ -23,10 +22,10 @@ app.use(function(req, res, next) {
     next();
   });
 
+app.use(express.static(angularPath))
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
-app.use(express.static(angularPath))
 app.use(productRouter)
 app.use(orderRouter)
 app.use(authRouter)
