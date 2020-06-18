@@ -12,7 +12,7 @@ const uploadRouter = require('./routers/file_upload')
 const reviewRouter = require('./routers/review_router')
 const homepageRouter = require('./routers/homepage_router')
 const paytmRoutes = require('./paytm/controller').router
-const angularPath = path.join(__dirname,'../frontend/build')
+const angularPath = path.join(__dirname,'../frontend/bioc/build')
 
 
 
@@ -25,11 +25,7 @@ app.use(function(req, res, next) {
 
 app.use(cors())
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: false}))  
-
-// app.use(express.json())
-
-app.use('/images/product-images',express.static('images/product-images'))
+app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(angularPath))
 app.use(productRouter)
 app.use(orderRouter)

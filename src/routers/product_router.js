@@ -91,16 +91,13 @@ router.patch('/product/update/:id',auth,upload.single('image'), async (req,res)=
     }
 })
 
-
 router.get('/product/product_list',async (req,res)=>{
 
     try{
         const id = req.query.categoryId
-        
         const categoryWiseProdcts = id===undefined? await Category.find({}) : await Category.findById(id)
         
-        if(!categoryWiseProdcts || categoryWiseProdcts.length==0)
-            throw Error('No product found')
+        if(!categoryWiseProdcts || categoryWiseProdcts.length == 0) throw Error('No product found')
             
         res.send(categoryWiseProdcts)    
 
