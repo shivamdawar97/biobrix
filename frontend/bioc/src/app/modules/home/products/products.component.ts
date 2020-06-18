@@ -107,29 +107,29 @@ export class ProductsComponent implements OnInit {
 
     this.tag = this.route.snapshot.queryParamMap.get('tag');
 
-    this.route.params.subscribe(params => {
-      this.handleParamsChange(params);
-    });
+    this.route.params.subscribe(p => this.handleParamsChange(p));
+
+    this.route.queryParams.subscribe(p => this.handleQueryParamsChange(p));
   }
 
   getTagsProducts() {
     this.utilityService.showLoader.next(true);
-    this.productService.getSimilarProducts(this.tag).subscribe(res => {
-      if (res) {
-        this.productList = Array.isArray(res) ? res : [res];
-        this.utilityService.showLoader.next(false);
-      }
-    }, err => this.utilityService.showLoader.next(false));
+
+    if (this.tag) {
+      this.productService.getSimilarProducts(this.tag).subscribe(res => {
+        if (res) {
+          this.productList = Array.isArray(res) ? res : [res];
+          this.utilityService.showLoader.next(false);
+        }
+      }, err => this.utilityService.showLoader.next(false));
+    } else {
+      this.getProductList('all');
+    }
   }
 
-  searchChanged(search) {
-
-    if (!search) {
-      return;
-    }
-
-    this.tag = search;
+  handleQueryParamsChange(queryParams: any) {
+    console.log('query params ', queryParams);
+    this.tag = queryParams.search;
     this.getTagsProducts();
   }
-
 }

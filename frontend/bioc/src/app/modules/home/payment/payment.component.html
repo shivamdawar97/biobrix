@@ -1,0 +1,3 @@
+<div class="payment" *ngIf="url">
+  <iframe [src]="url | safe" (load)="pageLoaded($event, this)"></iframe>
+</div>

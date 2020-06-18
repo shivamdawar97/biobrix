@@ -14,9 +14,6 @@
       </ul>
     </div>
   </div>
-  <div class="search">
-    <app-search-input paramKeyword="search" placeholder="Search products" (searchChanged)="searchChanged($event)"></app-search-input>
-  </div>
   <div class="product-list">
     <ng-container *ngIf="!tag">
       <div class="row category" *ngFor="let category of productList">
