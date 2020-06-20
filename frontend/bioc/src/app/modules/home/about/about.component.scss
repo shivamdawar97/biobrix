@@ -1,0 +1,52 @@
+
+
+.about-us {
+  display: flex;
+  flex-direction: column;
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    padding: 3rem 10%;
+
+    .text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+
+      &__heading {
+        font-size: 24px;
+        margin-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &--underline {
+          border: 1px solid black;
+          width: 80%;
+        }
+      }
+
+      &__content {
+        text-align: justify;
+      }
+    }
+
+    .picture {
+      display: flex;
+      flex-direction: row;
+      flex: 1;
+      padding: 1rem;
+    }
+
+    .picture-right {
+      justify-content: flex-end;
+    }
+  }
+
+  .gray {
+    background-color: #f1f1f1;
+  }
+}
