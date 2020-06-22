@@ -89,22 +89,25 @@ export class AdminProductsAddComponent implements OnInit,OnDestroy {
         const imageURL = await this.productService.uploadFile(value.image);
         delete value.image;
         value.images = [imageURL];
-        this.productService.addProduct(value).subscribe( product => this.onCancel(product));
+        this.productService.addProduct(value).subscribe( product => this.onCancel());
       }else {
         const value = this.getDirtyValues();
         // @ts-ignore
-        const imageURL = await this.productService.uploadFile(value.image);
-        // @ts-ignore
-        delete value.image;
-        // @ts-ignore
-        value.images = [imageURL];
-        this.productService.updateProduct(this.id,value).subscribe(product => this.onCancel(product));
+        if(value.image) {
+          // @ts-ignore
+          const imageURL = await this.productService.uploadFile(value.image);
+          // @ts-ignore
+          delete value.image;
+          // @ts-ignore
+          value.images = [imageURL];
+        }
+        this.productService.updateProduct(this.id,value).subscribe(product => this.onCancel());
       }
     } else this.errorMessage = 'The form is might not be valid or no changes made'
 
   }
 
-  private onCancel(product: ProductDetail){
+  private onCancel(){
     this.isLoading = false;
     this.router.navigate(['../'],{relativeTo:this.route});
   }
@@ -161,4 +164,12 @@ export class AdminProductsAddComponent implements OnInit,OnDestroy {
   }
 
 
+  deleteProduct() {
+    if(confirm("Are you sure you want to delete this product "+this.product.product_name)) {
+      this.isLoading = true;
+      this.productService.deleteProduct(this.id).subscribe( deleted => {
+          if(deleted)  this.onCancel();
+      })
+    }
+  }
 }

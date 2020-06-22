@@ -9,7 +9,6 @@ import { AuthService } from '../auth.service';
 import { Category } from 'src/app/core/models/category.model';
 import { error } from '@angular/compiler/src/util';
 import { AngularFireStorage, AngularFireUploadTask, AngularFireStorageReference } from '@angular/fire/storage';
-import { async } from '@angular/core/testing';
 
 
 @Injectable()
@@ -121,6 +120,10 @@ export class AdminProductService {
   }
 
 
-
-
+  deleteProduct(id: string) {
+    const url =`${this.BASE_URL}product/delete_product/${id}`
+    return this.http.delete<boolean>(url, {
+        headers: new HttpHeaders().set('Authorization',`Bearer ${this.authservice.userSubject.value.token}`)}
+    ).pipe(catchError(this.httpErrorHandlerService.handleErr));
+  }
 }
