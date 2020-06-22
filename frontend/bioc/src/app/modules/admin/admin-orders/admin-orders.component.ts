@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
 import { OrderDetail} from "../../../core/http/cart-api.service";
 import {AuthService} from "../auth.service";
 import {AdminOrderService} from "./admin-order.service";
+import { Component, OnInit} from "@angular/core";
 
 @Component({
   selector: 'admin-orders',

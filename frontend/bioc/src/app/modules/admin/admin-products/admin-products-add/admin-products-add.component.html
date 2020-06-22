@@ -138,14 +138,21 @@
     </div>
       <br>
       <button type="button" class="btn btn-success mr-5" (click)="onAddTag()"><h4>Add Tag</h4></button>
-
    </div>
+
+    div.form
+
 
 
     <div *ngIf="!isLoading; else loading_circular" class="form-group form-product__group">
       <div class="col-md-4">
         <button [disabled]="productForm.invalid" id="singlebutton" name="singlebutton" class="btn btn-primary p-4">
-          <h3>{{ editMode?'Update Product':'Add New Product' }}</h3></button>
+          <h3>{{ editMode?'Update Product':'Add Product' }}</h3></button>
+
+        <button class="btn btn-danger p-4" style="margin-left: 1rem" type="button" (click)="deleteProduct()">
+          <h3>Delete Product</h3>
+        </button>
+
       </div>
       </div>
 

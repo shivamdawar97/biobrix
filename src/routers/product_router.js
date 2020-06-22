@@ -149,10 +149,9 @@ router.get('/product/search',async (req,res)=> {
     }
 })
 
-
-router.delete('/product/delete_product',auth,async (req,res)=>{
+router.delete('/product/delete_product/:id',auth,async (req,res)=>{
     try{
-        const product = await Product.findById(req.query.id)
+        const product = await Product.findById(req.params.id)
         if(!product) throw new Error('No product found to delete')
         const category = await Category.findOne({
             category_name: product.category

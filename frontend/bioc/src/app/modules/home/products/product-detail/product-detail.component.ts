@@ -7,11 +7,13 @@ import { UtilityService } from 'src/app/core/services/utility.service';
 import { ProductDetail } from 'src/app/core/models/product-detail.model';
 import {Product} from '../../../../core/models/product.model';
 import {CartService} from '../../../../core/services/cart.service';
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.scss']
+  styleUrls: ['./product-detail.component.scss'],
+  providers: [DatePipe]
 })
 export class ProductDetailComponent implements OnInit {
 
@@ -27,7 +29,9 @@ export class ProductDetailComponent implements OnInit {
     private productService: ProductApiService,
     private cartService: CartService,
     private router: Router,
-    private utilityService: UtilityService) {
+    private utilityService: UtilityService,
+    private datePipe: DatePipe
+    ) {
     this.form = new FormGroup({
       reviewer_name: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
@@ -54,7 +58,8 @@ export class ProductDetailComponent implements OnInit {
 
   onSubmit() {
     this.utilityService.showLoader.next(true);
-    this.productService.addReview({...this.form.value, product_id: this.product._id}).subscribe(res => {
+    const myDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+    this.productService.addReview({...this.form.value, product_id: this.product._id, date: myDate}).subscribe(res => {
       this.utilityService.showLoader.next(false);
     }, err => this.utilityService.showLoader.next(false));
     this.form.reset();
