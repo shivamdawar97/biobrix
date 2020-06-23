@@ -9,6 +9,7 @@ import { AuthService } from '../auth.service';
 import { Category } from 'src/app/core/models/category.model';
 import { error } from '@angular/compiler/src/util';
 import { AngularFireStorage, AngularFireUploadTask, AngularFireStorageReference } from '@angular/fire/storage';
+import {FirebaseStorageService} from "../firebase-storage.service";
 
 
 @Injectable()
@@ -26,9 +27,7 @@ export class AdminProductService {
 
   constructor( private http: HttpClient,
     private httpErrorHandlerService: HttpErrorHandlerService,
-    private authservice: AuthService,
-    private storage: AngularFireStorage
-               ){}
+    private authservice: AuthService,private storageService:FirebaseStorageService){}
 
   getProductList(): Observable<Array<ProductDetail>> {
 
@@ -100,24 +99,6 @@ export class AdminProductService {
 
   }
 
-   uploadFile(file: File)  {
-    return new Promise<string>( (resolve,reject) => {
-      const id = `${Math.random().toString(36).substring(2)}_${Date.now()}`;
-      const ref: AngularFireStorageReference = this.storage.ref('product_images').child(id);
-      const task: AngularFireUploadTask = ref.put(file)
-
-      task.snapshotChanges().pipe(
-        finalize( async() => {
-          const downloadURL = await ref.getDownloadURL().toPromise();
-          console.log(downloadURL)
-          resolve(downloadURL)
-        }),
-        catchError(_ => reject)
-      ).subscribe();
-
-    } )
-
-  }
 
 
   deleteProduct(id: string) {
@@ -125,5 +106,9 @@ export class AdminProductService {
     return this.http.delete<boolean>(url, {
         headers: new HttpHeaders().set('Authorization',`Bearer ${this.authservice.userSubject.value.token}`)}
     ).pipe(catchError(this.httpErrorHandlerService.handleErr));
+  }
+
+  async uploadFile(image: File) {
+    return await this.storageService.uploadFile(image)
   }
 }

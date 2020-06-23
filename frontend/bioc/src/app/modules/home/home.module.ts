@@ -16,6 +16,7 @@ import {AuthGaurd} from '../admin/auth.gaurd';
 import {SharedModule} from '../../shared/shared.module';
 import { PaymentComponent } from './payment/payment.component';
 import {SafePipe} from '../../core/pipes/safe.pipe';
+import { AboutComponent } from './about/about.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
       {path: 'trade-enquiry', component: TradeEnquiryComponent},
       {path: 'track-order', component: TrackOrderComponent},
       {path: 'contact-us', component: ContactComponent},
+      {path: 'about', component: AboutComponent},
       {path: 'product/:productId', component: ProductDetailComponent}
     ]
   }
@@ -48,7 +50,8 @@ const routes: Routes = [
     ProductDetailComponent,
     ReviewComponent,
     PaymentComponent,
-    SafePipe
+    SafePipe,
+    AboutComponent
   ],
   imports: [
     CommonModule,

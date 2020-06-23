@@ -6,6 +6,7 @@ import { Category } from 'src/app/core/models/category.model';
 import { ProductDetail } from 'src/app/core/models/product-detail.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import { mimeType } from './mime-type.validator';
+import {Review} from "../../../../core/models/review.model";
 
 @Component({
   selector: 'app-admin-products-add',
@@ -26,7 +27,8 @@ export class AdminProductsAddComponent implements OnInit,OnDestroy {
   id: string;
   product: ProductDetail;
   errorMessage = ''
-
+  isReviewDirty = false
+  reviews : Review[]
 
   ngOnInit(): void {
 
@@ -43,6 +45,7 @@ export class AdminProductsAddComponent implements OnInit,OnDestroy {
     let isRecent = true;
     let ingredients = new FormArray([]);
     let tags = new FormArray([]);
+
 
     if(this.editMode) {
 
@@ -62,7 +65,6 @@ export class AdminProductsAddComponent implements OnInit,OnDestroy {
       this.product.tags.forEach( tag =>
         tags.push(new FormControl(tag,Validators.required))
       );
-
     }
 
     this.productForm = new FormGroup({
@@ -78,6 +80,7 @@ export class AdminProductsAddComponent implements OnInit,OnDestroy {
       tags: tags
     });
     if(this.editMode) this.productForm.get('category').disable();
+    this.reviews = this.product.reviews.slice();
   }
 
   async onSubmit(){
@@ -156,13 +159,12 @@ export class AdminProductsAddComponent implements OnInit,OnDestroy {
   }
 
   onDeleteIngredient(index: number){
-    (<FormArray>this.productForm.get('ingredients')).removeAt(index)
+    (<FormArray>this.productForm.get('ingredients')).removeAt(index);
   }
 
   onDeleteTag(index: number){
-    (<FormArray>this.productForm.get('tags')).removeAt(index)
+    (<FormArray>this.productForm.get('tags')).removeAt(index);
   }
-
 
   deleteProduct() {
     if(confirm("Are you sure you want to delete this product "+this.product.product_name)) {
@@ -171,5 +173,16 @@ export class AdminProductsAddComponent implements OnInit,OnDestroy {
           if(deleted)  this.onCancel();
       })
     }
+  }
+
+  onDeleteReview(index: number) {
+    this.isReviewDirty = true;
+    this.reviews.splice(index,1);
+
+  }
+
+  resetReviews() {
+    this.isReviewDirty = false;
+    this.reviews = this.product.reviews.slice();
   }
 }

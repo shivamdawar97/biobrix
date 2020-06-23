@@ -113,7 +113,7 @@
       class="form-control arrays"
       formControlName="name"> -->
 
-      <button class="btn btn-danger" (click)="onDeleteIngredient(i)"> X </button>
+      <button class="btn btn-danger" (click)="onDeleteIngredient(i)"><h4> &nbsp; X &nbsp;</h4> </button>
 
       </div>
       <br>
@@ -133,16 +133,69 @@
       class="form-control arrays"
       [formControl]="control">
 
-      <button class="btn btn-danger" (click)="onDeleteTag(i)"> X </button>
+      <button class="btn btn-danger" (click)="onDeleteTag(i)"> <h4> &nbsp; X &nbsp;</h4> </button>
 
     </div>
       <br>
       <button type="button" class="btn btn-success mr-5" (click)="onAddTag()"><h4>Add Tag</h4></button>
    </div>
 
-    div.form
+    <div *ngIf="editMode" class="form-group form-product__group" >
+
+      <label class="col-md-4 control-label" >Reviews</label>
+
+      <div *ngIf="isReviewDirty"> <button (click)="resetReviews()" class="btn btn-info" style="font-size: 1.5rem">Undo Changes</button> </div>
+
+      <div
+      *ngFor="let review of reviews; let i = index"
+      class="row"
+      style="margin-top:10px;">
+
+        <div class="row">
+          <div class="col-8">
+            <div class="card">
+
+              <div class="card-body">
+
+                <div class="card-title">
+
+                  <i class="fa fa-star review-filled"></i>
+
+                  <i class="fa fa-star review-filled" *ngIf="review.rating>1 else un2"></i>
+                  <ng-template #un2> <i class="fa fa-star review-unfilled"></i> </ng-template>
+
+                  <i class="fa fa-star review-filled" *ngIf="review.rating>2 else un3"></i>
+                  <ng-template #un3> <i class="fa fa-star review-unfilled"></i> </ng-template>
+
+                  <i class="fa fa-star review-filled" *ngIf="review.rating>3 else un4"></i>
+                  <ng-template #un4> <i class="fa fa-star review-unfilled"></i> </ng-template>
+
+                  <i class="fa fa-star review-filled" *ngIf="review.rating>4 else un5"></i>
+                  <ng-template #un5> <i class="fa fa-star review-unfilled"></i> </ng-template>
+
+                </div>
+
+                <div class="card-subtitle">
+                  <h4 class="uk-margin-top mb-2 text-muted">{{ review.reviewer_name }}</h4>
+                </div>
+
+                <h2 class="card-text mr-5"> {{ review.review }} </h2>
+
+                <p>{{ review.date }}</p>
+
+              </div>
+
+            </div>
+          </div>
+          <div class="col-4">
+            <button class="btn btn-danger" (click)="onDeleteReview(i)"><h4> &nbsp; X &nbsp;</h4> </button>
+          </div>
+        </div>
 
 
+    </div>
+
+   </div>
 
     <div *ngIf="!isLoading; else loading_circular" class="form-group form-product__group">
       <div class="col-md-4">

@@ -4,6 +4,10 @@
   }
 }
 
+.control-label {
+  font-weight: bold;
+}
+
 .arrays {
   width: 40%;
   margin-right: 2rem;
@@ -99,3 +103,31 @@ input[type=file]{
 
 
 }
+
+
+.review {
+
+  margin: 2rem 0;
+  &-unfilled{
+    font-family: 'FontAwesome', serif;
+    float: left;
+    font-weight: 300;
+    display: block;
+    font-size: 20px;
+    color: pink;
+  }
+
+  &-filled {
+    font-family: 'FontAwesome', serif;
+    font-weight: 300;
+    font-size: 20px;
+    display: block;
+    float: left;
+    color: palevioletred;
+  }
+
+  border-bottom: 1px black;
+
+}
+
+

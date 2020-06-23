@@ -44,12 +44,9 @@ export class SlideshowApiService {
   }
 
 
-  addSlide(value: {image: File, product_id: string}) {
-    const form = new FormData();
-    form.append('product_id', value.product_id);
-    form.append('image', value.image, 'image');
+  addSlide(data) {
     const url = `${this.BASE_URL}${PAGER_PRODUCT_API}`;
-    return this.http.post<ProductDetail>(url, form,
+    return this.http.post<ProductDetail>(url, data,
       {
         headers: new HttpHeaders().set('Authorization', `Bearer ${this.authService.userSubject.value.token}`)
       }

@@ -22,6 +22,7 @@ import {AdminSlideshowAddComponent} from './admin-slideshow/admin-slideshow-add/
 import {AddTestimoniesComponent} from './admin-testimonies/add-testimonies/add-testimonies.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import {FirebaseStorageService} from "./firebase-storage.service";
 
 const fireConfig = {
   apiKey: 'AIzaSyBPzOGjeRRrGLc-VCNonR6jCf7C7QWmYHg',
@@ -77,6 +78,7 @@ const routes: Routes = [
     AngularFireStorageModule
   ],
   providers: [AdminProductService, AdminOrderService,
+    FirebaseStorageService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

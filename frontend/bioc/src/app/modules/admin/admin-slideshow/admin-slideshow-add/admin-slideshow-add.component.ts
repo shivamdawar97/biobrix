@@ -5,6 +5,7 @@ import {ProductApiService} from '../../../../core/http/product-api.service';
 import {Product} from '../../../../core/models/product.model';
 import {FormControl} from '@angular/forms';
 import {Router} from '@angular/router';
+import {FirebaseStorageService} from "../../firebase-storage.service";
 
 @Component({
   selector: 'app-admin-slideshow-add',
@@ -22,7 +23,8 @@ export class AdminSlideshowAddComponent implements OnInit {
   constructor(private slidshowApiService: SlideshowApiService,
               private productApiService: ProductApiService,
               private router: Router,
-              private utilityService: UtilityService) {
+              private utilityService: UtilityService,
+              private storageService: FirebaseStorageService) {
   }
 
   ngOnInit(): void {
@@ -43,14 +45,12 @@ export class AdminSlideshowAddComponent implements OnInit {
     this.selectedItem = item;
   }
 
-  addSlide() {
+  async addSlide() {
     this.utilityService.showLoader.next(true);
-    const data = {
-      image: this.fileData,
-      product_id: this.selectedItem.product_id
-    };
+    const image_url = await this.storageService.uploadFile(this.fileData);
+    const data = { image_url, product_id: this.selectedItem.product_id };
+
     this.slidshowApiService.addSlide(data).subscribe(res => {
-      console.log('result is ', res);
       this.utilityService.showLoader.next(false);
       this.router.navigate(['/', 'private-path', 'admin', 'slideshow']);
     }, err => this.utilityService.showLoader.next(false));
