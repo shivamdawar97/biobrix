@@ -1,20 +1,20 @@
 <div class="product_detail main-container" *ngIf="product">
-  <div class="primary-heading">
-    <h1 class="primary-heading-text">{{ product.product_name | uppercase}}</h1>
-  </div>
+  <!-- <div class="product_detail__header">
+    <h1 class="product_detail__header-heading">{{ product.product_name | uppercase}}</h1>
+  </div> -->
   <section class="product_detail__main">
 
     <div class="product_detail__main-container">
       <div class="container">
         <div class="row">
-          <div class="col-5">
+          <div class="col-6">
 
             <img class="product_detail__main-image" [src]="product.images[0]">
 
           </div>
           <div class="col-1"></div>
 
-          <div class="col-6">
+          <div class="col-5">
 
             <div class="product_detail__main-section">
 
@@ -24,8 +24,8 @@
                 <i class="fa fa-inr"></i>
                 &nbsp;
                 <p class="">{{ product.price + '.00' }}</p>
-
               </div>
+              <p *ngIf="product.discount_percentage!==0" style="font-size: medium;"> {{product.discount_percentage}}% off </p>
 
               <div class="product_detail__main-product_meta">
                 <hr>
@@ -59,125 +59,111 @@
 
   </section>
 
-  <div class="product_detail__main-tabs">
+  <section class="product_detail__main-tabs-section" >
 
-    <input type="radio" id="tab1" class="product_detail__main-tabs-tab1" name="pct" checked="checked">
-    <input type="radio" id="tab2" class="product_detail__main-tabs-tab2" name="pct">
-    <input type="radio" id="tab3" class="product_detail__main-tabs-tab3" name="pct">
+    <div class="description">
+      <h1 class="product_detail__main-tabs-section-heading">PRODUCT DESCRIPTION</h1>
+      <h3> {{ product.description }} </h3>
+    </div>
 
-    <nav class="product_detail__main-tabs-nav">
-      <ul class="product_detail__main-tabs-list">
-        <li class="tab1">
-          <label class="product_detail__main-tabs-label" for="tab1">Description</label>
-        </li>
-        <li class="tab2">
-          <label class="product_detail__main-tabs-label" for="tab2">Reviews</label>
-        </li>
-        <li class="tab3">
-          <label class="product_detail__main-tabs-label" for="tab3">Ingredients</label>
-        </li>
-      </ul>
-    </nav>
-    <section class="product_detail__main-tabs-section">
-
-      <div class="description">
-        <h1 class="product_detail__main-tabs-section-heading">PRODUCT DESCRIPTION</h1>
-        <h3> {{ product.description }} </h3>
+    <div class="ingredients">
+      <h1 class="product_detail__main-tabs-section-heading">INGREDIENTS</h1>
+      <div class="row">
+        <div class="col-5">
+          <ul class="list-group">
+            <li style="font-weight: 700;" class="list-group-item" *ngFor="let ingredient of product.ingredients;"> {{ ingredient }}</li>
+          </ul>
+        </div>
       </div>
 
-      <div class="reviews">
-        <h1 class="product_detail__main-tabs-section-heading">REVIEWS</h1>
+    </div>
 
-        <form (ngSubmit)="onSubmit()" [formGroup]="form" class="card">
+    <div class="reviews">
+      <h1 class="product_detail__main-tabs-section-heading">REVIEWS</h1>
 
-          <div class="card-header">Rate and write a review</div>
+      <form (ngSubmit)="onSubmit()" [formGroup]="form" class="card">
 
-          <div class="card-body">
-            <div class="form-group">
+        <div class="card-header">Rate and write a review</div>
 
-              <h4 class="product_detail__rating-your">Your Rating:</h4>
+        <div class="card-body">
+          <div class="form-group">
 
-              <div class="product_detail__rating-stars">
+            <h4 class="product_detail__rating-your">Your Rating:</h4>
 
-                <input class="product_detail__rating-input" type="radio" id="star1" formControlName="rating"
-                       name="rating" value="5">
-                <label class="product_detail__rating-label" for="star1"></label>
+            <div class="product_detail__rating-stars">
 
-                <input class="product_detail__rating-input" type="radio" id="star2" formControlName="rating"
-                       name="rating" value="4">
-                <label class="product_detail__rating-label" for="star2"></label>
+              <input class="product_detail__rating-input" type="radio" id="star1" formControlName="rating"
+                     name="rating" value="5">
+              <label class="product_detail__rating-label" for="star1"></label>
 
-                <input class="product_detail__rating-input" type="radio" id="star3" formControlName="rating"
-                       name="rating" value="3">
-                <label class="product_detail__rating-label" for="star3"></label>
+              <input class="product_detail__rating-input" type="radio" id="star2" formControlName="rating"
+                     name="rating" value="4">
+              <label class="product_detail__rating-label" for="star2"></label>
 
-                <input class="product_detail__rating-input" type="radio" id="star4" formControlName="rating"
-                       name="rating" value="2">
-                <label class="product_detail__rating-label" for="star4"></label>
+              <input class="product_detail__rating-input" type="radio" id="star3" formControlName="rating"
+                     name="rating" value="3">
+              <label class="product_detail__rating-label" for="star3"></label>
 
-                <input class="product_detail__rating-input" type="radio" id="star5" formControlName="rating"
-                       name="rating" value="1">
-                <label class="product_detail__rating-label" for="star5"></label>
+              <input class="product_detail__rating-input" type="radio" id="star4" formControlName="rating"
+                     name="rating" value="2">
+              <label class="product_detail__rating-label" for="star4"></label>
 
-              </div>
-            </div>
+              <input class="product_detail__rating-input" type="radio" id="star5" formControlName="rating"
+                     name="rating" value="1">
+              <label class="product_detail__rating-label" for="star5"></label>
 
-            <div class="form-group">
-              <label for="username">Your Name: </label>
-              <input formControlName="reviewer_name" type="text" id="username" class="form-control form-control-lg"
-                     name="username">
-              <samp *ngIf="!form.get('reviewer_name').valid && form.get('reviewer_name').touched" class="help-block">Please
-                enter your name!</samp>
-            </div>
-
-            <div class="form-group">
-              <h3 for="email">Email: </h3>
-              <input formControlName="email" type="email" id="email" class="form-control form-control-lg" name="email">
-              <samp *ngIf="!form.get('email').valid && form.get('email').touched" class="help-block">Please enter a
-                valid email!</samp>
-            </div>
-
-            <div class="form-group">
-              <h3 for="review">Your Review: </h3>
-              <textarea formControlName="review" type="text" id="review" class="form-control form-control-lg"
-                        name="review" rows="4"></textarea>
-              <samp *ngIf="!form.get('review').valid && form.get('review').touched" class="help-block">Please give your
-                review!</samp>
-            </div>
-            <div class="flex-row">
-              <div class="flex-fill"></div>
-              <button class="btn primary-button" type="submit" [disabled]="!form.valid">
-                Submit Review
-              </button>
             </div>
           </div>
-        </form>
 
-        <div *ngIf="product.reviews.length!=0; else NoReview">
-          <div *ngFor="let review of product.reviews">
-            <app-review [review]="review"></app-review>
+          <div class="form-group">
+            <label for="username">Your Name: </label>
+            <input formControlName="reviewer_name" type="text" id="username" class="form-control form-control-lg"
+                   name="username">
+            <samp *ngIf="!form.get('reviewer_name').valid && form.get('reviewer_name').touched" class="help-block">Please
+              enter your name!</samp>
+          </div>
+
+          <div class="form-group">
+            <h3 for="email">Email: </h3>
+            <input formControlName="email" type="email" id="email" class="form-control form-control-lg" name="email">
+            <samp *ngIf="!form.get('email').valid && form.get('email').touched" class="help-block">Please enter a
+              valid email!</samp>
+          </div>
+
+          <div class="form-group">
+            <h3 for="review">Your Review: </h3>
+            <textarea formControlName="review" type="text" id="review" class="form-control form-control-lg"
+                      name="review" rows="4"></textarea>
+            <samp *ngIf="!form.get('review').valid && form.get('review').touched" class="help-block">Please give your
+              review!</samp>
+          </div>
+          <div class="flex-row">
+            <div class="flex-fill"></div>
+            <button class="btn primary-button" type="submit" [disabled]="!form.valid">
+              Submit Review
+            </button>
           </div>
         </div>
+      </form>
 
-        <ng-template #NoReview>
-          <div>
-            <h3 class="mr-5">No Rieviews available</h3>
-            <p>Be the first to review this product</p>
-          </div>
-        </ng-template>
-
+      <div *ngIf="product.reviews.length!=0; else NoReview">
+        <div *ngFor="let review of product.reviews">
+          <app-review [review]="review"></app-review>
+        </div>
       </div>
 
-      <div class="ingredients">
-        <h1 class="product_detail__main-tabs-section-heading">INGREDIENTS</h1>
-        <ul class="list-group">
-          <li class="list-group-item" *ngFor="let ingredient of product.ingredients;"> {{ ingredient }}</li>
-        </ul>
-      </div>
+      <ng-template #NoReview>
+        <div>
+          <h3 class="mr-5">No Rieviews available</h3>
+          <p>Be the first to review this product</p>
+        </div>
+      </ng-template>
 
-    </section>
+    </div>
 
-  </div>
+
+
+  </section>
 
   <h1 class="similar-products-heading">Similar Products</h1>
 

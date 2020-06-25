@@ -26,9 +26,11 @@ export class AdminProductsAddComponent implements OnInit,OnDestroy {
   editMode = false;
   id: string;
   product: ProductDetail;
-  errorMessage = ''
-  isReviewDirty = false
-  reviews : Review[]
+  errorMessage = '';
+  isReviewDirty = false;
+  isIngredientsDirty = false;
+  isTagsDirty = false;
+  reviews : Review[];
 
   ngOnInit(): void {
 
@@ -84,8 +86,8 @@ export class AdminProductsAddComponent implements OnInit,OnDestroy {
   }
 
   async onSubmit(){
-
-    if(this.productForm.valid && this.productForm.dirty) {
+    const isDirty = this.productForm.dirty || this.isReviewDirty || this.isIngredientsDirty || this.isTagsDirty;
+    if(this.productForm.valid && isDirty ) {
       this.isLoading = true;
       if(!this.editMode) {
         const value = this.productForm.value;
@@ -115,13 +117,17 @@ export class AdminProductsAddComponent implements OnInit,OnDestroy {
     this.router.navigate(['../'],{relativeTo:this.route});
   }
 
-
-  getDirtyValues(){
+  private getDirtyValues(){
     let dirtyValues= {};
     for (let controlsKey in this.productForm.controls) {
         let control = this.productForm.controls[controlsKey];
         if(control.dirty) dirtyValues[controlsKey] = control.value;
     }
+
+    if (this.isReviewDirty) dirtyValues['reviews'] = this.reviews;
+    if (this.isIngredientsDirty) dirtyValues['ingredients'] = this.productForm.controls['ingredients'].value;
+    if (this.isTagsDirty) dirtyValues['tags'] = this.productForm.controls['tags'].value;
+
     return dirtyValues;
   }
 
@@ -160,10 +166,12 @@ export class AdminProductsAddComponent implements OnInit,OnDestroy {
 
   onDeleteIngredient(index: number){
     (<FormArray>this.productForm.get('ingredients')).removeAt(index);
+    this.isIngredientsDirty = true;
   }
 
   onDeleteTag(index: number){
     (<FormArray>this.productForm.get('tags')).removeAt(index);
+    this.isTagsDirty = true;
   }
 
   deleteProduct() {

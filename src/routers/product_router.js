@@ -68,7 +68,7 @@ router.patch('/product/update/:id',auth,upload.single('image'), async (req,res)=
         const isFormData = req.file !== undefined && req.file.path !== undefined
         const body = isFormData? JSON.parse(req.body.data) : req.body
         const updates = Object.keys(body)
-        const allowedUpdates = ['product_name','images','description','price','ingredients','discount_percentage','in_stock','is_recent','tags']
+        const allowedUpdates = ['product_name','images','description','price','ingredients','discount_percentage','in_stock','is_recent','tags','reviews']
         const isValidOperation = updates.every(update=> allowedUpdates.includes(update)) 
         if(!isValidOperation)  return res.status(400).send({error:'Invalid updates!'})
 

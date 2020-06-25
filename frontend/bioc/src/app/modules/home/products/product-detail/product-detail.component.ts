@@ -48,6 +48,7 @@ export class ProductDetailComponent implements OnInit {
     this.productService.getPorductDetail(this.productId).subscribe(product => {
       console.log(product);
       this.product = product;
+      console.log(product)
       if (this.product.tags.length) {
         this.similarProductTag = this.product.tags[0];
         this.getSimilarProducts();
