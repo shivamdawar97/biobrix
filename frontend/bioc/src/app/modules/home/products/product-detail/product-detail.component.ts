@@ -23,6 +23,7 @@ export class ProductDetailComponent implements OnInit {
   product: ProductDetail;
   review: Review;
   similarProducts = [];
+  qtyForm: FormGroup
 
   constructor(
     private route: ActivatedRoute,
@@ -39,6 +40,11 @@ export class ProductDetailComponent implements OnInit {
       rating: new FormControl('', Validators.required),
       date: new FormControl(new Date())
     });
+
+    this.qtyForm = new FormGroup({
+      quantity: new FormControl('1',Validators.min(1))
+    })
+
   }
 
   ngOnInit(): void {
@@ -46,15 +52,18 @@ export class ProductDetailComponent implements OnInit {
     this.productId = this.route.snapshot.paramMap.get('productId');
     this.utilityService.showLoader.next(true);
     this.productService.getPorductDetail(this.productId).subscribe(product => {
-      console.log(product);
       this.product = product;
-      console.log(product)
+      this.product.addedToCart = this.cartService.itemInCart(this.productId);
       if (this.product.tags.length) {
         this.similarProductTag = this.product.tags[0];
         this.getSimilarProducts();
       }
       this.utilityService.showLoader.next(false);
     });
+  }
+
+  addTocart(form){
+    console.log(form);
   }
 
   onSubmit() {

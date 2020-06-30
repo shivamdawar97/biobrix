@@ -4,6 +4,15 @@
   width: 25rem;
   margin-bottom: 2rem;
   position: relative;
+  border-radius:.5rem;
+  background-color: rgba(255, 255, 255, 0.596);
+  transition: all .2s;
+  &:hover {
+    background-color: white;
+    transform: scale(1.05);
+
+  }
+
 }
 
 .image {
@@ -11,12 +20,8 @@
   width: 20rem;
   height: 32rem;
   position: relative;
-  transition: all .4s;
   margin-left: auto;
   margin-right: auto;
-  &:hover{
-    transform: scale(1.04) ;
-  }
   cursor: pointer;
   img {
     display: block;
@@ -31,7 +36,7 @@
 .card-footer {
   text-align: center;
   text-transform: capitalize;
-  background-color: $color-white;
+
   border-top: none;
   margin-bottom: 1rem;
 

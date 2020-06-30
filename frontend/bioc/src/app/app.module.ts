@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,7 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     AppConfigModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

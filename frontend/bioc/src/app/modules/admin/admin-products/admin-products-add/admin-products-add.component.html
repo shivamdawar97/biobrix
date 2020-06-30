@@ -202,7 +202,7 @@
         <button [disabled]="productForm.invalid" id="singlebutton" name="singlebutton" class="btn btn-primary p-4">
           <h3>{{ editMode?'Update Product':'Add Product' }}</h3></button>
 
-        <button class="btn btn-danger p-4" style="margin-left: 1rem" type="button" (click)="deleteProduct()">
+        <button *ngIf="editMode" class="btn btn-danger p-4" style="margin-left: 1rem" type="button" (click)="deleteProduct()">
           <h3>Delete Product</h3>
         </button>
 

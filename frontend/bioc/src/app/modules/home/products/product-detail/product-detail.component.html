@@ -37,14 +37,28 @@
 
               </div>
 
-
               <div *ngIf="product.in_stock " class="product_detail__main-quantity">
 
-                <input type="number" class=" form-control form-control-lg count-input" placeholder="Quantity">
+                <form *ngIf="!product.addedToCart; else gotoCart" [formGroup]="qtyForm">
 
-                <button *ngIf="!product.addedToCart" class="btn primary-button"> Add to cart</button>
+                <input
+                 formControlName="quantity"
+                 type="number"
+                 class="form-control form-control-lg count-input"
+                 minlength='1'
+                 >
 
-                <button *ngIf="product.addedToCart" class="btn primary-button"> Go to cart</button>
+                <button type="submit" class="btn primary-button"> Add to cart</button>
+
+                </form>
+
+                <ng-template #gotoCart>
+                   <i class="fa-check" style="color: green;">   Product added to cart</i>
+
+                  <button  class="btn primary-button" style="margin-left: 1rem;"> Go to cart</button>
+
+                </ng-template>
+
 
               </div>
               <p *ngIf="!product.in_stock" class="product_detail__main-out">Out of stock</p>
@@ -80,71 +94,75 @@
 
     <div class="reviews">
       <h1 class="product_detail__main-tabs-section-heading">REVIEWS</h1>
+      <div class="row">
+        <div class="col-6">
+          <form (ngSubmit)="onSubmit()" [formGroup]="form" class="card">
 
-      <form (ngSubmit)="onSubmit()" [formGroup]="form" class="card">
+            <div class="card-header">Rate and write a review</div>
 
-        <div class="card-header">Rate and write a review</div>
+            <div class="card-body">
+              <div class="form-group">
 
-        <div class="card-body">
-          <div class="form-group">
+                <h4 class="product_detail__rating-your">Your Rating:</h4>
 
-            <h4 class="product_detail__rating-your">Your Rating:</h4>
+                <div class="product_detail__rating-stars">
 
-            <div class="product_detail__rating-stars">
+                  <input class="product_detail__rating-input" type="radio" id="star1" formControlName="rating"
+                         name="rating" value="5">
+                  <label class="product_detail__rating-label" for="star1"></label>
 
-              <input class="product_detail__rating-input" type="radio" id="star1" formControlName="rating"
-                     name="rating" value="5">
-              <label class="product_detail__rating-label" for="star1"></label>
+                  <input class="product_detail__rating-input" type="radio" id="star2" formControlName="rating"
+                         name="rating" value="4">
+                  <label class="product_detail__rating-label" for="star2"></label>
 
-              <input class="product_detail__rating-input" type="radio" id="star2" formControlName="rating"
-                     name="rating" value="4">
-              <label class="product_detail__rating-label" for="star2"></label>
+                  <input class="product_detail__rating-input" type="radio" id="star3" formControlName="rating"
+                         name="rating" value="3">
+                  <label class="product_detail__rating-label" for="star3"></label>
 
-              <input class="product_detail__rating-input" type="radio" id="star3" formControlName="rating"
-                     name="rating" value="3">
-              <label class="product_detail__rating-label" for="star3"></label>
+                  <input class="product_detail__rating-input" type="radio" id="star4" formControlName="rating"
+                         name="rating" value="2">
+                  <label class="product_detail__rating-label" for="star4"></label>
 
-              <input class="product_detail__rating-input" type="radio" id="star4" formControlName="rating"
-                     name="rating" value="2">
-              <label class="product_detail__rating-label" for="star4"></label>
+                  <input class="product_detail__rating-input" type="radio" id="star5" formControlName="rating"
+                         name="rating" value="1">
+                  <label class="product_detail__rating-label" for="star5"></label>
 
-              <input class="product_detail__rating-input" type="radio" id="star5" formControlName="rating"
-                     name="rating" value="1">
-              <label class="product_detail__rating-label" for="star5"></label>
+                </div>
+              </div>
 
+              <div class="form-group">
+                <label for="username">Your Name: </label>
+                <input formControlName="reviewer_name" type="text" id="username" class="form-control form-control-lg"
+                       name="username">
+                <samp *ngIf="!form.get('reviewer_name').valid && form.get('reviewer_name').touched" class="help-block">Please
+                  enter your name!</samp>
+              </div>
+
+              <div class="form-group">
+                <h3 for="email">Email: </h3>
+                <input formControlName="email" type="email" id="email" class="form-control form-control-lg" name="email">
+                <samp *ngIf="!form.get('email').valid && form.get('email').touched" class="help-block">Please enter a
+                  valid email!</samp>
+              </div>
+
+              <div class="form-group">
+                <h3 for="review">Your Review: </h3>
+                <textarea formControlName="review" type="text" id="review" class="form-control form-control-lg"
+                          name="review" rows="4"></textarea>
+                <samp *ngIf="!form.get('review').valid && form.get('review').touched" class="help-block">Please give your
+                  review!</samp>
+              </div>
+              <div class="flex-row">
+                <div class="flex-fill"></div>
+                <button class="btn primary-button" type="submit" [disabled]="!form.valid">
+                  Submit Review
+                </button>
+              </div>
             </div>
-          </div>
+          </form>
 
-          <div class="form-group">
-            <label for="username">Your Name: </label>
-            <input formControlName="reviewer_name" type="text" id="username" class="form-control form-control-lg"
-                   name="username">
-            <samp *ngIf="!form.get('reviewer_name').valid && form.get('reviewer_name').touched" class="help-block">Please
-              enter your name!</samp>
-          </div>
-
-          <div class="form-group">
-            <h3 for="email">Email: </h3>
-            <input formControlName="email" type="email" id="email" class="form-control form-control-lg" name="email">
-            <samp *ngIf="!form.get('email').valid && form.get('email').touched" class="help-block">Please enter a
-              valid email!</samp>
-          </div>
-
-          <div class="form-group">
-            <h3 for="review">Your Review: </h3>
-            <textarea formControlName="review" type="text" id="review" class="form-control form-control-lg"
-                      name="review" rows="4"></textarea>
-            <samp *ngIf="!form.get('review').valid && form.get('review').touched" class="help-block">Please give your
-              review!</samp>
-          </div>
-          <div class="flex-row">
-            <div class="flex-fill"></div>
-            <button class="btn primary-button" type="submit" [disabled]="!form.valid">
-              Submit Review
-            </button>
-          </div>
         </div>
-      </form>
+      </div>
 
       <div *ngIf="product.reviews.length!=0; else NoReview">
         <div *ngFor="let review of product.reviews">
@@ -165,10 +183,12 @@
 
   </section>
 
-  <h1 class="similar-products-heading">Similar Products</h1>
+
 
   <div id="recentProducts" class="carousel slide similar-products" data-ride="carousel" data-interval="0">
-    <div class="carousel-inner">
+    <h1 class="similar-products-heading">Similar Products</h1>
+
+    <div class="carousel-inner" style="padding-top: 3rem;">
       <div class="carousel-item" [ngClass]="{'active': i === 0}"
            *ngFor="let recentProduct of similarProducts; let i = index">
         <div class="similar-products__item w-100">

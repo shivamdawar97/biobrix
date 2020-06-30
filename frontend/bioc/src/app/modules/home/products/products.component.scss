@@ -3,7 +3,7 @@
 /**  Product Sidebar Filter */
 .product-filter {
   position: fixed;
-  background: $secondary-bg;
+  background: #f1f1f1;
   height: 100vh;
   width: 25rem;
   overflow: auto;
@@ -13,7 +13,7 @@
     padding: 1.8rem 3rem;
     background-color: #075ac9;
     color: white;
-    border-radius: 6rem;
+    border-radius: 1rem;
   }
 
   /** Category Heading */
@@ -22,6 +22,7 @@
     margin-top: 2rem;
     .active {
       color: $color-info;
+      font-weight: 800;
     }
 
     li {
@@ -75,4 +76,18 @@
       font-weight: bold;
     }
   }
+}
+
+.spinner {
+  margin: auto;
+  width: 50%; height: 50vh;  position: relative;
+
+  &__circle {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
 }

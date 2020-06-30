@@ -7,7 +7,7 @@ import {PrimaryHeaderComponent} from 'src/app/components/primary-header/primary-
 import {HomepageComponent} from './homepage/homepage.component';
 import {ProductsComponent} from './products/products.component';
 import {TradeEnquiryComponent} from './trade-enquiry/trade-enquiry.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {TrackOrderComponent} from './track-order/track-order.component';
 import {ContactComponent} from './contact/contact.component';
 import {ProductDetailComponent} from './products/product-detail/product-detail.component';
@@ -17,6 +17,7 @@ import {SharedModule} from '../../shared/shared.module';
 import { PaymentComponent } from './payment/payment.component';
 import {SafePipe} from '../../core/pipes/safe.pipe';
 import { AboutComponent } from './about/about.component';
+import { LoadingSpinnerComponent } from 'src/app/components/loading-spinner/loading-spinner.component';
 
 
 const routes: Routes = [
@@ -51,12 +52,14 @@ const routes: Routes = [
     ReviewComponent,
     PaymentComponent,
     SafePipe,
-    AboutComponent
+    AboutComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes),
+    FormsModule,
     ReactiveFormsModule
   ],
   exports: [
