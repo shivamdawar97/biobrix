@@ -9,6 +9,7 @@ import {Product} from '../../../../core/models/product.model';
 import {CartService} from '../../../../core/services/cart.service';
 import {DatePipe} from "@angular/common";
 
+
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
@@ -31,7 +32,8 @@ export class ProductDetailComponent implements OnInit {
     private cartService: CartService,
     private router: Router,
     private utilityService: UtilityService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private activeRoute: ActivatedRoute
     ) {
     this.form = new FormGroup({
       reviewer_name: new FormControl('', Validators.required),
@@ -49,9 +51,11 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.productId = this.route.snapshot.paramMap.get('productId');
-    this.utilityService.showLoader.next(true);
-    this.productService.getPorductDetail(this.productId).subscribe(product => {
+    this.activeRoute.params.subscribe( params => {
+      console.log(params);
+      this.productId = params.productId;
+      this.utilityService.showLoader.next(true);
+      this.productService.getPorductDetail(this.productId).subscribe(product => {
       this.product = product;
       this.product.addedToCart = this.cartService.itemInCart(this.productId);
       if (this.product.tags.length) {
@@ -60,11 +64,29 @@ export class ProductDetailComponent implements OnInit {
       }
       this.utilityService.showLoader.next(false);
     });
+    window.scrollTo(0,0);
+    })
   }
 
-  addTocart(form){
-    console.log(form);
+  addTocart(){
+    if(this.product.addedToCart)
+      this.router.navigate(['/view-cart'])
+    else if(this.qtyForm.valid) {
+      const product = new Product(
+        this.product.product_name,
+        this.product._id,
+        this.product.price,
+        this.product.images[0]
+        );
+      product.quantity = this.qtyForm.value.quantity;
+      product.total = product.price;
+
+      this.cartService.addToCart(product);
+      this.product.addedToCart = true;
+    }
+
   }
+
 
   onSubmit() {
     this.utilityService.showLoader.next(true);

@@ -88,6 +88,11 @@ $header-background : rgba(223, 41, 71, 0.8);
       @include flex-alignment(flex-start, center);
       margin-top: 5rem;
 
+      &-form {
+        @include flex(row);
+        @include flex-alignment(flex-start, center);
+      }
+
       .count-input {
         @include flex(row);
         @include flex-alignment(flex-start, center);
@@ -97,8 +102,16 @@ $header-background : rgba(223, 41, 71, 0.8);
         margin-right: 2rem;
       }
 
+      .added_to_cart {
+        @include flex(row);
+        @include flex-alignment(flex-start, center);
+        text-align: center;
+        font-size:2rem;
+        margin-right: 2rem;
+      }
+
       .primary-button {
-        margin: 0;
+        margin-top: 1rem;
       }
 
     }

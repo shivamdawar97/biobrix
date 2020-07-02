@@ -37,28 +37,24 @@
 
               </div>
 
-              <div *ngIf="product.in_stock " class="product_detail__main-quantity">
+              <div *ngIf="product.in_stock" class="product_detail__main-quantity">
 
-                <form *ngIf="!product.addedToCart; else gotoCart" [formGroup]="qtyForm">
+                <form class="product_detail__main-form" (ngSubmit)="addTocart()" [formGroup]="qtyForm">
 
                 <input
+                 *ngIf="!product.addedToCart; else added;"
                  formControlName="quantity"
                  type="number"
                  class="form-control form-control-lg count-input"
                  minlength='1'
                  >
+                 <ng-template #added>
+                  <i class="fa-check added_to_cart" style="color: green;">&nbsp;&nbsp;Product added to cart</i>
+                 </ng-template>
 
-                <button type="submit" class="btn primary-button"> Add to cart</button>
+                <button [ngClass]="{'enabled': qtyForm.valid }" type="submit" class="btn primary-button"> {{ product.addedToCart?'Go to cart':' Add to cart' }} </button>
 
                 </form>
-
-                <ng-template #gotoCart>
-                   <i class="fa-check" style="color: green;">   Product added to cart</i>
-
-                  <button  class="btn primary-button" style="margin-left: 1rem;"> Go to cart</button>
-
-                </ng-template>
-
 
               </div>
               <p *ngIf="!product.in_stock" class="product_detail__main-out">Out of stock</p>
