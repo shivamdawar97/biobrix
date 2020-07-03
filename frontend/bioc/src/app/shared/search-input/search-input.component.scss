@@ -10,7 +10,7 @@
 input[type="text"] {
   border-right: none;
   width: 3rem;
-  transition: width 200ms ease-in-out;
+  transition: width 250ms ease-in-out;
 
   &:focus {
     width: 18rem;

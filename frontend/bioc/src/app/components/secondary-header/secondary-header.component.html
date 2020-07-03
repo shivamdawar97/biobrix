@@ -22,9 +22,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link cart" [routerLink]="[cartConfig.link]">
+                <a class="nav-link cart" routerLinkActive="active" routerLink="/view-cart" >
                     <span *ngIf="cartItemCount">{{ cartItemCount }}</span>
-                    <i class="{{ cartConfig.icon }}" aria-hidden="true"></i>
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                 </a>
             </li>
             <li class="nav-item">

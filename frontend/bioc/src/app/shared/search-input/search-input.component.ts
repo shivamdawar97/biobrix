@@ -12,7 +12,7 @@ export class SearchInputComponent implements OnInit, OnDestroy {
 
   searchInput = new FormControl('');
   @Input() paramKeyword = '';
-  @Input() placeholder = 'Search';
+  placeholder = 'Search';
 
   @Output() searchChanged = new EventEmitter<string>();
 
@@ -29,7 +29,8 @@ export class SearchInputComponent implements OnInit, OnDestroy {
       }
     }
 
-    this.searchInput.valueChanges.pipe(distinctUntilChanged(), debounceTime(300)).subscribe(res => {
+    this.searchInput.valueChanges.pipe(distinctUntilChanged(), debounceTime(1000)).subscribe(res => {
+      if(res !== '')
       this.navigate({[this.paramKeyword]: res});
     });
 
@@ -47,7 +48,7 @@ export class SearchInputComponent implements OnInit, OnDestroy {
       const updatedParams = Object.keys(newParams).filter(key => !!newParams[key]).reduce((pre, key) => {
         return {...pre, [key]: newParams[key]};
       }, {});
-      this.router.navigate([], { queryParams: updatedParams});
+      this.router.navigate(['/products/all'], { queryParams: updatedParams});
     });
   }
 
