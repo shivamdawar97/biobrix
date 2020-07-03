@@ -1,0 +1,16 @@
+@import "src/styles/imports";
+
+.footer {
+  @include flex(row);
+  background-color: rgba(15, 15, 15, 0.884);
+  padding: .5rem;
+  color: white;
+  &__cname {
+    margin-left: 1rem;
+    border-right: 1px solid white;
+    padding: .5rem;
+  }
+  &__cr {
+    padding: .5rem;
+  }
+}

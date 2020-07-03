@@ -18,6 +18,7 @@ import { PaymentComponent } from './payment/payment.component';
 import {SafePipe} from '../../core/pipes/safe.pipe';
 import { AboutComponent } from './about/about.component';
 import { LoadingSpinnerComponent } from 'src/app/components/loading-spinner/loading-spinner.component';
+import { FooterComponent } from 'src/app/components/footer/footer.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,7 @@ const routes: Routes = [
     HomeComponent,
     SecondaryHeaderComponent,
     PrimaryHeaderComponent,
+    FooterComponent,
     HomepageComponent,
     ProductsComponent,
     TradeEnquiryComponent,
