@@ -19,6 +19,7 @@ import {SafePipe} from '../../core/pipes/safe.pipe';
 import { AboutComponent } from './about/about.component';
 import { LoadingSpinnerComponent } from 'src/app/components/loading-spinner/loading-spinner.component';
 import { FooterComponent } from 'src/app/components/footer/footer.component';
+import { FloaterComponent } from 'src/app/components/floater/floater.component';
 
 
 const routes: Routes = [
@@ -55,7 +56,8 @@ const routes: Routes = [
     PaymentComponent,
     SafePipe,
     AboutComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    FloaterComponent
   ],
   imports: [
     CommonModule,

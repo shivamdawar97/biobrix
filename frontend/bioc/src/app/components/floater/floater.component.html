@@ -1,0 +1,36 @@
+<div class="floating-chat enter" [ngClass]="{'expand' : isExpanded}">
+  <i class="fa fa-comments" aria-hidden="true" (click)="expand()" ></i>
+  <div class="chat" [ngClass]="{'enter' : isExpanded}">
+      <div class="header">
+          <span class="title">
+              what's on your mind?
+          </span>
+          <button>
+              <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+
+      </div>
+
+      <form>
+        <div>
+          <p>Name</p>
+          <div class="text-box" contenteditable="true" disabled="true"></div>
+        </div>
+        <div>
+          <p>Email</p>
+          <div class="text-box" contenteditable="true" disabled="true"></div>
+        </div>
+
+        <div>
+          <p>Message</p>
+          <div class="text-box" contenteditable="true" disabled="true"></div>
+        </div>
+
+      </form>
+
+      <div class="footer">
+
+          <button id="sendMessage">send</button>
+      </div>
+  </div>
+</div>
