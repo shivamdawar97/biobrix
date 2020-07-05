@@ -37,7 +37,7 @@ export class AddTestimoniesComponent implements OnInit {
   }
 
   async onSubmit() {
-    const image_url = await this.storageService.uploadFile(this.file);
+    const image_url = await this.storageService.uploadFile(this.file,'testimonies');
     const data = {
       ...this.form.value,
       image: image_url

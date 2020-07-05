@@ -8,10 +8,10 @@ export class FirebaseStorageService {
   constructor(private storage: AngularFireStorage) {}
 
 
-   uploadFile(file: File)  {
+   uploadFile(file: File,folderName: string = 'product_images')  {
     return new Promise<string>( (resolve,reject) => {
       const id = `${Math.random().toString(36).substring(2)}_${Date.now()}`;
-      const ref: AngularFireStorageReference = this.storage.ref('product_images').child(id);
+      const ref: AngularFireStorageReference = this.storage.ref(folderName).child(id);
       const task: AngularFireUploadTask = ref.put(file)
 
       task.snapshotChanges().pipe(

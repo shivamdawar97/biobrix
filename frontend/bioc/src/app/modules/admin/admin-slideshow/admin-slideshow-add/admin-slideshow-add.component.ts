@@ -47,9 +47,8 @@ export class AdminSlideshowAddComponent implements OnInit {
 
   async addSlide() {
     this.utilityService.showLoader.next(true);
-    const image_url = await this.storageService.uploadFile(this.fileData);
+    const image_url = await this.storageService.uploadFile(this.fileData,'slideshow');
     const data = { image_url, product_id: this.selectedItem.product_id };
-
     this.slidshowApiService.addSlide(data).subscribe(res => {
       this.utilityService.showLoader.next(false);
       this.router.navigate(['/', 'private-path', 'admin', 'slideshow']);
