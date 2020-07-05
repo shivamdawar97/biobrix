@@ -1,12 +1,12 @@
 <div class="floating-chat enter" [ngClass]="{'expand' : isExpanded}">
-  <i class="fa fa-comments" aria-hidden="true" (click)="expand()" ></i>
+  <i class="fa fa-comments" aria-hidden="true" (click)="isExpanded=true;" ></i>
   <div class="chat" [ngClass]="{'enter' : isExpanded}">
       <div class="header">
           <span class="title">
               what's on your mind?
           </span>
           <button>
-              <i class="fa fa-times" aria-hidden="true"></i>
+              <i class="fa fa-times" aria-hidden="true" (click)="isExpanded=false;"></i>
           </button>
 
       </div>
