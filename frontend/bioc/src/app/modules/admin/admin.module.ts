@@ -9,8 +9,6 @@ import {AdminTestimoniesComponent} from './admin-testimonies/admin-testimonies.c
 import {AdminReviewsComponent} from './admin-reviews/admin-reviews.component';
 import {AdminLoginComponent} from './admin-login/admin-login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {LoadingSpinnerComponent} from './loading-spinner/loading-spinner.component';
-import {AuthService} from './auth.service';
 import {AdminProductsAddComponent} from './admin-products/admin-products-add/admin-products-add.Component';
 import {AdminProductService} from './admin-products/admin-product.service';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
@@ -23,6 +21,7 @@ import {AddTestimoniesComponent} from './admin-testimonies/add-testimonies/add-t
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import {FirebaseStorageService} from "./firebase-storage.service";
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 const fireConfig = {
   apiKey: 'AIzaSyBPzOGjeRRrGLc-VCNonR6jCf7C7QWmYHg',
@@ -62,12 +61,12 @@ const routes: Routes = [
     AdminTestimoniesComponent,
     AdminReviewsComponent,
     AdminLoginComponent,
-    LoadingSpinnerComponent,
     AdminProductsAddComponent,
     FilterPipe,
     AdminOrderDetailsComponent,
     AdminSlideshowAddComponent,
-    AddTestimoniesComponent
+    AddTestimoniesComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     CommonModule,

@@ -9,11 +9,13 @@
 
   &__heading {
     line-height: 36px;
+
   }
 
   &__underline {
+    margin: 2rem;
     height: 3px;
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     width: 10%;
     padding: 0;
     margin: 0 0 35px 0;
@@ -89,9 +91,8 @@
 }
 
 .recent-products {
-  background-color: #f1f1f1;
+  background-color: #a5a0f081;
   padding-bottom: 20px;
-
   &__item {
     padding: 0 50px;
     @include flex(row);
@@ -106,8 +107,8 @@
 }
 
 .testimonies {
-  background-color: #fdaab6;
-  padding-bottom: 3rem;
+
+  padding-bottom: 10rem;
   &__item {
     width: 70%;
     margin: 0 auto;
@@ -148,7 +149,7 @@
 }
 
 .dry-skin {
-  background-image: url("https://biobrix-files.s3.ap-south-1.amazonaws.com/images/dry-skin-tips.png");
+  background-image: url("https://suttonderm.com/wp-content/uploads/10-Top-Tips-For-Dry-Skin-2-720x675.jpg");
 }
 
 .oily-skin {
@@ -156,7 +157,7 @@
 }
 
 .hair-care {
-  background-image: url("https://biobrix-files.s3.ap-south-1.amazonaws.com/images/hair_care.jpg");
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/biobrix-0.appspot.com/o/types_of_images%2Fhair-care.jpeg?alt=media");
 }
 
 .sun-protection {
@@ -211,7 +212,7 @@
 }
 
 .product-type-section {
-  background: url("../../../../assets/category_background.jpg") center;
+ // background: url("../../../../assets/category_background.jpg") center;
   background-size: cover;
   padding-top: 3rem;
 }

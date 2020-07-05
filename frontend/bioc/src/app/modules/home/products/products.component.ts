@@ -24,6 +24,7 @@ export class ProductsComponent implements OnInit {
   selectedCategoryIndex: number;
   categoryId: string;
   tag: string;
+  isLoading = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -57,12 +58,14 @@ export class ProductsComponent implements OnInit {
       params = [{name: 'categoryId', value: categoryId}];
     }
 
-    this.utilityService.showLoader.next(true);
+    //this.utilityService.showLoader.next(true);
+    this.isLoading = true;
 
     this.productService.getProductList(params).subscribe({
       next: (data) => {
         this.productList = Array.isArray(data) ? data : [data];
-        this.utilityService.showLoader.next(false);
+        // this.utilityService.showLoader.next(false);
+        this.isLoading = false;
       }
     });
   }
@@ -113,15 +116,18 @@ export class ProductsComponent implements OnInit {
   }
 
   getTagsProducts() {
-    this.utilityService.showLoader.next(true);
+    //this.utilityService.showLoader.next(true);
+    this.isLoading = true;
 
     if (this.tag) {
       this.productService.getSimilarProducts(this.tag).subscribe(res => {
         if (res) {
           this.productList = Array.isArray(res) ? res : [res];
-          this.utilityService.showLoader.next(false);
+          //this.utilityService.showLoader.next(false);
+          this.isLoading = false;
         }
-      }, err => this.utilityService.showLoader.next(false));
+      }, err => this.isLoading = false);
+      //}, err => this.utilityService.showLoader.next(false));
     } else {
       this.getProductList('all');
     }

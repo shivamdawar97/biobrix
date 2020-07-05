@@ -14,7 +14,8 @@
       </ul>
     </div>
   </div>
-  <div class="product-list">
+
+  <div *ngIf="!isLoading else loading_circular;" class="product-list" >
     <ng-container *ngIf="!tag">
       <div class="row category" *ngFor="let category of productList">
         <div class="col-md-12 name">
@@ -31,4 +32,11 @@
       </div>
     </div>
   </div>
+
+  <ng-template #loading_circular>
+    <div class="spinner">
+      <app-loading-spinner class="spinner__circle"></app-loading-spinner>
+    </div>
+  </ng-template>
+
 </app-main-container>

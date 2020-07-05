@@ -15,7 +15,6 @@ export class SecondaryHeaderComponent implements OnInit {
 
   contactInfo = ContactInfo;
   cartConfig = CartConfig;
-
   cartItemCount = 0;
 
   constructor(

@@ -1,5 +1,5 @@
 <div class="navbar-container">
-    <app-secondary-header></app-secondary-header>
+    <app-secondary-header  style="animation: moveInTop .3s ease-out  0s;" *ngIf="scrollOffset<100"></app-secondary-header>
     <app-primary-header></app-primary-header>
 </div>
 <div>
@@ -8,3 +8,5 @@
     </div>
     <router-outlet></router-outlet>
 </div>
+<app-footer></app-footer>
+<app-floater></app-floater>
