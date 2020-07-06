@@ -1,36 +1,31 @@
-<div class="floating-chat enter" [ngClass]="{'expand' : isExpanded}">
-  <i class="fa fa-comments" aria-hidden="true" (click)="isExpanded=true;" ></i>
-  <div class="chat" [ngClass]="{'enter' : isExpanded}">
-      <div class="header">
-          <span class="title">
-              what's on your mind?
-          </span>
-          <button>
-              <i class="fa fa-times" aria-hidden="true" (click)="isExpanded=false;"></i>
-          </button>
+<div class="enter" [ngClass]="{'expand' : isExpanded}">
 
-      </div>
 
-      <form>
+  <div class="form-box" id="myDIV" [ngClass]="{'open': isExpanded}" >
+    <h2 class="login-header"><i class="far fa-comment-dots icon"></i>We'll text you.</h2>
+    <div class="test">
+      <form class="formInput">
         <div>
-          <p>Name</p>
-          <div class="text-box" contenteditable="true" disabled="true"></div>
-        </div>
-        <div>
-          <p>Email</p>
-          <div class="text-box" contenteditable="true" disabled="true"></div>
+          <input type="text" required id="test">
+          <label class="inputLabel">Name</label>
         </div>
 
         <div>
-          <p>Message</p>
-          <div class="text-box" contenteditable="true" disabled="true"></div>
+          <input type="text" id="numberText" required>
+          <label class="inputLabel">Mobile No.</label>
+        </div>
+        <div>
+          <input type="text"  required>
+          <label class="inputLabel">Message</label>
         </div>
 
-      </form>
 
-      <div class="footer">
-
-          <button id="sendMessage">send</button>
-      </div>
+    <input type="submit" value="Send" id="submitButt" class="active">
+  </form>
   </div>
-</div>
+  <div class="footer"></div>
+  </div>
+
+  <i class="fas floating-btn fa-comments" (click)="isExpanded=!isExpanded;"></i>
+
+  </div>
