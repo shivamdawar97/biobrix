@@ -18,7 +18,7 @@ export class CheckoutComponent implements OnInit {
 
   form: FormGroup;
   isOtpSent = false;
-  isPhoneVerified = false;
+  isPhoneVerified = true;
   otpField = new FormControl();
   products: Product[] = [];
   total = 0;
@@ -97,33 +97,11 @@ export class CheckoutComponent implements OnInit {
   // }
   makePayment() {
     if(this.form.valid) {
-
+      this.razorpayPaymentService.initiatePayment(this.orderId, this.form.getRawValue()).subscribe(res => {
+          console.log(res);
+      });
     }
-
-      this.router.navigate(['/', 'payment'], { queryParams: {
-        order_id: this.orderId,
-        email: this.form.get('email').value,
-        phone: this.form.get('phone_number').value,
-        amount: this.total
-      }});
-    // this.updateOrder();
   }
-
-  createRzpayOrder(data) {
-    console.log(data);
-    this.razorpayPaymentService.createPaymentOrder(data.amount).subscribe( order => {
-      this.payWithRazor(order.id);
-    } )
-
-  }
-
-  updateOrder() {
-    // update user information at backend
-    this.cartApiService.updateOrder(this.orderId, this.form.getRawValue()).subscribe(res => {
-      this.router.navigate(['view-cart/order', res._id], { queryParams: { new_order: true}});
-    });
-  }
-
 
   payWithRazor(val) {
     const options: any = {

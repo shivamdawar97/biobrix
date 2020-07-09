@@ -1,28 +1,37 @@
 const express = require('express')
+const Order = require('../models/order')
 const router = new express.Router()
 const instance = require('../payment/razorpay/razorpay') 
+const { ObjectID } = require('mongodb')
 
-router.post('/payment_order', async (req,res)=> {
+router.post('/initiate_payment/:id', async (req,res)=>{
+    
+    const updates= Object.keys(req.body)
+    const allowedUpdates=['user_name','address','zip_code','city','state','phone_number','email']
+    const isValidOperation = updates.every(update => allowedUpdates.includes(update)) 
 
-    try {
-
+    if(!isValidOperation){
+        return res.status(400).send({error:'Invalid updates!'})
+    }
+    try{
+        const order = await Order.findById(req.params.id)
+        if(!order)
+        throw Error('order not fond')
+        
         const options = {
-            amount: req.body.amount,  // amount in the smallest currency unit
+            amount: order.total,  // amount in the smallest currency unit
             currency: "INR",
             payment_capture: '0',
-            receipt: "order_rcptid_11",
+            receipt: "rcptid_11",
         }
-         instance.orders.create(options, (err,order)=>{
-            if(err) throw Error('Order creation failed') 
-            res.send(order)   
-
-        })
-    
-
-    }catch(error) {
-        res.status(400).send(error)
+        const rOrder = await instance.orders.create(options)
+        updates.forEach(update => order[update]=req.body[update]) //update is the key not value
+        order.payment_id = rOrder.id
+        await order.save()
+        res.send(order)
+    }catch(err){
+        console.log(err)
+        res.status(400).send(err.message)
     }
-
 })
-
 module.exports = router

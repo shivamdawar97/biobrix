@@ -2,6 +2,11 @@ const mongoose = require('mongoose')
 const shortProduct = require('./product_short')
 
 const orderSchema = new mongoose.Schema({
+    payment_id:{
+        type: String,
+        required: true,
+        default: 'NA'
+    },
     user_name:{
         type:String,
         required:true,

@@ -90,28 +90,6 @@ router.get('/order/get_details/:id',async (req,res)=>{
     }
 })
 
-router.patch('/order/update_details/:id', async (req,res)=>{
-    const updates= Object.keys(req.body)
-    const allowedUpdates=['user_name','address','zip_code','city','state','phone_number','email']
-    const isValidOperation = updates.every(update => allowedUpdates.includes(update)) 
-
-    if(!isValidOperation){
-        return res.status(400).send({error:'Invalid updates!'})
-    }
-
-    try{
-        const order = await Order.findById(req.params.id)
-        if(!order)
-        return res.status(404).send()
-        
-        updates.forEach(update=> order[update]=req.body[update]) //update is the key not value
-        await order.save()
-        res.send(order)
-    }catch(err){
-        res.status(500).send(err.message)
-    }
-})
-
 router.patch('/order/remove_item/:id',async (req,res)=>{
     try{
         const productId = req.body.product_id
