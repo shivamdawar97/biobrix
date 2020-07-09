@@ -1,8 +1,6 @@
-<div class="enter" [ngClass]="{'expand' : isExpanded}">
-
-
+<div>
   <div class="form-box" id="myDIV" [ngClass]="{'open': isExpanded}" >
-    <h2 class="login-header"><i class="far fa-comment-dots icon"></i>We'll text you.</h2>
+    <h2 class="login-header"><i class="far fa-comment-dots icon"></i>We'll reach you.</h2>
     <div class="test">
       <form class="formInput">
         <div>
@@ -10,17 +8,17 @@
         </div>
 
         <div>
-          <input type="number" id="numberText" required placeholder="Mobile No.">
+          <input type="tel" id="numberText" required placeholder="Mobile No."  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
         </div>
         <div>
-          <input type="text"  required placeholder="Messagfe">
+          <input type="text"  required placeholder="Message">
         </div>
 
 
     <input type="submit" value="Send" id="submitButt" class="active">
   </form>
   </div>
-  <div class="footer"></div>
+
   </div>
 
   <button class="floating-btn" (click)="isExpanded=!isExpanded;">

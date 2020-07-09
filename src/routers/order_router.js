@@ -3,11 +3,12 @@ const router = new express.Router()
 const Order = require('../models/order')
 const Product = require('../models/product')
 const auth = require('../middleware/auth')
-const transactionVerification = require('../paytm/controller').verification
+const transactionVerification = require('../payment/controller').verification
 
 router.post('/order/verify_cart',async (req,res)=> {
     try{
         const cartProducts =  req.body.products
+
         if(!cartProducts) throw Error('No products provided')
         let total = 0
         const orderProducts = []
@@ -16,6 +17,7 @@ router.post('/order/verify_cart',async (req,res)=> {
             const product = await Product.findById(cartProduct.product_id)
             if(!product)
             throw new Error('Invalid product id')
+
             const allOk =
             cartProduct.product_name === product.product_name &&
             cartProduct.image === product.images[0] &&
@@ -183,7 +185,6 @@ router.get('/order/get_orders',async (req,res)=> {
         if(!orders) res.status(404).send()
         res.send(orders)
     }catch(e){
-        console.log(e)
         res.status(500).send(e)
     }
 })

@@ -4,6 +4,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CartApiService} from '../../../core/http/cart-api.service';
 import {CartService} from '../../../core/services/cart.service';
 import {Product} from '../../../core/models/product.model';
+import { WindowRefService } from 'src/app/window-ref.service';
+import { RazorpayPaymentService } from 'src/app/core/http/razorpay-payment.service';
 
 @Component({
   selector: 'app-checkout',
@@ -16,7 +18,7 @@ export class CheckoutComponent implements OnInit {
 
   form: FormGroup;
   isOtpSent = false;
-  isPhoneVerified = true;
+  isPhoneVerified = false;
   otpField = new FormControl();
   products: Product[] = [];
   total = 0;
@@ -24,8 +26,11 @@ export class CheckoutComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private cartApiService: CartApiService,
+              private razorpayPaymentService: RazorpayPaymentService,
               private cart: CartService,
-              private router: Router) {
+              private router: Router,
+              private windowRef: WindowRefService
+              ) {
 
     this.orderId = this.route.snapshot.queryParamMap.get('order_id');
 
@@ -78,17 +83,38 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  makePayment() {
-    // use payment api for payment -> open order detail page
+  // makePayment() {
+  //   // use payment api for payment -> open order detail page
 
-    console.log('from value is ', this.form.value);
-    this.router.navigate(['/', 'payment'], { queryParams: {
-      order_id: this.orderId,
+  //   console.log('from value is ', this.form.value);
+  //   this.router.navigate(['/', 'payment'], { queryParams: {
+  //     order_id: this.orderId,
+  //       email: this.form.get('email').value,
+  //       phone: this.form.get('phone_number').value,
+  //       amount: this.total
+  //     }});
+  //   // this.updateOrder();
+  // }
+  makePayment() {
+    if(this.form.valid) {
+
+    }
+
+      this.router.navigate(['/', 'payment'], { queryParams: {
+        order_id: this.orderId,
         email: this.form.get('email').value,
         phone: this.form.get('phone_number').value,
         amount: this.total
       }});
     // this.updateOrder();
+  }
+
+  createRzpayOrder(data) {
+    console.log(data);
+    this.razorpayPaymentService.createPaymentOrder(data.amount).subscribe( order => {
+      this.payWithRazor(order.id);
+    } )
+
   }
 
   updateOrder() {
@@ -97,4 +123,42 @@ export class CheckoutComponent implements OnInit {
       this.router.navigate(['view-cart/order', res._id], { queryParams: { new_order: true}});
     });
   }
+
+
+  payWithRazor(val) {
+    const options: any = {
+      key: 'rzp_test_key',
+      amount: 125500, // amount should be in paise format to display Rs 1255 without decimal point
+      currency: 'INR',
+      name: '', // company name or product name
+      description: '',  // product description
+      image: './assets/logo.png', // company logo or product image
+      order_id: val, // order_id created by you in backend
+      modal: {
+        // We should prevent closing of the form when esc key is pressed.
+        escape: false,
+      },
+      notes: {
+        // include notes if any
+      },
+      theme: {
+        color: '#0c238a'
+      }
+    };
+    options.handler = ((response, error) => {
+      options.response = response;
+      console.log(response);
+      console.log(options);
+      // call your backend api to verify payment signature & capture transaction
+    });
+    options.modal.ondismiss = (() => {
+      // handle the case when user closes the form while transaction is in progress
+      console.log('Transaction cancelled.');
+    });
+    const rzp = new this.windowRef.nativeWindow.Razorpay(options);
+    rzp.open();
+  }
+
+
+
 }

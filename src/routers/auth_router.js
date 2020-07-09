@@ -34,6 +34,7 @@ router.get('/phone/send_otp', async (req,res)=>{
         res.send({status:'pending'})
         else throw new Error('Invaid otp')
     }catch(error){
+        console.log(error)
         res.status(400).send({error:error.message})
     }
 })
