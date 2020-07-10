@@ -12,9 +12,10 @@ import { UserInfo } from '../models/user-info';
 })
 export class RazorpayPaymentService {
   private BASE_URL = environment.BASE_URL;
-  private INITIATE_PAYMENT =  'initiate_payment/'
+  private INITIATE_PAYMENT =  'payment/initiate_payment/'
+  private VERIFY_PAYMENT =  'payment/validate_signature/'
 
-  constructor(private http: HttpClient, private httpErrorHandlerService: HttpErrorHandlerService) { }
+  constructor(private http: HttpClient, private httpErrorHandlerService: HttpErrorHandlerService) {}
 
   initiatePayment(orderId: string, data: UserInfo): Observable<OrderDetail> {
     const url = `${this.BASE_URL}${this.INITIATE_PAYMENT}${orderId}`;
@@ -24,5 +25,13 @@ export class RazorpayPaymentService {
       }
     }).pipe(catchError(this.httpErrorHandlerService.handleErr));
   }
+
+  verifyPayment(data: any) {
+    const url = `${this.BASE_URL}${this.VERIFY_PAYMENT}`;
+    return this.http.post<OrderDetail>(url, data, {
+      headers: {'Access-Control-Allow-Methods': '*'}
+    }).pipe(catchError(this.httpErrorHandlerService.handleErr));
+  }
+
 
 }
