@@ -59,7 +59,7 @@ router.get('/order/get_details/:id',async (req,res)=>{
         if(!order)
         throw Error('No order found')
 
-        if(order.order_status==='placed')
+        if(order.order_status !=='created')
         {
             res.send(order)
             return
@@ -83,6 +83,7 @@ router.get('/order/get_details/:id',async (req,res)=>{
         order.products = shortProducts
         order.total = total
         await order.save()
+        await new Promise(resolve => setTimeout(resolve,1000))
         res.send(order)
 
     }catch(error){

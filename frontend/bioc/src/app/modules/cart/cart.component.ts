@@ -62,6 +62,11 @@ export class CartComponent implements OnInit {
     this.cartService.saveCart(product);
   }
 
+  clearCart(){
+
+    this.cartService.clearCart()
+
+  }
 
   checkout() {
     this.utilityService.showLoader.next(true);

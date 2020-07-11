@@ -1,5 +1,6 @@
 <app-main-container title="CART">
   <div class="cart-container">
+    <button *ngIf="cartItems.length > 0" (click)="clearCart()" class="del-btn btn btn-outline-danger">Clear Cart</button>
     <table class="table" *ngIf="cartItems.length > 0 else emptyCart">
       <thead>
       <tr>

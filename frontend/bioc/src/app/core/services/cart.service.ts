@@ -37,6 +37,10 @@ export class CartService {
     }
   }
 
+  clearCart(){
+    this.updateSavedCart([]);
+    this.updateCartSubscriptions();
+  }
 
   updateCartSubscriptions() {
     const cartItems = this.getCartItems();

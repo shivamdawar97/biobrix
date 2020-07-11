@@ -7,7 +7,6 @@ import {Product} from '../../../core/models/product.model';
 import { WindowRefService } from 'src/app/window-ref.service';
 import { RazorpayPaymentService } from 'src/app/core/http/razorpay-payment.service';
 
-
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -16,7 +15,7 @@ import { RazorpayPaymentService } from 'src/app/core/http/razorpay-payment.servi
 export class CheckoutComponent implements OnInit {
 
   orderId: string;
-
+  isLoading = false;
   form: FormGroup;
   isOtpSent = false;
   isPhoneVerified = true;
@@ -24,6 +23,7 @@ export class CheckoutComponent implements OnInit {
   products: Product[] = [];
   total = 0;
   subtotal = 0;
+  isOrderPlaced = false;
 
   constructor(private route: ActivatedRoute,
               private cartApiService: CartApiService,
@@ -40,13 +40,6 @@ export class CheckoutComponent implements OnInit {
       this.router.navigate(['/view-cart']);
     }
 
-    this.products = this.cart.getCartItems();
-
-    this.total = this.products.map(pro => pro.total).reduce((total, value) => total + value);
-
-    this.subtotal = this.total;
-
-    console.log('products ', this.products);
     this.form = new FormGroup({
       phone_number: new FormControl(
         null, [
@@ -64,11 +57,21 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit() {
-
+      scrollTo(0,0);
+      this.isLoading = true;
+      this.cartApiService.orderDetails(this.orderId).subscribe(order => {
+      this.isLoading = false;
+      this.products = order.products;
+      this.total = order.total;
+      this.subtotal = this.total;
+      this.isOrderPlaced = order.payment_status
+    })
   }
 
   getOtp() {
+    this.isLoading = true;
     this.cartApiService.getOtp(this.form.get('phone_number').value).subscribe(res => {
+      this.isLoading = false;
       if (res.status === 'pending') {
         this.isOtpSent = true;
         this.form.get('phone_number').disable();
@@ -98,6 +101,7 @@ export class CheckoutComponent implements OnInit {
   // }
   makePayment() {
     if(this.form.valid) {
+
       this.razorpayPaymentService.initiatePayment(this.orderId, this.form.getRawValue()).subscribe(order => {
         this.payWithRazor(order)
       });

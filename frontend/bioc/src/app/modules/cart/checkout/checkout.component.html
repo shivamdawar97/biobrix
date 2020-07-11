@@ -1,5 +1,5 @@
 <app-main-container title="CHECKOUT">
-  <div class="checkout-container">
+  <div *ngIf="!isLoading else loading_circular" class="checkout-container">
     <div class="order-information">
       <div class="order-information__header">Your Order</div>
       <div class="order-information__content">
@@ -26,14 +26,16 @@
         </div>
       </div>
     </div>
+
     <div class="billing-information">
+
       <div class="billing-information__header">Billing information</div>
       <form [formGroup]="form" class="billing-information__container" (ngSubmit)="form.valid && makePayment()">
         <div class="verify-phone">
           <div *ngIf="!isPhoneVerified" class="alert alert-primary">Please verify your mobile number</div>
           <div class="form-group">
             <label for="phone_number">Mobile number</label>
-            <input type="text" formControlName="phone_number" id="phone_number" class="form-control form-control-lg" aria-describedby="phoneHelp" placeholder="Enter mobile number">
+            <input type="text" maxlength="10" formControlName="phone_number" id="phone_number" class="form-control form-control-lg" aria-describedby="phoneHelp" placeholder="Enter mobile number">
           </div>
           <div *ngIf="isOtpSent && !isPhoneVerified" class="alert alert-success mt-3">OTP has been sent to this mobile number, please verify!</div>
           <div *ngIf="isPhoneVerified" class="alert alert-success mt-3">Mobile number verified!</div>
@@ -76,4 +78,9 @@
       </form>
     </div>
   </div>
+
+  <ng-template #loading_circular>
+    <div class="lds-dual-ring"></div>
+  </ng-template>
+
 </app-main-container>
