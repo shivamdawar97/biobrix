@@ -1,5 +1,16 @@
 <app-main-container title="CHECKOUT">
+
+  <div *ngIf="isOrderPlaced" class="media payment-success">
+
+    <i class="align-self-center mr-3 far fa-check-circle payment-success__done"></i>
+      <div class="payment-success__body">
+        <strong> Your has been successfully placed! &nbsp; &nbsp;</strong>  <a href="#" class="alert-link">Click here </a> to track your order.
+     </div>
+
+  </div>
+
   <div *ngIf="!isLoading else loading_circular" class="checkout-container">
+
     <div class="order-information">
       <div class="order-information__header">Your Order</div>
       <div class="order-information__content">
@@ -39,6 +50,7 @@
           </div>
           <div *ngIf="isOtpSent && !isPhoneVerified" class="alert alert-success mt-3">OTP has been sent to this mobile number, please verify!</div>
           <div *ngIf="isPhoneVerified" class="alert alert-success mt-3">Mobile number verified!</div>
+          <div *ngIf="isVerficationFailed" class="alert alert-danger mt-3">Mobile number verification failed!</div>
           <div class="form-group" *ngIf="isOtpSent && !isPhoneVerified">
             <label for="optField">Enter OTP</label>
             <input type="text" [formControl]="otpField" id="optField" class="form-control form-control-lg" aria-describedby="phoneHelp" placeholder="Enter OTP code">
@@ -71,7 +83,7 @@
             <label for="state">State</label>
             <input type="text" formControlName="state" id="state" class="form-control form-control-lg" aria-describedby="stateHelp" placeholder="Enter state">
           </div>
-          <div class="make-payment-btn">
+          <div *ngIf="!isOrderPlaced" class="make-payment-btn">
             <button type="submit" class="btn primary-button">Make Payment</button>
           </div>
         </div>

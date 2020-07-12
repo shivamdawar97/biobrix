@@ -6,6 +6,8 @@ import {CartService} from '../../../core/services/cart.service';
 import {Product} from '../../../core/models/product.model';
 import { WindowRefService } from 'src/app/window-ref.service';
 import { RazorpayPaymentService } from 'src/app/core/http/razorpay-payment.service';
+import { UserInfo } from 'src/app/core/models/user-info';
+
 
 @Component({
   selector: 'app-checkout',
@@ -18,12 +20,13 @@ export class CheckoutComponent implements OnInit {
   isLoading = false;
   form: FormGroup;
   isOtpSent = false;
-  isPhoneVerified = true;
+  isPhoneVerified = false;
   otpField = new FormControl();
   products: Product[] = [];
   total = 0;
   subtotal = 0;
   isOrderPlaced = false;
+  isVerficationFailed = false;
 
   constructor(private route: ActivatedRoute,
               private cartApiService: CartApiService,
@@ -39,21 +42,6 @@ export class CheckoutComponent implements OnInit {
       console.log('No order id present');
       this.router.navigate(['/view-cart']);
     }
-
-    this.form = new FormGroup({
-      phone_number: new FormControl(
-        null, [
-          Validators.minLength(10),
-          Validators.maxLength(12),
-          Validators.required,
-        ]),
-      user_name: new FormControl(),
-      email: new FormControl(),
-      address: new FormControl(),
-      zip_code: new FormControl(),
-      city: new FormControl(),
-      state: new FormControl()
-    });
   }
 
   ngOnInit() {
@@ -65,7 +53,29 @@ export class CheckoutComponent implements OnInit {
       this.total = order.total;
       this.subtotal = this.total;
       this.isOrderPlaced = order.payment_status
+      this.initiateForm(this.isOrderPlaced?order:null)
+      if(this.isOrderPlaced) {
+        this.isPhoneVerified = true;
+        this.form.disable()
+      }
     })
+  }
+
+  private initiateForm(orderDetails : OrderDetail){
+    this.form = new FormGroup({
+      phone_number: new FormControl(
+         orderDetails?.phone_number, [
+          Validators.minLength(10),
+          Validators.maxLength(10),
+          Validators.required,
+        ]),
+      user_name: new FormControl(orderDetails?.user_name,Validators.required),
+      email: new FormControl(orderDetails?.email,[Validators.required,Validators.email]),
+      address: new FormControl(orderDetails?.address,Validators.required),
+      zip_code: new FormControl(orderDetails?.zip_code,Validators.required),
+      city: new FormControl(orderDetails?.city,Validators.required),
+      state: new FormControl(orderDetails?.state,Validators.required)
+    });
   }
 
   getOtp() {
@@ -80,11 +90,16 @@ export class CheckoutComponent implements OnInit {
   }
 
   verifyOtp() {
-    this.cartApiService.verifyOtp(this.form.get('phone_number').value, this.otpField.value).subscribe(res => {
-      if (res.status === 'verified') {
-        this.isPhoneVerified = true;
-      }
-    });
+    try {
+      this.cartApiService.verifyOtp(this.form.get('phone_number').value, this.otpField.value).subscribe(res => {
+        if (res.status === 'verified')  {
+          this.isVerficationFailed = false;
+          this.isPhoneVerified = true;
+        }
+      });
+    } catch(error){
+      this.isVerficationFailed = true;
+    }
   }
 
   // makePayment() {

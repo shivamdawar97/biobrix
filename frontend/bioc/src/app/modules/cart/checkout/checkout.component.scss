@@ -214,6 +214,24 @@
     }
   }
 }
+
+.payment-success {
+  margin: 3rem;
+  padding: 1rem;
+  border: 3px solid rgb(13, 199, 13);
+
+  &__done {
+    font-size: 5rem;
+    color: rgb(13, 199, 13);
+  }
+
+  &__body{
+    margin: auto;
+  }
+
+}
+
+
 .lds-dual-ring {
   display: inline-block;
   width: 100%;
