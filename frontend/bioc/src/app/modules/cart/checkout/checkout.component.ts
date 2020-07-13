@@ -168,7 +168,8 @@ export class CheckoutComponent implements OnInit {
       ...response,
       order_id: this.orderId
     }).subscribe(data => {
-        console.log('Success!! Order Placed')
+        console.log(data)
+        this.isOrderPlaced = true;
     })
   }
 

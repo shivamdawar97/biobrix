@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {CartApiService, OrderDetail} from '../../../core/http/cart-api.service';
-import {UtilityService} from '../../../core/services/utility.service';
+import {CartApiService, OrderDetail} from '../../core/http/cart-api.service';
+import {UtilityService} from '../../core/services/utility.service';
 import {FormControl, Validators} from '@angular/forms';
 import {
   VERIFICATION_ENCRYPTION_COUNT,
   VERIFICATION_TIME,
   VERIFICATION_TIMEOUT,
   VERIFIED_NUMBER
-} from '../../../constants/contact-info.const';
+} from '../../constants/contact-info.const';
 
 @Component({
   selector: 'app-track-order',
