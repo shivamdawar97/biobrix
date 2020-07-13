@@ -30,7 +30,7 @@ const routes: Routes = [
       {path: 'track-order', loadChildren: () => import('src/app/modules/track-order/track-order.module').then(m => m.TrackOrderModule)},
       {path: 'private-path/admin', loadChildren: () => import('src/app/modules/admin/admin.module').then(m => m.AdminModule)},
       {path: 'products/:categoryId', component: ProductsComponent},
-      {path: 'trade-enquiry', component: TradeEnquiryComponent}
+      {path: 'trade-enquiry', component: TradeEnquiryComponent},
       {path: 'contact-us', component: ContactComponent},
       {path: 'about', component: AboutComponent},
       {path: 'product/:productId', component: ProductDetailComponent}
