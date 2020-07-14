@@ -1,7 +1,7 @@
 @import "src/styles/imports";
 
 .track-order-container {
-  height: 50rem;
+  min-height: 50rem;
   padding: 0 8rem;
   @include flex(column);
   align-items: center;

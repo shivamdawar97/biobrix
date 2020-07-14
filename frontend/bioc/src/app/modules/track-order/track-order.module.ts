@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 const routes: Routes = [
   { path: '', component: TrackOrderComponent },
   {
-    path: 'orders/order-detail', component: OrderDetailComponent
+    path: 'order-detail', component: OrderDetailComponent
   }
 ];
 

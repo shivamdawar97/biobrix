@@ -23,9 +23,9 @@
     <h1 style="align-self: flex-start; padding-left: 10%" *ngIf="orders">Your orders</h1>
     <div class="card" *ngFor="let order of orders">
       <div class="card-header">
-        <span class="date-heading">{{order.createdAt | date:'fullDate'}} &nbsp; | Cost : &#8377; {{order.total}}</span>
+        <span class="date-heading">{{order.createdAt | date:'fullDate'}} &nbsp; | Amount : &#8377; {{order.total}}</span>
         <span class="flex-fill"></span>
-        <span class="detail-button" [routerLink]="['/', 'view-cart', 'order', order._id]">View detail</span>
+        <a class="detail-button" [routerLink]="['/','order-detail', order._id]">View detail</a>
       </div>
       <div class="card-body">
         <div class="product-list">
@@ -38,7 +38,10 @@
           </div>
         </div>
         <div class="delivery-address">
-          <h3>Delivery address</h3>
+          <h2> <strong> SHIP TO:</strong> </h2>
+          <h3 class="">{{ order.user_name }}</h3>
+          <h1>&nbsp;</h1>
+          <h2> <strong> DELIVERY ADDRESS: </strong> </h2>
           <div>{{order.address}}</div>
           <div>{{order.city}}</div>
           <div>{{order.state}}</div>
