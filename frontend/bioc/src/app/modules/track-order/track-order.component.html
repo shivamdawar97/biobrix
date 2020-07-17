@@ -23,9 +23,9 @@
     <h1 style="align-self: flex-start; padding-left: 10%" *ngIf="orders">Your orders</h1>
     <div class="card" *ngFor="let order of orders">
       <div class="card-header">
-        <span class="date-heading">{{order.createdAt | date:'fullDate'}} &nbsp; | Amount : &#8377; {{order.total}}</span>
+        <span class="date-heading">{{order.createdAt | date:'fullDate'}} &nbsp; | Amount : &#8377; {{order.total}}  &nbsp; | Status:  &nbsp; <span [ngStyle]="{'color': getColor(order.order_status), 'font-weight': '800' }">{{ getOrderStatus(order.order_status)  }}</span> </span>
         <span class="flex-fill"></span>
-        <a class="detail-button" [routerLink]="['/','order-detail', order._id]">View detail</a>
+        <a class="detail-button" [routerLink]="['order-detail', order._id]">View detail</a>
       </div>
       <div class="card-body">
         <div class="product-list">

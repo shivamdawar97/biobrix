@@ -25,20 +25,21 @@ export class TrackOrderComponent implements OnInit {
   constructor(private cartApiService: CartApiService, private utilityService: UtilityService) { }
 
   ngOnInit(): void {
-    this.getVerifiedNumber();
+  //  this.getVerifiedNumber();
   }
 
   getOtp() {
     if (!this.phone.value) {
       return;
     }
-    this.utilityService.showLoader.next(true);
-    this.cartApiService.getOtp(this.phone.value).subscribe(res => {
-      if (res.status === 'pending') {
-        this.isOtpSent = true;
-      }
-      this.utilityService.showLoader.next(false);
-    }, err => this.utilityService.showLoader.next(false));
+    // this.utilityService.showLoader.next(true);
+    // this.cartApiService.getOtp(this.phone.value).subscribe(res => {
+    //   if (res.status === 'pending') {
+    //     this.isOtpSent = true;
+    //   }
+    //   this.utilityService.showLoader.next(false);
+    // }, err => this.utilityService.showLoader.next(false));
+    this.getDetails(this.phone.value);
   }
 
   verifyOtp() {
@@ -49,7 +50,7 @@ export class TrackOrderComponent implements OnInit {
     this.cartApiService.verifyOtp(this.phone.value, this.otp.value).subscribe(res => {
       if (res.status === 'verified') {
         this.isPhoneVerified = true;
-        this.saveVerifiedNumber();
+        //this.saveVerifiedNumber();
         this.getDetails(this.phone.value);
       }
       this.utilityService.showLoader.next(false);
@@ -94,6 +95,19 @@ export class TrackOrderComponent implements OnInit {
       }
       this.utilityService.showLoader.next(false);
     }, err => this.utilityService.showLoader.next(false));
+  }
+
+  getOrderStatus = status =>  status.charAt(0).toUpperCase() + status.slice(1);
+
+  getColor(status: string){
+    let color = '#black'
+    switch(status){
+      case 'placed' :   color = '#fc7303';  break;
+      case 'dispatched' :   color = '#41fc03';  break;
+      case 'delivered' :   color = '#41fc03';  break;
+      case 'canceled' :   color = '#fc0303';  break;
+    }
+    return color;
   }
 
   AtoB(value: string) {

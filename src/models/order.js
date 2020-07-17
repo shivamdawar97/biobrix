@@ -59,7 +59,7 @@ const orderSchema = new mongoose.Schema({
     order_status:{
         type:String,
         required:true,
-        enum:['created','placed','dispatched','delivered','cancel'],
+        enum:['created','placed','dispatched','delivered','canceled'],
         default:'created'
     },
     transaction_id:{

@@ -17,11 +17,10 @@ export class OrderDetailComponent implements OnInit {
   subtotal = 0;
 
   constructor(private route: ActivatedRoute,
-              private router: Router,
               private utilityService: UtilityService,
               private cartApiService: CartApiService) {
     this.newOrder = this.route.snapshot.queryParamMap.get('new_order') === 'true';
-    this.orderId = this.route.snapshot.paramMap.get('orderId');
+    this.orderId = this.route.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
