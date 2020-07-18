@@ -8,6 +8,10 @@
     </div>
   </div>
 
+  <h2 *ngIf="orderDetail!=undefined && orderDetail.order_status === 'cancled'" style="color: red;"> Cancled </h2>
+  <div *ngIf="orderDetail!=undefined && orderDetail.order_status === 'created'" class="not_placed">
+    <h2 > Order not placed yet,</h2> <a [routerLink]="['/view-cart/checkout']"> <h2>&nbsp;click here&nbsp;</h2></a> <h2>to place this order now.</h2>
+  </div>
   <step-indicator></step-indicator>
 
   <div class="order-detail-secondary-container">

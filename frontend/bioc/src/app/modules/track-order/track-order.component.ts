@@ -25,7 +25,7 @@ export class TrackOrderComponent implements OnInit {
   constructor(private cartApiService: CartApiService, private utilityService: UtilityService) { }
 
   ngOnInit(): void {
-  //  this.getVerifiedNumber();
+    this.getVerifiedNumber();
   }
 
   getOtp() {
@@ -39,6 +39,8 @@ export class TrackOrderComponent implements OnInit {
     //   }
     //   this.utilityService.showLoader.next(false);
     // }, err => this.utilityService.showLoader.next(false));
+    this.isOtpSent = true;
+    this.isPhoneVerified = true;
     this.getDetails(this.phone.value);
   }
 
@@ -50,7 +52,7 @@ export class TrackOrderComponent implements OnInit {
     this.cartApiService.verifyOtp(this.phone.value, this.otp.value).subscribe(res => {
       if (res.status === 'verified') {
         this.isPhoneVerified = true;
-        //this.saveVerifiedNumber();
+        this.saveVerifiedNumber();
         this.getDetails(this.phone.value);
       }
       this.utilityService.showLoader.next(false);

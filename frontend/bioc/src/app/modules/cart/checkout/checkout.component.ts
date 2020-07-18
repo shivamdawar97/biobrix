@@ -27,6 +27,7 @@ export class CheckoutComponent implements OnInit {
   subtotal = 0;
   isOrderPlaced = false;
   isVerficationFailed = false;
+  orderNotFound = false;
 
   constructor(private route: ActivatedRoute,
               private cartApiService: CartApiService,
@@ -58,6 +59,9 @@ export class CheckoutComponent implements OnInit {
         this.isPhoneVerified = true;
         this.form.disable()
       }
+    },err => {
+      this.isLoading = false;
+      this.orderNotFound = true;
     })
   }
 

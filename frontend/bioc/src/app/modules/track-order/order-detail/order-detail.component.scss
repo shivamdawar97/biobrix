@@ -187,3 +187,12 @@
     }
   }
 }
+
+.not_placed {
+
+  width: 100%;
+  color: red;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

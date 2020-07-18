@@ -9,6 +9,10 @@
 
   </div>
 
+  <div class="not_found" *ngIf="orderNotFound">
+    <h1> <strong> Order not found!</strong></h1>
+</div>
+
   <div *ngIf="!isLoading else loading_circular" class="checkout-container">
 
     <div class="order-information">
@@ -38,7 +42,7 @@
       </div>
     </div>
 
-    <div class="billing-information">
+    <div *ngIf="!orderNotFound " class="billing-information">
 
       <div class="billing-information__header">Billing information</div>
       <form [formGroup]="form" class="billing-information__container" (ngSubmit)="form.valid && makePayment()">

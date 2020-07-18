@@ -106,3 +106,11 @@
   @include flex-alignment(center, center);
   width: 80%;
 }
+
+.phone_heading {
+  display: flex;
+  flex-direction: row;
+}
+.change_number {
+  float: right;
+}
