@@ -5,6 +5,7 @@ import {Product} from '../../../core/models/product.model';
 import {CartService} from '../../../core/services/cart.service';
 import {UtilityService} from '../../../core/services/utility.service';
 import {Router} from "@angular/router";
+import { ContactInfoService } from 'src/app/core/services/contact-info.service';
 
 @Component({
   selector: 'app-homepage',
@@ -18,7 +19,7 @@ export class HomepageComponent implements OnInit {
 
   constructor(
     private homepageApiService: HomepageApiService,
-    private cartService: CartService,
+    private contactService: ContactInfoService,
     private utilityService: UtilityService,
     private router: Router,
   ) {}
@@ -33,6 +34,9 @@ export class HomepageComponent implements OnInit {
         for (let i = 0; i < recents.length; i = i + 4) {
           this.recentProducts.push(res.recentProducts.slice(i, i + 4));
         }
+        this.contactService.phone = res.contact_no;
+        this.contactService.email = res.email;
+
       }
     });
   }

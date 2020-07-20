@@ -40,7 +40,7 @@
 
     &__container {
       padding: 1rem;
-      font-size: 14px;
+      font-size: 2rem;
 
     }
   }
@@ -190,9 +190,9 @@
 
 .not_placed {
 
-  width: 100%;
   color: red;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  font-weight: bold;
 }

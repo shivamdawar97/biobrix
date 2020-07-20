@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { OrderDetail } from 'src/app/core/http/cart-api.service';
 
 @Component({
   selector: 'step-indicator',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class StepIndicatorComponent implements OnInit {
 
-  @Input() divery_status: any;
+  @Input() order: OrderDetail;
 
   constructor() { }
 

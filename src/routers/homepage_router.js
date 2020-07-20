@@ -11,8 +11,9 @@ router.get('/homepage/get_homepage',async (req,res)=>{
         const pagerProducts = await getPagerProducts()
         const recentProducts = await getRecentProducts()
         const testimonies = await getTestimonies()
-
-        res.send({pagerProducts,recentProducts,testimonies})
+        const email = process.env.EMAIL_ID
+        const contact_no = process.env.PHONE_NUMBER
+        res.send({pagerProducts,recentProducts,testimonies,email,contact_no})
 
     }catch(error){
         res.status(400).send(error.message)

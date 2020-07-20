@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef, HostListener, ChangeDetectionStrategy } from '@angular/core';
 import { UtilityService } from 'src/app/core/services/utility.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ContactInfo } from 'src/app/constants/contact-info.const';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -10,7 +11,6 @@ export class HomeComponent implements OnInit {
 
   scrollOffset = 0;
   isLoading = false;
-
 
   constructor(
     private utilityService: UtilityService,

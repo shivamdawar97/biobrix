@@ -15,10 +15,9 @@ export class TradeEnquiryComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      email: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required,Validators.email]),
       name: new FormControl('', [Validators.required]),
-      phone: new FormControl(''),
-      mobile: new FormControl('', [Validators.required]),
+      mobile: new FormControl('', [Validators.required,Validators.minLength(10)]),
       city: new FormControl('', [Validators.required]),
       state: new FormControl('', [Validators.required]),
       country: new FormControl('', [Validators.required]),
@@ -45,6 +44,7 @@ export class TradeEnquiryComponent implements OnInit {
   }
 
   showMessage(message: string, error: boolean) {
+
     const msg = document.createElement('div');
     msg.innerText = message;
     msg.classList.add('alert');

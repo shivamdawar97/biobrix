@@ -59,11 +59,16 @@ const orderSchema = new mongoose.Schema({
     order_status:{
         type:String,
         required:true,
-        enum:['created','placed','dispatched','delivered','canceled'],
+        enum:['created','placed','dispatched','delivered','cancelled'],
         default:'created'
     },
     transaction_id:{
         type:String,
+        required:true,
+        default: 'NA'
+    },
+    dispatched_date: {
+        type: String,
         required:true,
         default: 'NA'
     },

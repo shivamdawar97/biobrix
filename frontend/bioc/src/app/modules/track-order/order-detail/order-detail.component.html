@@ -3,24 +3,35 @@
     <div *ngIf="newOrder" class="alert alert-success">
       Your order has been successfully placed!
     </div>
+
     <div *ngIf="orderDetail" class="alert alert-info">
       Your order id is - &nbsp;<span class="alert-info__id">{{orderDetail._id}}</span>
     </div>
+
+    <div *ngIf="orderDetail?.payment_status" class="alert alert-info">
+      Your transaction id is - &nbsp;<span class="alert-info__id">{{orderDetail.transaction_id}}</span>
+    </div>
+
+
   </div>
 
-  <h2 *ngIf="orderDetail!=undefined && orderDetail.order_status === 'cancled'" style="color: red;"> Cancled </h2>
-  <div *ngIf="orderDetail!=undefined && orderDetail.order_status === 'created'" class="not_placed">
-    <h2 > Order not placed yet,</h2> <a [routerLink]="['/view-cart/checkout']"> <h2>&nbsp;click here&nbsp;</h2></a> <h2>to place this order now.</h2>
+  <div *ngIf="orderDetail!=undefined" [ngSwitch]="orderDetail.order_status" class="tracker">
+
+    <h2 *ngSwitchCase="'cancelled'" class="not_placed">Order Cancelled, you money will be refunded soon.</h2>
+
+    <div *ngSwitchCase="'created'" class="not_placed">
+      <h2 > Order not placed yet,</h2> <a [routerLink]="['/view-cart/checkout']"> <h2>&nbsp;click here&nbsp;</h2></a> <h2>to place this order now.</h2>
+    </div>
+
+    <div *ngSwitchDefault>
+      <step-indicator [order]="orderDetail"></step-indicator>
+    </div>
+
   </div>
-  <step-indicator></step-indicator>
+
 
   <div class="order-detail-secondary-container">
-    <div class="address-information">
-      <div class="address-information__header">Delivery Address</div>
-      <div class="address-information__container">
-        {{orderDetail?.address}}
-      </div>
-    </div>
+
     <div class="order-information">
       <div class="order-information__header">Your Order</div>
       <div class="order-information__content">
@@ -47,5 +58,18 @@
         </div>
       </div>
     </div>
+
+    <div class="address-information">
+      <div class="address-information__header">Delivery Address</div>
+      <div class="address-information__container">
+
+        <div>Ship to:  {{orderDetail?.user_name}}</div>
+        <div>Address:  {{orderDetail?.address}}</div>
+        <div>City: {{orderDetail?.city}}</div>
+        <div>State: {{orderDetail?.state}}</div>
+        <div>Zip Code: {{orderDetail?.zip_code}}</div>
+      </div>
+    </div>
+
   </div>
 </app-main-container>

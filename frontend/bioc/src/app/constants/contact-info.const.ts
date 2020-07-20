@@ -1,10 +1,10 @@
-export const ContactInfo = {
+export var ContactInfo = {
     phone: {
-        text: '+91 9988776655',
+        text: '+91 93130 17818',
         icon: 'fa fa-phone'
     },
     email: {
-        text: 'dummyemail@mail.com',
+        text: 'info@biobrix.com',
         icon: 'fa fa-envelope'
     }
 };

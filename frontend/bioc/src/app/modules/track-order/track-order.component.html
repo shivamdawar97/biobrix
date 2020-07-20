@@ -21,11 +21,9 @@
     <button *ngIf="!isOtpSent" class="btn primary-button" (click)="getOtp()">Get OTP</button>
     <button *ngIf="!isPhoneVerified && isOtpSent" class="btn primary-button" (click)="verifyOtp()">Verify</button>
 
-    <h1 style="align-self: flex-start; padding-left: 10%" *ngIf="orders">Your orders</h1>
-
-    <div *ngIf="isPhoneVerified" class="phone_heading">
-      <h3><strong> {{ phone.value }} </strong></h3>
-      <button class="btn btn-dark change_number"> Change Number </button>
+    <div *ngIf="orders" class="change_number">
+      <h1>Orders for <strong> {{ phone.value }} </strong></h1>
+      <button class="btn btn-dark change_number__btn" (click)="clearStorage()">Change Number</button>
     </div>
 
     <div class="card" *ngFor="let order of orders">

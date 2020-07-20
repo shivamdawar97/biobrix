@@ -6,4 +6,6 @@ export interface Homepage {
   pagerProducts: PagerProduct[];
   recentProducts: RecentProduct[];
   testimonies: Testimony[];
+  email: string,
+  contact_no: string
 }

@@ -112,5 +112,17 @@
   flex-direction: row;
 }
 .change_number {
-  float: right;
+  align-self: flex-start;
+  margin-left: 10%;
+
+  &__btn {
+    padding: 1rem;
+    font-size: 1.3rem;
+    margin-top: 1rem;
+    padding: .5rem;
+  }
+}
+
+.ng-invalid{
+  border: 1px solid red;
 }

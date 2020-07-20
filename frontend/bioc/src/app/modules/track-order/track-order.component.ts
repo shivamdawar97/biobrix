@@ -29,7 +29,8 @@ export class TrackOrderComponent implements OnInit {
   }
 
   getOtp() {
-    if (!this.phone.value) {
+
+    if (!this.phone.value || !this.phone.valid) {
       return;
     }
     // this.utilityService.showLoader.next(true);
@@ -41,6 +42,7 @@ export class TrackOrderComponent implements OnInit {
     // }, err => this.utilityService.showLoader.next(false));
     this.isOtpSent = true;
     this.isPhoneVerified = true;
+    this.saveVerifiedNumber();
     this.getDetails(this.phone.value);
   }
 
@@ -110,6 +112,17 @@ export class TrackOrderComponent implements OnInit {
       case 'canceled' :   color = '#fc0303';  break;
     }
     return color;
+  }
+
+  clearStorage(){
+
+    this.phone = new FormControl('', [Validators.minLength(10), Validators.maxLength(10), Validators.required]);
+    this.otp = new FormControl('', [Validators.minLength(6), Validators.maxLength(10), Validators.required]);
+    this.orders = undefined;
+    this.isOtpSent = false;
+    this.isPhoneVerified = false;
+    localStorage.removeItem(VERIFIED_NUMBER);
+    localStorage.removeItem(VERIFICATION_TIME);
   }
 
   AtoB(value: string) {

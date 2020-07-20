@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 /** Constants */
 import { ContactInfo } from 'src/app/constants/contact-info.const';
 import { CartConfig } from 'src/app/constants/header.const';
 
 import { CartService } from 'src/app/core/services/cart.service';
+import { ContactInfoService } from 'src/app/core/services/contact-info.service';
 
 @Component({
   selector: 'app-secondary-header',
@@ -13,12 +14,13 @@ import { CartService } from 'src/app/core/services/cart.service';
 })
 export class SecondaryHeaderComponent implements OnInit {
 
-  contactInfo = ContactInfo;
   cartConfig = CartConfig;
   cartItemCount = 0;
+  contactInfo = ContactInfo;
 
   constructor(
-    private cartService: CartService
+    private cartService: CartService,
+    private contactService: ContactInfoService
   ) { }
 
   setCartItems() {

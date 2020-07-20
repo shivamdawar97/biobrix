@@ -30,6 +30,7 @@ export interface OrderDetail extends UserInfo{
   user_info_completed: boolean;
   createdAt: string;
   updatedAt: string;
+  dispatched_date: string;
   products: Product[];
 }
 

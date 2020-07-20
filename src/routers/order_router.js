@@ -187,6 +187,8 @@ router.patch('/order/update_status/:id',auth,async (req,res)=> {
         if(!order) throw new Error('Order not found')
 
         order.order_status = status
+        if(status === 'dispatched')
+        order.dispatched_date = new Date().toISOString().slice(0,10)
         await order.save()
 
         res.send(order)

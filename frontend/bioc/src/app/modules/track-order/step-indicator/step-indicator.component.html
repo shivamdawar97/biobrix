@@ -4,17 +4,17 @@
 							<div class="row justify-content-between">
 								<div class="order-tracking completed">
 									<span class="is-complete"></span>
-									<p>Ordered<br><span>Mon, June 24</span></p>
+									<p>Ordered<br><span>{{ order.createdAt| date:'fullDate' }}</span></p>
 								</div>
-								<div class="order-tracking completed">
+								<div class="order-tracking" [ngClass]="{'completed': order.order_status !=='placed'}">
 									<span class="is-complete"></span>
-									<p>Shipped<br><span>Tue, June 25</span></p>
+									<p>Shipped<br><span *ngIf="order.order_status !=='placed'"> {{ order.dispatched_date | date:'fullDate' }}</span></p>
 								</div>
-								<div class="order-tracking">
+								<div class="order-tracking" [ngClass]="{'completed': order.order_status ==='delivered'}">
 									<span class="is-complete"></span>
-									<p>Delivered<br><span>Fri, June 28</span></p>
+									<p>Delivered<br><span *ngIf="order.order_status ==='delivered'">Fri, June 28</span></p>
 								</div>
 							</div>
 						</div>
-					</div>
+	</div>
 </div>

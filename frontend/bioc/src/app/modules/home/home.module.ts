@@ -6,7 +6,7 @@ import {SecondaryHeaderComponent} from 'src/app/components/secondary-header/seco
 import {PrimaryHeaderComponent} from 'src/app/components/primary-header/primary-header.component';
 import {HomepageComponent} from './homepage/homepage.component';
 import {ProductsComponent} from './products/products.component';
-import {TradeEnquiryComponent} from '../track-order/trade-enquiry/trade-enquiry.component';
+import {TradeEnquiryComponent} from './trade-enquiry/trade-enquiry.component';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {ContactComponent} from './contact/contact.component';
 import {ProductDetailComponent} from './products/product-detail/product-detail.component';

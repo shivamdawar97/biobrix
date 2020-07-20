@@ -89,7 +89,7 @@
           > Order delivered </button>
 
           <button *ngIf="order.order_status !== 'cancel'" class="btn btn-danger"
-                  (click)="updateStatus('canceled')"
+                  (click)="updateStatus('cancelled')"
           > Cancel this order </button>
 
           <button class="btn btn-danger" (click)="deleteOrder()"> Delete this order </button>
