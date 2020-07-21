@@ -8,7 +8,7 @@
 
     <div class="carousel-inner">
       <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let page of homepage?.pagerProducts; let i = index">
-        <img class="d-block w-100" src="{{page.image_url}}" alt="First slide" (click)="productDetail(page.product_id)" style="cursor: pointer" >
+        <img class="d-block w-100 pager-image" src="{{page.image_url}}" alt="First slide" (click)="productDetail(page.product_id)" style="cursor: pointer" >
       </div>
     </div>
 

@@ -34,9 +34,7 @@ export class HomepageComponent implements OnInit {
         for (let i = 0; i < recents.length; i = i + 4) {
           this.recentProducts.push(res.recentProducts.slice(i, i + 4));
         }
-        this.contactService.phone = res.contact_no;
-        this.contactService.email = res.email;
-
+        this.contactService.setContactInfo(res.contact_no,res.email);
       }
     });
   }
