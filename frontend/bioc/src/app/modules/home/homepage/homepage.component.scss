@@ -91,7 +91,7 @@
 }
 
 .recent-products {
-  background-color: #a5a0f081;
+  background-color: #f1adec81;
   padding-bottom: 20px;
   &__item {
     padding: 0 50px;
@@ -235,5 +235,10 @@
 }
 
 .carousel-control-next {
-  display: inline !important;
+  height: 10% !important;
+  margin: auto 0;
+}
+.carousel-control-prev {
+  height: 10% !important;
+  margin: auto 0;
 }
