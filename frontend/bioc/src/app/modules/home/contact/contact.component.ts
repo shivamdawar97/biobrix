@@ -9,7 +9,7 @@ import {FormControl, Validators} from '@angular/forms';
 export class ContactComponent implements OnInit {
 
   name = new FormControl('', [Validators.required]);
-  email = new FormControl('', [Validators.required]);
+  email = new FormControl('', [Validators.required,Validators.email]);
   message = new FormControl('', [Validators.required]);
 
   constructor() { }
@@ -19,9 +19,12 @@ export class ContactComponent implements OnInit {
 
   submitForm() {
     if (this.name.valid && this.email.valid && this.message.valid) {
-      this.name.reset();
-      this.email.reset();
-      this.message.reset();
+      this.sendMessage(this.name.value,this.email.value,this.message.value);
+      this.name.reset(); this.email.reset(); this.message.reset();
     }
+  }
+
+  private sendMessage(name: string,email: string, message: string) {
+
   }
 }

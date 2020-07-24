@@ -70,3 +70,7 @@
     width: 65%;
   }
 }
+
+.ng-invalid.ng-touched {
+  border: 1px solid red;
+}

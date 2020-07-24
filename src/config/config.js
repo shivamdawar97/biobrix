@@ -6,10 +6,14 @@ const paytmConfig = {
     hostName: 'securegw-stage.paytm.in'
 }
 
+const Twilio = require('twilio')
+const twillioClient = new Twilio(process.env.TWILIO_ACCOUNT_SID ,process.env.AUTH_TOKEN)
+
 module.exports = {
     serviceId:process.env.TWILIO_SERVICE_ID,
     accountSID:process.env.TWILIO_ACCOUNT_SID,
     authToken:process.env.AUTH_TOKEN,
     twilioPhoneNumber:process.env.TWILLIO_NUMBER,
-    paytmConfig
+    paytmConfig,
+    twillioClient
 }

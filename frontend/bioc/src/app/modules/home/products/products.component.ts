@@ -38,8 +38,7 @@ export class ProductsComponent implements OnInit {
 
 
   getCategoryList() {
-    this.productService.getCategoryList()
-      .subscribe({
+    this.productService.getCategoryList().subscribe({
         next: (data: Array<Category>) => {
           this.categoryList = data;
           this.dataService.categoryList = data;
@@ -134,7 +133,6 @@ export class ProductsComponent implements OnInit {
   }
 
   handleQueryParamsChange(queryParams: any) {
-    console.log('query params ', queryParams);
     this.tag = queryParams.search;
     this.getTagsProducts();
   }

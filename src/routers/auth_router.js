@@ -1,25 +1,6 @@
 const express = require('express')
 const router = new express.Router()
-const config = require('../config/config')
-const Twilio = require('twilio')
-
-const client = new Twilio(config.accountSID ,config.authToken)
-
-router.get('/phone/send_sms', async (req,res)=>{
-    try{
-        const phoneNumber = req.query.phone_number
-        if(!phoneNumber)
-        throw new Error('Provide phone number')
-        const message = await client.messages.create({
-            body: 'Hello from node server',
-            from:config.twilioPhoneNumber,
-            to:`+91${phoneNumber}`
-        })
-        res.send(message)
-    }catch(error){
-        res.status(400).send({error:error.message})
-    }
-})
+const client = require('../config/config').twillioClient
 
 router.get('/phone/send_otp', async (req,res)=>{
     try{
