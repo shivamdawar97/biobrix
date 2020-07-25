@@ -16,8 +16,8 @@ export class FloaterComponent implements OnInit {
 
   }
 
-  expand(){
-    this.isExpanded=!this.isExpanded;
-  }
+  expand = () => this.isExpanded=!this.isExpanded;
+
+
 
 }

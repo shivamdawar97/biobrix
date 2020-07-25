@@ -165,3 +165,10 @@ input[type="file"]{
   width: 100%;
   border-bottom: 2px solid rgb(76, 118, 224);
 }
+
+.loader-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
