@@ -1,7 +1,7 @@
 <div class="search-input">
   <input type="text" #search class="form-control form-control-lg" [ngClass]=" { 'search-expanded': !!searchInput.value}" [placeholder]="placeholder"
-         [formControl]="searchInput" aria-label="search" aria-describedby="search">
-  <span class="input-group-text search-icon" id="search" (click)="search.focus()">
+         [formControl]="searchInput" aria-label="search" aria-describedby="search" (keydown)="onEnterPressed($event)">
+  <span class="input-group-text search-icon" id="search" (click)="searchButtonClicked(search)">
         <i class="fa fa-search"></i>
       </span>
 </div>

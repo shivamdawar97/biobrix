@@ -29,11 +29,6 @@ export class SearchInputComponent implements OnInit, OnDestroy {
       }
     }
 
-    this.searchInput.valueChanges.pipe(distinctUntilChanged(), debounceTime(1000)).subscribe(res => {
-      if(res !== '')
-      this.navigate({[this.paramKeyword]: res});
-    });
-
     this.subscription = this.activatedRoute.queryParams.subscribe(res => {
       this.searchChanged.emit(res[this.paramKeyword]);
     });
@@ -55,6 +50,26 @@ export class SearchInputComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
+    }
+  }
+
+  searchNext(value: string) {
+    if ( value !== '') {
+      this.navigate({[this.paramKeyword]: value});
+    }
+  }
+
+  searchButtonClicked(search) {
+    if (!this.searchInput.value) {
+      search.focus();
+    } else {
+      this.searchNext(this.searchInput.value);
+    }
+  }
+
+  onEnterPressed(event: KeyboardEvent) {
+    if (event.keyCode === 13) {
+      this.searchNext(this.searchInput.value);
     }
   }
 
