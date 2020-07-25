@@ -98,7 +98,7 @@ router.get('/product/product_list',async (req,res)=>{
         const categoryWiseProdcts = id===undefined? await Category.find({}) : await Category.findById(id)
         
         if(!categoryWiseProdcts || categoryWiseProdcts.length == 0) throw Error('No product found')
-        await new Promise(resolve => setTimeout(resolve,1000))
+        
         res.send(categoryWiseProdcts)    
 
     }catch(error){

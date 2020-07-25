@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
+import { ContactUsService } from 'src/app/core/http/contact-us.service';
 
 @Component({
   selector: 'app-contact',
@@ -12,7 +13,9 @@ export class ContactComponent implements OnInit {
   email = new FormControl('', [Validators.required,Validators.email]);
   message = new FormControl('', [Validators.required]);
 
-  constructor() { }
+  isLoading = false;
+
+  constructor(private contactUsService: ContactUsService) { }
 
   ngOnInit(): void {
   }
@@ -24,7 +27,34 @@ export class ContactComponent implements OnInit {
     }
   }
 
-  private sendMessage(name: string,email: string, message: string) {
-
+  private sendMessage(name: string,contact: string, message: string) {
+    this.isLoading = true;
+    this.contactUsService.sendMessage({name,contact,message}).subscribe( send => {
+      this.isLoading = false;
+      this.showMessage('Your message has been sent successfully.')
+      console.log(send)
+    }, err => {
+      this.isLoading = false;
+      this.showMessage('Error in sending your message.',true);
+    }
+    )
   }
+
+  private showMessage(message: string, error: boolean = false) {
+
+    const msg = document.createElement('div');
+    msg.innerText = message;
+    msg.classList.add('alert');
+    msg.classList.add(error?'alert-danger':'alert-success');
+    msg.classList.add('alert-msg');
+    msg.classList.add('animated');
+    msg.classList.add('slideInUp');
+    document.body.appendChild(msg);
+
+    setTimeout(() => {
+      document.body.removeChild(msg);
+    }, 4000);
+  }
+
+
 }

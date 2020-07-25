@@ -66,7 +66,8 @@
         <label for="message">Message</label>
         <textarea type="text" id="message" [formControl]="message" rows="3" class="form-control form-control-lg" placeholder="Enter message"></textarea>
       </div>
-      <button type="button" class="btn primary-button" style="align-self: center" (click)="submitForm()">Submit message</button>
+      <button *ngIf="!isLoading; else loading" type="button" class="btn primary-button" style="align-self: center" (click)="submitForm()">Submit message</button>
+      <ng-template #loading > <h2 class="sending" >Sending...</h2> </ng-template>
     </div>
   </div>
 </app-main-container>

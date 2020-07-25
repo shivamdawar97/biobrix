@@ -1,7 +1,7 @@
 <div>
   <div class="form-box" id="myDIV" [ngClass]="{'open': isExpanded}" >
     <h2 class="login-header"><i class="far fa-comment-dots icon"></i>We'll reach you.</h2>
-    <div class="test">
+    <div *ngIf="isLoading else spinner" class="test">
       <form class="formInput">
         <div>
           <input type="text" required id="test" placeholder="Name">
@@ -13,12 +13,10 @@
         <div>
           <input type="text"  required placeholder="Message">
         </div>
-
-
-    <input type="submit" value="Send" id="submitButt" class="active">
-  </form>
-  </div>
-
+         <input type="submit" value="Send" id="submitButt" class="active">
+     </form>
+    </div>
+    <ng-template #spinner style="text-align: center;"><app-loading-spinner></app-loading-spinner></ng-template>
   </div>
 
   <button class="floating-btn" (click)="isExpanded=!isExpanded;">

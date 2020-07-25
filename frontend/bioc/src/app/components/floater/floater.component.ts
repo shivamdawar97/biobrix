@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContactUsService } from 'src/app/core/http/contact-us.service';
 
 @Component({
   selector: 'app-floater',
@@ -8,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class FloaterComponent implements OnInit {
 
   isExpanded = false;
-  constructor() { }
+  isLoading = false;
+  constructor(private contactUsService: ContactUsService) { }
 
   ngOnInit(): void {
 
