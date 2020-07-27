@@ -1,8 +1,11 @@
 <app-main-container title="TRACK ORDER">
   <div class="track-order-container">
-    <div class="alert alert-dark" *ngIf="!orders">
-      You can track your orders with your &nbsp; <b>mobile number</b>. Please &nbsp; <b>verify</b> &nbsp; your mobile
-      number to check your orders.
+    <div class="alert alert-dark can-track-text" *ngIf="!orders">
+      <p>
+        You can track your orders with your <b>mobile number</b>. Please <b>verify</b> your mobile
+        number to check your orders.
+      </p>
+
     </div>
     <div class="phone-input" *ngIf="!orders">
       <div class="form-group">
@@ -33,25 +36,28 @@
         <a class="detail-button" [routerLink]="['order-detail', order._id]">View detail</a>
       </div>
       <div class="card-body">
-        <div class="product-list">
-          <h3>Items</h3>
-          <div class="order-items">
-            <div class="item" *ngFor="let product of order.products">
-              <img class="item-image" src="{{product.image}}" alt="{{order.product_name}}"/>
-              <span>{{product.product_name}}</span>
+        <div class="row">
+          <div class="product-list col-md-8 col-sm-12 ">
+            <h3>Items</h3>
+            <div class="order-items">
+              <div class="item" *ngFor="let product of order.products">
+                <img class="item-image" src="{{product.image}}" alt="{{order.product_name}}"/>
+                <span>{{product.product_name}}</span>
+              </div>
             </div>
           </div>
+          <div class="delivery-address col-md-4">
+            <h2> <strong> SHIP TO:</strong> </h2>
+            <h3 class="">{{ order.user_name }}</h3>
+            <h1>&nbsp;</h1>
+            <h2> <strong> DELIVERY ADDRESS: </strong> </h2>
+            <div>{{order.address}}</div>
+            <div>{{order.city}}</div>
+            <div>{{order.state}}</div>
+            <div>{{order.zip_code}}</div>
+          </div>
         </div>
-        <div class="delivery-address">
-          <h2> <strong> SHIP TO:</strong> </h2>
-          <h3 class="">{{ order.user_name }}</h3>
-          <h1>&nbsp;</h1>
-          <h2> <strong> DELIVERY ADDRESS: </strong> </h2>
-          <div>{{order.address}}</div>
-          <div>{{order.city}}</div>
-          <div>{{order.state}}</div>
-          <div>{{order.zip_code}}</div>
-        </div>
+
       </div>
     </div>
   </div>
