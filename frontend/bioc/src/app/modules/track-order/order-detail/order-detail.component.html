@@ -29,49 +29,55 @@
 
   </div>
 
-
   <div class="order-detail-secondary-container">
     <div class="row">
-      <div class="order-information  col-md-4 col-sm-12 ">
-        <div class="order-information__header">Your Order</div>
-        <div class="order-information__content">
-          <div class="order-item" *ngFor="let product of orderDetail?.products">
-            <img src="{{product.image}}" style="object-fit: contain" height="80" width="80">
-            <div class="name-and-price">
-              <span class="name">{{product.product_name}}</span>
-              <span class="price">{{product.price}}</span>
+
+      <div class="col-md-6 col-sm-12 order-information__parent">
+        <div class="order-information">
+          <div class="order-information__header">Your Order</div>
+          <div class="order-information__content">
+            <div class="order-item" *ngFor="let product of orderDetail?.products">
+              <img src="{{product.image}}" style="object-fit: contain" height="80" width="80">
+              <div class="name-and-price">
+                <span class="name">{{product.product_name}}</span>
+                <span class="price">{{product.price}}</span>
+              </div>
+              <div class="flex-fill"></div>
+              <span class="quantity">{{product.quantity}}</span>
+              <span class="total">{{product.total}}</span>
             </div>
-            <div class="flex-fill"></div>
-            <span class="quantity">{{product.quantity}}</span>
-            <span class="total">{{product.total}}</span>
-          </div>
-          <div class="sub-total-item">
-            <div class="flex-fill"></div>
-            <span class="total-heading">Sub total</span>
-            <span class="total-count">{{subtotal}}</span>
-          </div>
+            <div class="sub-total-item">
+              <div class="flex-fill"></div>
+              <span class="total-heading">Sub total</span>
+              <span class="total-count">{{subtotal}}</span>
+            </div>
 
-          <div class="total-item">
-            <div class="flex-fill"></div>
-            <span class="total-heading">Total</span>
-            <span class="total-count">{{total}}</span>
+            <div class="total-item">
+              <div class="flex-fill"></div>
+              <span class="total-heading">Total</span>
+              <span class="total-count">{{total}}</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-2 col-sm-1"></div>
-      <div class="address-information col-md-4">
-        <div class="address-information__header">Delivery Address</div>
-        <div class="address-information__container">
 
-          <div>Ship to:  {{orderDetail?.user_name}}</div>
-          <div>Address:  {{orderDetail?.address}}</div>
-          <div>City: {{orderDetail?.city}}</div>
-          <div>State: {{orderDetail?.state}}</div>
-          <div>Zip Code: {{orderDetail?.zip_code}}</div>
-        </div>
       </div>
+
+      <div class="col-md-6 address-information__parent">
+        <div class="address-information">
+          <div class="address-information__header">Delivery Address</div>
+          <div class="address-information__container">
+
+            <div>Ship to:  {{orderDetail?.user_name}}</div>
+            <div>Address:  {{orderDetail?.address}}</div>
+            <div>City: {{orderDetail?.city}}</div>
+            <div>State: {{orderDetail?.state}}</div>
+            <div>Zip Code: {{orderDetail?.zip_code}}</div>
+          </div>
+        </div>
+
+      </div>
+
     </div>
-
 
   </div>
 </app-main-container>

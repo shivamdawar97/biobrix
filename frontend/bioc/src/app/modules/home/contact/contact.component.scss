@@ -2,20 +2,23 @@
 
 .contact-us-container {
   margin-top: 5rem;
-  padding: 0 8rem;
+  padding: 2rem;
   @include flex(column);
   @include flex-alignment(center, center);
 
 
   .content {
     @include flex(row);
+    flex-wrap: wrap;
     width: 100%;
     margin-top: 6rem;
+
 
     &__item {
       flex: 1;
       @include flex(column);
       @include flex-alignment(flex-start, center);
+      margin: 2rem 8rem;
 
       .icon {
         width: 80px;
@@ -48,7 +51,7 @@
         }
 
         &__body {
-          width: 50%;
+          width: 100%;
           text-align: center;
         }
       }

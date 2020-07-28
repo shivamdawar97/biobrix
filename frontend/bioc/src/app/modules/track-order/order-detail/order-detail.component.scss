@@ -23,10 +23,14 @@
   margin-top: 2rem;
   padding: 0 8rem 4rem;
 
+  .address-information__parent {
+    padding: 1rem;
+  }
   .address-information {
-    width: calc(50% - 40px);
-    border: 0.1rem solid $grey-shade-2;
 
+    border: 0.1rem solid $grey-shade-2;
+    padding: 0;
+    height: 100%;
     &__header {
       padding: 1.5rem;
       font-weight: 600;
@@ -100,16 +104,20 @@
   }
 }
 
+.order-information__parent {
+  padding: 1rem;
+}
 .order-information {
-  width: calc(50% - 40px);
   border: 0.1rem solid $grey-shade-2;
+  padding: 0;
 
   &__header {
     padding: 1.5rem;
     font-weight: 600;
     background-color: #075ac9;
     color: white;
-    font-size: 16px;
+    font-size: 1.6rem;
+
   }
 
   &__content {

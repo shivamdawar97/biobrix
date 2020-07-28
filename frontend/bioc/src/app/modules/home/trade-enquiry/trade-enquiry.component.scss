@@ -3,12 +3,14 @@
 .trade-enquiry-container {
   margin-top: 5rem;
   padding: 0 8rem 4rem;
-  @include flex(row);
+  display: flex;
   @include flex-alignment(space-between, flex-start);
-
-  section {
-    width: calc(50% - 6rem);
-  }
+  flex-wrap: wrap;
+   &__section {
+      min-width: 35%;
+      flex: 1;
+      margin: 0 4rem;
+    }
 }
 
 .form-group {

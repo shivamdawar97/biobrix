@@ -1,6 +1,6 @@
 <app-main-container title="TRADE ENQUIRY">
   <form [formGroup]="form" class="trade-enquiry-container">
-    <section>
+    <section class="trade-enquiry-container__section">
       <div class="form-group">
         <label for="name">Full name*</label>
         <input type="text" class="form-control form-control-lg" formControlName="name" id="name" aria-describedby="nameHelp"
@@ -42,7 +42,7 @@
                placeholder="Enter company name">
       </div>
     </section>
-    <section>
+    <section class="trade-enquiry-container__section">
       <div class="form-group">
         <label for="reference">Our reference you got from*</label>
         <input type="text" class="form-control form-control-lg" id="reference" formControlName="reference" aria-describedby="companyNameHelp"
