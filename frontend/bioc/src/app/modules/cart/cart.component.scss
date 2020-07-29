@@ -77,3 +77,22 @@
   float: right;
   margin-bottom: 1rem;;
 }
+
+@media screen and (max-width: 780px){
+  .cart-container {
+    padding: 0 1rem;
+   }
+   .product-quantity_container {
+     position: relative;
+     text-align: center;
+   }
+  .product-quantity {
+    display: flex;
+    height: 100%;
+  }
+
+  .cart-buttons {
+    margin-bottom: 2rem;
+  }
+
+}

@@ -4,7 +4,7 @@
 
   &__item {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     padding: 3rem 10%;
 
     .text {
@@ -14,6 +14,7 @@
       align-items: center;
       padding: 1rem;
       font-size: 1.5rem;
+      min-width: 60%;
 
       &__heading {
         font-size: 24px;
@@ -38,11 +39,9 @@
       flex-direction: row;
       flex: 1;
       padding: 1rem;
+      justify-content: center;
     }
 
-    .picture-right {
-      justify-content: flex-end;
-    }
   }
 
   .gray {

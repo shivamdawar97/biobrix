@@ -7,8 +7,9 @@
   @include flex-alignment(space-between, flex-start);
 
   .billing-information {
-    width: calc(50% - 40px);
+    width: 90%;
     border: 0.1rem solid $grey-shade-2;
+    margin-left: 2rem;
 
     &__header {
       padding: 1.5rem;
@@ -131,7 +132,8 @@
 
 
 .order-information {
-  width: calc(50% - 40px);
+  width: 90%;
+  margin-right: 2rem;
   border: 0.1rem solid $grey-shade-2;
 
   &__header {
@@ -268,4 +270,24 @@
 
 .not_found {
   text-align: center;
+}
+
+@media screen and (max-width: 900px) {
+
+  .checkout-container {
+   flex-direction: column;
+   width: 100%;
+   padding: 0 2rem;
+   align-items: center;
+  }
+
+  .billing-information {
+    margin-top: 2rem;
+    margin-left: 0;
+  }
+
+  .order-information {
+    margin-right: 0;
+  }
+
 }

@@ -1,36 +1,41 @@
 <app-main-container title="CART">
   <div class="cart-container">
     <button *ngIf="cartItems.length > 0" (click)="clearCart()" class="del-btn btn btn-outline-danger">Clear Cart</button>
-    <table class="table" *ngIf="cartItems.length > 0 else emptyCart">
-      <thead>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">Product</th>
-        <th scope="col">Price</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Total</th>
-        <th scope="col">Remove</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let product of cartItems" class="product">
-        <td><img class="product-img" src="{{product.image}}" alt="{{ product.product_name }} image"></td>
-        <td class="product-name">{{ product.product_name }}</td>
-        <td><i class="fa fa-inr"></i> {{ product.price }}</td>
-        <td class="product-quantity">
-          <button class="btn" type="button" (click)="decrementQuantity(product)">-</button>
-          <span>{{product.quantity}}</span>
-          <button class="btn" type="button" (click)="incrementQuantity(product)">+</button>
-        </td>
-        <td><i class="fa fa-inr"></i> {{ product.total }}</td>
-        <td>
-          <button class="btn" type="button" (click)="removeFromCart(product)">
-            <i class="fa fa-times" aria-hidden="true"></i>
-          </button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class="table" *ngIf="cartItems.length > 0 else emptyCart">
+        <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Product</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Total</th>
+          <th scope="col">Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let product of cartItems" class="product">
+          <td><img class="product-img" src="{{product.image}}" alt="{{ product.product_name }} image"></td>
+          <td class="product-name">{{ product.product_name }}</td>
+          <td><i class="fa fa-inr"></i> {{ product.price }}</td>
+          <td class="product-quantity_container">
+            <div class="product-quantity">
+              <button class="btn" type="button" (click)="decrementQuantity(product)">-</button>
+              <span>{{product.quantity}}</span>
+              <button class="btn" type="button" (click)="incrementQuantity(product)">+</button>
+            </div>
+          </td>
+          <td><i class="fa fa-inr"></i> {{ product.total }}</td>
+          <td>
+            <button class="btn" type="button" (click)="removeFromCart(product)">
+              <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
 
     <div class="cart-buttons">
       <a routerLink="/products/all" class="btn primary-button">

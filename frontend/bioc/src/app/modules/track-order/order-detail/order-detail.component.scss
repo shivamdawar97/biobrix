@@ -104,6 +104,11 @@
   }
 }
 
+@media screen and (max-width: 800px) {
+  .order-detail-secondary-container {
+    padding: 0 1rem;
+  }
+}
 .order-information__parent {
   padding: 1rem;
 }
