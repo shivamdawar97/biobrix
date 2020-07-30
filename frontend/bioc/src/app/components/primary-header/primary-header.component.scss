@@ -69,7 +69,12 @@
 
 .brand-logo {
   position: relative;
-  left: 15%;
+  left: 12%;
+
+  img{
+    height: 8rem;
+  }
+
 }
 
 .animated-menu {
@@ -80,4 +85,19 @@
 .search {
   position: absolute;
   right: 10%;
+}
+
+@media screen and (max-width: 1050px) {
+
+  .brand-logo {
+    left: 5%;
+    img{
+      height: 4rem;
+    }
+  }
+
+  .search {
+    right: 1%;
+  }
+
 }

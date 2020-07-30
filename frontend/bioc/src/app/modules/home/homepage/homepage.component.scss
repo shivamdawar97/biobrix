@@ -8,7 +8,7 @@
   font-size: 35px;
 
   &__heading {
-    line-height: 36px;
+    line-height: 3.6rem;
 
   }
 
@@ -29,7 +29,7 @@
   text-transform: uppercase;
   font-weight: 700;
   display: inline-block;
-  background-image: linear-gradient(to right, $primary-red-light,$primary-red);
+  background-image: linear-gradient(to right, $primary-website-color,$color-info);
   letter-spacing: 2px;
   -webkit-background-clip: text;
   background-clip: text;
@@ -38,40 +38,37 @@
   padding-top: 5rem;
   @include flex(column);
   @include flex-alignment(center, center);
-
+  text-align: center;
 }
 
 
 
 .product-type {
-
-  height: 300px;
   width: 100%;
-  @include flex(row);
-  @include flex-alignment(space-around, center);
-  padding-top: 5rem;
-
-
+  flex-wrap: wrap;
+  padding :  5rem 0;
+  text-align: center;
   &__item {
-    width: 300px;
-    height: 200px;
+    width: 20vw;
+    height: 15vw;
     background: transparent;
     background-size: cover;
     border-color: transparent;
-    z-index: 10;
     transition: all .2s;
-    outline-offset: .2rem;
+    outline-offset: .5rem;
     display: inline-block;
     position: relative;
+    margin: 2rem;
+    min-width: 25rem;
+    min-height: 20rem;
 
     &:hover {
       outline: .7rem solid $primary-website-color-light;
       transform: scale(1.05) translateY(-.5rem);
-      z-index: 20;
 
       .product-type__item--item-hover {
         visibility: visible;
-        text-align: end;
+        text-align: center;
         font-size: 2rem;
         background: transparentize(black,.8);
 
@@ -91,6 +88,7 @@
 }
 
 .recent-products {
+  display: inline;
   background-color: #f1adec81;
   padding-bottom: 20px;
   &__item {
@@ -150,6 +148,7 @@
 
 .dry-skin {
   background-image: url("https://suttonderm.com/wp-content/uploads/10-Top-Tips-For-Dry-Skin-2-720x675.jpg");
+  background-size: cover;
 }
 
 .oily-skin {

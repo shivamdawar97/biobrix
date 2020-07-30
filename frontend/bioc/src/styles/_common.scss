@@ -108,9 +108,16 @@
   padding-top: 12rem;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1050px) {
 
 .main-container {
   padding-top: 8rem;
+}
+}
+
+@media screen and (max-width: 767px) {
+
+.main-container {
+  padding-top: 4rem;
 }
 }
