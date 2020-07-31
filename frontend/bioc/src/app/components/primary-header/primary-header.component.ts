@@ -1,13 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 /** Models */
 import { Category } from 'src/app/core/models/category.model';
 
 /** Services */
-import { ProductApiService } from 'src/app/core/http/product-api.service';
 import { DataService } from 'src/app/core/services/data.service';
-
-import { DefaultCategory } from 'src/app/constants/products.const';
 import {Router} from "@angular/router";
 
 @Component({
@@ -17,28 +14,16 @@ import {Router} from "@angular/router";
 })
 export class PrimaryHeaderComponent implements OnInit {
 
-  categoryList: Array<Category>;
+  @Input() categoryList: Array<Category>;
+
 
   constructor(
-    private productService: ProductApiService,
     private dataService: DataService,
     private router: Router
   ) { }
 
-
-  getCategoryList() {
-    this.productService.getCategoryList()
-      .subscribe({
-        next: (data: Array<Category>) => {
-          this.categoryList = data;
-          // this.dataService.categoryList = data.splice(0, 2);
-          this.categoryList.push(DefaultCategory);
-        }
-      });
-  }
-
   ngOnInit(): void {
-    this.getCategoryList();
+
   }
 
   isProductRoute () {

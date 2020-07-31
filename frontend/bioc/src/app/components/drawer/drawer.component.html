@@ -1,0 +1,18 @@
+<div class="sidenav"  [ngStyle]="{'width': isOpen? '250px' : '0'}"  >
+  <a class="sidenav__a closebtn" href="javascript:void(0)"  (click)="isOpen=false;">&times;</a>
+  <a class="sidenav__a" href="#">Home</a>
+  <a class="sidenav__a" href="#">About</a>
+  <h2> Products </h2>
+  <a class="sidenav__a products_a" [routerLink]="['/products', category.id]" *ngFor="let category of categoryList"> <span>{{ category.categoryName }}</span></a>
+  <a class="sidenav__a" href="#"></a>
+  <a class="sidenav__a" href="#">Contact</a>
+</div>
+<div class="drawer_header" >
+  <span class="drawer_header__btn" (click)="isOpen=true;" >&#9776;</span>
+  <a class="brand-logo"  routerLink="">
+    <img src="../../../assets/BIOBRIX_LOGO.svg"/>
+  </a>
+  <span class="flex-fill"></span>
+  <app-search-input paramKeyword="search" placeholder="Search products" class="search"></app-search-input>
+
+</div>

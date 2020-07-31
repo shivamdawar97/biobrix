@@ -28,8 +28,7 @@ export class ProductApiService {
     private http: HttpClient,
     private httpErrorHandlerService: HttpErrorHandlerService,
     private utilityService: UtilityService
-  ) {
-  }
+  ) {}
 
   getCategoryList(): Observable<Array<Category>> {
     const url = `${this.BASE_URL}${CATEGORY_API}`;

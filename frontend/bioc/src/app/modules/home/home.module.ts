@@ -19,6 +19,7 @@ import { AboutComponent } from './about/about.component';
 import { LoadingSpinnerComponent } from 'src/app/components/loading-spinner/loading-spinner.component';
 import { FooterComponent } from 'src/app/components/footer/footer.component';
 import { FloaterComponent } from 'src/app/components/floater/floater.component';
+import { DrawerComponent } from 'src/app/components/drawer/drawer.component';
 
 
 const routes: Routes = [
@@ -45,6 +46,7 @@ const routes: Routes = [
     SecondaryHeaderComponent,
     PrimaryHeaderComponent,
     FooterComponent,
+    DrawerComponent,
     HomepageComponent,
     ProductsComponent,
     TradeEnquiryComponent,
