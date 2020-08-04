@@ -1,16 +1,18 @@
 @import "src/styles/imports";
 .secondary-nav {
-  padding: 0.1rem 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap-reverse;
+  padding: .6rem ;
   background-color: rgb(192, 189, 189);
   font-size: 1.6rem;
+  justify-content: center;
 
-  .nav-item {
-    padding: 0 2rem;
-    .nav-link {
-      color: black;
-    }
+  .nav-link {
+    color: black;
+    margin: 0 2rem;
+
   }
-
   .cart {
     position: relative;
     span {

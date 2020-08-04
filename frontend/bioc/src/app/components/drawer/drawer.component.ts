@@ -11,4 +11,10 @@ export class DrawerComponent {
   isOpen = false;
   @Input() categoryList: Array<Category>;
 
+  outsideClick(){
+    console.log('drawer reached');
+     if(this.isOpen) this.isOpen = false;
+  }
+  itemSelected = () => this.isOpen = false;
+
 }
