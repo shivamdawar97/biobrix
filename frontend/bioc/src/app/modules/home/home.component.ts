@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, HostListener, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, HostListener, ChangeDetectionStrategy, ViewChild, ElementRef } from '@angular/core';
 import { UtilityService } from 'src/app/core/services/utility.service';
 import { ProductApiService } from 'src/app/core/http/product-api.service';
 import { Category } from 'src/app/core/models/category.model';
@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   screenWidth = 0;
   drawerOpen = false;
   categoryList: Array<Category>;
+  @ViewChild('appDrawer') appDrawer : ElementRef
 
   constructor(
     private productService: ProductApiService,

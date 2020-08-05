@@ -1,6 +1,6 @@
 <div class="navbar-container">
-    <app-secondary-header style="animation: moveInTop .3s ease-out  0s;" *ngIf="scrollOffset<100 && screenWidth>767"></app-secondary-header>
-    <app-primary-header [categoryList]="categoryList" *ngIf="screenWidth>767"></app-primary-header>
+    <app-secondary-header style="animation: moveInTop .3s ease-out  0s;"  *ngIf="scrollOffset<100 && screenWidth>767"></app-secondary-header>
+    <app-primary-header [categoryList]="categoryList" *ngIf="screenWidth>767" [squeeze]="scrollOffset>100 && screenWidth>767"></app-primary-header>
     <app-drawer #appDrawer [categoryList]="categoryList" *ngIf="screenWidth<=767"></app-drawer>
     <!-- <ng-template #drawer> <app-drawer #appDrawer [categoryList]="categoryList"></app-drawer> </ng-template> -->
 </div>

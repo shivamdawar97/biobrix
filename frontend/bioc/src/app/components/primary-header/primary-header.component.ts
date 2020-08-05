@@ -15,7 +15,7 @@ import {Router} from "@angular/router";
 export class PrimaryHeaderComponent implements OnInit {
 
   @Input() categoryList: Array<Category>;
-
+  @Input() squeeze : boolean;
 
   constructor(
     private dataService: DataService,

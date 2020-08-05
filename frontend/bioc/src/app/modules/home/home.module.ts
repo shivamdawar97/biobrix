@@ -46,7 +46,6 @@ const routes: Routes = [
     SecondaryHeaderComponent,
     PrimaryHeaderComponent,
     FooterComponent,
-    DrawerComponent,
     HomepageComponent,
     ProductsComponent,
     TradeEnquiryComponent,
@@ -57,7 +56,8 @@ const routes: Routes = [
     SafePipe,
     AboutComponent,
     LoadingSpinnerComponent,
-    FloaterComponent
+    FloaterComponent,
+    DrawerComponent
   ],
   imports: [
     CommonModule,

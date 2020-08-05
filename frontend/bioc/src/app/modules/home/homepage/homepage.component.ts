@@ -16,6 +16,9 @@ export class HomepageComponent implements OnInit {
 
   homepage: Homepage;
   recentProducts = [];
+  private pa1 = [];
+  private pa2 = [];
+  private pa3 = [];
 
   constructor(
     private homepageApiService: HomepageApiService,
@@ -42,4 +45,8 @@ export class HomepageComponent implements OnInit {
   productDetail(product_id: string) {
     this.router.navigate(['/product', product_id]);
   }
+
+
+
+
 }

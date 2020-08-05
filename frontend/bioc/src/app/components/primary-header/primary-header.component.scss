@@ -87,7 +87,7 @@
   right: 10%;
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 1050px){
 
   .brand-logo {
     left: 5%;
@@ -98,6 +98,16 @@
 
   .search {
     right: 1%;
+  }
+
+}
+
+.squeeze {
+  .brand-logo {
+    left: 5%;
+    img{
+      height: 4rem;
+    }
   }
 
 }
