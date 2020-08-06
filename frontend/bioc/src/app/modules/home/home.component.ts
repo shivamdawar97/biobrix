@@ -3,6 +3,7 @@ import { UtilityService } from 'src/app/core/services/utility.service';
 import { ProductApiService } from 'src/app/core/http/product-api.service';
 import { Category } from 'src/app/core/models/category.model';
 import { DefaultCategory } from 'src/app/constants/products.const';
+import { DrawerComponent } from 'src/app/components/drawer/drawer.component';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,7 @@ export class HomeComponent implements OnInit {
   screenWidth = 0;
   drawerOpen = false;
   categoryList: Array<Category>;
-  @ViewChild('appDrawer') appDrawer : ElementRef
+  @ViewChild('appDrawer') appDrawer : ElementRef<DrawerComponent>
 
   constructor(
     private productService: ProductApiService,

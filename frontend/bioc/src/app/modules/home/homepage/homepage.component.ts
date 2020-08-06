@@ -1,8 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, HostListener} from '@angular/core';
 import {HomepageApiService} from '../../../core/http/homepage-api.service';
 import {Homepage} from '../../../core/models/homepage.model';
-import {Product} from '../../../core/models/product.model';
-import {CartService} from '../../../core/services/cart.service';
 import {UtilityService} from '../../../core/services/utility.service';
 import {Router} from "@angular/router";
 import { ContactInfoService } from 'src/app/core/services/contact-info.service';
@@ -34,9 +32,17 @@ export class HomepageComponent implements OnInit {
       if (res) {
         this.utilityService.showLoader.next(false);
         const recents = res.recentProducts;
+
         for (let i = 0; i < recents.length; i = i + 4) {
-          this.recentProducts.push(res.recentProducts.slice(i, i + 4));
+          this.pa1.push(recents.slice(i, i + 4));
         }
+
+        for (let i = 0; i < recents.length; i = i + 2) {
+          this.pa2.push(recents.slice(i, i + 2));
+        }
+        recents.forEach( product => this.pa3.push([product]) )
+
+        this.assembelRecentProducts();
         this.contactService.setContactInfo(res.contact_no,res.email);
       }
     });
@@ -46,7 +52,14 @@ export class HomepageComponent implements OnInit {
     this.router.navigate(['/product', product_id]);
   }
 
+  @HostListener('window:resize',['$event'])
+  onResize = _ => this.assembelRecentProducts();
 
+  private assembelRecentProducts() {
+    if(window.innerWidth<700) this.recentProducts = this.pa3;
+    else if(window.innerWidth<1120) this.recentProducts = this.pa2;
+    else this.recentProducts = this.pa1;
+  }
 
 
 }
