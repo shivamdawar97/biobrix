@@ -58,7 +58,7 @@
 }
 
 .product-list {
-  width: calc(100% - 25rem);
+
   margin-left: 25rem;
   padding: 2rem;
   min-height: 50rem;
@@ -88,5 +88,25 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
+}
+@media screen and (max-width: 767px) {
+
+    .flex_container{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap-reverse;
+    }
+
+    .product-filter {
+      height: auto;
+      position: unset;
+      background: transparent;
+      margin: auto;
+    }
+
+    .product-list {
+      margin-left: 0;
+    }
 
 }

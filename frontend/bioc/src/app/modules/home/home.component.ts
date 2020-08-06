@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   screenWidth = 0;
   drawerOpen = false;
   categoryList: Array<Category>;
-  @ViewChild('appDrawer') appDrawer : ElementRef<DrawerComponent>
+  @ViewChild('appDrawer') appDrawer : DrawerComponent
 
   constructor(
     private productService: ProductApiService,

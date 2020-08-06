@@ -86,6 +86,7 @@ export class ProductsComponent implements OnInit {
     this.tag = '';
     this.selectedCategoryIndex = selectedCategoryIndex;
     this.router.navigate(['/products', categoryId]);
+    window.scroll(0,0);
   }
 
 

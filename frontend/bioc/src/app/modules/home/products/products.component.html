@@ -1,36 +1,42 @@
 <app-main-container title="PRODUCTS">
-  <div class="product-filter">
-    <div class="heading">
-      <h3>Categories</h3>
-    </div>
-    <div>
-      <ul>
-        <li role="button" *ngFor="let category of categoryList; index as i"
-            (click)="onCategoryButtonClick(category.id, i)">
-          <button class="btn btn-link" type="button" [ngClass]="{'active': i===selectedCategoryIndex}">
-            {{category.categoryName}}
-          </button>
-        </li>
-      </ul>
-    </div>
-  </div>
+  <div class="flex_container">
 
-  <div *ngIf="!isLoading else loading_circular;" class="product-list" >
-    <ng-container *ngIf="!tag">
-      <div class="row category" *ngFor="let category of productList">
-        <div class="col-md-12 name">
-          <h2>{{ category.category_name }}</h2>
+    <div class="product-filter">
+      <div class="heading">
+        <h3>Categories</h3>
+      </div>
+      <div>
+        <ul>
+          <li role="button" *ngFor="let category of categoryList; index as i"
+              (click)="onCategoryButtonClick(category.id, i)">
+            <button class="btn btn-link" type="button" [ngClass]="{'active': i===selectedCategoryIndex}">
+              {{category.categoryName}}
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div *ngIf="!isLoading else loading_circular;" class="product-list" >
+      <ng-container *ngIf="!tag">
+        <div class="row category" *ngFor="let category of productList">
+          <div class="col-md-12 name">
+            <h2>{{ category.category_name }}</h2>
+          </div>
+          <div class="col-md-3" *ngFor="let product of category.product_list">
+            <app-product-card [product]="product"></app-product-card>
+          </div>
         </div>
-        <div class="col-md-3" *ngFor="let product of category.product_list">
+      </ng-container>
+      <div class="row" *ngIf="tag">
+        <div class="col-md-3" *ngFor="let product of productList">
           <app-product-card [product]="product"></app-product-card>
         </div>
       </div>
-    </ng-container>
-    <div class="row" *ngIf="tag">
-      <div class="col-md-3" *ngFor="let product of productList">
-        <app-product-card [product]="product"></app-product-card>
-      </div>
     </div>
+
+
+
   </div>
 
   <ng-template #loading_circular>
