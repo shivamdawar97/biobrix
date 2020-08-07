@@ -20,7 +20,7 @@ export class CheckoutComponent implements OnInit {
   isLoading = false;
   form: FormGroup;
   isOtpSent = false;
-  isPhoneVerified = true;
+  isPhoneVerified = false;
   otpField = new FormControl();
   products: Product[] = [];
   total = 0;

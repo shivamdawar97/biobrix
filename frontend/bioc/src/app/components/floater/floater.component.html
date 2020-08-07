@@ -1,19 +1,23 @@
 <div>
   <div class="form-box" id="myDIV" [ngClass]="{'open': isExpanded}" >
     <h2 class="login-header"><i class="far fa-comment-dots icon"></i>We'll reach you.</h2>
-    <div *ngIf="isLoading else spinner" class="test">
+    <div *ngIf="!isLoading else spinner" class="test">
       <form class="formInput">
-        <div>
-          <input type="text" required id="test" placeholder="Name">
+        <div class="form-group">
+          <input type="text" required id="test" placeholder="Name" [formControl]="name">
         </div>
 
-        <div>
-          <input type="tel" id="numberText" required placeholder="Mobile No."  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+        <div class="form-group">
+          <input type="tel" id="numberText" required placeholder="Email or Phone" [formControl]="email">
         </div>
-        <div>
-          <input type="text"  required placeholder="Message">
+
+        <div class="form-group">
+          <input type="text"  required placeholder="Message" [formControl]="message">
         </div>
-         <input type="submit" value="Send" id="submitButt" class="active">
+
+        <p *ngIf="isMessageSend" style="color: blue;"> <i> *Your message has been sent.</i></p>
+
+         <input type="submit" value="Send" id="submitButt" class="active" (click)="submitForm()">
      </form>
     </div>
     <ng-template #spinner><app-loading-spinner class="loader-center"></app-loading-spinner></ng-template>
