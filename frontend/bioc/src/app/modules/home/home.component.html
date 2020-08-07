@@ -5,7 +5,7 @@
     <!-- <ng-template #drawer> <app-drawer #appDrawer [categoryList]="categoryList"></app-drawer> </ng-template> -->
 </div>
 
-<div (click)="appDrawer.outsideClick()" >
+<div (click)="outsideClicked()" >
     <div [ngClass]="{'loader': isLoading}" *ngIf="isLoading">
         <img src="assets/images/loader.gif" alt="">
     </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { Review } from 'src/app/core/models/review.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -24,6 +24,10 @@ export class ProductDetailComponent implements OnInit {
   product: ProductDetail;
   review: Review;
   similarProducts = [];
+  private pa1 = [];
+  private pa2 = [];
+  private pa3 = [];
+
   qtyForm: FormGroup
 
   constructor(
@@ -102,9 +106,16 @@ export class ProductDetailComponent implements OnInit {
       this.productService.getSimilarProducts(this.similarProductTag).subscribe(res => {
         if (res) {
           const recents = res;
+
           for (let i = 0; i < recents.length; i = i + 4) {
-            this.similarProducts.push(res.slice(i, i + 4));
+            this.pa1.push(recents.slice(i, i + 4));
           }
+
+          for (let i = 0; i < recents.length; i = i + 2) {
+            this.pa2.push(recents.slice(i, i + 2));
+          }
+          recents.forEach( product => this.pa3.push([product]) )
+          this.assembelRecentProducts();
         }
       });
     }
@@ -113,4 +124,14 @@ export class ProductDetailComponent implements OnInit {
   showProductList(tag: string) {
     this.router.navigate(['/', 'products', 'all'], {queryParams: { tag }});
   }
+
+  @HostListener('window:resize',['$event'])
+  onResize = _ => this.assembelRecentProducts();
+
+  private assembelRecentProducts() {
+    if(window.innerWidth<700) this.similarProducts = this.pa3;
+    else if(window.innerWidth<1120) this.similarProducts = this.pa2;
+    else this.similarProducts = this.pa1;
+  }
+
 }

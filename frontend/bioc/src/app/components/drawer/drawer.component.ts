@@ -1,5 +1,6 @@
 import { Component, HostListener, Input } from '@angular/core';
 import { Category } from 'src/app/core/models/category.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-drawer',
@@ -8,13 +9,23 @@ import { Category } from 'src/app/core/models/category.model';
 })
 export class DrawerComponent {
 
+  constructor(private router: Router){}
+
   isOpen = false;
   @Input() categoryList: Array<Category>;
 
   public outsideClick(){
-    console.log('drawer reached');
      if(this.isOpen) this.isOpen = false;
   }
-  itemSelected = () => this.isOpen = false;
+
+  itemSelected = route => {
+    this.isOpen = false;
+    this.router.navigate([route]);
+  }
+
+  onCategorySelected = id => {
+    this.isOpen = false;
+    this.router.navigate(['/products',id]);
+  }
 
 }

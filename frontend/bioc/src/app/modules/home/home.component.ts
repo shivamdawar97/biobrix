@@ -45,6 +45,10 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  outsideClicked(){
+    console.log(this.appDrawer);
+    if(this.appDrawer !== undefined) this.appDrawer.outsideClick();
+  }
 
   @HostListener('window:scroll', ['$event']) // for window scroll events
   onScroll = _ => this.scrollOffset = window.pageYOffset;

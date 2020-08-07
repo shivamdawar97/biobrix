@@ -10,9 +10,12 @@ export class ContactUsService {
 
   constructor(private http: HttpClient, private httpErrorHandlerService: HttpErrorHandlerService){}
 
-  private CONTACT_US_API = `${environment.BASE_URL}contacy_us`
+  private CONTACT_US_API = `${environment.BASE_URL}contacy_us`;
+  private ENQUIRY_API = `${environment.BASE_URL}trade_enquiry`;
 
   sendMessage = messagebody => this.http.post(this.CONTACT_US_API, messagebody).pipe(catchError(this.httpErrorHandlerService.handleErr));
+
+  sendEnquiry = enquirybody => this.http.post(this.ENQUIRY_API, enquirybody).pipe(catchError(this.httpErrorHandlerService.handleErr));
 
 
 }
