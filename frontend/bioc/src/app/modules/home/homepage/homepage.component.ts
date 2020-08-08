@@ -33,8 +33,8 @@ export class HomepageComponent implements OnInit {
         this.utilityService.showLoader.next(false);
         const recents = res.recentProducts;
 
-        for (let i = 0; i < recents.length; i = i + 4) {
-          this.pa1.push(recents.slice(i, i + 4));
+        for (let i = 0; i < recents.length; i = i + 3) {
+          this.pa1.push(recents.slice(i, i + 3));
         }
 
         for (let i = 0; i < recents.length; i = i + 2) {
