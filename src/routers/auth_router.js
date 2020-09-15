@@ -1,6 +1,7 @@
 const express = require('express')
 const router = new express.Router()
-const client = require('../config/config').twillioClient
+const config = require('../config/config')
+const client = config.twillioClient
 
 router.get('/phone/send_otp', async (req,res)=>{
     try{

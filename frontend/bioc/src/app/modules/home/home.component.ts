@@ -1,10 +1,10 @@
-import { Component, OnInit, ChangeDetectorRef, HostListener, ViewChild, ComponentFactoryResolver, TemplateRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, HostListener, ViewChild, ComponentFactoryResolver, TemplateRef, ComponentRef, AfterViewInit } from '@angular/core';
 import { UtilityService } from 'src/app/core/services/utility.service';
 import { ProductApiService } from 'src/app/core/http/product-api.service';
 import { Category } from 'src/app/core/models/category.model';
 import { DefaultCategory } from 'src/app/constants/products.const';
 import { DrawerComponent } from 'src/app/components/drawer/drawer.component';
-import { HederPlaceholderDirective } from './headerPlaceholder.directive';
+import { PrimaryHeaderComponent } from 'src/app/components/primary-header/primary-header.component';
 
 @Component({
   selector: 'app-home',
@@ -18,16 +18,18 @@ export class HomeComponent implements OnInit {
   screenWidth = 0;
   drawerOpen = false;
   categoryList: Array<Category>;
+  headerRef: ComponentRef<PrimaryHeaderComponent>
 
   @ViewChild('appDrawer') appDrawer : DrawerComponent
-  @ViewChild(HederPlaceholderDirective,{static:false}) primaryHeader : HederPlaceholderDirective
+
+  //@ViewChild(HederPlaceholderDirective,{static:false}) primaryHeader : HederPlaceholderDirective
 
   constructor(
     private productService: ProductApiService,
     private utilityService: UtilityService,
-    private changeDetection: ChangeDetectorRef,
-    private componentFactoryResolver: ComponentFactoryResolver
+    private changeDetection: ChangeDetectorRef
   ) { }
+
 
   ngOnInit(): void {
     this.screenWidth = window.innerWidth;
@@ -39,7 +41,6 @@ export class HomeComponent implements OnInit {
     });
     this.getCategoryList();
   }
-
 
   private getCategoryList() {
     this.productService.getCategoryList().subscribe({next: (data: Array<Category>) => {
@@ -55,13 +56,14 @@ export class HomeComponent implements OnInit {
   }
 
   @HostListener('window:scroll', ['$event']) // for window scroll events
-  onScroll = _ =>  this.scrollOffset = window.pageYOffset;
+  onScroll = _ => this.scrollOffset = window.pageYOffset;
+
 
   @HostListener('window:resize',['$event'])
-  onResize = async _ => {
-    this.screenWidth = window.innerWidth;
-    if(window.innerWidth>767){
-    const { PrimaryHeaderComponent } = await import('../../components/primary-header/primary-header.component');
+  onResize = _ => this.screenWidth = window.innerWidth;
+
+
+  /* private loadPrimaryHeaderDynamically(){
     const alertCmpFactory = this.componentFactoryResolver.resolveComponentFactory(PrimaryHeaderComponent);
     const hostViewContainerRef = this.primaryHeader.viewContainerRef;
 
@@ -69,13 +71,10 @@ export class HomeComponent implements OnInit {
     hostViewContainerRef.clear();
 
     //This create a new component in that place
-      const compRef = hostViewContainerRef.createComponent(alertCmpFactory);
-      compRef.instance.categoryList = this.categoryList;
-      compRef.instance.squeeze = this.scrollOffset>100;
+    this.headerRef = hostViewContainerRef.createComponent(alertCmpFactory);
 
-    }
-
-  }
-
+    this.headerRef.instance.categoryList = this.categoryList;
+    this.headerRef.instance.squeeze = this.scrollOffset>100;
+  }*/
 
 }

@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {Routes, RouterModule} from '@angular/router';
 import {HomeComponent} from './home.component';
 import {SecondaryHeaderComponent} from 'src/app/components/secondary-header/secondary-header.component';
+import {PrimaryHeaderComponent} from 'src/app/components/primary-header/primary-header.component';
 import {HomepageComponent} from './homepage/homepage.component';
 import {ProductsComponent} from './products/products.component';
 import {TradeEnquiryComponent} from './trade-enquiry/trade-enquiry.component';
@@ -18,7 +19,6 @@ import { LoadingSpinnerComponent } from 'src/app/components/loading-spinner/load
 import { FooterComponent } from 'src/app/components/footer/footer.component';
 import { FloaterComponent } from 'src/app/components/floater/floater.component';
 import { DrawerComponent } from 'src/app/components/drawer/drawer.component';
-import { HederPlaceholderDirective } from './headerPlaceholder.directive';
 
 
 const routes: Routes = [
@@ -41,9 +41,9 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    CommonModule,
     HomeComponent,
     SecondaryHeaderComponent,
+    PrimaryHeaderComponent,
     FooterComponent,
     HomepageComponent,
     ProductsComponent,
@@ -56,8 +56,7 @@ const routes: Routes = [
     AboutComponent,
     LoadingSpinnerComponent,
     FloaterComponent,
-    DrawerComponent,
-    HederPlaceholderDirective
+    DrawerComponent
   ],
   imports: [
     CommonModule,
@@ -68,8 +67,7 @@ const routes: Routes = [
   ],
   exports: [
     RouterModule,
-    SafePipe,
-    HederPlaceholderDirective
+    SafePipe
   ]
 })
 export class HomeModule {

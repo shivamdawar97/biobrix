@@ -4,7 +4,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Category } from 'src/app/core/models/category.model';
 
 /** Services */
-import { DataService } from 'src/app/core/services/data.service';
 import {Router} from "@angular/router";
 
 @Component({
@@ -17,10 +16,8 @@ export class PrimaryHeaderComponent implements OnInit {
   @Input() categoryList: Array<Category>;
   @Input() squeeze : boolean;
 
-  constructor(
-    private dataService: DataService,
-    private router: Router
-  ) { }
+  constructor(private router: Router)
+  { }
 
   ngOnInit(): void {
 

@@ -117,10 +117,24 @@
     }
   }
 
+  .name_div {
+    .company_name {
+      font-size: 0rem;
+    }
+  }
+
   .search {
     right: 1%;
   }
 
+}
+
+@media screen and (max-width: 1220px) {
+  .name_div {
+    .company_name {
+      font-size: 2rem;
+    }
+  }
 }
 
 .squeeze {
