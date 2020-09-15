@@ -17,7 +17,6 @@ export class FloaterComponent implements OnInit {
   email = new FormControl('', [Validators.required,Validators.email]);
   message = new FormControl('', [Validators.required]);
 
-
   constructor(private contactUsService: ContactUsService) { }
 
   ngOnInit(): void {

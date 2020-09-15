@@ -1,5 +1,5 @@
 @import "src/styles/imports";
-@import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+
 .primary-header {
   font-size: 1.6rem;
   //color: $color-white;
@@ -83,10 +83,17 @@
   top: 0%;
   .company_name {
     position: absolute;
+    display: flex;
+    flex-direction: row;
     font-family: 'Aclonica', sans-serif;
     color: black;
     font-size: 3.2rem;
     transform: translateY(-50%);
+
+    &__red {
+      color: red;
+    }
+
   }
 
 }
