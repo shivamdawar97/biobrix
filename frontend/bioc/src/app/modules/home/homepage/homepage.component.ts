@@ -4,6 +4,7 @@ import {Homepage} from '../../../core/models/homepage.model';
 import {UtilityService} from '../../../core/services/utility.service';
 import {Router} from "@angular/router";
 import { ContactInfoService } from 'src/app/core/services/contact-info.service';
+import { HomepageService } from './homepage.service';
 
 @Component({
   selector: 'app-homepage',
@@ -19,33 +20,32 @@ export class HomepageComponent implements OnInit {
   private pa3 = [];
 
   constructor(
-    private homepageApiService: HomepageApiService,
+    private homepageService: HomepageService,
     private contactService: ContactInfoService,
     private utilityService: UtilityService,
     private router: Router,
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void>  {
     this.utilityService.showLoader.next(true);
-    this.homepageApiService.getHomePage().subscribe(res => {
-      this.homepage = res;
-      if (res) {
-        this.utilityService.showLoader.next(false);
-        const recents = res.recentProducts;
 
-        for (let i = 0; i < recents.length; i = i + 3) {
-          this.pa1.push(recents.slice(i, i + 3));
-        }
+    this.homepage = await this.homepageService.getHomePage;
 
-        for (let i = 0; i < recents.length; i = i + 2) {
-          this.pa2.push(recents.slice(i, i + 2));
-        }
-        recents.forEach( product => this.pa3.push([product]) )
+      this.utilityService.showLoader.next(false);
+      const recents = this.homepage.recentProducts;
 
-        this.assembelRecentProducts();
-        this.contactService.setContactInfo(res.contact_no,res.email);
+      for (let i = 0; i < recents.length; i = i + 3) {
+        this.pa1.push(recents.slice(i, i + 3));
       }
-    });
+
+      for (let i = 0; i < recents.length; i = i + 2) {
+        this.pa2.push(recents.slice(i, i + 2));
+      }
+      recents.forEach( product => this.pa3.push([product]) )
+
+      this.assembelRecentProducts();
+      this.contactService.setContactInfo(this.homepage.contact_no,this.homepage.email);
+
   }
 
   productDetail(product_id: string) {

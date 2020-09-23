@@ -11,9 +11,7 @@
 </div>
 
 <div (click)="outsideClicked()" >
-    <div [ngClass]="{'loader': isLoading}" *ngIf="isLoading">
-        <img src="assets/images/loader.gif" alt="">
-    </div>
+
     <router-outlet></router-outlet>
 </div>
 <app-footer></app-footer>

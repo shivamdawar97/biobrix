@@ -5,6 +5,7 @@
   <div class="card-footer">
     <h3 class="product-name">{{product.product_name}}</h3>
     <h4 class="product-price">₹ {{product.price}}</h4>
+    <h5 class="add_to_cart" ><i *ngIf="inCart"> ✓ Added to Cart</i></h5>
     <button *ngIf="!inCart" type="button" class="btn primary-button"
             (click)="addToCart(product)">
       <i class="fa fa-shopping-cart"></i>
