@@ -1,6 +1,5 @@
 <nav>
 
-
     <div class="secondary-nav">
       <a class="nav-link" href="#">
         <i class="fa fa-phone" aria-hidden="true"> {{ phone }}</i>
@@ -11,21 +10,13 @@
     </a>
 
     <a class="nav-link" routerLink="/track-order">
-      <i class="fa-truck" aria-hidden="true"> Track Order</i>
+      <i class="fa-truck" aria-hidden="true">  Track Order</i>
     </a>
 
 
     <a class="nav-link cart" routerLinkActive="active" routerLink="/view-cart" >
       <span *ngIf="cartItemCount">{{ cartItemCount }}</span>
-      <i class="fa fa-shopping-cart" aria-hidden="true">Cart</i>
-    </a>
-
-    <a class="nav-link" href="www.facebook.com" >
-      <i class="fa-facebook" aria-hidden="true"></i>
-    </a>
-
-    <a class="nav-link" href="www.instagram.com">
-      <i class="fa-instagram" aria-hidden="true"></i>
+      <i class="fa fa-shopping-cart" aria-hidden="true"> Cart</i>
     </a>
 
 
