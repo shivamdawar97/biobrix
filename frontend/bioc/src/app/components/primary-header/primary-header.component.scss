@@ -4,9 +4,9 @@
   font-size: 1.6rem;
   //color: $color-white;
 
-  background-color: rgba(255,255,0,1);
+  background-color: $tertiary-website-color;
   border-bottom: rgb(184, 184, 184);
-  padding-right: 6rem;
+  padding-right: 10rem;
 
   .navbar-brand {
     font-size: 3rem;
@@ -14,7 +14,7 @@
   }
 
   .nav-item {
-    padding: 0 1.5rem;
+    padding: 0 2rem;
     height: 100%;
     align-self: stretch;
     .nav-link {

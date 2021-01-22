@@ -3,6 +3,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Tamma+2&display=swap');
 
+.main-container{
+  background-color: wheat;
+}
+
+.cover-section{
+  background-image: url('../../../../assets/bbnew.jpg');
+  background-size: cover;
+  height: 50vw;
+    &__name{
+      position: absolute;
+      color: $tertiary-website-color;
+      left: 10rem;
+      top: 20rem;
+      font-size: 5rem;
+      font-style: normal;
+      font-weight: lighter;
+      white-space: nowrap;
+      letter-spacing: 1.2rem;
+      border-bottom: .3rem white solid;
+  }
+   &__sub-name{
+      position: absolute;
+      color: $tertiary-website-color;
+      left: 10rem;
+      top: 20rem;
+      font-size: 5rem;
+      font-style: normal;
+      font-weight: lighter;
+      white-space: nowrap;
+      letter-spacing: 1.2rem;
+      border-bottom: .3rem white solid;
+  }
+}
+
 .section-header {
   padding-top: 30px;
   @include flex(column);
@@ -103,11 +137,7 @@
     filter: brightness(0);
   }
 
-
 }
-
-
-
 
 
 .testimonies {
