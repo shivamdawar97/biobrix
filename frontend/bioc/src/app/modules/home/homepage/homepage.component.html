@@ -8,10 +8,58 @@
     </div>
 
     <div class="cover-section__sub-name">
-      <span>Healthcare</span>
+      <span>HEALTHCARE</span>
     </div>
 
+    <div class="cover-section__subtitle">
+      <span class="cover-section__subtitle-span">Dermatology &</span>
+      <span class="cover-section__subtitle-span">Cosmetology</span>
+      <span class="cover-section__subtitle-span">Skincare Products</span>
+    </div>
 
+  </section>
+
+
+  <section class="recent-products">
+    <div class="section-header">
+
+      <svg class="svg_line">
+        <path class="svg_line__path" d="M 0 0 L 376.5347290039063 0">
+        </path>
+      </svg>
+
+      <i class="fa-star icon-star"aria-hidden="true"></i>
+
+      <div class="section-header__heading">Our Products</div>
+
+      <i class="fa-star icon-star"aria-hidden="true"></i>
+
+      <svg class="svg_line">
+        <path class="svg_line__path" d="M 0 0 L 376.5347290039063 0">
+        </path>
+      </svg>
+
+    </div>
+
+    <div id="recentProducts" class="carousel slide" data-ride="carousel" data-interval="0">
+      <div class="carousel-inner" style="padding-top: 1rem;">
+        <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let recentProduct of recentProducts; let i = index">
+          <div class="recent-products__item w-100">
+              <div *ngFor="let product of recentProduct">
+                <app-product-card [product]="product"></app-product-card>
+              </div>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#recentProducts" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#recentProducts" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
   </section>
 
   <section class="product-type-section animated fadeIn">
@@ -42,31 +90,6 @@
     </div>
   </section>
 
-  <section class="recent-products">
-    <div class="section-header">
-      <div class="section-header__heading">RECENT PRODUCTS</div>
-      <div class="section-header__underline"></div>
-    </div>
-    <div id="recentProducts" class="carousel slide" data-ride="carousel" data-interval="0">
-      <div class="carousel-inner" style="padding-top: 1rem;">
-        <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let recentProduct of recentProducts; let i = index">
-          <div class="recent-products__item w-100">
-              <div *ngFor="let product of recentProduct">
-                <app-product-card [product]="product"></app-product-card>
-              </div>
-          </div>
-        </div>
-      </div>
-      <a class="carousel-control-prev" href="#recentProducts" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#recentProducts" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-  </section>
 
   <section class="testimonies fadeIn animated">
     <div class="section-header">
