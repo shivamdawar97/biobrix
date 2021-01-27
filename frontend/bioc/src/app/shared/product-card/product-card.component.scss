@@ -2,20 +2,29 @@
 
 .card {
   min-width: 25rem;
-  margin-bottom: 2rem;
+  width: 25vw;
   position: relative;
-  background-image: linear-gradient(to bottom, white 50%,$tertiary-website-color 50%);
   border: transparent 0rem;
   transition: all .2s;
+  background-image: linear-gradient(to bottom,white 40%,$tertiary-website-color 30% );
+
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
 
 }
 
+// .card__bg{
+//   position: fixed;
+//   width: 100%;
+//   height: 100%;
+//   background-color: $tertiary-website-color;
+//   margin-top: 50%;
+// }
+
 .image {
   display: block;
-  width: 22vw;
+  width: 80%;
   height: 40rem;
   position: relative;
   margin-left: auto;
@@ -32,9 +41,9 @@
 }
 
 .card-footer {
+  z-index: 100;
   text-align: center;
   text-transform: capitalize;
-
   border-top: none;
   margin-bottom: 1rem;
 
