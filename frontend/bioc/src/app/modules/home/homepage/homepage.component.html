@@ -42,7 +42,7 @@
     </div>
 
     <div id="recentProducts" class="carousel slide" data-ride="carousel" data-interval="0">
-      <div class="carousel-inner" style="padding-top: 1rem;">
+      <div class="carousel-inner" style="padding: 1rem 8rem;">
         <div class="carousel-item" [ngClass]="{'active': i === 0}" *ngFor="let recentProduct of recentProducts; let i = index">
           <div class="recent-products__item w-100">
               <div *ngFor="let product of recentProduct">

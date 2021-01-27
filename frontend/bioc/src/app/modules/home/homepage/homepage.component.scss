@@ -25,7 +25,7 @@
 .icon-star{
   color: $tertiary-website-color;
   font-size: 2.5rem;
-  transform: skew(10deg);
+  transform: skew(14deg);
 }
 
 .cover-section{
@@ -81,7 +81,7 @@
 }
 
 .section-header {
-  margin-top: 8rem;
+  margin: 8rem 0;
   @include flex(row);
   @include flex-alignment(center, center);
   position: relative;
@@ -163,18 +163,16 @@
 
 .recent-products {
   display: inline;
-  background-color: #f1adec81;
-  padding-bottom: 20px;
-  &__item {
-    padding: 0 50px;
+    &__item {
+
     @include flex(row);
     @include flex-alignment(space-around, center);
   }
 
-  .carousel-control-prev, .carousel-control-next {
+  .carousel-control-prev,.carousel-control-next{
     filter: brightness(0);
+    width: 8rem;
   }
-
 }
 
 

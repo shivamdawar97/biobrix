@@ -4,21 +4,19 @@
   min-width: 25rem;
   margin-bottom: 2rem;
   position: relative;
-  border-radius:.5rem;
-  background-color: rgba(255, 255, 255, 0.596);
+  background-image: linear-gradient(to bottom, white 50%,$tertiary-website-color 50%);
+  border: transparent 0rem;
   transition: all .2s;
   &:hover {
-    background-color: white;
     transform: scale(1.05);
-
   }
 
 }
 
 .image {
   display: block;
-  width: 29rem;
-  height: 28rem;
+  width: 22vw;
+  height: 40rem;
   position: relative;
   margin-left: auto;
   margin-right: auto;
