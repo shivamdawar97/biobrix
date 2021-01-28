@@ -115,16 +115,15 @@
   text-align: center;
 }
 
-
-
 .product-type {
-  width: 100%;
+  display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   padding :  5rem 0;
-  text-align: center;
+  background-image: linear-gradient(to bottom,white 70%,$tertiary-website-color 70% );
   &__item {
-    width: 20vw;
-    height: 15vw;
+    text-align: center;
+    width: 18vw;
     background: transparent;
     background-size: cover;
     border-color: transparent;
@@ -135,6 +134,7 @@
     margin: 2rem;
     min-width: 25rem;
     min-height: 20rem;
+
 
     &:hover {
       outline: .7rem solid $primary-website-color-light;
@@ -181,6 +181,7 @@
   padding-bottom: 10rem;
   &__item {
     width: 70%;
+    display: block;
     margin: 0 auto;
     box-shadow: 0 3rem 6rem rgba($color: black, $alpha: .1);
     background-color: rgba($color:white, $alpha: .6);
@@ -226,20 +227,26 @@
 }
 
 .dry-skin {
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/biobrix-0.appspot.com/o/types_of_images%2Fdry_skin.jpg?alt=media");
+  width: 100%;
+  height: 22vw;
   background-size: cover;
+  background-image: url("../../../../assets/images/dry_skin.png");
+  &__text{
+    padding-top: 3rem;
+    font-weight: bold;
+  }
 }
 
 .oily-skin {
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/biobrix-0.appspot.com/o/types_of_images%2Foily_skin.jpg?alt=media");
+  background-image: url("../../../../assets/images/oily_skin.png");
 }
 
 .hair-care {
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/biobrix-0.appspot.com/o/types_of_images%2Fhair-care.jpeg?alt=media");
+  background-image: url("../../../../assets/images/hair_care.png");
 }
 
 .sun-protection {
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/biobrix-0.appspot.com/o/types_of_images%2Fsun_protection.jpg?alt=media");
+  background-image: url("../../../../assets/images/sun_screen.png");
 }
 
 .card {
