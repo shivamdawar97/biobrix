@@ -2,16 +2,104 @@
 
 .footer {
   @include flex(row);
-  background-color: rgba(15, 15, 15, 0.884);
+  margin-top: 12rem;
+  background-color: rgba(18,18,15,1);
   padding: .5rem;
-  color: white;
+  color: whitesmoke;
   position: relative;
-  &__cname {
-    margin-left: 1rem;
-    border-right: 1px solid white;
-    padding: .5rem;
+  height: 38rem;
+  flex-wrap: wrap;
+
+  &__content {
+    flex: 2;
+    @include flex(row);
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-top: 5rem;
+    margin-bottom: 2rem;
+
+    &-company_name{
+      letter-spacing: .5rem;
+    }
+
+    &-about_us{
+      max-width: 22rem;
+    }
+
+    &-socials {
+      font-size: x-large;
+      &-a {
+        margin: 2rem;
+        cursor: pointer;
+      }
+
+    }
+
+    &-heading{
+      margin-bottom: 3rem;
+      border-bottom: .2rem solid $tertiary-website-color;
+    }
+
+    &-logo{
+      width: 6.5rem;
+      height: 6.5rem;
+    }
+    &-box{
+      list-style: none;
+    }
+
+    &-li{
+      line-height: 4rem;
+    }
+
+    &-link{
+      text-decoration: none;
+    }
+
+
   }
-  &__cr {
-    padding: .5rem;
+
+  &__contact-us{
+    flex: 1;
+    @include flex(column);
+    align-items: center;
+    justify-content: center;
+    margin-left: 10rem;
+    margin-right: 10rem;
+    margin-bottom: 8rem;
+    margin-top: -10rem;
+    background-color: $tertiary-website-color;
+    color: black;
+  }
+
+  &__bottom{
+    position: absolute;
+    color: white;
+    height: 5rem;
+    font-size: large;
+    width: 100%;
+    text-align: start;
+    padding-left: 8rem;
+    padding-bottom: 3rem;
+    bottom: 0;
+    left: 0;
+    padding-top: 2rem;
   }
 }
+
+
+.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.sending {
+  align-self: center;
+  color: #075ac9;
+  padding: 2rem;
+}
+
+
+@media screen and (min-wdith: 600px){
+
+}
+

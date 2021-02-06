@@ -1,4 +1,68 @@
 <div class="footer">
-  <h2 class="footer__cname" >BIOBRIX HEALTHCARE</h2>
-  <p class="footer__cr"> &copy; Copyright 2020 | All Rights Reserved | Biobrix</p>
+
+  <div class="footer__content">
+
+    <div class="footer__content-about_us col">
+
+      <div class="row">
+        <img class="footer__content-logo" src="../../../assets/biobrix_circle.png" />
+        <h1 class="footer__content-company_name" style="margin: auto;">BIOBRIX</h1>
+      </div>
+
+      <div class="footer__content-socials">
+        <a><i class="footer__content-socials-a fa fa-facebook"></i></a>
+        <a><i class="footer__content-socials-a fa fa-twitter"></i></a>
+        <a><i class="footer__content-socials-a fa fa-instagram"></i></a>
+      </div>
+
+    </div>
+
+    <div class="footer__content-qlinks">
+      <h2 class="footer__content-heading">Quick Links</h2>
+      <ul class="footer__content-box">
+        <li class="footer__right-li"><a class="footer__right-link">Home</a></li>
+        <li class="footer__right-li"><a class="footer__right-link">About us</a></li>
+        <li class="footer__right-li"><a class="footer__right-link">Contact us</a></li>
+        <li class="footer__right-li"><a class="footer__right-link">Products</a></li>
+        <li class="footer__right-li"><a class="footer__right-link">Doctors</a></li>
+        <li class="footer__right-li"><a class="footer__right-link">Trade Enquiry</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__content-products">
+      <h2 class="footer__content-heading">Products</h2>
+      <ul class="footer__content-box">
+        <li class="footer__right-li"><a class="footer__right-link">Hair Fall</a></li>
+        <li class="footer__right-li"><a class="footer__right-link">Dry Skin</a></li>
+        <li class="footer__right-li"><a class="footer__right-link">Oily Skin</a></li>
+        <li class="footer__right-li"><a class="footer__right-link">Sunscreen</a></li>
+        <li class="footer__right-li"><a class="footer__right-link">Face cream</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer__contact-us">
+    <h1>Get in Touch with us</h1>
+    <div class="contact-message">
+      <div class="form-group">
+        <label for="name">Full name</label>
+        <input type="text" id="name" [formControl]="name" class="form-control form-control-lg" placeholder="Enter full name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" id="email" [formControl]="email" class="form-control form-control-lg" placeholder="Enter email">
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea type="text" id="message" [formControl]="message" rows="3" class="form-control form-control-lg" placeholder="Enter message"></textarea>
+      </div>
+      <button *ngIf="!isLoading; else loading" type="button" class="btn primary-button" style="align-self: center" (click)="submitForm()">Submit message</button>
+      <ng-template #loading > <h2 class="sending" >Sending...</h2> </ng-template>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    Copyright &copy; 2021 @ Biobrix Healthcare | All Rights Reserved
+  </div>
 </div>
