@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Tamma+2&display=swap');
 
 .main-container{
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 .svg_line{
@@ -29,7 +29,11 @@
 }
 
 .cover-section{
-  background-image: url('../../../../assets/bbnew.jpg');
+  background: url('../../../../assets/bbnew.jpg') no-repeat center center;
+  // background: url('../../../../assets/bbnew.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
   height: 50vw;
     &__name{
@@ -188,13 +192,15 @@
   &__tray{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-around;
   }
 
   &__item {
-    width: 25vw;
+    width: 30vw;
     display: flex;
-    padding: 0 2rem;
+    min-width: 30rem;
+    padding: 0 1rem;
     flex-direction: column;
     align-items: center;
     background-color: rgba($color:white, $alpha: .6);
@@ -326,24 +332,41 @@
 }
 
 @media screen and (max-width: 600px) {
-
   .testimonies {
     &__item {
       margin: 0 auto;
       padding: 2rem;
-      transform: skewX(-5deg);
-
-      &-shape {
-        transform:skewX(5deg);
-      }
-
-      &-text {
-        transform: skewX(5deg);
-      }
-
     }
   }
+}
+@media screen and (max-width: 767px) {
+  .cover-section{
+    display: flex;
+    flex-direction: column;
+    height: 95vh;
+    width: 100vw;
+    background-size: auto;
+    align-items: flex-start;
+    padding-top: 4rem;
+    padding-left: 2rem;
 
+    &__name{
+      position: unset;
+      color: $tertiary-website-color;
+      letter-spacing: 1.1rem;
+      font-size: 3em;
+      left: 0;
+      top: 0;
+    }
+   &__sub-name{
+      position: unset;
+      color: $tertiary-website-color;
+      width: 18.5rem;
+    }
 
+  &__subtitle{
+      position: unset;
+    }
 
+  }
 }

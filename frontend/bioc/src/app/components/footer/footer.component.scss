@@ -63,13 +63,22 @@
     flex: 1;
     @include flex(column);
     align-items: center;
-    justify-content: center;
     margin-left: 10rem;
+    padding: 0;
+    width: 100%;
     margin-right: 10rem;
     margin-bottom: 8rem;
     margin-top: -10rem;
     background-color: $tertiary-website-color;
     color: black;
+    &-heading{
+      margin-top: 3rem;
+      width: 100%;
+      text-align: center;
+      font-size: 3rem;
+      font-family: serif;
+      margin-bottom: 2rem;
+    }
   }
 
   &__bottom{
@@ -85,6 +94,7 @@
     left: 0;
     padding-top: 2rem;
   }
+
 }
 
 

@@ -6,7 +6,7 @@
 
   background-color: $tertiary-website-color;
   border-bottom: rgb(184, 184, 184);
-  padding-right: 10rem;
+  padding-right: 6rem;
 
   .navbar-brand {
     font-size: 3rem;
@@ -95,8 +95,7 @@
   top: 0%;
   .company_name {
     position: absolute;
-    display: flex;
-    flex-direction: row;
+
     // font-family: 'Aclonica', sans-serif;
     color: black;
     letter-spacing: .4rem;
@@ -122,32 +121,25 @@
 
 @media screen and (max-width: 1050px){
 
+  .primary-header{
+    padding-right: 0;
+    .nav-item{
+      padding: 1rem;
+    }
+  }
+
   .brand-logo {
-    left: 5%;
-    img{
-      height: 4rem;
-    }
+    left: 1%;
   }
 
   .name_div {
-    .company_name {
-      font-size: 0rem;
-    }
-  }
-
-  .search {
-    right: 1%;
-  }
-
-}
-
-@media screen and (max-width: 1220px) {
-  .name_div {
+    left: 1.5%;
     .company_name {
       font-size: 2rem;
     }
   }
 }
+
 
 .squeeze {
 
