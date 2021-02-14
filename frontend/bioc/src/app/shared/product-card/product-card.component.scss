@@ -46,7 +46,7 @@
   text-transform: capitalize;
   border-top: none;
   margin-bottom: 1rem;
-
+  background: transparent;
   .product-name {
     color: #414344;
     margin-top: 1rem;
@@ -63,4 +63,11 @@
 .add_to_cart {
   color: blue;
   margin: .5rem 0;
+}
+
+
+@media screen and (max-width: 767px) {
+  .image{
+    width: 95%;
+  }
 }
