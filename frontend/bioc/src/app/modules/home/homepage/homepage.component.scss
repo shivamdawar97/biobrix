@@ -172,6 +172,22 @@
 
 }
 
+.pimg{
+  background-size: cover;
+  &-dry{
+    background-image: url('/assets/dry_skin.png');
+  }
+  &-oily{
+    background-image: url('/assets/oily_skin.png');
+  }
+  &-hair{
+    background-image: url('/assets/hair_care.png');
+  }
+  &-sun{
+    background-image: url('/assets/sun_screen.png');
+  }
+}
+
 .recent-products {
   display: inline;
     &__item {
