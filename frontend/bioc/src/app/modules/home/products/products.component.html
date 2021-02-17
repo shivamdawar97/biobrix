@@ -19,17 +19,17 @@
 
     <div *ngIf="!isLoading else loading_circular;" class="product-list" >
       <ng-container *ngIf="!tag">
-        <div class="row category" *ngFor="let category of productList">
-          <div class="col-md-12 name">
+        <div class="category" *ngFor="let category of productList">
+          <div class="name">
             <h2>{{ category.category_name }}</h2>
           </div>
-          <div class="col-md-3" *ngFor="let product of category.product_list">
+          <div class="product_cup" *ngFor="let product of category.product_list">
             <app-product-card [product]="product"></app-product-card>
           </div>
         </div>
       </ng-container>
-      <div class="row" *ngIf="tag">
-        <div class="col-md-3" *ngFor="let product of productList">
+      <div class="category" *ngIf="tag">
+        <div class="product_cup" *ngFor="let product of productList">
           <app-product-card [product]="product"></app-product-card>
         </div>
       </div>
