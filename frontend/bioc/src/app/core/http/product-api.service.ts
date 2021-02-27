@@ -23,6 +23,7 @@ import {ProductDetail} from '../models/product-detail.model';
 export class ProductApiService {
 
   BASE_URL = environment.BASE_URL;
+  categoryList: Array<Category>
 
   constructor(
     private http: HttpClient,

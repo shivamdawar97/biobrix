@@ -91,15 +91,12 @@ export class ProductsComponent implements OnInit {
 
 
   handleParamsChange(params: any) {
-    if (!params.categoryId) {
-      return;
-    }
+    if (!params.categoryId) return;
+
     this.categoryId = params.categoryId;
-    if (!!this.tag) {
-      this.getTagsProducts();
-    } else {
-      this.getProductList(params.categoryId);
-    }
+    if (!!this.tag) this.getTagsProducts();
+    else this.getProductList(params.categoryId);
+
     this.setActiveCategory();
   }
 

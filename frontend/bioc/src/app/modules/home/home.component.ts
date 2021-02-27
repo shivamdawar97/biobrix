@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
   private getCategoryList() {
     this.productService.getCategoryList().subscribe({next: (data: Array<Category>) => {
           this.categoryList = data;
+          this.productService.categoryList = this.categoryList;
           this.categoryList.push(DefaultCategory);
         }
     });

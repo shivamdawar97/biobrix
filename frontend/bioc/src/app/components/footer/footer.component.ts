@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ContactUsService } from 'src/app/core/http/contact-us.service';
+import { ProductApiService } from 'src/app/core/http/product-api.service';
 
 @Component({
   selector: 'app-footer',
@@ -15,7 +17,9 @@ export class FooterComponent implements OnInit {
 
   isLoading = false;
 
-  constructor(private contactUsService: ContactUsService) { }
+  constructor(private contactUsService: ContactUsService,
+    private productService: ProductApiService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -56,6 +60,12 @@ export class FooterComponent implements OnInit {
     }, 4000);
   }
 
+  gotoProductType(type:String){
+
+    const category =
+    this.productService.categoryList.find(cat =>cat.categoryName.toLowerCase().trim() == type.toLowerCase())
+    this.router.navigate(['/products',category.id])
+  }
 
 
 }

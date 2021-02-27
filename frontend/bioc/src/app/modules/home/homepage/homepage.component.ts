@@ -1,10 +1,12 @@
-import {Component, OnInit, HostListener} from '@angular/core';
+import {Component, OnInit, HostListener, Input} from '@angular/core';
 import {HomepageApiService} from '../../../core/http/homepage-api.service';
 import {Homepage} from '../../../core/models/homepage.model';
 import {UtilityService} from '../../../core/services/utility.service';
 import {Router} from "@angular/router";
 import { ContactInfoService } from 'src/app/core/services/contact-info.service';
 import { HomepageService } from './homepage.service';
+import { Category } from 'src/app/core/models/category.model';
+import { ProductApiService } from 'src/app/core/http/product-api.service';
 
 @Component({
   selector: 'app-homepage',
@@ -20,6 +22,7 @@ export class HomepageComponent implements OnInit {
   private pa3 = [];
 
   constructor(
+    private productService: ProductApiService,
     private homepageService: HomepageService,
     private contactService: ContactInfoService,
     private utilityService: UtilityService,
@@ -46,6 +49,13 @@ export class HomepageComponent implements OnInit {
       this.assembelRecentProducts();
       this.contactService.setContactInfo(this.homepage.contact_no,this.homepage.email);
 
+  }
+
+  gotoProductType(type:String){
+
+    const category =
+    this.productService.categoryList.find(cat =>cat.categoryName.toLowerCase().trim() == type.toLowerCase())
+    this.router.navigate(['/products',category.id])
   }
 
   productDetail(product_id: string) {

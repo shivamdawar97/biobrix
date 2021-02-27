@@ -97,6 +97,18 @@
     padding-top: 2rem;
   }
 
+  &__right{
+    &-link{
+      cursor: pointer;
+      color: white;
+      &:hover{
+        border-bottom: white .1rem solid;
+        text-decoration: none;
+      }
+
+    }
+  }
+
 }
 
 
@@ -109,6 +121,7 @@
   color: #075ac9;
   padding: 2rem;
 }
+
 
 
 @media screen and (max-width: 1050px){

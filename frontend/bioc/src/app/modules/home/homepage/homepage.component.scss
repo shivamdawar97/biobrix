@@ -140,7 +140,7 @@
 
     &:hover {
       outline: .7rem solid $primary-website-color-light;
-      transform: scale(1.05) translateY(-.5rem);
+      transform: scale(1.05) translateY(-1rem);
       z-index: 100;
       cursor: pointer;
       .product-type__item--item-hover {
@@ -150,6 +150,11 @@
         background: transparentize(black,.8);
 
       }
+
+    &:active{
+      transform: translateY(.5rem);
+    }
+
     }
 
     &--item-hover {

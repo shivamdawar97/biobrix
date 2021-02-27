@@ -20,23 +20,22 @@
     <div class="footer__content-linkbox">
       <h2 class="footer__content-heading">Quick Links</h2>
       <ul class="footer__content-box">
-        <li class="footer__right-li"><a class="footer__right-link">Home</a></li>
-        <li class="footer__right-li"><a class="footer__right-link">About us</a></li>
-        <li class="footer__right-li"><a class="footer__right-link">Contact us</a></li>
-        <li class="footer__right-li"><a class="footer__right-link">Products</a></li>
-        <li class="footer__right-li"><a class="footer__right-link">Doctors</a></li>
-        <li class="footer__right-li"><a class="footer__right-link">Trade Enquiry</a></li>
+        <li class="footer__right-li"><a class="footer__right-link" routerLink="">Home</a></li>
+        <li class="footer__right-li"><a class="footer__right-link" routerLink="/about">About us</a></li>
+        <li class="footer__right-li"><a class="footer__right-link" routerLink="/contact-us">Contact us</a></li>
+        <li class="footer__right-li"><a class="footer__right-link" routerLink="/doctors" >Doctors</a></li>
+        <li class="footer__right-li"><a class="footer__right-link" routerLink="/trade-enquiry">Trade Enquiry</a></li>
       </ul>
     </div>
 
     <div class="footer__content-linkbox">
       <h2 class="footer__content-heading">Products</h2>
       <ul class="footer__content-box">
-        <li class="footer__right-li"><a class="footer__right-link">Hair Fall</a></li>
-        <li class="footer__right-li"><a class="footer__right-link">Dry Skin</a></li>
-        <li class="footer__right-li"><a class="footer__right-link">Oily Skin</a></li>
-        <li class="footer__right-li"><a class="footer__right-link">Sunscreen</a></li>
-        <li class="footer__right-li"><a class="footer__right-link">Face cream</a></li>
+        <li class="footer__right-li"><a class="footer__right-link" (click)="gotoProductType('Hair Fall')">Hair Fall</a></li>
+        <li class="footer__right-li"><a class="footer__right-link" (click)="gotoProductType('Dry Skin')">Dry Skin</a></li>
+        <li class="footer__right-li"><a class="footer__right-link" (click)="gotoProductType('Oily Skin')" >Oily Skin</a></li>
+        <li class="footer__right-li"><a class="footer__right-link" (click)="gotoProductType('Sun Protection')">Sunscreen</a></li>
+
       </ul>
     </div>
 

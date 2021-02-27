@@ -8,12 +8,12 @@
 }
 
 .product-filter {
-  flex: 1;
+  width: 30rem;
   background: #f1f1f1;
-  height: 100vh;
-  min-width: 20rem;
+  min-width: 24rem;
   overflow: auto;
   padding: 2rem;
+  margin-bottom: -15ren;
   .heading {
     padding: 1.8rem 3rem;
     background-color: #075ac9;

@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
+    "client":"cd frontend/bioc && ng serve",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "env-cmd -f src/config/dev.env nodemon --ignore 'config/firebase-key.json' src/index.js"
+    "server": "env-cmd -f src/config/dev.env nodemon --ignore 'config/firebase-key.json' src/index.js",
+    "dev": "concurrently \" cd ~ && /home/shivam97/mongodb/bin/mongod --dbpath=/home/shivam97/mongodb-data\" \"npm run client\" \"npm run server\""
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,7 @@
   "dependencies": {
     "aws-sdk": "^2.641.0",
     "body-parser": "^1.19.0",
+    "concurrently": "^5.3.0",
     "cors": "^2.8.5",
     "env-cmd": "^10.1.0",
     "express": "^4.17.1",
