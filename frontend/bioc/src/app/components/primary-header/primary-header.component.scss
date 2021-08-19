@@ -1,11 +1,12 @@
 @import "src/styles/imports";
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Raleway&display=swap');
 
 .primary-header {
   font-size: 1.6rem;
   //color: $color-white;
 
-  background-color: $tertiary-website-color;
-  border-bottom: rgb(184, 184, 184);
+  // background-color: $tertiary-website-color;
+  background-color: rgb(0, 0,0,1);
   padding-right: 6rem;
 
   .navbar-brand {
@@ -22,7 +23,8 @@
       transition: all .3s;
       height: 100%;
       font-family: 'Playfair Display';
-
+      font-size: 1.2em;
+      color: white;
       &:hover, &.active{
         color: red;
         transform: scale(1.1);
@@ -84,7 +86,7 @@
   position: relative;
   left: 2%;
   img{
-    height: 4rem;
+    height: 8rem;
   }
 
 }
@@ -96,8 +98,8 @@
   .company_name {
     position: absolute;
 
-    // font-family: 'Aclonica', sans-serif;
-    color: black;
+    font-family: 'Dancing Script', cursive;
+    color: white;
     letter-spacing: .4rem;
     transform: translateY(-50%);
 

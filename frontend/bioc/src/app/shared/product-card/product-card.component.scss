@@ -6,7 +6,7 @@
   position: relative;
   border: transparent 0rem;
   transition: all .2s;
-  background-image: linear-gradient(to bottom,white 40%,$tertiary-website-color 30% );
+  //background-image: linear-gradient(to bottom,white 40%,$tertiary-website-color 30% );
 
   &:hover {
     transform: scale(1.02);
@@ -24,8 +24,8 @@
 
 .image {
   display: block;
-  width: 80%;
-  height: 40rem;
+  width: 30rem;
+  height: 30rem;
   position: relative;
   margin-left: auto;
   margin-right: auto;
